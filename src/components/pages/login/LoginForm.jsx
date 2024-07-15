@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
   // STATE
@@ -28,7 +29,9 @@ function LoginForm() {
         value={inputValue}
         required
       />
-      <button>Accédez à votre espace</button>
+      <Link to={"/order"}>
+        <button>Accédez à votre espace</button>
+      </Link>
     </form>
   );
 }

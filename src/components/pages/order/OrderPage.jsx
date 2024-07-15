@@ -1,5 +1,14 @@
+import { Link } from "react-router-dom";
+
 function OrderPage() {
-  return <h1>OrderPage</h1>;
+  return (
+    <div>
+      <h1>Bonjour</h1>
+      <Link to={"/"}>
+        <button>Deconnexion</button>
+      </Link>
+    </div>
+  );
 }
 
 export default OrderPage;
