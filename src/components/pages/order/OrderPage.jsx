@@ -5,7 +5,7 @@ function OrderPage() {
     <div>
       <h1>Bonjour</h1>
       <Link to={"/"}>
-        <button>Deconnexion</button>
+        <button>Déconnexion</button>
       </Link>
     </div>
   );
