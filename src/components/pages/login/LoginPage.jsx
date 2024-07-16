@@ -11,7 +11,7 @@ function LoginPage() {
         <img src={background} alt="Burger et frites" />
         <Overlay></Overlay>
       </BackgroundContainer>
-      <Logo />
+      <Logo size={"100px"} />
       <LoginForm />
     </Container>
   );
