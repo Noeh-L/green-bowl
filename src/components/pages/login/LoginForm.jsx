@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../theme";
+import { FaCircleUser, FaChevronRight } from "react-icons/fa6";
 
 function LoginForm() {
   // STATE
@@ -27,14 +28,20 @@ function LoginForm() {
       <div className="cta">
         <h2>Connectez-vous</h2>
         <div className="cta__action">
-          <input
-            type="text"
-            placeholder="Entrez votre prénom"
-            onChange={handleChange}
-            value={inputValue}
-            required
-          />
-          <button>Accéder à mon espace</button>
+          <label className="cta__action-input">
+            <FaCircleUser className="user-icone" />
+            <input
+              type="text"
+              placeholder="Entrez votre prénom"
+              onChange={handleChange}
+              value={inputValue}
+              required
+            />
+          </label>
+          <button className="cta__action-button">
+            Accéder à mon espace
+            <FaChevronRight className="chevron-icone" />
+          </button>
         </div>
       </div>
     </LoginFormStyled>
@@ -56,7 +63,7 @@ const LoginFormStyled = styled.form`
   .separator {
     width: 400px;
     height: 3px;
-    background-color: ${theme.colors.primary_burger};
+    background-color: #f56a2c;
   }
 
   .cta {
@@ -73,18 +80,68 @@ const LoginFormStyled = styled.form`
     }
 
     &__action {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      width: 100%;
       gap: ${theme.spacing.sm};
 
-      input,
-      button {
-        padding: ${theme.spacing.md} 24px;
-        font-size: ${theme.fonts.P0};
+      &-input {
+        background: ${theme.colors.white};
+        display: flex;
+        align-items: center;
+        gap: ${theme.spacing.sm};
+        padding: ${theme.spacing.md};
         border-radius: ${theme.borderRadius.round};
-        border: none;
-        font-family: "Open sans", serif;
+
+        & .user-icone {
+          color: ${theme.colors.greyBlue};
+          font-size: ${theme.fonts.P0};
+        }
+
+        input {
+          background: none;
+          border: none;
+          color: ${theme.colors.dark};
+          width: 100%;
+          height: 100%;
+          font-size: ${theme.fonts.P0};
+          font-family: "Open sans", sans-serif;
+          font-weight: ${theme.weights.medium};
+
+          &::placeholder {
+            color: #d3d3d3;
+          }
+        }
+      }
+
+      &-button {
+        background: ${theme.colors.primary_burger};
+        border: 1px solid ${theme.colors.primary_burger};
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: ${theme.spacing.sm};
+        padding: ${theme.spacing.md};
+        border-radius: ${theme.borderRadius.round};
+        font-size: ${theme.fonts.P0};
+        color: ${theme.colors.white};
+        font-weight: ${theme.weights.semiBold};
+        font-family: "Open sans", sans-serif;
+        cursor: pointer;
+        transition: background 0.15s ease-in-out;
+
+        & .chevron-icone {
+          font-size: ${theme.fonts.XS};
+        }
+
+        &:hover {
+          background: ${theme.colors.white};
+          color: ${theme.colors.primary_burger};
+        }
+        &:active {
+          background: ${theme.colors.primary_burger};
+          color: ${theme.colors.white};
+        }
       }
     }
   }
