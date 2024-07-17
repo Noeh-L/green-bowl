@@ -19,11 +19,11 @@ const TitleStyled = styled.h1`
   font-size: ${({ fontSize }) => fontSize};
   display: flex;
   align-items: center;
-  gap: ${theme.spacing.sm};
+  gap: ${theme.spacing.md};
   letter-spacing: 1.5px;
 
   img {
-    height: calc(${({ fontSize }) => fontSize} + 30px);
+    height: calc(${({ fontSize }) => fontSize} + 50px);
   }
 `;
 
