@@ -2,6 +2,7 @@ import styled from "styled-components";
 import LoginForm from "./LoginForm";
 import Logo from "./Logo";
 import background from "../../../assets/burger-background.jpg";
+import { theme } from "../../../theme";
 
 function LoginPage() {
   // RENDER
@@ -23,6 +24,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: ${theme.spacing.lg};
   position: relative;
 `;
 
@@ -45,7 +47,7 @@ const BackgroundContainer = styled.div`
 const Overlay = styled.div`
   position: absolute;
   inset: 0;
-  background-color: rgba(0 0 0 / 0.6);
+  background-color: rgba(0 0 0 / 0.7);
 `;
 
 export default LoginPage;
