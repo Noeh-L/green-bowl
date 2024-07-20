@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
 import { FaChevronRight } from "react-icons/fa6";
-import Input from "../../reusable-ui/TextInput";
+import TextInput from "../../reusable-ui/TextInput";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 function LoginForm() {
   // STATE
@@ -30,7 +31,7 @@ function LoginForm() {
       <div className="cta">
         <h2>Connectez-vous</h2>
         <div className="cta__action">
-          <Input
+          <TextInput
             value={inputValue}
             onChange={handleChange}
             placeholder={"Entrez votre prénom"}
@@ -40,6 +41,7 @@ function LoginForm() {
             Accéder à mon espace
             <FaChevronRight className="chevron-icone" />
           </button>
+          <PrimaryButton />
         </div>
       </div>
     </LoginFormStyled>
