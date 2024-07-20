@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../theme";
-import { FaCircleUser, FaChevronRight } from "react-icons/fa6";
+import { BsPersonCircle } from "react-icons/bs";
+import { FaChevronRight } from "react-icons/fa6";
+import Input from "../../reusable-ui/Input";
 
 function LoginForm() {
   // STATE
@@ -28,16 +30,12 @@ function LoginForm() {
       <div className="cta">
         <h2>Connectez-vous</h2>
         <div className="cta__action">
-          <label className="cta__action-input">
-            <FaCircleUser className="user-icone" />
-            <input
-              type="text"
-              placeholder="Entrez votre prénom"
-              onChange={handleChange}
-              value={inputValue}
-              required
-            />
-          </label>
+          <Input
+            value={inputValue}
+            onChange={handleChange}
+            placeholder={"Entrez votre prénom"}
+            Icon={<BsPersonCircle className="icon" />}
+          />
           <button className="cta__action-button">
             Accéder à mon espace
             <FaChevronRight className="chevron-icone" />
@@ -84,35 +82,6 @@ const LoginFormStyled = styled.form`
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
-
-      &-input {
-        background: ${theme.colors.white};
-        display: flex;
-        align-items: center;
-        gap: ${theme.spacing.sm};
-        padding: ${theme.spacing.md};
-        border-radius: ${theme.borderRadius.round};
-
-        & .user-icone {
-          color: ${theme.colors.greyBlue};
-          font-size: ${theme.fonts.P0};
-        }
-
-        input {
-          background: none;
-          border: none;
-          color: ${theme.colors.dark};
-          width: 100%;
-          height: 100%;
-          font-size: ${theme.fonts.P0};
-          font-family: "Open sans", sans-serif;
-          font-weight: ${theme.weights.medium};
-
-          &::placeholder {
-            color: #d3d3d3;
-          }
-        }
-      }
 
       &-button {
         background: ${theme.colors.primary};
