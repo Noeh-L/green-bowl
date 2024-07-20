@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
 import { FaChevronRight } from "react-icons/fa6";
-import Input from "../../reusable-ui/Input";
+import Input from "../../reusable-ui/TextInput";
 
 function LoginForm() {
   // STATE

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 /* eslint-disable react/prop-types */
-function Input({ value, onChange, Icon, ...extraProps }) {
+function TextInput({ value, onChange, Icon, ...extraProps }) {
   return (
     <TextInputStyled>
       {Icon && Icon}
@@ -40,4 +40,4 @@ const TextInputStyled = styled.label`
   }
 `;
 
-export default Input;
+export default TextInput;
