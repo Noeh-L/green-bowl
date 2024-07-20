@@ -36,6 +36,7 @@ function LoginForm() {
             onChange={handleChange}
             placeholder={"Entrez votre prénom"}
             Icon={<BsPersonCircle className="icon" />}
+            required
           />
           <PrimaryButton
             label={"Accéder à mon espace"}
