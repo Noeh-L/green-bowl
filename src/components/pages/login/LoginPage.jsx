@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import LoginForm from "./LoginForm";
-import Logo from "./Logo";
+import Logo from "../../reusable-ui/Logo";
 import background from "../../../assets/burger-background.jpg";
 import { theme } from "../../../theme";
 
@@ -12,7 +12,7 @@ function LoginPage() {
         <img src={background} alt="Burger et frites" />
         <Overlay></Overlay>
       </BackgroundContainer>
-      <Logo size={"100px"} />
+      <Logo scale={2} />
       <LoginForm />
     </Container>
   );
@@ -24,7 +24,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: ${theme.spacing.lg};
+  gap: ${theme.spacing.xxl};
   position: relative;
 `;
 

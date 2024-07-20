@@ -27,10 +27,6 @@ const PrimaryButtonStyled = styled.button`
   cursor: pointer;
   transition: background 0.15s ease-in-out;
 
-  & .icon {
-    font-size: ${theme.fonts.XS};
-  }
-
   &:hover {
     background: ${theme.colors.white};
     color: ${theme.colors.primary};

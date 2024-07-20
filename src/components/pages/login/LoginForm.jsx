@@ -83,6 +83,10 @@ const LoginFormStyled = styled.form`
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
+
+      & .icon {
+        font-size: ${theme.fonts.XS};
+      }
     }
   }
 `;
