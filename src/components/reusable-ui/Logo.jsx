@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
-import logo from "../../../assets/logo-orange.png";
-import { theme } from "../../../theme/index.js";
+import logo from "../../assets/logo-orange.png";
+import { theme } from "../../theme/index.js";
 import PropTypes from "prop-types";
 
-function Logo({ size }) {
+function Logo({ scale }) {
   return (
-    <TitleStyled fontSize={size}>
+    <TitleStyled scale={scale}>
       <div>CRAZEE</div>
       <img src={logo} alt="Logo d'un burger" />
       <div>BURGER</div>
@@ -16,14 +17,15 @@ function Logo({ size }) {
 const TitleStyled = styled.h1`
   font-family: "Amatic SC", sans-serif;
   color: ${theme.colors.primary};
-  font-size: ${({ fontSize }) => fontSize};
   display: flex;
   align-items: center;
-  gap: ${theme.spacing.md};
+  gap: 7px;
   letter-spacing: 1.5px;
+  font-size: ${theme.fonts.P5};
+  transform: scale(${({ scale }) => scale});
 
   img {
-    height: calc(${({ fontSize }) => fontSize} + 50px);
+    height: 65px;
   }
 `;
 
