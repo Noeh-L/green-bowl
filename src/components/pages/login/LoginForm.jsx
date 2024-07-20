@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
-import { FaChevronRight } from "react-icons/fa6";
 import TextInput from "../../reusable-ui/TextInput";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import { FaChevronRight } from "react-icons/fa6";
 
 function LoginForm() {
   // STATE
@@ -37,11 +37,10 @@ function LoginForm() {
             placeholder={"Entrez votre prénom"}
             Icon={<BsPersonCircle className="icon" />}
           />
-          <button className="cta__action-button">
-            Accéder à mon espace
-            <FaChevronRight className="chevron-icone" />
-          </button>
-          <PrimaryButton />
+          <PrimaryButton
+            label={"Accéder à mon espace"}
+            Icon={<FaChevronRight className="icon" />}
+          />
         </div>
       </div>
     </LoginFormStyled>
@@ -84,36 +83,6 @@ const LoginFormStyled = styled.form`
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
-
-      &-button {
-        background: ${theme.colors.primary};
-        border: 1px solid ${theme.colors.primary};
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: ${theme.spacing.sm};
-        padding: ${theme.spacing.md};
-        border-radius: ${theme.borderRadius.round};
-        font-size: ${theme.fonts.P0};
-        color: ${theme.colors.white};
-        font-weight: ${theme.weights.semiBold};
-        font-family: "Open sans", sans-serif;
-        cursor: pointer;
-        transition: background 0.15s ease-in-out;
-
-        & .chevron-icone {
-          font-size: ${theme.fonts.XS};
-        }
-
-        &:hover {
-          background: ${theme.colors.white};
-          color: ${theme.colors.primary};
-        }
-        &:active {
-          background: ${theme.colors.primary};
-          color: ${theme.colors.white};
-        }
-      }
     }
   }
 `;
