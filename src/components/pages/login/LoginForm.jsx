@@ -115,8 +115,8 @@ const LoginFormStyled = styled.form`
       }
 
       &-button {
-        background: ${theme.colors.primary_burger};
-        border: 1px solid ${theme.colors.primary_burger};
+        background: ${theme.colors.primary};
+        border: 1px solid ${theme.colors.primary};
         display: flex;
         justify-content: center;
         align-items: center;
@@ -136,10 +136,10 @@ const LoginFormStyled = styled.form`
 
         &:hover {
           background: ${theme.colors.white};
-          color: ${theme.colors.primary_burger};
+          color: ${theme.colors.primary};
         }
         &:active {
-          background: ${theme.colors.primary_burger};
+          background: ${theme.colors.primary};
           color: ${theme.colors.white};
         }
       }
