@@ -4,9 +4,9 @@ import logo from "../../assets/logo-orange.png";
 import { theme } from "../../theme/index.js";
 import PropTypes from "prop-types";
 
-function Logo({ scale }) {
+function Logo({ scale, ...extraProps }) {
   return (
-    <TitleStyled scale={scale}>
+    <TitleStyled scale={scale} {...extraProps}>
       <div>CRAZEE</div>
       <img src={logo} alt="Logo d'un burger" />
       <div>BURGER</div>
