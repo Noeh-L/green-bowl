@@ -40,6 +40,10 @@ const OrderPageStyled = styled.div`
     width: 1400px;
     height: 95vh;
     border-radius: ${theme.borderRadius.extraRound};
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 `;
 
