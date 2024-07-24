@@ -12,12 +12,27 @@ function Main() {
           <div className="card__img">
             <img src={burger} alt="Burger 1" />
           </div>
-          <div className="card__info">
-            <h1>Burger n°1</h1>
-            <div className="card__info-add">
+
+          <div className="card__infos">
+            <h2>Burger n°1</h2>
+            <div className="card__infos-add">
               <p>5,50€</p>
               <PrimaryButton label={"Ajouter"} />
             </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card__img">
+            <img src={burger} alt="Burger 1" />
+          </div>
+
+          <div className="card__info">
+            {/* <h1>Burger n°1</h1>
+            <div className="card__info-add">
+              <p>5,50€</p>
+              <PrimaryButton label={"Ajouter"} />
+            </div> */}
           </div>
         </div>
       </div>
@@ -37,16 +52,18 @@ const MainSyled = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: ${theme.spacing.xl} ${theme.spacing.xxl};
     padding: ${theme.spacing.xl} ${theme.spacing.xxl};
-    grid-auto-rows: 330px;
+    /* grid-auto-rows: 330px; */
 
     .card {
       border: 1px solid blue;
       display: flex;
       flex-direction: column;
-      gap: ${theme.spacing.xs};
-      padding: ${theme.spacing.lg};
+      gap: ${theme.spacing.sm};
+      padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
+      height: 330px;
 
       &__img {
+        border: 3px solid red;
         width: 200px;
         height: 145px;
         overflow: hidden;
@@ -57,6 +74,16 @@ const MainSyled = styled.div`
         & img {
           object-fit: cover;
           width: 100%;
+        }
+      }
+
+      &__infos {
+        border: 3px solid green;
+        display: flex;
+        flex-direction: column;
+
+        &-add {
+          display: flex;
         }
       }
     }
