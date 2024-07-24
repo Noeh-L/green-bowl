@@ -14,10 +14,12 @@ function Main() {
           </div>
 
           <div className="card__infos">
-            <h2>Burger n°1</h2>
+            <h2 className="card__infos-title">
+              Burger And Soda Bacon Egg Fries
+            </h2>
             <div className="card__infos-add">
-              <p>5,50€</p>
-              <PrimaryButton label={"Ajouter"} />
+              <p className="price">5,50€</p>
+              <PrimaryButton label={"Ajouter"} className="addButton" />
             </div>
           </div>
         </div>
@@ -52,18 +54,17 @@ const MainSyled = styled.div`
     grid-template-columns: repeat(4, 1fr);
     gap: ${theme.spacing.xl} ${theme.spacing.xxl};
     padding: ${theme.spacing.xl} ${theme.spacing.xxl};
-    /* grid-auto-rows: 330px; */
 
     .card {
       border: 1px solid blue;
+      height: 330px;
+      width: 240px;
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
       padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
-      height: 330px;
 
       &__img {
-        border: 3px solid red;
         width: 200px;
         height: 145px;
         overflow: hidden;
@@ -78,12 +79,32 @@ const MainSyled = styled.div`
       }
 
       &__infos {
-        border: 3px solid green;
         display: flex;
         flex-direction: column;
+        gap: ${theme.spacing.xxs};
 
+        &-title {
+          font-family: "Amatic SC", serif;
+          font-size: ${theme.fonts.P4};
+          font-weight: ${theme.weights.bold};
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
         &-add {
           display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .price {
+            color: ${theme.colors.primary};
+            font-size: ${theme.fonts.P0};
+            font-weight: ${theme.weights.regular};
+          }
+          .addButton {
+            font-size: ${theme.fonts.XS};
+            padding: ${theme.spacing.sm} ${theme.spacing.lg};
+          }
         }
       }
     }
