@@ -1,24 +1,25 @@
 import styled from "styled-components";
 import { theme } from "../../../theme";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import burger from "../../../assets/burger-bacon-egg.png";
 
 function Main() {
   return (
     <MainSyled>
       {/* <div className="basket">Panier</div> */}
       <div className="deck">
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
-        <div className="card">CARD</div>
+        <div className="card">
+          <div className="card__img">
+            <img src={burger} alt="Burger 1" />
+          </div>
+          <div className="card__info">
+            <h1>Burger n°1</h1>
+            <div className="card__info-add">
+              <p>5,50€</p>
+              <PrimaryButton label={"Ajouter"} />
+            </div>
+          </div>
+        </div>
       </div>
     </MainSyled>
   );
@@ -40,10 +41,24 @@ const MainSyled = styled.div`
 
     .card {
       border: 1px solid blue;
-      width: 100%;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column;
+      gap: ${theme.spacing.xs};
+      padding: ${theme.spacing.lg};
+
+      &__img {
+        width: 200px;
+        height: 145px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & img {
+          object-fit: cover;
+          width: 100%;
+        }
+      }
     }
   }
 `;
