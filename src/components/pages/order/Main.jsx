@@ -8,8 +8,13 @@ function Main() {
     <MainSyled>
       {/* <div className="basket">Panier</div> */}
       <div className="deck">
-        {fakeMenu2.map((item, index) => (
-          <Card name={item.title} key={`${item.id}-${index}`} />
+        {fakeMenu2.map((item) => (
+          <Card
+            key={`${item.id}`}
+            picture={item.imageSource}
+            label={item.title}
+            price={item.price}
+          />
         ))}
       </div>
     </MainSyled>

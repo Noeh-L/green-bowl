@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
-import burger from "../../../assets/burger3.png";
 import styled from "styled-components";
 import { theme } from "../../../theme";
+import { formatPrice } from "../../../utils/maths";
 
-function Card({ name }) {
+function Card({ picture, label, price }) {
   return (
     <CardStyled>
       <div className="picture">
-        <img src={burger} alt="Burger 1" />
+        <img src={picture} alt={label} />
       </div>
 
       <div className="infos">
-        <h2 className="infos-title">{name}</h2>
+        <h2 className="infos-title">{label}</h2>
         <div className="infos-add">
-          <p className="price">5,50€</p>
+          <p className="price">{formatPrice(price.toFixed(2))}</p>
           <PrimaryButton label={"Ajouter"} className="addButton" />
         </div>
       </div>

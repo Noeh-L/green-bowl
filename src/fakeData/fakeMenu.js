@@ -1,7 +1,18 @@
+import burgerBaconEgg from "../assets/burger-bacon-egg.png";
+import burgerVegan from "../assets/burger-vegan.png";
+import burger3 from "../assets/burger3.png";
+import drink1 from "../assets/drink1.png";
+import drink2 from "../assets/drink2.png";
+import drink3 from "../assets/drink3.png";
+import frites1 from "../assets/frites1.png";
+import fries3 from "../assets/fries3.png";
+import wedges1 from "../assets/wedges1.png";
+import iceCream from "../assets/ice-cream.png";
+
 export const fakeMenu1 = [
   {
     id: 1,
-    imageSource: "/images/burger1.png",
+    imageSource: "/assets/burger1.png",
     title: "Burger 1",
     price: 5.297,
     quantity: 0,
@@ -10,19 +21,19 @@ export const fakeMenu1 = [
   },
   {
     id: 2,
-    imageSource: "/images/burger2.png",
+    imageSource: "/assets/burger2.png",
     title: "Burger 2",
     price: 7.556,
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
   },
-]
+];
 
 export const fakeMenu2 = [
   {
     id: 1,
-    imageSource: "/images/burger-bacon-egg.png",
+    imageSource: burgerBaconEgg,
     title: "Burger Smoke BBQ",
     price: 5.598,
     quantity: 0,
@@ -31,7 +42,7 @@ export const fakeMenu2 = [
   },
   {
     id: 2,
-    imageSource: "/images/burger-vegan.png",
+    imageSource: burgerVegan,
     title: "Vegan Burger",
     price: 5.4985,
     quantity: 0,
@@ -40,7 +51,7 @@ export const fakeMenu2 = [
   },
   {
     id: 3,
-    imageSource: "/images/burger3.png",
+    imageSource: burger3,
     title: "Burger poulet",
     price: 5.367,
     quantity: 0,
@@ -49,7 +60,7 @@ export const fakeMenu2 = [
   },
   {
     id: 4,
-    imageSource: "/images/drink1.png",
+    imageSource: drink1,
     title: "Coke 25cl",
     price: 3.568,
     quantity: 0,
@@ -58,7 +69,7 @@ export const fakeMenu2 = [
   },
   {
     id: 5,
-    imageSource: "/images/drink2.png",
+    imageSource: drink2,
     title: "Pepsi 25cl",
     price: 3.487,
     quantity: 0,
@@ -67,7 +78,7 @@ export const fakeMenu2 = [
   },
   {
     id: 6,
-    imageSource: "/images/drink3.png",
+    imageSource: drink3,
     title: "Iced Tea 25cl",
     price: 3.356,
     quantity: 0,
@@ -76,7 +87,7 @@ export const fakeMenu2 = [
   },
   {
     id: 7,
-    imageSource: "/images/frites1.png",
+    imageSource: frites1,
     title: "Frites Paprika",
     price: 2.567,
     quantity: 0,
@@ -85,7 +96,7 @@ export const fakeMenu2 = [
   },
   {
     id: 8,
-    imageSource: "/images/fries3.png",
+    imageSource: fries3,
     title: "New York Fries",
     price: 3.1678,
     quantity: 0,
@@ -94,7 +105,7 @@ export const fakeMenu2 = [
   },
   {
     id: 9,
-    imageSource: "/images/wedges1.png",
+    imageSource: wedges1,
     title: "Crispy Potatoes",
     price: 3.7,
     quantity: 0,
@@ -103,11 +114,11 @@ export const fakeMenu2 = [
   },
   {
     id: 10,
-    imageSource: "/images/ice-cream.png",
+    imageSource: iceCream,
     title: "Glaces artisanales",
     price: 4.678,
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
   },
-]
+];
