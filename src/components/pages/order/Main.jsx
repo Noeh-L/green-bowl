@@ -23,20 +23,6 @@ function Main() {
             </div>
           </div>
         </div>
-
-        <div className="card">
-          <div className="card__img">
-            <img src={burger} alt="Burger 1" />
-          </div>
-
-          <div className="card__info">
-            {/* <h1>Burger n°1</h1>
-            <div className="card__info-add">
-              <p>5,50€</p>
-              <PrimaryButton label={"Ajouter"} />
-            </div> */}
-          </div>
-        </div>
       </div>
     </MainSyled>
   );
@@ -56,13 +42,15 @@ const MainSyled = styled.div`
     padding: ${theme.spacing.xl} ${theme.spacing.xxl};
 
     .card {
-      border: 1px solid blue;
+      background: ${theme.colors.white};
       height: 330px;
       width: 240px;
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
       padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
+      border-radius: ${theme.borderRadius.extraRound};
+      box-shadow: ${theme.shadows.card};
 
       &__img {
         width: 200px;
