@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import burger from "../../../assets/burger3.png";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 
-function Card() {
+function Card({ name }) {
   return (
     <CardStyled>
       <div className="picture">
@@ -11,7 +12,7 @@ function Card() {
       </div>
 
       <div className="infos">
-        <h2 className="infos-title">Burger And Soda Bacon Egg Fries</h2>
+        <h2 className="infos-title">{name}</h2>
         <div className="infos-add">
           <p className="price">5,50€</p>
           <PrimaryButton label={"Ajouter"} className="addButton" />
