@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 import Card from "./Card";
-import { fakeMenu2 } from "../../../fakeData/fakeMenu";
+import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 
 function Main() {
   return (
@@ -31,7 +31,7 @@ const MainSyled = styled.div`
   .deck {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: ${theme.spacing.xl} ${theme.spacing.xxl};
     padding: ${theme.spacing.xl} ${theme.spacing.xxl};
     overflow-y: scroll;

@@ -1,7 +1,7 @@
-import Logo from "../../reusable-ui/Logo";
+import Logo from "../../../reusable-ui/Logo";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 
 /* eslint-disable react/prop-types */
 function Navbar({ username }) {
