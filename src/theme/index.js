@@ -46,7 +46,9 @@ const borderRadius = {
   extraRound: "15px",
   circle: "50%",
 };
-const shadows = {};
+const shadows = {
+  card: "-8px 8px 20px rgba(0, 0, 0, 0.2)",
+};
 const weights = {
   light: 300,
   regular: 400,
