@@ -26,6 +26,7 @@ const NavbarStyled = styled.nav`
   padding: ${theme.spacing.xs};
   padding-left: ${theme.spacing.xxs};
   padding-right: ${theme.spacing.xl};
+  border-bottom: 1px solid ${theme.colors.greyLight};
 
   .logo {
     cursor: pointer;
