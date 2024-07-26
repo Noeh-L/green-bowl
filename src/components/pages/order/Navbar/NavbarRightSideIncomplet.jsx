@@ -1,17 +1,29 @@
-import "react-toastify/dist/ReactToastify.css";
+/* eslint-disable react/prop-types */
+// import "react-toastify/dist/ReactToastify.css";
 import { theme } from "../../../../theme";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
+import UserMenu from "./UserMenu";
 
-export default function NavbarRightSideIncomplet() {
+export default function NavbarRightSideIncomplet({ username }) {
   return (
     <NavbarRightSideIncompletStyled>
-      <ToastContainer className="toaster" bodyClassName="body-toast" />
+      <div className="admin-button">ADMIN BUTTON</div>
+      <UserMenu username={username} />
+      {/* <ToastContainer className="toaster" bodyClassName="body-toast" /> */}
     </NavbarRightSideIncompletStyled>
   );
 }
 
 const NavbarRightSideIncompletStyled = styled.div`
+  border: 2px solid red;
+  display: flex;
+  align-items: center;
+  gap: 70px;
+
+  .admin-button {
+  }
+
   .toaster {
     max-width: 300px;
   }
