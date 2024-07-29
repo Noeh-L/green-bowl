@@ -13,7 +13,7 @@ export default function NavbarRightSideIncomplet({ username }) {
   const [isAdminMode, setIsAdminMode] = useState(false);
 
   // BEHAVIOR
-  const handleToggle = () => {
+  const displayToastNotification = () => {
     setIsAdminMode(!isAdminMode);
     if (!isAdminMode) {
       toast.info("Mode admin activé", {
@@ -35,7 +35,7 @@ export default function NavbarRightSideIncomplet({ username }) {
     <NavbarRightSideStyled>
       <ToggleButton
         isChecked={isAdminMode}
-        onToggle={handleToggle}
+        onToggle={displayToastNotification}
         labelIfChecked="Désactiver le mode admin"
         labelIfUnchecked="Activer le mode admin"
       />
