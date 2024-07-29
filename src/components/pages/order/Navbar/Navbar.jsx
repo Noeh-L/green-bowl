@@ -1,7 +1,7 @@
 import Logo from "../../../reusable-ui/Logo";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import NavbarRightSideIncomplet from "./NavbarRightSideIncomplet";
+import NavbarRightSide from "./NavbarRightSide";
 
 /* eslint-disable react/prop-types */
 function Navbar({ username }) {
@@ -14,7 +14,7 @@ function Navbar({ username }) {
   return (
     <NavbarStyled>
       <Logo scale={0.9} onClick={handleClick} className="logo" />
-      <NavbarRightSideIncomplet username={username} />
+      <NavbarRightSide username={username} />
     </NavbarStyled>
   );
 }
