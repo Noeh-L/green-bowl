@@ -10,12 +10,12 @@ import { useState } from "react";
 
 export default function NavbarRightSideIncomplet({ username }) {
   // STATE
-  const [adminMode, setAdminMode] = useState(false);
+  const [isAdminMode, setIsAdminMode] = useState(false);
 
   // BEHAVIOR
   const handleToggle = () => {
-    setAdminMode(!adminMode);
-    if (!adminMode) {
+    setIsAdminMode(!isAdminMode);
+    if (!isAdminMode) {
       toast.info("Mode admin activé", {
         position: "bottom-right",
         autoClose: 5000,
@@ -33,7 +33,7 @@ export default function NavbarRightSideIncomplet({ username }) {
   // RENDER
   return (
     <NavbarRightSideStyled>
-      <ToggleButton isChecked={adminMode} onToggle={handleToggle} />
+      <ToggleButton isChecked={isAdminMode} onToggle={handleToggle} />
       <UserMenu username={username} />
       <ToastContainer className="toaster" bodyClassName="body-toast" />
     </NavbarRightSideStyled>
