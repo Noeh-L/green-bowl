@@ -33,7 +33,12 @@ export default function NavbarRightSideIncomplet({ username }) {
   // RENDER
   return (
     <NavbarRightSideStyled>
-      <ToggleButton isChecked={isAdminMode} onToggle={handleToggle} />
+      <ToggleButton
+        isChecked={isAdminMode}
+        onToggle={handleToggle}
+        labelIfChecked="Désactiver le mode admin"
+        labelIfUnchecked="Activer le mode admin"
+      />
       <UserMenu username={username} />
       <ToastContainer className="toaster" bodyClassName="body-toast" />
     </NavbarRightSideStyled>
