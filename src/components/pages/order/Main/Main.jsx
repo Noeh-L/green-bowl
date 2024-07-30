@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Card from "./Card";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import AdminPanel from "./AdminPanel";
 
 function Main() {
   return (
@@ -17,6 +18,7 @@ function Main() {
           />
         ))}
       </div>
+      <AdminPanel />
     </MainSyled>
   );
 }
@@ -27,6 +29,7 @@ const MainSyled = styled.div`
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   display: flex;
   overflow: hidden;
+  position: relative;
 
   .deck {
     flex: 1;
