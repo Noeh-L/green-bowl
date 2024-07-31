@@ -3,15 +3,15 @@ import { theme } from "../../../../theme";
 import { FiChevronDown } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
-import AdminTab from "./AdminTab";
+import AdminTab from "../../../reusable-ui/AdminTab";
 
 function AdminPanel() {
   return (
     <AdminPanelStyled>
       <div className="tabs-container">
         <AdminTab Icon={FiChevronDown} />
-        <AdminTab label={"Ajouter un produit"} Icon={AiOutlinePlus} />
-        <AdminTab label={"Modifier un produit"} Icon={MdModeEditOutline} />
+        <AdminTab Icon={AiOutlinePlus} label={"Ajouter un produit"} />
+        <AdminTab Icon={MdModeEditOutline} label={"Modifier un produit"} />
       </div>
       <div className="content"></div>
     </AdminPanelStyled>

@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { theme } from "../../../../theme";
+import { theme } from "../../theme";
 
-function AdminTab({ label, Icon }) {
+function AdminTab({ Icon, label }) {
   return (
-    <AdminTabStyled>
+    <AdminTabStyled isLabel={label}>
       {Icon && <Icon className="icon" />}
       <p className="title">{label}</p>
     </AdminTabStyled>
@@ -16,7 +16,7 @@ const AdminTabStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: ${theme.spacing.sm};
+  gap: ${({ isLabel }) => (isLabel ? theme.spacing.sm : 0)};
 
   background: ${theme.colors.white};
   color: ${theme.colors.greySemiDark};
@@ -24,6 +24,10 @@ const AdminTabStyled = styled.div`
   border: 1px solid ${theme.colors.greyLight};
   padding: 10px 22px;
   cursor: pointer;
+
+  .icon {
+    font-size: ${theme.fonts.SM};
+  }
 
   .title {
     font-size: ${theme.fonts.P0};
