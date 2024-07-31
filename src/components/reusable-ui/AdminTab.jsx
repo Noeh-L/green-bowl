@@ -3,7 +3,7 @@ import { theme } from "../../theme";
 
 function AdminTab({ Icon, label }) {
   return (
-    <AdminTabStyled isLabel={label}>
+    <AdminTabStyled $isLabel={label}>
       {Icon && <Icon className="icon" />}
       <p className="title">{label}</p>
     </AdminTabStyled>
