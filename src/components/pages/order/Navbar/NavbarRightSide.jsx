@@ -5,12 +5,12 @@ import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
-import { useState } from "react";
 import ToastAdmin from "../../../reusable-ui/ToastAdmin";
+import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
 
 export default function NavbarRightSideIncomplet({ username }) {
   // STATE
-  const [isAdminMode, setIsAdminMode] = useState(false);
+  const { isAdminMode, setIsAdminMode } = useIsAdminModeContext();
 
   // BEHAVIOR
   const displayToastNotification = () => {

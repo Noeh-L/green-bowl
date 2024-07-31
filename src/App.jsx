@@ -3,6 +3,7 @@ import "./App.css";
 import LoginPage from "./components/pages/login/LoginPage";
 import OrderPage from "./components/pages/order/OrderPage";
 import ErrorPage from "./components/pages/error/ErrorPage";
+import IsAdminModeContextProvider from "./context/IsAdminContext";
 
 // const router = createBrowserRouter([
 //   { path: "/", element: <LoginPage /> },
@@ -14,11 +15,13 @@ import ErrorPage from "./components/pages/error/ErrorPage";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/order/:username" element={<OrderPage />} />
-      <Route path="/*" element={<ErrorPage />} />
-    </Routes>
+    <IsAdminModeContextProvider>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/order/:username" element={<OrderPage />} />
+        <Route path="/*" element={<ErrorPage />} />
+      </Routes>
+    </IsAdminModeContextProvider>
   );
 }
 
