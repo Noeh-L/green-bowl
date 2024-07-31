@@ -5,7 +5,7 @@ import { theme } from "../../theme";
 function TextInput({ value, onChange, Icon, ...extraProps }) {
   return (
     <TextInputStyled>
-      {Icon && Icon}
+      {Icon && <Icon className="icon" />}
       <input type="text" value={value} onChange={onChange} {...extraProps} />
     </TextInputStyled>
   );
@@ -20,8 +20,8 @@ const TextInputStyled = styled.label`
   border-radius: ${theme.borderRadius.round};
 
   & .icon {
+    font-size: ${theme.fonts.SM};
     color: ${theme.colors.greyBlue};
-    font-size: ${theme.fonts.P0};
   }
 
   input {

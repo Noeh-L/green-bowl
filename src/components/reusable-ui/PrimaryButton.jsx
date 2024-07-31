@@ -6,7 +6,7 @@ function PrimaryButton({ label, Icon, className }) {
   return (
     <PrimaryButtonStyled className={className}>
       {label}
-      {Icon && Icon}
+      {Icon && <Icon className="icon" />}
     </PrimaryButtonStyled>
   );
 }
@@ -34,6 +34,10 @@ const PrimaryButtonStyled = styled.button`
   &:active {
     background: ${theme.colors.primary};
     color: ${theme.colors.white};
+  }
+
+  .icon {
+    font-size: ${theme.fonts.SM};
   }
 `;
 

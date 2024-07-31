@@ -35,13 +35,10 @@ function LoginForm() {
             value={inputValue}
             onChange={handleChange}
             placeholder={"Entrez votre prénom"}
-            Icon={<BsPersonCircle className="icon" />}
+            Icon={BsPersonCircle}
             required
           />
-          <PrimaryButton
-            label={"Accéder à mon espace"}
-            Icon={<FaChevronRight className="icon" />}
-          />
+          <PrimaryButton label={"Accéder à mon espace"} Icon={FaChevronRight} />
         </div>
       </div>
     </LoginFormStyled>
@@ -84,10 +81,6 @@ const LoginFormStyled = styled.form`
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
-
-      & .icon {
-        font-size: ${theme.fonts.XS};
-      }
     }
   }
 `;
