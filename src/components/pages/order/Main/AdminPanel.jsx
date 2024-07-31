@@ -1,13 +1,25 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
+import { FiChevronDown } from "react-icons/fi";
+import { AiOutlinePlus } from "react-icons/ai";
+import { MdModeEditOutline } from "react-icons/md";
 
 function AdminPanel() {
   return (
     <AdminPanelStyled>
       <div className="tabs-container">
-        <div className="arrow tab">⬇</div>
-        <div className="addProduct tab">Ajouter un produit</div>
-        <div className="modifyProduct tab">Modifier un produit</div>
+        <div className="chevron tab">
+          <FiChevronDown className="icon" />
+          <p className="title"></p>
+        </div>
+        <div className="addProduct tab">
+          <AiOutlinePlus />
+          <p className="title">Ajouter un produit</p>
+        </div>
+        <div className="modifyProduct tab">
+          <MdModeEditOutline />
+          <p className="title">Modifier un produit</p>
+        </div>
       </div>
       <div className="content"> </div>
     </AdminPanelStyled>
@@ -23,26 +35,29 @@ const AdminPanelStyled = styled.div`
   flex-direction: column;
 
   .tabs-container {
-    /* border: 3px solid blue; */
+    border: 3px solid blue;
     width: fit-content;
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 1px;
     margin-left: ${theme.spacing.xxl};
 
     .tab {
-      background: ${theme.colors.white};
       min-width: 60px;
+      min-height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: ${theme.spacing.sm};
+
+      background: ${theme.colors.white};
       border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
       border: 1px solid ${theme.colors.greyLight};
-      padding: 10px 20px;
+      padding: 10px 22px;
       cursor: pointer;
 
       &.addProduct {
-        background: black;
+        background: ${theme.colors.background_dark};
         color: white;
       }
     }
