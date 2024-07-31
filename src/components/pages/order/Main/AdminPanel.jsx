@@ -3,25 +3,17 @@ import { theme } from "../../../../theme";
 import { FiChevronDown } from "react-icons/fi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
+import AdminTab from "./AdminTab";
 
 function AdminPanel() {
   return (
     <AdminPanelStyled>
       <div className="tabs-container">
-        <div className="tab chevron">
-          <FiChevronDown className="icon" />
-          <p className="title"></p>
-        </div>
-        <div className="tab addProduct">
-          <AiOutlinePlus className="icon" />
-          <p className="title">Ajouter un produit</p>
-        </div>
-        <div className="tab modifyProduct">
-          <MdModeEditOutline className="icon" />
-          <p className="title">Modifier un produit</p>
-        </div>
+        <AdminTab Icon={FiChevronDown} />
+        <AdminTab label={"Ajouter un produit"} Icon={AiOutlinePlus} />
+        <AdminTab label={"Modifier un produit"} Icon={MdModeEditOutline} />
       </div>
-      <div className="content"> </div>
+      <div className="content"></div>
     </AdminPanelStyled>
   );
 }
@@ -42,44 +34,6 @@ const AdminPanelStyled = styled.div`
     align-items: end;
     gap: 1px;
     margin-left: ${theme.spacing.xxl};
-
-    .tab {
-      min-width: 60px;
-      min-height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: ${theme.spacing.sm};
-
-      background: ${theme.colors.white};
-      color: ${theme.colors.greySemiDark};
-      border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
-      border: 1px solid ${theme.colors.greyLight};
-      padding: 10px 22px;
-      cursor: pointer;
-
-      .title {
-        font-size: ${theme.fonts.P0};
-      }
-
-      &:hover {
-        position: relative;
-
-        /* Make the border bottom disappear on hover */
-        &::after {
-          content: "";
-          position: absolute;
-          bottom: -1.8px;
-          height: 1.8px;
-          width: 100%;
-          background: white;
-        }
-
-        .title {
-          text-decoration: underline;
-        }
-      }
-    }
   }
 
   .content {
