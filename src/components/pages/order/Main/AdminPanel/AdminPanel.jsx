@@ -37,9 +37,8 @@ function AdminPanel() {
 
       {isPanelOpen && (
         <AdminContent>
-          <p>Ceci est une phrase test</p>
-          <p>Ceci est une phrase test</p>
-          <p>Ceci est une phrase test</p>
+          {/* <AddProduct/>
+          <ModifyProduct/> */}
         </AdminContent>
       )}
     </AdminPanelStyled>
