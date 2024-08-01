@@ -1,10 +1,14 @@
+/* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Card from "./Card";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import AdminPanel from "./AdminPanel";
+import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
 
 function Main() {
+  const { isAdminMode, setIsAdminMode } = useIsAdminModeContext();
+
   return (
     <MainSyled>
       {/* <div className="basket">Panier</div> */}
@@ -18,7 +22,7 @@ function Main() {
           />
         ))}
       </div>
-      <AdminPanel />
+      {isAdminMode && <AdminPanel />}
     </MainSyled>
   );
 }

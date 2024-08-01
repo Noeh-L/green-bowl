@@ -17,13 +17,15 @@ const AdminTabStyled = styled.div`
   align-items: center;
   justify-content: center;
   gap: ${({ $isLabel }) => ($isLabel ? theme.spacing.sm : 0)};
-
-  background: ${theme.colors.white};
-  color: ${theme.colors.greySemiDark};
   border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
   border: 1px solid ${theme.colors.greyLight};
   padding: 10px 22px;
   cursor: pointer;
+
+  background: ${({ $isSelected }) =>
+    $isSelected ? `${theme.colors.white}` : `${theme.colors.background_dark}`};
+  color: ${({ $isSelected }) =>
+    $isSelected ? `${theme.colors.greySemiDark}` : `${theme.colors.white}`};
 
   .icon {
     font-size: ${theme.fonts.SM};

@@ -19,7 +19,7 @@ const TogglePanelButtonStyled = styled.div`
   gap: ${({ $isLabel }) => ($isLabel ? theme.spacing.sm : 0)};
 
   background: ${({ $isVisible }) =>
-    $isVisible ? `${theme.colors.white}` : `${theme.colors.dark}`};
+    $isVisible ? `${theme.colors.white}` : `${theme.colors.background_dark}`};
   color: ${({ $isVisible }) =>
     $isVisible ? `${theme.colors.greySemiDark}` : `${theme.colors.white}`};
 
@@ -37,14 +37,16 @@ const TogglePanelButtonStyled = styled.div`
     position: relative;
 
     /* Make the border bottom disappear on hover */
-    &::after {
-      content: "";
+    ${({ $isVisible }) =>
+      $isVisible &&
+      `&::after {
+      content: '';
       position: absolute;
       bottom: -1.8px;
       height: 1.8px;
       width: 100%;
       background: white;
-    }
+    }`}
   }
 `;
 

@@ -9,22 +9,39 @@ import { useState } from "react";
 import TogglePanelButton from "./TogglePanelButton";
 
 function AdminPanel() {
-  const { isAdminMode, setIsAdminMode } = useIsAdminModeContext();
   const [isPanelOpen, setIsPanelOpen] = useState(true);
+  // const [currentTab, setCurrentTab] = useState({
+  //   addProduct: true,
+  //   modifyProduct: false,
+  // });
 
-  const handleClick = () => {
+  const togglePanel = () => {
     console.log(isPanelOpen);
     setIsPanelOpen(!isPanelOpen);
   };
 
+  // const openTabClicked = (event) => {
+  //   console.log(event.target);
+  //   // const currentTabCopy = currentTab
+  //   // setCurrentTab({addProduct: true,
+  //   //   modifyProduct: false,});
+  // };
+
   return (
-    <AdminPanelStyled $isAdminMode={isAdminMode}>
+    <AdminPanelStyled $isPanelOpen={isPanelOpen}>
       <AdminTabs>
-        <TogglePanelButton isPanelOpen={isPanelOpen} onClick={handleClick} />
+        <TogglePanelButton isPanelOpen={isPanelOpen} onClick={togglePanel} />
         <AdminTab Icon={AiOutlinePlus} label={"Ajouter un produit"} />
         <AdminTab Icon={MdModeEditOutline} label={"Modifier un produit"} />
       </AdminTabs>
-      <AdminContent></AdminContent>
+
+      {isPanelOpen && (
+        <AdminContent>
+          <p>Ceci est une phrase test</p>
+          <p>Ceci est une phrase test</p>
+          <p>Ceci est une phrase test</p>
+        </AdminContent>
+      )}
     </AdminPanelStyled>
   );
 }
@@ -33,8 +50,6 @@ const AdminPanelStyled = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 295px;
-  display: ${({ $isAdminMode }) => ($isAdminMode ? "flex" : "none")};
   flex-direction: column;
   filter: drop-shadow(0 0 10px rgba(0 0 0 / 0.4));
 `;
@@ -49,10 +64,11 @@ const AdminTabs = styled.div`
 `;
 
 const AdminContent = styled.div`
-  flex: 1;
+  min-height: 252px;
   border: 1px solid ${theme.colors.greyLight};
   border-radius: 0 0 15px 15px;
   background: ${theme.colors.white};
+  padding: 1rem;
 `;
 
 export default AdminPanel;
