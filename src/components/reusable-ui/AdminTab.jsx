@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-function AdminTab({ Icon, label, onClick }) {
+function AdminTab({ Icon, label, onClick, isActive }) {
   return (
-    <AdminTabStyled $isLabel={label} onClick={onClick}>
+    <AdminTabStyled $isLabel={label} $isActive={isActive} onClick={onClick}>
       {Icon && <Icon className="icon" />}
       <p className="title">{label}</p>
     </AdminTabStyled>
@@ -18,14 +18,18 @@ const AdminTabStyled = styled.div`
   justify-content: center;
   gap: ${({ $isLabel }) => ($isLabel ? theme.spacing.sm : 0)};
   border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
-  border: 1px solid ${theme.colors.greyLight};
   padding: 10px 22px;
   cursor: pointer;
 
-  background: ${({ $isSelected }) =>
-    $isSelected ? `${theme.colors.white}` : `${theme.colors.background_dark}`};
-  color: ${({ $isSelected }) =>
-    $isSelected ? `${theme.colors.greySemiDark}` : `${theme.colors.white}`};
+  background: ${({ $isActive }) =>
+    $isActive ? `${theme.colors.background_dark}` : `${theme.colors.white}`};
+  color: ${({ $isActive }) =>
+    $isActive ? `${theme.colors.white}` : `${theme.colors.greySemiDark}`};
+  border: 1px solid
+    ${({ $isActive }) =>
+      $isActive
+        ? `${theme.colors.background_dark}`
+        : `${theme.colors.greyLight}`};
 
   .icon {
     font-size: ${theme.fonts.SM};

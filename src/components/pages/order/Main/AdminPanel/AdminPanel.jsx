@@ -10,38 +10,48 @@ import AddProduct from "./AddProduct";
 import ModifyProduct from "./ModifyProduct";
 
 function AdminPanel() {
+  const tabs = ["addProduct", "modifyProduct"];
   const [isPanelOpen, setIsPanelOpen] = useState(true);
-  // const [currentTab, setCurrentTab] = useState({
-  //   addProduct: true,
-  //   modifyProduct: false,
-  // });
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const togglePanel = () => {
-    console.log(isPanelOpen);
     setIsPanelOpen(!isPanelOpen);
   };
 
-  // const openTabClicked = (event) => {
-  //   console.log(event.target);
-  //   // const currentTabCopy = currentTab
-  //   // setCurrentTab({addProduct: true,
-  //   //   modifyProduct: false,});
-  // };
+  const renderActiveTab = () => {
+    switch (activeTab) {
+      case "addProduct":
+        return <AddProduct />;
+      case "modifyProduct":
+        return <ModifyProduct />;
+
+      default:
+        return <AddProduct />;
+    }
+  };
 
   return (
     <AdminPanelStyled $isPanelOpen={isPanelOpen}>
       <AdminTabs>
         <TogglePanelButton isPanelOpen={isPanelOpen} onClick={togglePanel} />
-        <AdminTab Icon={AiOutlinePlus} label={"Ajouter un produit"} />
-        <AdminTab Icon={MdModeEditOutline} label={"Modifier un produit"} />
+
+        <AdminTab
+          id={"addProduct"}
+          Icon={AiOutlinePlus}
+          label={"Ajouter un produit"}
+          onClick={() => setActiveTab("addProduct")}
+          isActive={activeTab === "addProduct"}
+        />
+        <AdminTab
+          id={"modifyProduct"}
+          Icon={MdModeEditOutline}
+          label={"Modifier un produit"}
+          onClick={() => setActiveTab("modifyProduct")}
+          isActive={activeTab === "modifyProduct"}
+        />
       </AdminTabs>
 
-      {isPanelOpen && (
-        <AdminContent>
-          <AddProduct />
-          <ModifyProduct />
-        </AdminContent>
-      )}
+      {isPanelOpen && <AdminContent>{renderActiveTab()}</AdminContent>}
     </AdminPanelStyled>
   );
 }
