@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../../theme";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
-import AdminTab from "../../../reusable-ui/AdminTab";
-import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
+import AdminTab from "../../../../reusable-ui/AdminTab";
 import { useState } from "react";
 import TogglePanelButton from "./TogglePanelButton";
+import AddProduct from "./AddProduct";
+import ModifyProduct from "./ModifyProduct";
 
 function AdminPanel() {
   const [isPanelOpen, setIsPanelOpen] = useState(true);
@@ -37,8 +38,8 @@ function AdminPanel() {
 
       {isPanelOpen && (
         <AdminContent>
-          {/* <AddProduct/>
-          <ModifyProduct/> */}
+          <AddProduct />
+          <ModifyProduct />
         </AdminContent>
       )}
     </AdminPanelStyled>

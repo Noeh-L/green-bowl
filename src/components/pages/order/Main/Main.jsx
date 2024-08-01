@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Card from "./Card";
 import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
-import AdminPanel from "./AdminPanel";
+import AdminPanel from "./AdminPanel/AdminPanel";
 import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
 
 function Main() {

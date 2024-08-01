@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FiChevronDown } from "react-icons/fi";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../../theme/";
 
 function TogglePanelButton({ isPanelOpen, onClick }) {
   return (
