@@ -16,7 +16,7 @@ const AdminTabStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: ${({ isLabel }) => (isLabel ? theme.spacing.sm : 0)};
+  gap: ${({ $isLabel }) => ($isLabel ? theme.spacing.sm : 0)};
 
   background: ${theme.colors.white};
   color: ${theme.colors.greySemiDark};
