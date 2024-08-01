@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { FiChevronDown } from "react-icons/fi";
+import { theme } from "../../../../theme";
 
-function AdminTab({ Icon, label, onClick }) {
+function TogglePanelButton({ isPanelOpen, onClick }) {
   return (
-    <AdminTabStyled $isLabel={label} onClick={onClick}>
-      {Icon && <Icon className="icon" />}
-      <p className="title">{label}</p>
-    </AdminTabStyled>
+    <TogglePanelButtonStyled $isVisible={isPanelOpen} onClick={onClick}>
+      <FiChevronDown className="icon" />
+    </TogglePanelButtonStyled>
   );
 }
 
-const AdminTabStyled = styled.div`
+const TogglePanelButtonStyled = styled.div`
   min-width: 60px;
   min-height: 46px;
   display: flex;
@@ -18,8 +18,11 @@ const AdminTabStyled = styled.div`
   justify-content: center;
   gap: ${({ $isLabel }) => ($isLabel ? theme.spacing.sm : 0)};
 
-  background: ${theme.colors.white};
-  color: ${theme.colors.greySemiDark};
+  background: ${({ $isVisible }) =>
+    $isVisible ? `${theme.colors.white}` : `${theme.colors.dark}`};
+  color: ${({ $isVisible }) =>
+    $isVisible ? `${theme.colors.greySemiDark}` : `${theme.colors.white}`};
+
   border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
   border: 1px solid ${theme.colors.greyLight};
   padding: 10px 22px;
@@ -27,10 +30,7 @@ const AdminTabStyled = styled.div`
 
   .icon {
     font-size: ${theme.fonts.SM};
-  }
-
-  .title {
-    font-size: ${theme.fonts.P0};
+    transform: ${({ $isVisible }) => ($isVisible ? "none" : "rotate(180deg)")};
   }
 
   &:hover {
@@ -45,11 +45,7 @@ const AdminTabStyled = styled.div`
       width: 100%;
       background: white;
     }
-
-    .title {
-      text-decoration: underline;
-    }
   }
 `;
 
-export default AdminTab;
+export default TogglePanelButton;
