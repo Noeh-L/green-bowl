@@ -8,10 +8,12 @@ import { useState } from "react";
 import TogglePanelButton from "./TogglePanelButton";
 import AddProduct from "./AddProduct";
 import ModifyProduct from "./ModifyProduct";
+import { useIsPanelOpenContext } from "../../../../../context/IsPanelAdminOpen";
+import { useActiveTabContext } from "../../../../../context/ActiveTabContext";
 
 function AdminPanel() {
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState("addProduct");
+  const { isPanelOpen, setIsPanelOpen } = useIsPanelOpenContext();
+  const { activeTab, setActiveTab } = useActiveTabContext();
   const tabs = [
     {
       icon: AiOutlinePlus,
