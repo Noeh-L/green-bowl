@@ -16,13 +16,19 @@ function AdminPanel() {
     {
       icon: AiOutlinePlus,
       label: "Ajouter un produit",
-      onClick: () => setActiveTab("addProduct"),
+      onClick: () => {
+        setActiveTab("addProduct");
+        setIsPanelOpen(true);
+      },
       isActive: activeTab === "addProduct",
     },
     {
       icon: MdModeEditOutline,
       label: "Modifier un produit",
-      onClick: () => setActiveTab("modifyProduct"),
+      onClick: () => {
+        setActiveTab("modifyProduct");
+        setIsPanelOpen(true);
+      },
       isActive: activeTab === "modifyProduct",
     },
   ];
