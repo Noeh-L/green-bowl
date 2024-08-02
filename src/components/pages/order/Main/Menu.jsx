@@ -21,7 +21,7 @@ function Menu() {
 const MenuStyled = styled.div`
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: ${theme.spacing.xl} ${theme.spacing.xxl};
   padding: ${theme.spacing.xl} ${theme.spacing.xxl};
   overflow-y: scroll;

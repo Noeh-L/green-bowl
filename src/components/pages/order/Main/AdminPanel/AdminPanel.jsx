@@ -93,7 +93,7 @@ const AdminTabs = styled.div`
 const AdminContent = styled.div`
   min-height: 252px;
   border: 1px solid ${theme.colors.greyLight};
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 15px;
   background: ${theme.colors.white};
   padding: ${theme.spacing.sm} ${theme.spacing.md};
 `;

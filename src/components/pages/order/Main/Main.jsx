@@ -10,23 +10,31 @@ function Main() {
 
   return (
     <MainSyled>
-      <div className="basket">Panier</div>
-      <Menu />
-      {isAdminMode && <AdminPanel />}
+      {/* <div className="basket">Panier</div> */}
+      <div className="menu-and-admin">
+        <Menu />
+        {isAdminMode && <AdminPanel />}
+      </div>
     </MainSyled>
   );
 }
 
 const MainSyled = styled.div`
-  background: ${theme.colors.background_white};
-  flex: 1;
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   display: flex;
   overflow: hidden;
-  position: relative;
 
   .basket {
     background: teal;
+    width: 25%;
+  }
+
+  .menu-and-admin {
+    background: ${theme.colors.background_white};
+    box-shadow: ${theme.shadows.strong};
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    flex: 1;
   }
 `;
 
