@@ -1,27 +1,17 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import Card from "./Card";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
 import AdminPanel from "./AdminPanel/AdminPanel";
 import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
+import Menu from "./Menu";
 
 function Main() {
   const { isAdminMode, setIsAdminMode } = useIsAdminModeContext();
 
   return (
     <MainSyled>
-      {/* <div className="basket">Panier</div> */}
-      <div className="deck">
-        {fakeMenu2.map((item) => (
-          <Card
-            key={`${item.id}`}
-            picture={item.imageSource}
-            label={item.title}
-            price={item.price}
-          />
-        ))}
-      </div>
+      <div className="basket">Panier</div>
+      <Menu />
       {isAdminMode && <AdminPanel />}
     </MainSyled>
   );
@@ -35,13 +25,8 @@ const MainSyled = styled.div`
   overflow: hidden;
   position: relative;
 
-  .deck {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: ${theme.spacing.xl} ${theme.spacing.xxl};
-    padding: ${theme.spacing.xl} ${theme.spacing.xxl};
-    overflow-y: scroll;
+  .basket {
+    background: teal;
   }
 `;
 
