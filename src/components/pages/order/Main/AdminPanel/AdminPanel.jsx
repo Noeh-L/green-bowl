@@ -10,9 +10,22 @@ import AddProduct from "./AddProduct";
 import ModifyProduct from "./ModifyProduct";
 
 function AdminPanel() {
-  const tabs = ["addProduct", "modifyProduct"];
   const [isPanelOpen, setIsPanelOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeTab, setActiveTab] = useState("addProduct");
+  const tabs = [
+    {
+      icon: AiOutlinePlus,
+      label: "Ajouter un produit",
+      onClick: () => setActiveTab("addProduct"),
+      isActive: activeTab === "addProduct",
+    },
+    {
+      icon: MdModeEditOutline,
+      label: "Modifier un produit",
+      onClick: () => setActiveTab("modifyProduct"),
+      isActive: activeTab === "modifyProduct",
+    },
+  ];
 
   const togglePanel = () => {
     setIsPanelOpen(!isPanelOpen);
@@ -35,20 +48,18 @@ function AdminPanel() {
       <AdminTabs>
         <TogglePanelButton isPanelOpen={isPanelOpen} onClick={togglePanel} />
 
-        <AdminTab
-          id={"addProduct"}
-          Icon={AiOutlinePlus}
-          label={"Ajouter un produit"}
-          onClick={() => setActiveTab("addProduct")}
-          isActive={activeTab === "addProduct"}
-        />
-        <AdminTab
-          id={"modifyProduct"}
-          Icon={MdModeEditOutline}
-          label={"Modifier un produit"}
-          onClick={() => setActiveTab("modifyProduct")}
-          isActive={activeTab === "modifyProduct"}
-        />
+        {tabs.map((tab, index) => {
+          console.log(tab.label);
+          return (
+            <AdminTab
+              key={index}
+              Icon={tab.icon}
+              label={tab.label}
+              onClick={tab.onClick}
+              isActive={tab.isActive}
+            />
+          );
+        })}
       </AdminTabs>
 
       {isPanelOpen && <AdminContent>{renderActiveTab()}</AdminContent>}
@@ -78,7 +89,7 @@ const AdminContent = styled.div`
   border: 1px solid ${theme.colors.greyLight};
   border-radius: 0 0 15px 15px;
   background: ${theme.colors.white};
-  padding: 1rem;
+  padding: ${theme.spacing.sm} ${theme.spacing.md};
 `;
 
 export default AdminPanel;
