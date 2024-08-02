@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
-import AdminTab from "../../../../reusable-ui/AdminTab";
-import { useState } from "react";
+import Tab from "../../../../reusable-ui/Tab";
 import TogglePanelButton from "./TogglePanelButton";
 import AddProduct from "./AddProduct";
 import ModifyProduct from "./ModifyProduct";
@@ -55,11 +54,10 @@ function AdminPanel() {
     <AdminPanelStyled $isPanelOpen={isPanelOpen}>
       <AdminTabs>
         <TogglePanelButton isPanelOpen={isPanelOpen} onClick={togglePanel} />
-
         {tabs.map((tab, index) => {
           console.log(tab.label);
           return (
-            <AdminTab
+            <Tab
               key={index}
               Icon={tab.icon}
               label={tab.label}

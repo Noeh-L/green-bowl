@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-function AdminTab({ Icon, label, onClick, isActive }) {
+function Tab({ Icon, label, onClick, isActive }) {
   return (
-    <AdminTabStyled $isLabel={label} $isActive={isActive} onClick={onClick}>
+    <TabStyled $isLabel={label} $isActive={isActive} onClick={onClick}>
       {Icon && <Icon className="icon" />}
       <p className="title">{label}</p>
-    </AdminTabStyled>
+    </TabStyled>
   );
 }
 
-const AdminTabStyled = styled.div`
+const TabStyled = styled.div`
   min-width: 60px;
   min-height: 46px;
   display: flex;
@@ -60,4 +60,4 @@ const AdminTabStyled = styled.div`
   }
 `;
 
-export default AdminTab;
+export default Tab;
