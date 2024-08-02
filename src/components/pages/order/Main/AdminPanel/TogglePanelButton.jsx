@@ -17,16 +17,20 @@ const TogglePanelButtonStyled = styled.div`
   align-items: center;
   justify-content: center;
   gap: ${({ $isLabel }) => ($isLabel ? theme.spacing.sm : 0)};
+  border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
+  padding: 10px 22px;
+  cursor: pointer;
 
   background: ${({ $isVisible }) =>
     $isVisible ? `${theme.colors.white}` : `${theme.colors.background_dark}`};
   color: ${({ $isVisible }) =>
     $isVisible ? `${theme.colors.greySemiDark}` : `${theme.colors.white}`};
 
-  border-radius: ${theme.borderRadius.round} ${theme.borderRadius.round} 0 0;
-  border: 1px solid ${theme.colors.greyLight};
-  padding: 10px 22px;
-  cursor: pointer;
+  border: 1px solid
+    ${({ $isVisible }) =>
+      $isVisible
+        ? `${theme.colors.greyLight}`
+        : `${theme.colors.background_dark}`};
 
   .icon {
     font-size: ${theme.fonts.SM};

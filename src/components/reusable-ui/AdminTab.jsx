@@ -43,14 +43,16 @@ const AdminTabStyled = styled.div`
     position: relative;
 
     /* Make the border bottom disappear on hover */
-    &::after {
-      content: "";
+    ${({ $isActive }) =>
+      !$isActive &&
+      `&::after {
+      content: '';
       position: absolute;
       bottom: -1.8px;
       height: 1.8px;
       width: 100%;
       background: white;
-    }
+    }`}
 
     .title {
       text-decoration: underline;
