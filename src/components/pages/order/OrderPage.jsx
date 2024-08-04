@@ -3,6 +3,9 @@ import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import styled from "styled-components";
 import { theme } from "../../../theme";
+import IsAdminModeContextProvider from "../../../context/IsAdminContext";
+import IsPanelAdminOpenProvider from "../../../context/IsPanelAdminOpen";
+import ActiveTabContextProvider from "../../../context/ActiveTabContext";
 
 function OrderPage() {
   // STATE
@@ -10,13 +13,19 @@ function OrderPage() {
 
   // RENDER
   return (
-    <OrderPageStyled>
-      <div className="background"></div>
-      <main>
-        <Navbar username={username} />
-        <Main />
-      </main>
-    </OrderPageStyled>
+    <IsAdminModeContextProvider>
+      <IsPanelAdminOpenProvider>
+        <ActiveTabContextProvider>
+          <OrderPageStyled>
+            <div className="background"></div>
+            <main>
+              <Navbar username={username} />
+              <Main />
+            </main>
+          </OrderPageStyled>
+        </ActiveTabContextProvider>
+      </IsPanelAdminOpenProvider>
+    </IsAdminModeContextProvider>
   );
 }
 
