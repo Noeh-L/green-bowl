@@ -4,7 +4,7 @@ import { theme } from "../../../../theme";
 import NavbarRightSide from "./NavbarRightSide";
 
 /* eslint-disable react/prop-types */
-function Navbar({ username }) {
+function Navbar() {
   // BEHAVIOR
   const handleClick = () => {
     window.location.reload();
@@ -14,7 +14,7 @@ function Navbar({ username }) {
   return (
     <NavbarStyled>
       <Logo scale={0.9} onClick={handleClick} className="logo" />
-      <NavbarRightSide username={username} />
+      <NavbarRightSide />
     </NavbarStyled>
   );
 }

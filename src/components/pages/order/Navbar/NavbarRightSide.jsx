@@ -7,9 +7,11 @@ import UserMenu from "./UserMenu";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
 import ToastAdmin from "../../../reusable-ui/ToastAdmin";
 import { useOrderContext } from "../../../../context/OrderPageContext";
+import { useParams } from "react-router-dom";
 
-export default function NavbarRightSideIncomplet({ username }) {
+export default function NavbarRightSide() {
   // STATE
+  const { username } = useParams();
   const { isAdminMode, setIsAdminMode } = useOrderContext();
 
   // BEHAVIOR

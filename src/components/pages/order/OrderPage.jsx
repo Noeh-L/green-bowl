@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import styled from "styled-components";
@@ -6,16 +5,12 @@ import { theme } from "../../../theme";
 import OrderContextProvider from "../../../context/OrderPageContext";
 
 function OrderPage() {
-  // STATE
-  const { username } = useParams();
-
-  // RENDER
   return (
     <OrderContextProvider>
       <OrderPageStyled>
         <div className="background"></div>
         <main>
-          <Navbar username={username} />
+          <Navbar />
           <Main />
         </main>
       </OrderPageStyled>
