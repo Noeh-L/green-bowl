@@ -10,7 +10,8 @@ function Tab({ Icon, label, onClick, isActive }) {
   );
 }
 
-const TabStyled = styled.div`
+const TabStyled = styled.button`
+  font-family: "Open sans";
   min-width: 60px;
   min-height: 46px;
   display: flex;
