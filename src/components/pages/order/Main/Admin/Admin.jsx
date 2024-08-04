@@ -8,37 +8,18 @@ import Tab from "../../../../reusable-ui/Tab";
 import AddProduct from "./AddProduct";
 import ModifyProduct from "./ModifyProduct";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
+import { tabsConfig } from "./tabsConfig";
 
 function Admin() {
   const { isPanelAdminOpen, setIsPanelAdminOpen } = useOrderContext();
   const { activeTab, setActiveTab } = useOrderContext();
 
-  const tabs = [
-    {
-      icon: isPanelAdminOpen ? FiChevronDown : FiChevronUp,
-      label: "",
-      onClick: () => setIsPanelAdminOpen(!isPanelAdminOpen),
-      isActive: isPanelAdminOpen ? false : true,
-    },
-    {
-      icon: AiOutlinePlus,
-      label: "Ajouter un produit",
-      onClick: () => {
-        setActiveTab("addProduct");
-        setIsPanelAdminOpen(true);
-      },
-      isActive: activeTab === "addProduct",
-    },
-    {
-      icon: MdModeEditOutline,
-      label: "Modifier un produit",
-      onClick: () => {
-        setActiveTab("modifyProduct");
-        setIsPanelAdminOpen(true);
-      },
-      isActive: activeTab === "modifyProduct",
-    },
-  ];
+  const tabs = tabsConfig(
+    isPanelAdminOpen,
+    setIsPanelAdminOpen,
+    activeTab,
+    setActiveTab,
+  );
 
   const renderActiveTab = () => {
     switch (activeTab) {
