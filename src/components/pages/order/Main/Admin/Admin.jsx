@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tab from "../../../../reusable-ui/Tab";
-import TogglePanelButton from "./TogglePanelButton";
 import AddProduct from "./AddProduct";
 import ModifyProduct from "./ModifyProduct";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
@@ -14,6 +14,12 @@ function Admin() {
   const { activeTab, setActiveTab } = useOrderContext();
 
   const tabs = [
+    {
+      icon: isPanelAdminOpen ? FiChevronDown : FiChevronUp,
+      label: "",
+      onClick: () => setIsPanelAdminOpen(!isPanelAdminOpen),
+      isActive: isPanelAdminOpen ? false : true,
+    },
     {
       icon: AiOutlinePlus,
       label: "Ajouter un produit",
@@ -34,10 +40,6 @@ function Admin() {
     },
   ];
 
-  const togglePanel = () => {
-    setIsPanelAdminOpen(!isPanelAdminOpen);
-  };
-
   const renderActiveTab = () => {
     switch (activeTab) {
       case "addProduct":
@@ -53,12 +55,7 @@ function Admin() {
   return (
     <AdminStyled $isPanelAdminOpen={isPanelAdminOpen}>
       <AdminTabs>
-        <TogglePanelButton
-          isPanelAdminOpen={isPanelAdminOpen}
-          onClick={togglePanel}
-        />
         {tabs.map((tab, index) => {
-          console.log(tab.label);
           return (
             <Tab
               key={index}
