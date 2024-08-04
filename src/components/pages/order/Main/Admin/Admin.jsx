@@ -10,7 +10,7 @@ import ModifyProduct from "./ModifyProduct";
 import { useIsPanelOpenContext } from "../../../../../context/IsPanelAdminOpen";
 import { useActiveTabContext } from "../../../../../context/ActiveTabContext";
 
-function AdminPanel() {
+function Admin() {
   const { isPanelOpen, setIsPanelOpen } = useIsPanelOpenContext();
   const { activeTab, setActiveTab } = useActiveTabContext();
   const tabs = [
@@ -51,7 +51,7 @@ function AdminPanel() {
   };
 
   return (
-    <AdminPanelStyled $isPanelOpen={isPanelOpen}>
+    <AdminStyled $isPanelOpen={isPanelOpen}>
       <AdminTabs>
         <TogglePanelButton isPanelOpen={isPanelOpen} onClick={togglePanel} />
         {tabs.map((tab, index) => {
@@ -69,11 +69,11 @@ function AdminPanel() {
       </AdminTabs>
 
       {isPanelOpen && <AdminContent>{renderActiveTab()}</AdminContent>}
-    </AdminPanelStyled>
+    </AdminStyled>
   );
 }
 
-const AdminPanelStyled = styled.div`
+const AdminStyled = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -98,4 +98,4 @@ const AdminContent = styled.div`
   padding: ${theme.spacing.sm} ${theme.spacing.md};
 `;
 
-export default AdminPanel;
+export default Admin;

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { theme } from "../../../../theme";
-import AdminPanel from "./AdminPanel/AdminPanel";
+import Admin from "./Admin/Admin";
 import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
 import Menu from "./Menu";
 
@@ -13,7 +13,7 @@ function Main() {
       {/* <div className="basket">Panier</div> */}
       <div className="menu-and-admin">
         <Menu />
-        {isAdminMode && <AdminPanel />}
+        {isAdminMode && <Admin />}
       </div>
     </MainSyled>
   );
