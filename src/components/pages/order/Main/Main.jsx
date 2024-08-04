@@ -2,11 +2,11 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Admin from "./Admin/Admin";
-import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
+import { useOrderContext } from "../../../../context/OrderPageContext";
 import Menu from "./Menu";
 
 function Main() {
-  const { isAdminMode, setIsAdminMode } = useIsAdminModeContext();
+  const { isAdminMode, setIsAdminMode } = useOrderContext();
 
   return (
     <MainSyled>

@@ -6,11 +6,11 @@ import styled from "styled-components";
 import UserMenu from "./UserMenu";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
 import ToastAdmin from "../../../reusable-ui/ToastAdmin";
-import { useIsAdminModeContext } from "../../../../context/IsAdminContext";
+import { useOrderContext } from "../../../../context/OrderPageContext";
 
 export default function NavbarRightSideIncomplet({ username }) {
   // STATE
-  const { isAdminMode, setIsAdminMode } = useIsAdminModeContext();
+  const { isAdminMode, setIsAdminMode } = useOrderContext();
 
   // BEHAVIOR
   const displayToastNotification = () => {

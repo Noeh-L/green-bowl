@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { FiChevronDown } from "react-icons/fi";
 import { theme } from "../../../../../theme/";
 
-function TogglePanelButton({ isPanelOpen, onClick }) {
+function TogglePanelButton({ isPanelAdminOpen, onClick }) {
   return (
-    <TogglePanelButtonStyled $isVisible={isPanelOpen} onClick={onClick}>
+    <TogglePanelButtonStyled $isVisible={isPanelAdminOpen} onClick={onClick}>
       <FiChevronDown className="icon" />
     </TogglePanelButtonStyled>
   );

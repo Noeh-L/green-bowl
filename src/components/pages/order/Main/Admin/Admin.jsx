@@ -7,19 +7,19 @@ import Tab from "../../../../reusable-ui/Tab";
 import TogglePanelButton from "./TogglePanelButton";
 import AddProduct from "./AddProduct";
 import ModifyProduct from "./ModifyProduct";
-import { useIsPanelOpenContext } from "../../../../../context/IsPanelAdminOpen";
-import { useActiveTabContext } from "../../../../../context/ActiveTabContext";
+import { useOrderContext } from "../../../../../context/OrderPageContext";
 
 function Admin() {
-  const { isPanelOpen, setIsPanelOpen } = useIsPanelOpenContext();
-  const { activeTab, setActiveTab } = useActiveTabContext();
+  const { isPanelAdminOpen, setIsPanelAdminOpen } = useOrderContext();
+  const { activeTab, setActiveTab } = useOrderContext();
+
   const tabs = [
     {
       icon: AiOutlinePlus,
       label: "Ajouter un produit",
       onClick: () => {
         setActiveTab("addProduct");
-        setIsPanelOpen(true);
+        setIsPanelAdminOpen(true);
       },
       isActive: activeTab === "addProduct",
     },
@@ -28,14 +28,14 @@ function Admin() {
       label: "Modifier un produit",
       onClick: () => {
         setActiveTab("modifyProduct");
-        setIsPanelOpen(true);
+        setIsPanelAdminOpen(true);
       },
       isActive: activeTab === "modifyProduct",
     },
   ];
 
   const togglePanel = () => {
-    setIsPanelOpen(!isPanelOpen);
+    setIsPanelAdminOpen(!isPanelAdminOpen);
   };
 
   const renderActiveTab = () => {
@@ -51,9 +51,12 @@ function Admin() {
   };
 
   return (
-    <AdminStyled $isPanelOpen={isPanelOpen}>
+    <AdminStyled $isPanelAdminOpen={isPanelAdminOpen}>
       <AdminTabs>
-        <TogglePanelButton isPanelOpen={isPanelOpen} onClick={togglePanel} />
+        <TogglePanelButton
+          isPanelAdminOpen={isPanelAdminOpen}
+          onClick={togglePanel}
+        />
         {tabs.map((tab, index) => {
           console.log(tab.label);
           return (
@@ -68,7 +71,7 @@ function Admin() {
         })}
       </AdminTabs>
 
-      {isPanelOpen && <AdminContent>{renderActiveTab()}</AdminContent>}
+      {isPanelAdminOpen && <AdminContent>{renderActiveTab()}</AdminContent>}
     </AdminStyled>
   );
 }
