@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import Card from "./Card";
-import { fakeMenu2 } from "../../../../fakeData/fakeMenu";
+import { fakeMenu } from "../../../../fakeData/fakeMenu";
 import { theme } from "../../../../theme";
 
 function Menu() {
+  const menu = fakeMenu.LARGE;
+
   return (
     <MenuStyled>
-      {fakeMenu2.map((item) => (
+      {menu.map((item) => (
         <Card
-          key={`${item.id}`}
+          key={item.id}
           picture={item.imageSource}
           label={item.title}
           price={item.price}

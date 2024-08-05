@@ -22,6 +22,7 @@ function Main() {
 const MainSyled = styled.div`
   display: flex;
   overflow: hidden;
+  flex: 1;
 
   .basket {
     background: teal;

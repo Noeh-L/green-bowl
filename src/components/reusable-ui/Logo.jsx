@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import logo from "../../assets/logo-orange.png";
+import logo from "../../../public/assets/logo-orange.png";
 import { theme } from "../../theme/index.js";
 import PropTypes from "prop-types";
 
