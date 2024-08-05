@@ -31,7 +31,7 @@ const CardStyled = styled.div`
   gap: ${theme.spacing.sm};
   padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
   border-radius: ${theme.borderRadius.extraRound};
-  box-shadow: ${theme.shadows.card};
+  box-shadow: ${theme.shadows.medium};
 
   .picture {
     width: 200px;

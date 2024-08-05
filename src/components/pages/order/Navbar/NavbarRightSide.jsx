@@ -5,12 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
-import { useState } from "react";
 import ToastAdmin from "../../../reusable-ui/ToastAdmin";
+import { useOrderContext } from "../../../../context/OrderPageContext";
+import { useParams } from "react-router-dom";
 
-export default function NavbarRightSideIncomplet({ username }) {
+export default function NavbarRightSide() {
   // STATE
-  const [isAdminMode, setIsAdminMode] = useState(false);
+  const { username } = useParams();
+  const { isAdminMode, setIsAdminMode } = useOrderContext();
 
   // BEHAVIOR
   const displayToastNotification = () => {
