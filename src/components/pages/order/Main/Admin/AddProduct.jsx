@@ -29,9 +29,13 @@ function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const imageLink =
+      image === "" ? "../../../../../../public/assets/coming-soon.png" : image;
+
     const newProductJustAdded = {
       name,
-      image,
+      imageLink,
       price,
     };
     console.log(newProductJustAdded);
