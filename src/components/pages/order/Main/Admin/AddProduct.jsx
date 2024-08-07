@@ -40,8 +40,7 @@ function AddProduct() {
   return (
     <AddProductStyled onSubmit={handleSubmit}>
       <div className="productPreview">
-        {/* <img src="#" alt="#" /> */}
-        <p>Aucune image</p>
+        {image ? <img src={image} alt={name} /> : <div>Aucune image</div>}
       </div>
       <TextInput
         value={name}
@@ -81,18 +80,25 @@ const AddProductStyled = styled.form`
   grid-column-gap: ${theme.spacing.md};
 
   .productPreview {
-    border: 1px solid ${theme.colors.greyLight};
-    border-radius: ${theme.borderRadius.round};
-
     grid-column: 1 / 2;
     grid-row: 1 / 4;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    p {
+    div {
+      border: 1px solid ${theme.colors.greyLight};
+      border-radius: ${theme.borderRadius.round};
       color: ${theme.colors.greySemiDark};
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
     }
   }
 
