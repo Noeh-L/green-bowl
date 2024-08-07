@@ -6,6 +6,7 @@ import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
 import { FaHamburger } from "react-icons/fa";
 import { MdOutlineEuro } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
+import { formatPrice } from "../../../../../utils/maths.js";
 
 function AddProduct() {
   // STATE
@@ -32,14 +33,17 @@ function AddProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // image verification
     const imageLinkChecked = imageLinkChecker(image);
-
     if (imageLinkChecked === undefined) return;
+
+    // price formating
+    const formatedPrice = formatPrice(price);
 
     const newProductJustAdded = {
       name: name,
       image: imageLinkChecked,
-      price: price,
+      price: formatedPrice,
     };
     console.log(newProductJustAdded);
   };
