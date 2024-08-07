@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 
 /* eslint-disable react/prop-types */
-function TextInput({ value, onChange, Icon, ...extraProps }) {
+function TextInput({ value, onChange, Icon, className, ...extraProps }) {
   return (
-    <TextInputStyled>
+    <TextInputStyled className={className}>
       {Icon && <Icon className="icon" />}
       <input type="text" value={value} onChange={onChange} {...extraProps} />
     </TextInputStyled>

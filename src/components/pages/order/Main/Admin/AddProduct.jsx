@@ -1,54 +1,126 @@
 import styled from "styled-components";
 import TextInput from "../../../../reusable-ui/TextInput.jsx";
-import { FaBurger, FaCamera, FaEuroSign } from "react-icons/fa6";
 import { useState } from "react";
+import { theme } from "../../../../../theme/index.js";
+import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
+import { FaHamburger } from "react-icons/fa";
+import { MdOutlineEuro } from "react-icons/md";
+import { BsFillCameraFill } from "react-icons/bs";
 
 function AddProduct() {
-  const [productName, setProductName] = useState("");
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState("");
+  // const [newProduct, setNewProduct] = useState({
+  //   title: "",
+  //   imageLink: "",
+  //   price: 0,
+  // });
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+  const handleImageChange = (e) => {
+    setImage(e.target.value);
+  };
+  const handlePriceChange = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newProductJustAdded = {
+      name,
+      image,
+      price,
+    };
+    console.log(newProductJustAdded);
+  };
 
   return (
-    <AddProductStyled>
+    <AddProductStyled onSubmit={handleSubmit}>
       <div className="productPreview">
-        <img src="#" alt="#" />
+        {/* <img src="#" alt="#" /> */}
+        <p>Aucune image</p>
       </div>
-      <form action="post">
-        <TextInput
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          Icon={FaBurger}
-          placeholder={"Entrez le nom du produit (ex.: Supra Burgerz)"}
-        />
-        <TextInput
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          Icon={FaCamera}
-          placeholder={"Entrez l'URL"}
-        />
-        <TextInput
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          Icon={FaEuroSign}
-          placeholder={"Entrez le prix"}
-        />
-      </form>
+      <TextInput
+        value={name}
+        onChange={handleNameChange}
+        Icon={FaHamburger}
+        placeholder={"Nom du produit (ex: Super Burger)"}
+        className={"text-inputs"}
+      />
+      <TextInput
+        value={image}
+        onChange={handleImageChange}
+        Icon={BsFillCameraFill}
+        placeholder={
+          "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
+        }
+        className={"text-inputs"}
+      />
+      <TextInput
+        value={price}
+        onChange={handlePriceChange}
+        Icon={MdOutlineEuro}
+        placeholder={"Prix"}
+        className={"text-inputs"}
+      />
+      <PrimaryButton
+        label={"Ajouter un nouveau produit au menu"}
+        className={"add-button"}
+      />
     </AddProductStyled>
   );
 }
 
-const AddProductStyled = styled.div`
-  border: 1px solid blue;
-  height: 100%;
-  display: flex;
-  gap: 1rem;
+const AddProductStyled = styled.form`
+  display: grid;
+  grid-template: repeat(4, 35px) / repeat(4, 200px);
+  grid-row-gap: ${theme.spacing.xs};
+  grid-column-gap: ${theme.spacing.md};
 
   .productPreview {
-    border: 3px solid blue;
-    height: 120px;
-    width: 215px;
+    border: 1px solid ${theme.colors.greyLight};
+    border-radius: ${theme.borderRadius.round};
+
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      color: ${theme.colors.greySemiDark};
+    }
   }
 
-  form {
-    border: 3px solid red;
+  .text-inputs {
+    background: ${theme.colors.background_white};
+    padding: ${theme.spacing.xs} ${theme.spacing.md};
+
+    grid-column: 2 / 5;
+
+    .icon {
+      color: ${theme.colors.greyBlue};
+    }
+    ::placeholder {
+      font-weight: 400;
+    }
+  }
+
+  .add-button {
+    grid-column: 2 / 4;
+    padding: ${theme.spacing.xs} ${theme.spacing.md};
+    background: #60bd4f;
+    border: 1px solid #60bd4f;
+    font-size: 14px;
+
+    &:hover {
+      background: white;
+      color: #60bd4f;
+    }
   }
 `;
 
