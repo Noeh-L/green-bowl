@@ -8,6 +8,7 @@ import { MdOutlineEuro } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
 
 function AddProduct() {
+  // STATE
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
@@ -17,6 +18,7 @@ function AddProduct() {
   //   price: 0,
   // });
 
+  // BEHAVIOR
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -30,17 +32,33 @@ function AddProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const imageLink =
-      image === "" ? "../../../../../../public/assets/coming-soon.png" : image;
+    const imageLinkChecked = imageLinkChecker(image);
+
+    if (imageLinkChecked === undefined) return;
 
     const newProductJustAdded = {
-      name,
-      imageLink,
-      price,
+      name: name,
+      image: imageLinkChecked,
+      price: price,
     };
     console.log(newProductJustAdded);
   };
 
+  const imageLinkChecker = (link) => {
+    const imageLinkPatern = /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp)$/i;
+    const imageIfEmpty = "../../../../../../public/assets/coming-soon.png";
+
+    if (link === "") {
+      return imageIfEmpty;
+    } else if (!imageLinkPatern.test(image)) {
+      alert("URL de l'image invalide");
+      return;
+    } else {
+      return link;
+    }
+  };
+
+  // RENDER
   return (
     <AddProductStyled onSubmit={handleSubmit}>
       <div className="productPreview">
