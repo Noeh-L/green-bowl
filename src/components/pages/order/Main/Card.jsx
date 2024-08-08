@@ -4,10 +4,10 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
 
-function Card({ picture, label, price, onClick }) {
+function Card({ picture, label, price, onDelete }) {
   return (
     <CardStyled>
-      <button onClick={onClick}>X</button>
+      <button onClick={onDelete}>X</button>
       <div className="picture">
         <img src={picture} alt={label} />
       </div>
