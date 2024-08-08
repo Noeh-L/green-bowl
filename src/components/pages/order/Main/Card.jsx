@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
 
-function Card({ picture, label, price }) {
+function Card({ picture, label, price, onClick }) {
   return (
     <CardStyled>
+      <button onClick={onClick}>X</button>
       <div className="picture">
         <img src={picture} alt={label} />
       </div>
@@ -14,7 +15,7 @@ function Card({ picture, label, price }) {
       <div className="infos">
         <h2 className="infos-title">{label}</h2>
         <div className="infos-add">
-          <p className="price">{formatPrice(price.toFixed(2))}</p>
+          <p className="price">{formatPrice(price)}</p>
           <PrimaryButton label={"Ajouter"} className="addButton" />
         </div>
       </div>

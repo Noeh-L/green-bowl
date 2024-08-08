@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { fakeMenu } from "../fakeData/fakeMenu";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -6,8 +7,10 @@ export const OrderContext = createContext({
   setIsAdminMode: () => {},
   isPanelAdminOpen: false,
   setIsPanelAdminOpen: () => {},
-  activeTab: false,
+  activeTab: "",
   setActiveTab: () => {},
+  menu: [],
+  setMenu: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -15,6 +18,7 @@ export default function OrderContextProvider({ children }) {
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
 
   const valueOrderContext = {
     isAdminMode,
@@ -25,6 +29,9 @@ export default function OrderContextProvider({ children }) {
 
     activeTab,
     setActiveTab,
+
+    menu,
+    setMenu,
   };
 
   return (

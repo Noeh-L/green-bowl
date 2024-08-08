@@ -6,18 +6,14 @@ import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
 import { FaHamburger } from "react-icons/fa";
 import { MdOutlineEuro } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
-import { formatPrice } from "../../../../../utils/maths.js";
+import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 
 function AddProduct() {
   // STATE
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
-  // const [newProduct, setNewProduct] = useState({
-  //   title: "",
-  //   imageLink: "",
-  //   price: 0,
-  // });
+  const { menu, setMenu } = useOrderContext();
 
   // BEHAVIOR
   const handleNameChange = (e) => {
@@ -33,33 +29,17 @@ function AddProduct() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // image verification
-    const imageLinkChecked = imageLinkChecker(image);
-    if (imageLinkChecked === undefined) return;
+    const idNewProduct = new Date().getTime();
 
-    // price formating
-    const formatedPrice = formatPrice(price);
-
+    // New product to add in the menu
     const newProductJustAdded = {
-      name: name,
-      image: imageLinkChecked,
-      price: formatedPrice,
+      id: idNewProduct,
+      title: name,
+      image,
+      price,
     };
-    console.log(newProductJustAdded);
-  };
 
-  const imageLinkChecker = (link) => {
-    const imageLinkPatern = /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp)$/i;
-    const imageIfEmpty = "../../../../../../public/assets/coming-soon.png";
-
-    if (link === "") {
-      return imageIfEmpty;
-    } else if (!imageLinkPatern.test(image)) {
-      alert("URL de l'image invalide");
-      return;
-    } else {
-      return link;
-    }
+    setMenu([newProductJustAdded, ...menu]);
   };
 
   // RENDER
