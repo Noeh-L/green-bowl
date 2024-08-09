@@ -3,11 +3,14 @@ import PrimaryButton from "../../../reusable-ui/PrimaryButton";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
+import { TiDelete } from "react-icons/ti";
 
 function Card({ picture, label, price, onDelete }) {
   return (
     <CardStyled>
-      <button onClick={onDelete}>X</button>
+      <button onClick={onDelete} className="deleteButton">
+        <TiDelete />
+      </button>
       <div className="picture">
         <img src={picture} alt={label} />
       </div>
@@ -33,6 +36,7 @@ const CardStyled = styled.div`
   padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
   border-radius: ${theme.borderRadius.extraRound};
   box-shadow: ${theme.shadows.medium};
+  position: relative;
 
   .picture {
     width: 200px;
@@ -78,6 +82,15 @@ const CardStyled = styled.div`
         width: 95px;
       }
     }
+  }
+
+  .deleteButton {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
   }
 `;
 
