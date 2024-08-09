@@ -14,6 +14,14 @@ function Menu() {
     setMenu(newMenu);
   };
 
+  if (menu.length === 0) {
+    return isAdminMode ? (
+      <div>REGENERER UNE LISTE DE PRODUIT</div>
+    ) : (
+      <div>On arrive avec de nouvelle recette</div>
+    );
+  }
+
   return (
     <MenuStyled>
       {menu.map((item) => (
