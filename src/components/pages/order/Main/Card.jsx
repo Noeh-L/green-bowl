@@ -91,6 +91,12 @@ const CardStyled = styled.div`
     top: 15px;
     right: 15px;
     font-size: 30px;
+    color: ${theme.colors.primary};
+    cursor: pointer;
+
+    &:hover {
+      color: ${theme.colors.red};
+    }
   }
 `;
 
