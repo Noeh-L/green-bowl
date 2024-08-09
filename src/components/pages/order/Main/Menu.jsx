@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Card from "./Card";
 import { theme } from "../../../../theme";
 import { useOrderContext } from "../../../../context/OrderPageContext";
+import EmptyMenuAdmin from "./EmptyMenuAdmin";
+import EmptyMenuUser from "./EmptyMenuUser";
 
 function Menu() {
   const { menu, setMenu, isAdminMode } = useOrderContext();
@@ -15,11 +17,7 @@ function Menu() {
   };
 
   if (menu.length === 0) {
-    return isAdminMode ? (
-      <div>REGENERER UNE LISTE DE PRODUIT</div>
-    ) : (
-      <div>On arrive avec de nouvelle recette</div>
-    );
+    return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
   }
 
   return (
