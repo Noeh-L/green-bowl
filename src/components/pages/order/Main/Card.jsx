@@ -5,12 +5,14 @@ import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 
-function Card({ picture, label, price, onDelete }) {
+function Card({ picture, label, price, onDelete, isDeleteButtonVisible }) {
   return (
     <CardStyled>
-      <button onClick={onDelete} className="deleteButton">
-        <TiDelete />
-      </button>
+      {isDeleteButtonVisible && (
+        <button onClick={onDelete} className="deleteButton">
+          <TiDelete />
+        </button>
+      )}
       <div className="picture">
         <img src={picture} alt={label} />
       </div>

@@ -4,7 +4,7 @@ import { theme } from "../../../../theme";
 import { useOrderContext } from "../../../../context/OrderPageContext";
 
 function Menu() {
-  const { menu, setMenu } = useOrderContext();
+  const { menu, setMenu, isAdminMode } = useOrderContext();
 
   const handleDelete = (idItemToDelete) => {
     const menuCopy = menu;
@@ -23,6 +23,7 @@ function Menu() {
           label={item.title}
           price={item.price}
           onDelete={() => handleDelete(item.id)}
+          isDeleteButtonVisible={isAdminMode}
         />
       ))}
     </MenuStyled>
