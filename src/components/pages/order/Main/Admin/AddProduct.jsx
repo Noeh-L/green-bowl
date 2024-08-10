@@ -41,6 +41,12 @@ function AddProduct() {
     };
 
     setMenu([newProductJustAdded, ...menu]);
+
+    setName("");
+    setImage("");
+    setPrice("");
+
+    console.log("Produit ajouté avec succès !");
   };
 
   // RENDER
@@ -125,7 +131,8 @@ const AddProductStyled = styled.form`
 
   .add-button {
     grid-column: 2 / 4;
-    padding: ${theme.spacing.xs} ${theme.spacing.md};
+    width: fit-content;
+    padding: ${theme.spacing.xs} ${theme.spacing.lg};
     background: #60bd4f;
     border: 1px solid #60bd4f;
     font-size: 14px;
