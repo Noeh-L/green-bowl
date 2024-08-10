@@ -14,9 +14,12 @@ function EmptyMenuUser() {
 }
 
 const EmptyMenuUserStyled = styled.div`
-  font-family: "Amatic SC";
-  color: ${theme.colors.greyBlue};
-  font-size: ${theme.fonts.P4};
+  h2,
+  p {
+    font-family: "Amatic SC";
+    color: ${theme.colors.greyBlue};
+    font-size: ${theme.fonts.P4};
+  }
 
   position: absolute;
   inset: 0;
