@@ -15,6 +15,7 @@ function AddProduct() {
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
   const { menu, setMenu } = useOrderContext();
+  const [showMessage, setShowMessage] = useState(false);
 
   // BEHAVIOR
   const handleNameChange = (e) => {
@@ -46,8 +47,8 @@ function AddProduct() {
     setName("");
     setImage("");
     setPrice("");
-
-    console.log("Produit ajouté avec succès !");
+    setShowMessage(true);
+    setTimeout(() => setShowMessage(false), 2000);
   };
 
   // RENDER
@@ -84,10 +85,12 @@ function AddProduct() {
           label={"Ajouter un nouveau produit au menu"}
           className={"addButton"}
         />
-        <div className="message">
-          <FiCheck className="icon" />
-          <span>Ajouté avec succès !</span>
-        </div>
+        {showMessage && (
+          <div className="message">
+            <FiCheck className="icon" />
+            <span>Ajouté avec succès !</span>
+          </div>
+        )}
       </div>
     </AddProductStyled>
   );
