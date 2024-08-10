@@ -30,12 +30,13 @@ function AddProduct() {
     e.preventDefault();
 
     const idNewProduct = new Date().getTime();
+    const imageIfEmpty = "../../../../../../public/assets/coming-soon.png";
 
     // New product to add in the menu
     const newProductJustAdded = {
       id: idNewProduct,
       title: name,
-      image,
+      imageSource: image === "" ? imageIfEmpty : image,
       price,
     };
 
