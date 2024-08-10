@@ -2,9 +2,9 @@ import { theme } from "../../theme";
 import styled from "styled-components";
 
 // eslint-disable-next-line react/prop-types
-function PrimaryButton({ label, Icon, className }) {
+function PrimaryButton({ label, Icon, className, onClick }) {
   return (
-    <PrimaryButtonStyled className={className}>
+    <PrimaryButtonStyled className={className} onClick={onClick}>
       {label}
       {Icon && <Icon className="icon" />}
     </PrimaryButtonStyled>

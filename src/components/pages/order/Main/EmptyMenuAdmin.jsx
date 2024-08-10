@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import { useOrderContext } from "../../../../context/OrderPageContext";
+import { fakeMenu } from "../../../../fakeData/fakeMenu";
 
 function EmptyMenuAdmin() {
+  const { setMenu } = useOrderContext();
+
   return (
     <EmptyMenuAdminStyled>
       <h2>Le menu est vide ?</h2>
@@ -10,6 +14,7 @@ function EmptyMenuAdmin() {
       <PrimaryButton
         label={"Générer de nouveaux produits"}
         className={"generateProductButton"}
+        onClick={() => setMenu(fakeMenu.LARGE)}
       />
     </EmptyMenuAdminStyled>
   );
