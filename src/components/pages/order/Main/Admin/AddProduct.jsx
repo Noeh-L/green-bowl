@@ -3,50 +3,45 @@ import TextInput from "../../../../reusable-ui/TextInput.jsx";
 import { useState } from "react";
 import { theme } from "../../../../../theme/index.js";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
-import { FaHamburger } from "react-icons/fa";
-import { MdOutlineEuro } from "react-icons/md";
-import { BsFillCameraFill } from "react-icons/bs";
 import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { FiCheck } from "react-icons/fi";
+import { textInputsConfig } from "./textInputsConfig.js";
+import imageIfEmptyField from "../../../../../../public/assets/coming-soon.png";
 
 function AddProduct() {
   // STATE
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [price, setPrice] = useState("");
   const { menu, setMenu } = useOrderContext();
+  const [newProduct, setNewProduct] = useState({
+    title: "",
+    imageSource: "",
+    price: "",
+  });
   const [showMessage, setShowMessage] = useState(false);
 
   // BEHAVIOR
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-  const handleImageChange = (e) => {
-    setImage(e.target.value);
-  };
-  const handlePriceChange = (e) => {
-    setPrice(e.target.value);
-  };
+  const textInputs = textInputsConfig(newProduct, setNewProduct);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // 1. Création du nouveau produit (objet)
     const idNewProduct = new Date().getTime();
-    const imageIfEmpty = "../../../../../../public/assets/coming-soon.png";
-
-    // New product to add in the menu
-    const newProductJustAdded = {
+    const newProductToAdd = {
+      ...newProduct,
       id: idNewProduct,
-      title: name,
-      imageSource: image === "" ? imageIfEmpty : image,
-      price,
+      imageSource:
+        newProduct.imageSource === ""
+          ? imageIfEmptyField
+          : newProduct.imageSource,
     };
 
-    setMenu([newProductJustAdded, ...menu]);
+    // 2. Mise à jour de notre menu
+    setMenu([newProductToAdd, ...menu]);
 
-    setName("");
-    setImage("");
-    setPrice("");
+    // 3. Réinitialisation du formulaire
+    setNewProduct({ title: "", imageSource: "", price: "" });
+
+    // 4. Message de notification de succès !
     setShowMessage(true);
     setTimeout(() => setShowMessage(false), 2000);
   };
@@ -55,31 +50,24 @@ function AddProduct() {
   return (
     <AddProductStyled onSubmit={handleSubmit}>
       <div className="productPreview">
-        {image ? <img src={image} alt={name} /> : <div>Aucune image</div>}
+        {newProduct.imageSource ? (
+          <img src={newProduct.imageSource} alt={newProduct.title} />
+        ) : (
+          <div>Aucune image</div>
+        )}
       </div>
-      <TextInput
-        value={name}
-        onChange={handleNameChange}
-        Icon={FaHamburger}
-        placeholder={"Nom du produit (ex: Super Burger)"}
-        className={"text-inputs"}
-      />
-      <TextInput
-        value={image}
-        onChange={handleImageChange}
-        Icon={BsFillCameraFill}
-        placeholder={
-          "Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-        }
-        className={"text-inputs"}
-      />
-      <TextInput
-        value={price}
-        onChange={handlePriceChange}
-        Icon={MdOutlineEuro}
-        placeholder={"Prix"}
-        className={"text-inputs"}
-      />
+
+      {textInputs.map((textInput) => (
+        <TextInput
+          key={textInput.id}
+          value={textInput.value}
+          onChange={textInput.onChange}
+          Icon={textInput.Icon}
+          placeholder={textInput.placeholder}
+          className={textInput.className}
+        />
+      ))}
+
       <div className="addButton-and-message">
         <PrimaryButton
           label={"Ajouter un nouveau produit au menu"}
