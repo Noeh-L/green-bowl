@@ -5,7 +5,14 @@ import { theme } from "../../../../theme";
 import { formatPrice } from "../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 
-function Card({ picture, label, price, onDelete, isDeleteButtonVisible }) {
+function Card({
+  picture,
+  label,
+  price,
+  onDelete,
+  isDeleteButtonVisible,
+  isLabel,
+}) {
   return (
     <CardStyled>
       {isDeleteButtonVisible && (
@@ -18,7 +25,7 @@ function Card({ picture, label, price, onDelete, isDeleteButtonVisible }) {
       </div>
 
       <div className="infos">
-        <h2 className="infos-title">{label}</h2>
+        <h2 className="infos-title">{isLabel ? label : <span>&nbsp;</span>}</h2>
         <div className="infos-add">
           <p className="price">{formatPrice(price)}</p>
           <PrimaryButton label={"Ajouter"} className="addButton" />

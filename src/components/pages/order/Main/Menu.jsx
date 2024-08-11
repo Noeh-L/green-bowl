@@ -30,6 +30,7 @@ function Menu() {
           price={item.price}
           onDelete={() => handleDelete(item.id)}
           isDeleteButtonVisible={isAdminMode}
+          isLabel={item.title === "" ? false : true}
         />
       ))}
     </MenuStyled>
