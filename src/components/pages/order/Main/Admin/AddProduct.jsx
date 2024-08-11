@@ -125,6 +125,10 @@ const AddProductStyled = styled.form`
     ::placeholder {
       font-weight: 400;
     }
+    :focus {
+      outline: 2px solid ${theme.colors.greyBlue};
+      border-radius: 3px;
+    }
   }
 
   .addButton-and-message {
