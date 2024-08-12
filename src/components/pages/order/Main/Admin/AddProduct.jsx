@@ -14,7 +14,7 @@ function AddProduct() {
   const [newProduct, setNewProduct] = useState({
     title: "",
     imageSource: "",
-    price: "",
+    price: 0,
   });
   const [showMessage, setShowMessage] = useState(false);
 
@@ -39,7 +39,7 @@ function AddProduct() {
     setMenu([newProductToAdd, ...menu]);
 
     // 3. Réinitialisation du formulaire
-    setNewProduct({ title: "", imageSource: "", price: "" });
+    setNewProduct({ title: "", imageSource: "", price: 0 });
 
     // 4. Message de notification de succès !
     setShowMessage(true);

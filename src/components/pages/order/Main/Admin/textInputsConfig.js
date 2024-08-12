@@ -26,7 +26,7 @@ export const textInputsConfig = (newProduct, setNewProduct) => {
     },
     {
       id: 3,
-      value: price,
+      value: price ? price : "",
       onChange: (e) => setNewProduct({ ...newProduct, price: e.target.value }),
       Icon: MdOutlineEuro,
       placeholder: "Prix",
