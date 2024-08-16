@@ -5,7 +5,7 @@ import { theme } from "../../../../../theme/index.js";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
 import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { FiCheck } from "react-icons/fi";
-import { textInputsConfig } from "./textInputsConfig.js";
+import { getTextInputsConfig } from "./textInputsConfig.js";
 import imageIfEmptyField from "../../../../../../public/assets/coming-soon.png";
 
 function AddForm() {
@@ -19,7 +19,7 @@ function AddForm() {
   const [showMessage, setShowMessage] = useState(false);
 
   // BEHAVIOR
-  const textInputs = textInputsConfig(newProduct, setNewProduct);
+  const textInputs = getTextInputsConfig(newProduct, setNewProduct);
 
   const handleSubmit = (e) => {
     e.preventDefault();

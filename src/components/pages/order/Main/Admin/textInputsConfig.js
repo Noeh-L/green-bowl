@@ -2,7 +2,7 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { FaHamburger } from "react-icons/fa";
 import { MdOutlineEuro } from "react-icons/md";
 
-export const textInputsConfig = (newProduct, setNewProduct) => {
+export const getTextInputsConfig = (newProduct, setNewProduct) => {
   const { title, imageSource, price } = newProduct;
 
   return [
