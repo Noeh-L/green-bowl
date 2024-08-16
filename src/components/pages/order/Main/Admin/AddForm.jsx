@@ -8,20 +8,19 @@ import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { FiCheck } from "react-icons/fi";
 import { getTextInputsConfig } from "./textInputsConfig.js";
 
-export const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: 0,
-};
-
 function AddForm() {
   // STATE
   const { handleAddProduct, newProduct, setNewProduct } = useOrderContext();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // BEHAVIOR
-  const textInputs = getTextInputsConfig(newProduct, setNewProduct);
+  const textInputs = getTextInputsConfig(newProduct);
+  const EMPTY_PRODUCT = {
+    id: "",
+    title: "",
+    imageSource: "",
+    price: 0,
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,10 +32,10 @@ function AddForm() {
     };
 
     // 2. Mise à jour de notre menu
-    // setMenu([newProductToAdd, ...menu]);
     handleAddProduct(newProductToAdd);
 
     // 3. Réinitialisation du formulaire
+
     setNewProduct(EMPTY_PRODUCT);
 
     // 4. Message de notification de succès !
@@ -46,6 +45,11 @@ function AddForm() {
   const displaySuccessMessage = () => {
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 2000);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewProduct({ ...newProduct, [name]: value });
   };
 
   // RENDER
@@ -63,10 +67,11 @@ function AddForm() {
         <TextInput
           key={textInput.id}
           value={textInput.value}
-          onChange={textInput.onChange}
+          name={textInput.name}
+          onChange={handleChange}
           Icon={textInput.Icon}
           placeholder={textInput.placeholder}
-          className={textInput.className}
+          className="text-inputs"
         />
       ))}
 
