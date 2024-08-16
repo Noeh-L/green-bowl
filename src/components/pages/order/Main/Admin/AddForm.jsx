@@ -18,7 +18,7 @@ function AddForm() {
   // STATE
   const { menu, setMenu } = useOrderContext();
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [showMessage, setShowMessage] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // BEHAVIOR
   const textInputs = getTextInputsConfig(newProduct, setNewProduct);
@@ -39,8 +39,12 @@ function AddForm() {
     setNewProduct(EMPTY_PRODUCT);
 
     // 4. Message de notification de succès !
-    setShowMessage(true);
-    setTimeout(() => setShowMessage(false), 2000);
+    displaySuccessMessage();
+  };
+
+  const displaySuccessMessage = () => {
+    setIsSubmitted(true);
+    setTimeout(() => setIsSubmitted(false), 2000);
   };
 
   // RENDER
@@ -70,7 +74,7 @@ function AddForm() {
           label={"Ajouter un nouveau produit au menu"}
           className={"addButton"}
         />
-        {showMessage && (
+        {isSubmitted && (
           <div className="message">
             <FiCheck className="icon" />
             <span>Ajouté avec succès !</span>
