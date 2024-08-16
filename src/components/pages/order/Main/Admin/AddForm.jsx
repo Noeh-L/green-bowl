@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import styled from "styled-components";
 import TextInput from "../../../../reusable-ui/TextInput.jsx";
 import { useState } from "react";
@@ -16,8 +17,7 @@ export const EMPTY_PRODUCT = {
 
 function AddForm() {
   // STATE
-  const { handleAddProduct } = useOrderContext();
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const { handleAddProduct, newProduct, setNewProduct } = useOrderContext();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // BEHAVIOR

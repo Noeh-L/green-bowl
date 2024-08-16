@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "../components/pages/order/Main/Admin/AddForm";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -14,6 +15,8 @@ export const OrderContext = createContext({
   handleAddProduct: () => {},
   handleDeleteProduct: () => {},
   resetMenu: () => {},
+  newProduct: {},
+  setNewProduct: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -22,6 +25,7 @@ export default function OrderContextProvider({ children }) {
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
     const menuCopy = [...menu];
@@ -57,6 +61,8 @@ export default function OrderContextProvider({ children }) {
     handleAddProduct,
     handleDeleteProduct,
     resetMenu,
+    newProduct,
+    setNewProduct,
   };
 
   return (
