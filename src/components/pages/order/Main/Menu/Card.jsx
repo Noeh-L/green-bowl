@@ -106,6 +106,9 @@ const CardStyled = styled.div`
     &:hover {
       color: ${theme.colors.red};
     }
+    &:active {
+      color: ${theme.colors.primary};
+    }
   }
 `;
 
