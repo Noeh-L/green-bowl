@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Admin from "./Admin/Admin";
 import { useOrderContext } from "../../../../context/OrderPageContext";
-import Menu from "./Menu";
+import Menu from "./Menu/Menu";
 
 function Main() {
   const { isAdminMode, setIsAdminMode } = useOrderContext();

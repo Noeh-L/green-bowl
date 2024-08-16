@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
 import styled from "styled-components";
-import { theme } from "../../../../theme";
-import { formatPrice } from "../../../../utils/maths";
+import { theme } from "../../../../../theme";
+import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 
 function Card({

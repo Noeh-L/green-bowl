@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { theme } from "../../../../theme";
-import PrimaryButton from "../../../reusable-ui/PrimaryButton";
-import { useOrderContext } from "../../../../context/OrderPageContext";
-import { fakeMenu } from "../../../../fakeData/fakeMenu";
+import { theme } from "../../../../../theme";
+import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
+import { useOrderContext } from "../../../../../context/OrderPageContext";
+import { fakeMenu } from "../../../../../fakeData/fakeMenu";
 
 function EmptyMenuAdmin() {
   const { setMenu } = useOrderContext();

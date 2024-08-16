@@ -37,7 +37,7 @@ function Admin() {
           return (
             <Tab
               key={index}
-              Icon={tab.icon}
+              Icon={tab.Icon}
               label={tab.label}
               onClick={tab.onClick}
               isActive={tab.isActive}
