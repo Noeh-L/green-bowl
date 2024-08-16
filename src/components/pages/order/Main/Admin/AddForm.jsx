@@ -7,14 +7,17 @@ import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { FiCheck } from "react-icons/fi";
 import { getTextInputsConfig } from "./textInputsConfig.js";
 
+export const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: 0,
+};
+
 function AddForm() {
   // STATE
   const { menu, setMenu } = useOrderContext();
-  const [newProduct, setNewProduct] = useState({
-    title: "",
-    imageSource: "",
-    price: 0,
-  });
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [showMessage, setShowMessage] = useState(false);
 
   // BEHAVIOR
@@ -33,7 +36,7 @@ function AddForm() {
     setMenu([newProductToAdd, ...menu]);
 
     // 3. Réinitialisation du formulaire
-    setNewProduct({ title: "", imageSource: "", price: 0 });
+    setNewProduct(EMPTY_PRODUCT);
 
     // 4. Message de notification de succès !
     setShowMessage(true);
