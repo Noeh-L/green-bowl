@@ -8,15 +8,7 @@ import EmptyMenuUser from "./EmptyMenuUser";
 const IMAGE_BY_DEFAULT = "../../../../../../public/assets/coming-soon.png";
 
 function Menu() {
-  const { menu, setMenu, isAdminMode } = useOrderContext();
-
-  const handleDelete = (idItemToDelete) => {
-    const menuCopy = menu;
-
-    const newMenu = menuCopy.filter((item) => item.id !== idItemToDelete);
-
-    setMenu(newMenu);
-  };
+  const { menu, isAdminMode, handleDeleteProduct } = useOrderContext();
 
   if (menu.length === 0) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
@@ -30,7 +22,7 @@ function Menu() {
           picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
           label={title}
           price={price}
-          onDelete={() => handleDelete(id)}
+          onDelete={() => handleDeleteProduct(id)}
           isDeleteButtonVisible={isAdminMode}
           isLabel={title === "" ? false : true}
         />

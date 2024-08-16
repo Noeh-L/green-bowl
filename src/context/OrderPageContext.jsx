@@ -12,6 +12,8 @@ export const OrderContext = createContext({
   menu: [],
   setMenu: () => {},
   handleAddProduct: () => {},
+  handleDeleteProduct: () => {},
+  resetMenu: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -29,6 +31,18 @@ export default function OrderContextProvider({ children }) {
     setMenu(menuUpdated);
   };
 
+  const handleDeleteProduct = (idItemToDelete) => {
+    const menuCopy = [...menu];
+
+    const menuUpdated = menuCopy.filter((item) => item.id !== idItemToDelete);
+
+    setMenu(menuUpdated);
+  };
+
+  const resetMenu = () => {
+    setMenu(fakeMenu.LARGE);
+  };
+
   const valueOrderContext = {
     isAdminMode,
     setIsAdminMode,
@@ -41,6 +55,8 @@ export default function OrderContextProvider({ children }) {
 
     menu,
     handleAddProduct,
+    handleDeleteProduct,
+    resetMenu,
   };
 
   return (
