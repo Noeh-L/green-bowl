@@ -7,6 +7,7 @@ import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
 import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { FiCheck } from "react-icons/fi";
 import { getTextInputsConfig } from "./textInputsConfig.js";
+import ImagePreview from "./ImagePreview.jsx";
 
 function AddForm() {
   // STATE
@@ -55,13 +56,7 @@ function AddForm() {
   // RENDER
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <div className="productPreview">
-        {newProduct.imageSource ? (
-          <img src={newProduct.imageSource} alt={newProduct.title} />
-        ) : (
-          <div>Aucune image</div>
-        )}
-      </div>
+      <ImagePreview />
 
       {textInputs.map((textInput) => (
         <TextInput
@@ -96,29 +91,6 @@ const AddFormStyled = styled.form`
   grid-template: repeat(4, 35px) / repeat(4, 200px);
   grid-row-gap: ${theme.spacing.xs};
   grid-column-gap: ${theme.spacing.md};
-
-  .productPreview {
-    grid-column: 1 / 2;
-    grid-row: 1 / 4;
-
-    div {
-      border: 1px solid ${theme.colors.greyLight};
-      border-radius: ${theme.borderRadius.round};
-      color: ${theme.colors.greySemiDark};
-      width: 100%;
-      height: 100%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: contain;
-    }
-  }
 
   .text-inputs {
     background: ${theme.colors.background_white};
