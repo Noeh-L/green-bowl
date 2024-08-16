@@ -25,10 +25,9 @@ function AddForm() {
     e.preventDefault();
 
     // 1. Création du nouveau produit (objet)
-    const idNewProduct = new Date().getTime();
     const newProductToAdd = {
       ...newProduct,
-      id: idNewProduct,
+      id: crypto.randomUUID(),
       imageSource:
         newProduct.imageSource === ""
           ? imageIfEmptyField
