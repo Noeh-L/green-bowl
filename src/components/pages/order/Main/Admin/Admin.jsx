@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tab from "../../../../reusable-ui/Tab";
 import AddForm from "./AddForm";
 import ModifyProduct from "./ModifyProduct";
