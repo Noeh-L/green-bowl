@@ -11,6 +11,7 @@ export const OrderContext = createContext({
   setActiveTab: () => {},
   menu: [],
   setMenu: () => {},
+  handleAddProduct: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -19,6 +20,14 @@ export default function OrderContextProvider({ children }) {
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
+
+  const handleAddProduct = (newProduct) => {
+    const menuCopy = [...menu];
+
+    const menuUpdated = [newProduct, ...menuCopy];
+
+    setMenu(menuUpdated);
+  };
 
   const valueOrderContext = {
     isAdminMode,
@@ -31,7 +40,7 @@ export default function OrderContextProvider({ children }) {
     setActiveTab,
 
     menu,
-    setMenu,
+    handleAddProduct,
   };
 
   return (

@@ -16,7 +16,7 @@ export const EMPTY_PRODUCT = {
 
 function AddForm() {
   // STATE
-  const { menu, setMenu } = useOrderContext();
+  const { handleAddProduct } = useOrderContext();
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -33,7 +33,8 @@ function AddForm() {
     };
 
     // 2. Mise à jour de notre menu
-    setMenu([newProductToAdd, ...menu]);
+    // setMenu([newProductToAdd, ...menu]);
+    handleAddProduct(newProductToAdd);
 
     // 3. Réinitialisation du formulaire
     setNewProduct(EMPTY_PRODUCT);
