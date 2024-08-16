@@ -8,7 +8,7 @@ import { FiCheck } from "react-icons/fi";
 import { textInputsConfig } from "./textInputsConfig.js";
 import imageIfEmptyField from "../../../../../../public/assets/coming-soon.png";
 
-function AddProduct() {
+function AddForm() {
   // STATE
   const { menu, setMenu } = useOrderContext();
   const [newProduct, setNewProduct] = useState({
@@ -48,7 +48,7 @@ function AddProduct() {
 
   // RENDER
   return (
-    <AddProductStyled onSubmit={handleSubmit}>
+    <AddFormStyled onSubmit={handleSubmit}>
       <div className="productPreview">
         {newProduct.imageSource ? (
           <img src={newProduct.imageSource} alt={newProduct.title} />
@@ -80,11 +80,11 @@ function AddProduct() {
           </div>
         )}
       </div>
-    </AddProductStyled>
+    </AddFormStyled>
   );
 }
 
-const AddProductStyled = styled.form`
+const AddFormStyled = styled.form`
   display: grid;
   grid-template: repeat(4, 35px) / repeat(4, 200px);
   grid-row-gap: ${theme.spacing.xs};
@@ -171,4 +171,4 @@ const AddProductStyled = styled.form`
   }
 `;
 
-export default AddProduct;
+export default AddForm;

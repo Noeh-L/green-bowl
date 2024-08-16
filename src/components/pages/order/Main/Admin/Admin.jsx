@@ -5,7 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { MdModeEditOutline } from "react-icons/md";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tab from "../../../../reusable-ui/Tab";
-import AddProduct from "./AddProduct";
+import AddForm from "./AddForm";
 import ModifyProduct from "./ModifyProduct";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import { tabsConfig } from "./tabsConfig";
@@ -24,12 +24,12 @@ function Admin() {
   const renderActiveTab = () => {
     switch (activeTab) {
       case "addProduct":
-        return <AddProduct />;
+        return <AddForm />;
       case "modifyProduct":
         return <ModifyProduct />;
 
       default:
-        return <AddProduct />;
+        return <AddForm />;
     }
   };
 
