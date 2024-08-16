@@ -6,7 +6,6 @@ import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
 import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { FiCheck } from "react-icons/fi";
 import { getTextInputsConfig } from "./textInputsConfig.js";
-import imageIfEmptyField from "../../../../../../public/assets/coming-soon.png";
 
 function AddForm() {
   // STATE
@@ -28,10 +27,6 @@ function AddForm() {
     const newProductToAdd = {
       ...newProduct,
       id: crypto.randomUUID(),
-      imageSource:
-        newProduct.imageSource === ""
-          ? imageIfEmptyField
-          : newProduct.imageSource,
     };
 
     // 2. Mise à jour de notre menu

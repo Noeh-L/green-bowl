@@ -5,6 +5,8 @@ import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
 
+const IMAGE_BY_DEFAULT = "../../../../../../public/assets/coming-soon.png";
+
 function Menu() {
   const { menu, setMenu, isAdminMode } = useOrderContext();
 
@@ -22,15 +24,15 @@ function Menu() {
 
   return (
     <MenuStyled>
-      {menu.map((item) => (
+      {menu.map(({ id, title, imageSource, price }) => (
         <Card
-          key={item.id}
-          picture={item.imageSource}
-          label={item.title}
-          price={item.price}
-          onDelete={() => handleDelete(item.id)}
+          key={id}
+          picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+          label={title}
+          price={price}
+          onDelete={() => handleDelete(id)}
           isDeleteButtonVisible={isAdminMode}
-          isLabel={item.title === "" ? false : true}
+          isLabel={title === "" ? false : true}
         />
       ))}
     </MenuStyled>
