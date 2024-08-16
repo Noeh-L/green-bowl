@@ -5,13 +5,13 @@ import Tab from "../../../../reusable-ui/Tab";
 import AddForm from "./AddForm";
 import ModifyProduct from "./ModifyProduct";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
-import { tabsConfig } from "./tabsConfig";
+import { getTabsConfig } from "./tabsConfig";
 
 function Admin() {
   const { isPanelAdminOpen, setIsPanelAdminOpen } = useOrderContext();
   const { activeTab, setActiveTab } = useOrderContext();
 
-  const tabs = tabsConfig(
+  const tabs = getTabsConfig(
     isPanelAdminOpen,
     setIsPanelAdminOpen,
     activeTab,
