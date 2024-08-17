@@ -68,7 +68,7 @@ const CardStyled = styled.div`
     gap: ${theme.spacing.xxs};
 
     &-title {
-      font-family: "Amatic SC", serif;
+      font-family: "Amatic SC", cursive;
       font-size: ${theme.fonts.P4};
       font-weight: ${theme.weights.bold};
       white-space: nowrap;
