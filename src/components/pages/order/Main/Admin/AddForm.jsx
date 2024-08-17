@@ -67,6 +67,7 @@ function AddForm() {
           Icon={textInput.Icon}
           placeholder={textInput.placeholder}
           className="text-inputs"
+          version="normal"
         />
       ))}
 
@@ -88,21 +89,7 @@ const AddFormStyled = styled.form`
   grid-column-gap: ${theme.spacing.md};
 
   .text-inputs {
-    background: ${theme.colors.background_white};
-    padding: ${theme.spacing.xs} ${theme.spacing.md};
-
     grid-column: 2 / 5;
-
-    .icon {
-      color: ${theme.colors.greyBlue};
-    }
-    ::placeholder {
-      font-weight: 400;
-    }
-    :focus {
-      outline: 2px solid ${theme.colors.greyBlue};
-      border-radius: 3px;
-    }
   }
 
   .submit {
