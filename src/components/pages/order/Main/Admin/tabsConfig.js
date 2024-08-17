@@ -2,20 +2,20 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { MdModeEditOutline } from "react-icons/md";
 
-export const tabsConfig = (
+export const getTabsConfig = (
   isPanelOpen,
   setIsPanelOpen,
   activeTab,
   setActiveTab,
 ) => [
   {
-    icon: isPanelOpen ? FiChevronDown : FiChevronUp,
+    Icon: isPanelOpen ? FiChevronDown : FiChevronUp,
     label: "",
     onClick: () => setIsPanelOpen(!isPanelOpen),
     isActive: isPanelOpen ? false : true,
   },
   {
-    icon: AiOutlinePlus,
+    Icon: AiOutlinePlus,
     label: "Ajouter un produit",
     onClick: () => {
       setActiveTab("addProduct");
@@ -24,7 +24,7 @@ export const tabsConfig = (
     isActive: activeTab === "addProduct",
   },
   {
-    icon: MdModeEditOutline,
+    Icon: MdModeEditOutline,
     label: "Modifier un produit",
     onClick: () => {
       setActiveTab("modifyProduct");

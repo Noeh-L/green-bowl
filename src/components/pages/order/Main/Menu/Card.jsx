@@ -1,21 +1,34 @@
 /* eslint-disable react/prop-types */
-import PrimaryButton from "../../../reusable-ui/PrimaryButton";
+import Button from "../../../../reusable-ui/Button";
 import styled from "styled-components";
-import { theme } from "../../../../theme";
-import { formatPrice } from "../../../../utils/maths";
+import { theme } from "../../../../../theme";
+import { formatPrice } from "../../../../../utils/maths";
+import { TiDelete } from "react-icons/ti";
 
-function Card({ picture, label, price }) {
+function Card({
+  picture,
+  label,
+  price,
+  onDelete,
+  isDeleteButtonVisible,
+  isLabel,
+}) {
   return (
     <CardStyled>
+      {isDeleteButtonVisible && (
+        <button onClick={onDelete} className="deleteButton">
+          <TiDelete />
+        </button>
+      )}
       <div className="picture">
         <img src={picture} alt={label} />
       </div>
 
       <div className="infos">
-        <h2 className="infos-title">{label}</h2>
+        <h2 className="infos-title">{isLabel ? label : <span>&nbsp;</span>}</h2>
         <div className="infos-add">
-          <p className="price">{formatPrice(price.toFixed(2))}</p>
-          <PrimaryButton label={"Ajouter"} className="addButton" />
+          <p className="price">{formatPrice(price)}</p>
+          <Button label={"Ajouter"} className="addButton" />
         </div>
       </div>
     </CardStyled>
@@ -32,6 +45,7 @@ const CardStyled = styled.div`
   padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
   border-radius: ${theme.borderRadius.extraRound};
   box-shadow: ${theme.shadows.medium};
+  position: relative;
 
   .picture {
     width: 200px;
@@ -54,7 +68,7 @@ const CardStyled = styled.div`
     gap: ${theme.spacing.xxs};
 
     &-title {
-      font-family: "Amatic SC", serif;
+      font-family: "Amatic SC", cursive;
       font-size: ${theme.fonts.P4};
       font-weight: ${theme.weights.bold};
       white-space: nowrap;
@@ -76,6 +90,24 @@ const CardStyled = styled.div`
         padding: ${theme.spacing.sm} ${theme.spacing.lg};
         width: 95px;
       }
+    }
+  }
+
+  .deleteButton {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    color: ${theme.colors.primary};
+    cursor: pointer;
+
+    &:hover {
+      color: ${theme.colors.red};
+    }
+    &:active {
+      color: ${theme.colors.primary};
     }
   }
 `;

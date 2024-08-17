@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import Button from "../../reusable-ui/Button";
 import { FaChevronRight } from "react-icons/fa6";
 
 function LoginForm() {
@@ -36,9 +36,10 @@ function LoginForm() {
             onChange={handleChange}
             placeholder={"Entrez votre prénom"}
             Icon={BsPersonCircle}
+            version="minimalist"
             required
           />
-          <PrimaryButton label={"Accéder à mon espace"} Icon={FaChevronRight} />
+          <Button label={"Accéder à mon espace"} Icon={FaChevronRight} />
         </div>
       </div>
     </LoginFormStyled>
@@ -53,7 +54,7 @@ const LoginFormStyled = styled.form`
 
   h1 {
     color: ${theme.colors.white};
-    font-family: "Amatic SC", sans-serif;
+    font-family: "Amatic SC", cursive;
     font-size: ${theme.fonts.P5};
   }
 
@@ -72,7 +73,7 @@ const LoginFormStyled = styled.form`
 
     h2 {
       color: ${theme.colors.white};
-      font-family: "Amatic SC", sans-serif;
+      font-family: "Amatic SC", cursive;
       font-size: ${theme.fonts.P4};
     }
 

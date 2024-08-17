@@ -1,20 +1,17 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Tab from "../../../../reusable-ui/Tab";
-import AddProduct from "./AddProduct";
+import AddForm from "./AddForm";
 import ModifyProduct from "./ModifyProduct";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
-import { tabsConfig } from "./tabsConfig";
+import { getTabsConfig } from "./tabsConfig";
 
 function Admin() {
   const { isPanelAdminOpen, setIsPanelAdminOpen } = useOrderContext();
   const { activeTab, setActiveTab } = useOrderContext();
 
-  const tabs = tabsConfig(
+  const tabs = getTabsConfig(
     isPanelAdminOpen,
     setIsPanelAdminOpen,
     activeTab,
@@ -24,12 +21,12 @@ function Admin() {
   const renderActiveTab = () => {
     switch (activeTab) {
       case "addProduct":
-        return <AddProduct />;
+        return <AddForm />;
       case "modifyProduct":
         return <ModifyProduct />;
 
       default:
-        return <AddProduct />;
+        return <AddForm />;
     }
   };
 
@@ -40,7 +37,7 @@ function Admin() {
           return (
             <Tab
               key={index}
-              Icon={tab.icon}
+              Icon={tab.Icon}
               label={tab.label}
               onClick={tab.onClick}
               isActive={tab.isActive}
@@ -72,11 +69,11 @@ const AdminTabs = styled.div`
 `;
 
 const AdminContent = styled.div`
-  min-height: 252px;
+  min-height: 240px;
   border: 1px solid ${theme.colors.greyLight};
   border-radius: 0 0 15px;
   background: ${theme.colors.white};
-  padding: ${theme.spacing.sm} ${theme.spacing.md};
+  padding: ${theme.spacing.lg} ${theme.spacing.xxl};
 `;
 
 export default Admin;

@@ -1,4 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState } from "react";
+import { fakeMenu } from "../fakeData/fakeMenu";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -6,8 +8,14 @@ export const OrderContext = createContext({
   setIsAdminMode: () => {},
   isPanelAdminOpen: false,
   setIsPanelAdminOpen: () => {},
-  activeTab: false,
+  activeTab: "",
   setActiveTab: () => {},
+  menu: [],
+  handleAddProduct: () => {},
+  handleDeleteProduct: () => {},
+  resetMenu: () => {},
+  newProduct: {},
+  setNewProduct: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -15,6 +23,35 @@ export default function OrderContextProvider({ children }) {
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
+
+  const EMPTY_PRODUCT = {
+    id: "",
+    title: "",
+    imageSource: "",
+    price: 0,
+  };
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
+  const handleAddProduct = (newProduct) => {
+    const menuCopy = [...menu];
+
+    const menuUpdated = [newProduct, ...menuCopy];
+
+    setMenu(menuUpdated);
+  };
+
+  const handleDeleteProduct = (idItemToDelete) => {
+    const menuCopy = [...menu];
+
+    const menuUpdated = menuCopy.filter((item) => item.id !== idItemToDelete);
+
+    setMenu(menuUpdated);
+  };
+
+  const resetMenu = () => {
+    setMenu(fakeMenu.LARGE);
+  };
 
   const valueOrderContext = {
     isAdminMode,
@@ -25,6 +62,13 @@ export default function OrderContextProvider({ children }) {
 
     activeTab,
     setActiveTab,
+
+    menu,
+    handleAddProduct,
+    handleDeleteProduct,
+    resetMenu,
+    newProduct,
+    setNewProduct,
   };
 
   return (
