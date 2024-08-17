@@ -5,9 +5,9 @@ import { useState } from "react";
 import { theme } from "../../../../../theme/index.js";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
 import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
-import { FiCheck } from "react-icons/fi";
 import { getTextInputsConfig } from "./textInputsConfig.js";
 import ImagePreview from "./ImagePreview.jsx";
+import SubmitMessage from "./SubmitMessage.jsx";
 
 function AddForm() {
   // STATE
@@ -70,17 +70,12 @@ function AddForm() {
         />
       ))}
 
-      <div className="addButton-and-message">
+      <div className="submit">
         <PrimaryButton
           label={"Ajouter un nouveau produit au menu"}
           className={"addButton"}
         />
-        {isSubmitted && (
-          <div className="message">
-            <FiCheck className="icon" />
-            <span>Ajouté avec succès !</span>
-          </div>
-        )}
+        {isSubmitted && <SubmitMessage />}
       </div>
     </AddFormStyled>
   );
@@ -110,7 +105,7 @@ const AddFormStyled = styled.form`
     }
   }
 
-  .addButton-and-message {
+  .submit {
     grid-column: 2 / 5;
     display: flex;
     align-items: center;
@@ -128,23 +123,6 @@ const AddFormStyled = styled.form`
       &:hover {
         background: white;
         color: #60bd4f;
-      }
-    }
-
-    .message {
-      color: ${theme.colors.success};
-      display: flex;
-      align-items: center;
-      gap: ${theme.spacing.xxs};
-
-      .icon {
-        border: 1px solid ${theme.colors.success};
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-      }
-      span {
-        font-size: ${theme.fonts.P0};
       }
     }
   }
