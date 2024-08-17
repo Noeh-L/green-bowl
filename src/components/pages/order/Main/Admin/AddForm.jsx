@@ -3,7 +3,7 @@ import styled from "styled-components";
 import TextInput from "../../../../reusable-ui/TextInput.jsx";
 import { useState } from "react";
 import { theme } from "../../../../../theme/index.js";
-import PrimaryButton from "../../../../reusable-ui/PrimaryButton.jsx";
+import Button from "../../../../reusable-ui/Button.jsx";
 import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { getTextInputsConfig } from "./textInputsConfig.js";
 import ImagePreview from "./ImagePreview.jsx";
@@ -72,9 +72,9 @@ function AddForm() {
       ))}
 
       <div className="submit">
-        <PrimaryButton
+        <Button
           label={"Ajouter un nouveau produit au menu"}
-          className={"addButton"}
+          version="secondary"
         />
         {isSubmitted && <SubmitMessage />}
       </div>
@@ -97,21 +97,6 @@ const AddFormStyled = styled.form`
     display: flex;
     align-items: center;
     gap: ${theme.spacing.md};
-
-    .addButton {
-      width: fit-content;
-      padding: ${theme.spacing.xs} ${theme.spacing.lg};
-      background: ${theme.colors.success};
-      border: 1px solid ${theme.colors.success};
-      font-size: 14px;
-      height: 100%;
-      font-size: ${theme.fonts.XS};
-
-      &:hover {
-        background: white;
-        color: #60bd4f;
-      }
-    }
   }
 `;
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import Button from "../../reusable-ui/Button";
 import { FaChevronRight } from "react-icons/fa6";
 
 function LoginForm() {
@@ -39,7 +39,7 @@ function LoginForm() {
             version="minimalist"
             required
           />
-          <PrimaryButton label={"Accéder à mon espace"} Icon={FaChevronRight} />
+          <Button label={"Accéder à mon espace"} Icon={FaChevronRight} />
         </div>
       </div>
     </LoginFormStyled>

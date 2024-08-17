@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
+import Button from "../../../../reusable-ui/Button";
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
@@ -28,7 +28,7 @@ function Card({
         <h2 className="infos-title">{isLabel ? label : <span>&nbsp;</span>}</h2>
         <div className="infos-add">
           <p className="price">{formatPrice(price)}</p>
-          <PrimaryButton label={"Ajouter"} className="addButton" />
+          <Button label={"Ajouter"} className="addButton" />
         </div>
       </div>
     </CardStyled>

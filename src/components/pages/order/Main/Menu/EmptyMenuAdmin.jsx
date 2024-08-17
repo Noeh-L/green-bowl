@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
+import Button from "../../../../reusable-ui/Button";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 
 function EmptyMenuAdmin() {
@@ -10,7 +10,7 @@ function EmptyMenuAdmin() {
     <EmptyMenuAdminStyled>
       <h2>Le menu est vide ?</h2>
       <p>Cliquez ci-dessous pour le réinitialiser</p>
-      <PrimaryButton
+      <Button
         label={"Générer de nouveaux produits"}
         className={"generateProductButton"}
         onClick={resetMenu}
