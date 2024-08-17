@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Tab from "../../../../reusable-ui/Tab";
 import AddForm from "./AddForm";
-import ModifyProduct from "./ModifyProduct";
+import EditForm from "./EditForm";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import { getTabsConfig } from "./tabsConfig";
 
@@ -23,7 +23,7 @@ function Admin() {
       case "addProduct":
         return <AddForm />;
       case "modifyProduct":
-        return <ModifyProduct />;
+        return <EditForm />;
 
       default:
         return <AddForm />;
@@ -60,7 +60,6 @@ const AdminStyled = styled.div`
 `;
 
 const AdminTabs = styled.div`
-  /* border: 3px solid blue; */
   width: fit-content;
   display: flex;
   align-items: end;
