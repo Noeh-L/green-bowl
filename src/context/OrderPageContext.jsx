@@ -23,7 +23,7 @@ export default function OrderContextProvider({ children }) {
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
-  const [menu, setMenu] = useState(fakeMenu.SMALL);
+  const [menu, setMenu] = useState(fakeMenu.LARGE);
 
   const EMPTY_PRODUCT = {
     id: "",
