@@ -57,6 +57,8 @@ export default function OrderContextProvider({ children }) {
   };
 
   const handleCardSelection = (id) => {
+    if (!isAdminMode) return;
+
     if (idCardSelected === id) {
       setIdCardSelected(null); // Désélectionne un card qui est sélectionnée
     } else {
