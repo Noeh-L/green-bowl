@@ -13,9 +13,15 @@ function Card({
   isDeleteButtonVisible,
   isLabel,
   isAdminMode,
+  isCardSelected,
+  onSelection,
 }) {
   return (
-    <CardStyled $isAdminMode={isAdminMode}>
+    <CardStyled
+      $isAdminMode={isAdminMode}
+      $isSelected={isCardSelected}
+      onClick={onSelection}
+    >
       {isDeleteButtonVisible && (
         <button onClick={onDelete} className="deleteButton">
           <TiDelete />
@@ -114,6 +120,9 @@ const CardStyled = styled.div`
   }
 
   ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
+  ${({ $isAdminMode, $isSelected }) => {
+    return $isAdminMode && $isSelected && styleOnSelected;
+  }}
 `;
 
 const styleOnHover = css`
@@ -123,6 +132,46 @@ const styleOnHover = css`
     box-shadow:
       ${theme.shadows.medium},
       0 0 8px ${theme.colors.primary};
+  }
+`;
+
+const styleOnSelected = css`
+  background: ${theme.colors.primary};
+  color: ${theme.colors.white};
+
+  .infos {
+    &-add {
+      .price {
+        color: ${theme.colors.white};
+      }
+      .addButton {
+        background: ${theme.colors.white};
+        color: ${theme.colors.primary};
+
+        &:hover {
+          border: 1px solid white;
+          background: ${theme.colors.primary};
+          color: ${theme.colors.white};
+        }
+        &:active {
+          border: 1px solid white;
+          background: ${theme.colors.white};
+          color: ${theme.colors.primary};
+        }
+      }
+    }
+  }
+
+  .deleteButton {
+    color: ${theme.colors.white};
+    cursor: pointer;
+
+    &:hover {
+      color: ${theme.colors.red};
+    }
+    &:active {
+      color: ${theme.colors.white};
+    }
   }
 `;
 

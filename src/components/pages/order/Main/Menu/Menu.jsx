@@ -8,7 +8,13 @@ import EmptyMenuUser from "./EmptyMenuUser";
 const IMAGE_BY_DEFAULT = "../../../../../../public/assets/coming-soon.png";
 
 function Menu() {
-  const { menu, isAdminMode, handleDeleteProduct } = useOrderContext();
+  const {
+    menu,
+    isAdminMode,
+    handleDeleteProduct,
+    idCardSelected,
+    handleCardSelection,
+  } = useOrderContext();
 
   if (menu.length === 0) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
@@ -26,6 +32,8 @@ function Menu() {
           isDeleteButtonVisible={isAdminMode}
           isLabel={title === "" ? false : true}
           isAdminMode={isAdminMode}
+          isCardSelected={idCardSelected === id}
+          onSelection={() => handleCardSelection(id)}
         />
       ))}
     </MenuStyled>

@@ -16,6 +16,8 @@ export const OrderContext = createContext({
   resetMenu: () => {},
   newProduct: {},
   setNewProduct: () => {},
+  idCardSelected: "",
+  handleCardSelection: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -24,6 +26,7 @@ export default function OrderContextProvider({ children }) {
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const [idCardSelected, setIdCardSelected] = useState(null);
 
   const EMPTY_PRODUCT = {
     id: "",
@@ -53,6 +56,14 @@ export default function OrderContextProvider({ children }) {
     setMenu(fakeMenu.LARGE);
   };
 
+  const handleCardSelection = (id) => {
+    if (idCardSelected === id) {
+      setIdCardSelected(null); // Désélectionne un card qui est sélectionnée
+    } else {
+      setIdCardSelected(id);
+    }
+  };
+
   const valueOrderContext = {
     isAdminMode,
     setIsAdminMode,
@@ -69,6 +80,9 @@ export default function OrderContextProvider({ children }) {
     resetMenu,
     newProduct,
     setNewProduct,
+
+    idCardSelected,
+    handleCardSelection,
   };
 
   return (
