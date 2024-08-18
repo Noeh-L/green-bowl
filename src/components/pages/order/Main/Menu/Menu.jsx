@@ -25,6 +25,7 @@ function Menu() {
           onDelete={() => handleDeleteProduct(id)}
           isDeleteButtonVisible={isAdminMode}
           isLabel={title === "" ? false : true}
+          isAdminMode={isAdminMode}
         />
       ))}
     </MenuStyled>

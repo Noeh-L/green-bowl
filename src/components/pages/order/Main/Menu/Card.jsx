@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Button from "../../../../reusable-ui/Button";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
@@ -12,9 +12,10 @@ function Card({
   onDelete,
   isDeleteButtonVisible,
   isLabel,
+  isAdminMode,
 }) {
   return (
-    <CardStyled>
+    <CardStyled $isAdminMode={isAdminMode}>
       {isDeleteButtonVisible && (
         <button onClick={onDelete} className="deleteButton">
           <TiDelete />
@@ -45,6 +46,7 @@ const CardStyled = styled.div`
   padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
   border-radius: ${theme.borderRadius.extraRound};
   box-shadow: ${theme.shadows.medium};
+  transition: all ease 0.15s;
   position: relative;
 
   .picture {
@@ -109,6 +111,18 @@ const CardStyled = styled.div`
     &:active {
       color: ${theme.colors.primary};
     }
+  }
+
+  ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
+`;
+
+const styleOnHover = css`
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow:
+      ${theme.shadows.medium},
+      0 0 8px ${theme.colors.primary};
   }
 `;
 
