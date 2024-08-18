@@ -61,6 +61,8 @@ export default function OrderContextProvider({ children }) {
       setIdCardSelected(null); // Désélectionne un card qui est sélectionnée
     } else {
       setIdCardSelected(id);
+      setIsPanelAdminOpen(true);
+      setActiveTab("editProduct");
     }
   };
 

@@ -27,9 +27,9 @@ export const getTabsConfig = (
     Icon: MdModeEditOutline,
     label: "Modifier un produit",
     onClick: () => {
-      setActiveTab("modifyProduct");
+      setActiveTab("editProduct");
       setIsPanelOpen(true);
     },
-    isActive: activeTab === "modifyProduct",
+    isActive: activeTab === "editProduct",
   },
 ];

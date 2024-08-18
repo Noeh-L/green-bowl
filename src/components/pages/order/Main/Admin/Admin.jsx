@@ -22,7 +22,7 @@ function Admin() {
     switch (activeTab) {
       case "addProduct":
         return <AddForm />;
-      case "modifyProduct":
+      case "editProduct":
         return <EditForm />;
 
       default:
