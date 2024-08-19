@@ -5,39 +5,41 @@ import { useOrderContext } from "../../../../../context/OrderPageContext";
 
 function EditForm() {
   // state
-  const { menu, idCardSelected } = useOrderContext();
+  const { menu, idCardSelected, updateProductInMenu } = useOrderContext();
 
   const productSelected = menu.find((item) => item.id === idCardSelected);
 
   // behavior
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setProductToEdit({ ...productToEdit, [name]: value });
-  // };
+  const handleEditProduct = (e) => {
+    const { value, name } = e.target;
+    const productUpdated = { ...productSelected, [name]: value };
+
+    updateProductInMenu(productUpdated);
+  };
 
   // render
   return (
     <EditFormStyled>
-      {productSelected ? (
+      {idCardSelected ? (
         <div className="editForm">
           <img src={productSelected.imageSource} />
 
           <input
             type="text"
             value={productSelected.title}
-            // onChange={(e) => handleChange(e)}
+            onChange={handleEditProduct}
             name="title"
           />
           <input
             type="text"
             value={productSelected.imageSource}
-            // onChange={handleChange}
+            onChange={handleEditProduct}
             name="imageSource"
           />
           <input
             type="text"
             value={productSelected.price}
-            // onChange={(e) => handleChange(e)}
+            onChange={handleEditProduct}
             name="price"
           />
 
@@ -55,7 +57,7 @@ function EditForm() {
   );
 }
 
-const EditFormStyled = styled.div`
+const EditFormStyled = styled.form`
   .editForm {
     display: grid;
     grid-template: repeat(4, 35px) / repeat(4, 200px);

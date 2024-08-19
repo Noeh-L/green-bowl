@@ -32,8 +32,8 @@ function Menu() {
           isDeleteButtonVisible={isAdminMode}
           isLabel={title === "" ? false : true}
           isAdminMode={isAdminMode}
-          isCardSelected={idCardSelected === id}
           onSelection={() => handleCardSelection(id)}
+          isCardSelected={idCardSelected === id}
         />
       ))}
     </MenuStyled>

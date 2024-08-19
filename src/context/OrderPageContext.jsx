@@ -16,9 +16,9 @@ export const OrderContext = createContext({
   resetMenu: () => {},
   newProduct: {},
   setNewProduct: () => {},
-  // handleChange: () => {},
   idCardSelected: "",
   handleCardSelection: () => {},
+  updateProductInMenu: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -57,11 +57,6 @@ export default function OrderContextProvider({ children }) {
     setMenu(fakeMenu.LARGE);
   };
 
-  // const handleChange = (e, product) => {
-  //   const { name, value } = e.target;
-  //   setNewProduct({ ...product, [name]: value });
-  // };
-
   const handleCardSelection = (id) => {
     if (!isAdminMode) return;
 
@@ -72,6 +67,15 @@ export default function OrderContextProvider({ children }) {
       setIsPanelAdminOpen(true);
       setActiveTab("editProduct");
     }
+  };
+
+  const updateProductInMenu = (updatedProduct) => {
+    setMenu((prevMenu) =>
+      prevMenu.map(
+        (item) => (item.id === updatedProduct.id ? updatedProduct : item),
+        // on map le menu jusqu'à trouver le produit à updater et j'envoie le produit updated
+      ),
+    );
   };
 
   const valueOrderContext = {
@@ -90,10 +94,10 @@ export default function OrderContextProvider({ children }) {
     resetMenu,
     newProduct,
     setNewProduct,
-    // handleChange,
 
     idCardSelected,
     handleCardSelection,
+    updateProductInMenu,
   };
 
   return (
