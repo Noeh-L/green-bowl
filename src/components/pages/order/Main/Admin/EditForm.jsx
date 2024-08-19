@@ -2,38 +2,46 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import { HiCursorClick } from "react-icons/hi";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
-import ImagePreview from "./ImagePreview";
-import { getTextInputsConfig } from "./textInputsConfig";
-import TextInput from "../../../../reusable-ui/TextInput";
 
-function ModifyProduct() {
+function EditForm() {
   // state
-  const { menu, idCardSelected, handleChange } = useOrderContext();
+  const { menu, idCardSelected } = useOrderContext();
+
+  const productSelected = menu.find((item) => item.id === idCardSelected);
 
   // behavior
-  const productToEdit = menu.find((item) => item.id === idCardSelected);
-
-  const textInputs = getTextInputsConfig(productToEdit);
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setProductToEdit({ ...productToEdit, [name]: value });
+  // };
 
   // render
   return (
-    <ModifyProductStyled>
-      {productToEdit ? (
+    <EditFormStyled>
+      {productSelected ? (
         <div className="editForm">
-          <ImagePreview />
-          {textInputs.map((textInput) => (
-            <TextInput
-              key={textInput.id}
-              value={textInput.value}
-              name={textInput.name}
-              onChange={handleChange}
-              Icon={textInput.Icon}
-              placeholder={textInput.placeholder}
-              className="text-inputs"
-              version="normal"
-            />
-          ))}
-          <div className="submit">
+          <img src={productSelected.imageSource} />
+
+          <input
+            type="text"
+            value={productSelected.title}
+            // onChange={(e) => handleChange(e)}
+            name="title"
+          />
+          <input
+            type="text"
+            value={productSelected.imageSource}
+            // onChange={handleChange}
+            name="imageSource"
+          />
+          <input
+            type="text"
+            value={productSelected.price}
+            // onChange={(e) => handleChange(e)}
+            name="price"
+          />
+
+          <div className="info-message">
             Cliquer sur un produit du menu pour le modifier en temps réel
           </div>
         </div>
@@ -43,11 +51,11 @@ function ModifyProduct() {
           <HiCursorClick />
         </div>
       )}
-    </ModifyProductStyled>
+    </EditFormStyled>
   );
 }
 
-const ModifyProductStyled = styled.div`
+const EditFormStyled = styled.div`
   .editForm {
     display: grid;
     grid-template: repeat(4, 35px) / repeat(4, 200px);
@@ -58,7 +66,7 @@ const ModifyProductStyled = styled.div`
       grid-column: 2 / 5;
     }
 
-    .submit {
+    .info-message {
       grid-column: 2 / 5;
       display: flex;
       align-items: center;
@@ -79,4 +87,4 @@ const ModifyProductStyled = styled.div`
   }
 `;
 
-export default ModifyProduct;
+export default EditForm;
