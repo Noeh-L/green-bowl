@@ -5,22 +5,27 @@ import { useOrderContext } from "../../../../../context/OrderPageContext";
 
 function EditForm() {
   // state
-  const { menu, idCardSelected, updateProductInMenu } = useOrderContext();
+  const {
+    menu,
+    idOfProductSelected,
+    updateProductInMenu,
+    productTitleInputRef,
+  } = useOrderContext();
 
-  const productSelected = menu.find((item) => item.id === idCardSelected);
+  const productSelected = menu.find((item) => item.id === idOfProductSelected);
 
   // behavior
   const handleEditProduct = (e) => {
     const { value, name } = e.target;
-    const productUpdated = { ...productSelected, [name]: value };
+    const productBeingUpdated = { ...productSelected, [name]: value };
 
-    updateProductInMenu(productUpdated);
+    updateProductInMenu(productBeingUpdated);
   };
 
   // render
   return (
     <EditFormStyled>
-      {idCardSelected ? (
+      {idOfProductSelected ? (
         <div className="editForm">
           <img src={productSelected.imageSource} />
 
@@ -29,6 +34,7 @@ function EditForm() {
             value={productSelected.title}
             onChange={handleEditProduct}
             name="title"
+            ref={productTitleInputRef}
           />
           <input
             type="text"

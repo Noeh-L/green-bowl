@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 
 // 1. Création du contexte
@@ -16,9 +16,10 @@ export const OrderContext = createContext({
   resetMenu: () => {},
   newProduct: {},
   setNewProduct: () => {},
-  idCardSelected: "",
+  idOfProductSelected: "",
   handleCardSelection: () => {},
   updateProductInMenu: () => {},
+  productTitleInputRef: "",
 });
 
 // 2. Installation du contexte (Provider)
@@ -27,7 +28,8 @@ export default function OrderContextProvider({ children }) {
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("editProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
-  const [idCardSelected, setIdCardSelected] = useState(null);
+  const [idOfProductSelected, setIdOfProductSelected] = useState(null);
+  const productTitleInputRef = useRef();
 
   const EMPTY_PRODUCT = {
     id: "",
@@ -57,16 +59,22 @@ export default function OrderContextProvider({ children }) {
     setMenu(fakeMenu.LARGE);
   };
 
-  const handleCardSelection = (id) => {
+  const focusOnTitleInput = () => {
+    if (productTitleInputRef.current) {
+      productTitleInputRef.current.focus();
+    }
+  };
+
+  const handleCardSelection = async (id) => {
     if (!isAdminMode) return;
 
-    if (idCardSelected === id) {
-      setIdCardSelected(null); // Désélectionne un card qui est sélectionnée
-    } else {
-      setIdCardSelected(id);
-      setIsPanelAdminOpen(true);
-      setActiveTab("editProduct");
-    }
+    if (idOfProductSelected === id) return setIdOfProductSelected(null); // Désélectionne un card qui est sélectionnée
+
+    await setIdOfProductSelected(id);
+    await setIsPanelAdminOpen(true);
+    await setActiveTab("editProduct");
+
+    focusOnTitleInput();
   };
 
   const updateProductInMenu = (updatedProduct) => {
@@ -95,9 +103,11 @@ export default function OrderContextProvider({ children }) {
     newProduct,
     setNewProduct,
 
-    idCardSelected,
+    idOfProductSelected,
     handleCardSelection,
     updateProductInMenu,
+
+    productTitleInputRef,
   };
 
   return (
