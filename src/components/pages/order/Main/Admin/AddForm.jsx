@@ -56,7 +56,7 @@ function AddForm() {
   // RENDER
   return (
     <AddFormStyled onSubmit={handleSubmit}>
-      <ImagePreview />
+      <ImagePreview product={newProduct} />
 
       {textInputs.map((textInput) => (
         <TextInput
