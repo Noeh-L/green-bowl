@@ -9,7 +9,7 @@ function EditForm() {
     menu,
     idOfProductSelected,
     updateProductInMenu,
-    productTitleInputRef,
+    editProductTitleRef,
   } = useOrderContext();
 
   const productSelected = menu.find((item) => item.id === idOfProductSelected);
@@ -35,7 +35,7 @@ function EditForm() {
             onChange={handleEditProduct}
             name="title"
             placeholder="title"
-            ref={productTitleInputRef}
+            ref={editProductTitleRef}
           />
           <input
             type="text"

@@ -2,6 +2,7 @@
 import { createContext, useContext, useRef, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../config/config";
+import { focusOnRef } from "../utils/focusOnRef";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -20,7 +21,7 @@ export const OrderContext = createContext({
   idOfProductSelected: "",
   handleCardSelection: () => {},
   updateProductInMenu: () => {},
-  productTitleInputRef: "",
+  editProductTitleRef: "",
 });
 
 // 2. Installation du contexte (Provider)
@@ -30,7 +31,7 @@ export default function OrderContextProvider({ children }) {
   const [activeTab, setActiveTab] = useState("editProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [idOfProductSelected, setIdOfProductSelected] = useState(null);
-  const productTitleInputRef = useRef();
+  const editProductTitleRef = useRef();
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
@@ -53,11 +54,11 @@ export default function OrderContextProvider({ children }) {
     setMenu(fakeMenu.LARGE);
   };
 
-  const focusOnTitleInput = () => {
-    if (productTitleInputRef.current) {
-      productTitleInputRef.current.focus();
-    }
-  };
+  // const focusOnTitleInput = () => {
+  //   if (editProductTitleRef.current) {
+  //     editProductTitleRef.current.focus();
+  //   }
+  // };
 
   const openEditTab = () => {
     setIsPanelAdminOpen(true);
@@ -71,7 +72,7 @@ export default function OrderContextProvider({ children }) {
     await setIdOfProductSelected(id);
     await openEditTab();
 
-    focusOnTitleInput();
+    focusOnRef(editProductTitleRef);
   };
 
   const updateProductInMenu = (updatedProduct) => {
@@ -104,7 +105,7 @@ export default function OrderContextProvider({ children }) {
     handleCardSelection,
     updateProductInMenu,
 
-    productTitleInputRef,
+    editProductTitleRef,
   };
 
   return (
