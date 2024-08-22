@@ -9,13 +9,14 @@ import { getTabsConfig } from "./tabsConfig";
 
 function Admin() {
   const { isPanelAdminOpen, setIsPanelAdminOpen } = useOrderContext();
-  const { activeTab, setActiveTab } = useOrderContext();
+  const { activeTab, setActiveTab, editProductTitleRef } = useOrderContext();
 
   const tabs = getTabsConfig(
     isPanelAdminOpen,
     setIsPanelAdminOpen,
     activeTab,
     setActiveTab,
+    editProductTitleRef,
   );
 
   const renderActiveTab = () => {

@@ -1,12 +1,14 @@
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { MdModeEditOutline } from "react-icons/md";
+import { focusOnRef } from "../../../../../utils/focusOnRef";
 
 export const getTabsConfig = (
   isPanelOpen,
   setIsPanelOpen,
   activeTab,
   setActiveTab,
+  editProductTitleRef,
 ) => [
   {
     Icon: isPanelOpen ? FiChevronDown : FiChevronUp,
@@ -26,9 +28,10 @@ export const getTabsConfig = (
   {
     Icon: MdModeEditOutline,
     label: "Modifier un produit",
-    onClick: () => {
-      setActiveTab("editProduct");
+    onClick: async () => {
+      await setActiveTab("editProduct");
       setIsPanelOpen(true);
+      focusOnRef(editProductTitleRef);
     },
     isActive: activeTab === "editProduct",
   },
