@@ -64,7 +64,8 @@ function EditForm() {
           />
 
           <div className="info-message">
-            Cliquer sur un produit du menu pour le modifier en temps réel
+            Cliquer sur un produit du menu pour le modifier&nbsp;
+            <span>en temps réel</span>
           </div>
         </div>
       ) : (
@@ -92,7 +93,11 @@ const EditFormStyled = styled.form`
       grid-column: 2 / 5;
       display: flex;
       align-items: center;
-      gap: ${theme.spacing.md};
+      color: ${theme.colors.primary};
+
+      span {
+        text-decoration: underline;
+      }
     }
   }
 
