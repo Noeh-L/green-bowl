@@ -21,6 +21,7 @@ function LoginForm() {
     e.preventDefault();
     setInputValue("");
     navigate(`/order/${inputValue}`);
+    document.title = `Crazee Burger | ${inputValue}`;
   };
 
   // RENDER
