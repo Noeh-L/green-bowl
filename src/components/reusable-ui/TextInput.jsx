@@ -1,22 +1,28 @@
+/* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
+import React from "react";
 
-/* eslint-disable react/prop-types */
-function TextInput({
-  value,
-  onChange,
-  Icon,
-  className,
-  version = "normal",
-  ...extraProps
-}) {
-  return (
-    <TextInputStyled className={className} $version={version}>
-      {Icon && <Icon className="icon" />}
-      <input type="text" value={value} onChange={onChange} {...extraProps} />
-    </TextInputStyled>
-  );
-}
+// eslint-disable-next-line react/display-name
+const TextInput = React.forwardRef(
+  (
+    { value, onChange, Icon, className, version = "normal", ...extraProps },
+    ref,
+  ) => {
+    return (
+      <TextInputStyled className={className} $version={version}>
+        {Icon && <Icon className="icon" />}
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+          {...extraProps}
+          ref={ref}
+        />
+      </TextInputStyled>
+    );
+  },
+);
 
 const TextInputStyled = styled.label`
   display: flex;
