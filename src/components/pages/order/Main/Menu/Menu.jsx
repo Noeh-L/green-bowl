@@ -4,8 +4,7 @@ import { theme } from "../../../../../theme";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
-
-const IMAGE_BY_DEFAULT = "../../../../../../public/assets/coming-soon.png";
+import { IMAGE_BY_DEFAULT } from "../../../../../config/config";
 
 function Menu() {
   // state

@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useRef, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "../config/config";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -30,13 +31,6 @@ export default function OrderContextProvider({ children }) {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [idOfProductSelected, setIdOfProductSelected] = useState(null);
   const productTitleInputRef = useRef();
-
-  const EMPTY_PRODUCT = {
-    id: "",
-    title: "",
-    imageSource: "",
-    price: 0,
-  };
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
@@ -65,14 +59,17 @@ export default function OrderContextProvider({ children }) {
     }
   };
 
+  const openEditTab = () => {
+    setIsPanelAdminOpen(true);
+    setActiveTab("editProduct");
+  };
+
   const handleCardSelection = async (id) => {
     if (!isAdminMode) return;
-
     if (idOfProductSelected === id) return setIdOfProductSelected(null); // Désélectionne un card qui est sélectionnée
 
     await setIdOfProductSelected(id);
-    await setIsPanelAdminOpen(true);
-    await setActiveTab("editProduct");
+    await openEditTab();
 
     focusOnTitleInput();
   };

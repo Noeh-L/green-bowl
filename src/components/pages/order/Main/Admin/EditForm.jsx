@@ -34,6 +34,7 @@ function EditForm() {
             value={productSelected.title}
             onChange={handleEditProduct}
             name="title"
+            placeholder="title"
             ref={productTitleInputRef}
           />
           <input
@@ -41,12 +42,14 @@ function EditForm() {
             value={productSelected.imageSource}
             onChange={handleEditProduct}
             name="imageSource"
+            placeholder="imageSource"
           />
           <input
             type="text"
-            value={productSelected.price}
+            value={productSelected.price ? productSelected.price : ""}
             onChange={handleEditProduct}
             name="price"
+            placeholder="price"
           />
 
           <div className="info-message">
