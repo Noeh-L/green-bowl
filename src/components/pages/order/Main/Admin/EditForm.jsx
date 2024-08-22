@@ -3,8 +3,10 @@ import { theme } from "../../../../../theme";
 import { HiCursorClick } from "react-icons/hi";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import TextInput from "../../../../reusable-ui/TextInput";
-// import { getTextInputsConfig } from "./textInputsConfig";
-import { FaBuildingCircleExclamation } from "react-icons/fa6";
+import { FaHamburger } from "react-icons/fa";
+import { BsFillCameraFill } from "react-icons/bs";
+import { MdOutlineEuro } from "react-icons/md";
+import ImagePreview from "./ImagePreview";
 
 function EditForm() {
   // state
@@ -16,8 +18,6 @@ function EditForm() {
   } = useOrderContext();
 
   const productSelected = menu.find((item) => item.id === idOfProductSelected);
-
-  // const editTextInput = getTextInputsConfig(productSelected);
 
   // behavior
   const handleEditProduct = (e) => {
@@ -32,13 +32,13 @@ function EditForm() {
     <EditFormStyled>
       {idOfProductSelected ? (
         <div className="editForm">
-          <img src={productSelected.imageSource} />
+          <ImagePreview product={productSelected} />
 
           <TextInput
             value={productSelected.title}
             name={"title"}
             onChange={handleEditProduct}
-            Icon={FaBuildingCircleExclamation}
+            Icon={FaHamburger}
             placeholder={"Nom du produit (ex: Super Burger)"}
             className="text-inputs"
             version="normal"
@@ -48,7 +48,7 @@ function EditForm() {
             value={productSelected.imageSource}
             name={"imageSource"}
             onChange={handleEditProduct}
-            Icon={FaBuildingCircleExclamation}
+            Icon={BsFillCameraFill}
             placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
             className="text-inputs"
             version="normal"
@@ -57,7 +57,7 @@ function EditForm() {
             value={productSelected.price ? productSelected.price : ""}
             name="price"
             onChange={handleEditProduct}
-            Icon={FaBuildingCircleExclamation}
+            Icon={MdOutlineEuro}
             placeholder="Prix"
             className="text-inputs"
             version="normal"

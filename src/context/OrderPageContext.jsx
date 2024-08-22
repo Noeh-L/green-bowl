@@ -54,12 +54,6 @@ export default function OrderContextProvider({ children }) {
     setMenu(fakeMenu.LARGE);
   };
 
-  // const focusOnTitleInput = () => {
-  //   if (editProductTitleRef.current) {
-  //     editProductTitleRef.current.focus();
-  //   }
-  // };
-
   const openEditTab = () => {
     setIsPanelAdminOpen(true);
     setActiveTab("editProduct");
