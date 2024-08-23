@@ -30,7 +30,7 @@ function Menu() {
           picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
           label={title}
           price={price}
-          onDelete={() => handleDeleteProduct(id)}
+          onDelete={(e) => handleDeleteProduct(e, id)}
           isDeleteButtonVisible={isAdminMode}
           isLabel={title === "" ? false : true}
           isAdminMode={isAdminMode}

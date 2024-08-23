@@ -42,7 +42,9 @@ export default function OrderContextProvider({ children }) {
     setMenu(menuUpdated);
   };
 
-  const handleDeleteProduct = (idItemToDelete) => {
+  const handleDeleteProduct = (e, idItemToDelete) => {
+    e.stopPropagation();
+
     const menuCopy = [...menu];
 
     const menuUpdated = menuCopy.filter((item) => item.id !== idItemToDelete);
