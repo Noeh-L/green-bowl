@@ -19,7 +19,7 @@ export const OrderContext = createContext({
   newProduct: {},
   setNewProduct: () => {},
   idOfProductSelected: "",
-  handleCardSelection: () => {},
+  handleProductSelection: () => {},
   updateProductInMenu: () => {},
   editProductTitleRef: "",
 });
@@ -61,7 +61,7 @@ export default function OrderContextProvider({ children }) {
     setActiveTab("editProduct");
   };
 
-  const handleCardSelection = async (id) => {
+  const handleProductSelection = async (id) => {
     if (!isAdminMode) return;
     if (idOfProductSelected === id) return setIdOfProductSelected(null); // Désélectionne un card qui est sélectionnée
 
@@ -98,7 +98,7 @@ export default function OrderContextProvider({ children }) {
     setNewProduct,
 
     idOfProductSelected,
-    handleCardSelection,
+    handleProductSelection,
     updateProductInMenu,
 
     editProductTitleRef,

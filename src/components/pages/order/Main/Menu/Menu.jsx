@@ -13,7 +13,7 @@ function Menu() {
     isAdminMode,
     handleDeleteProduct,
     idOfProductSelected,
-    handleCardSelection,
+    handleProductSelection,
   } = useOrderContext();
 
   // behavior
@@ -34,7 +34,7 @@ function Menu() {
           isDeleteButtonVisible={isAdminMode}
           isLabel={title === "" ? false : true}
           isAdminMode={isAdminMode}
-          onSelection={() => handleCardSelection(id)}
+          onSelection={() => handleProductSelection(id)}
           isCardSelected={idOfProductSelected === id}
         />
       ))}
