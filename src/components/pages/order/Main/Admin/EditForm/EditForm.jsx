@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
-import { HiCursorClick } from "react-icons/hi";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
-import TextInput from "../../../../reusable-ui/TextInput";
+import { theme } from "../../../../../../theme";
+import { useOrderContext } from "../../../../../../context/OrderPageContext";
+import TextInput from "../../../../../reusable-ui/TextInput";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-import ImagePreview from "./ImagePreview";
+import ImagePreview from "../ImagePreview";
+import HintEditMessage from "./HintEditMessage";
+import InfoEditMessage from "./InfoEditMessage";
 
 function EditForm() {
   // state
@@ -63,16 +64,10 @@ function EditForm() {
             version="normal"
           />
 
-          <div className="info-message">
-            Cliquer sur un produit du menu pour le modifier&nbsp;
-            <span>en temps réel</span>
-          </div>
+          <InfoEditMessage />
         </div>
       ) : (
-        <div className="hintMessage">
-          <span>Cliquer sur un produit pour le modifier</span>
-          <HiCursorClick />
-        </div>
+        <HintEditMessage />
       )}
     </EditFormStyled>
   );
@@ -88,29 +83,6 @@ const EditFormStyled = styled.form`
     .text-inputs {
       grid-column: 2 / 5;
     }
-
-    .info-message {
-      grid-column: 2 / 5;
-      display: flex;
-      align-items: center;
-      color: ${theme.colors.primary};
-
-      span {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .hintMessage {
-    color: ${theme.colors.greyBlue};
-    font-family: "Amatic SC", cursive;
-    font-size: ${theme.fonts.P3};
-
-    display: flex;
-    align-items: center;
-    gap: ${theme.spacing.xs};
-
-    margin-top: ${theme.spacing.xl};
   }
 `;
 
