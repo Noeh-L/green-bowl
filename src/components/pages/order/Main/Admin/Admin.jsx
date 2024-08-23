@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import Tab from "../../../../reusable-ui/Tab";
 import AddForm from "./AddForm";
-import EditForm from "./EditForm";
+import EditForm from "./EditForm/EditForm";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import { getTabsConfig } from "./tabsConfig";
 

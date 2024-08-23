@@ -2,12 +2,10 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import { useOrderContext } from "../../../../../../context/OrderPageContext";
 import TextInput from "../../../../../reusable-ui/TextInput";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import ImagePreview from "../ImagePreview";
 import HintEditMessage from "./HintEditMessage";
 import InfoEditMessage from "./InfoEditMessage";
+import { getTextInputsConfig } from "../textInputsConfig";
 
 function EditForm() {
   // state
@@ -28,6 +26,9 @@ function EditForm() {
     updateProductInMenu(productBeingUpdated);
   };
 
+  const editTextInputs =
+    productSelected && getTextInputsConfig(productSelected);
+
   // render
   return (
     <EditFormStyled>
@@ -35,34 +36,19 @@ function EditForm() {
         <div className="editForm">
           <ImagePreview product={productSelected} />
 
-          <TextInput
-            value={productSelected.title}
-            name={"title"}
-            onChange={handleEditProduct}
-            Icon={FaHamburger}
-            placeholder={"Nom du produit (ex: Super Burger)"}
-            className="text-inputs"
-            version="normal"
-            ref={editProductTitleRef}
-          />
-          <TextInput
-            value={productSelected.imageSource}
-            name={"imageSource"}
-            onChange={handleEditProduct}
-            Icon={BsFillCameraFill}
-            placeholder="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-            className="text-inputs"
-            version="normal"
-          />
-          <TextInput
-            value={productSelected.price ? productSelected.price : ""}
-            name="price"
-            onChange={handleEditProduct}
-            Icon={MdOutlineEuro}
-            placeholder="Prix"
-            className="text-inputs"
-            version="normal"
-          />
+          {editTextInputs.map((editTextInput) => (
+            <TextInput
+              key={editTextInput.id}
+              value={editTextInput.value}
+              name={editTextInput.name}
+              Icon={editTextInput.Icon}
+              placeholder={editTextInput.placeholder}
+              onChange={handleEditProduct}
+              className="text-inputs"
+              version="normal"
+              ref={editTextInput.name === "title" ? editProductTitleRef : null}
+            />
+          ))}
 
           <InfoEditMessage />
         </div>
