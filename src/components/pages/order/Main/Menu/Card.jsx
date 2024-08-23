@@ -16,6 +16,13 @@ function Card({
   isCardSelected,
   onSelection,
 }) {
+  // behavior
+  const handleAddToBasket = (e) => {
+    e.stopPropagation();
+    console.log("Produit ajouté au panier !");
+  };
+
+  // render
   return (
     <CardStyled
       $isAdminMode={isAdminMode}
@@ -35,7 +42,11 @@ function Card({
         <h2 className="infos-title">{isLabel ? label : <span>&nbsp;</span>}</h2>
         <div className="infos-add">
           <p className="price">{formatPrice(price)}</p>
-          <Button label={"Ajouter"} className="addButton" />
+          <Button
+            label={"Ajouter"}
+            className="addButton"
+            onClick={handleAddToBasket}
+          />
         </div>
       </div>
     </CardStyled>
