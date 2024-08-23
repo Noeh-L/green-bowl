@@ -26,9 +26,9 @@ export const OrderContext = createContext({
 
 // 2. Installation du contexte (Provider)
 export default function OrderContextProvider({ children }) {
-  const [isAdminMode, setIsAdminMode] = useState(true);
+  const [isAdminMode, setIsAdminMode] = useState(false);
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
-  const [activeTab, setActiveTab] = useState("editProduct");
+  const [activeTab, setActiveTab] = useState("addProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [idOfProductSelected, setIdOfProductSelected] = useState(null);
   const editProductTitleRef = useRef();
