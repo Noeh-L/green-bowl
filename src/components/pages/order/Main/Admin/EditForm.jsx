@@ -30,7 +30,7 @@ function EditForm() {
   // render
   return (
     <EditFormStyled>
-      {idOfProductSelected ? (
+      {productSelected ? (
         <div className="editForm">
           <ImagePreview product={productSelected} />
 
