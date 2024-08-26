@@ -3,6 +3,7 @@ import { createContext, useContext, useRef, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../enums/product";
 import { focusOnRef } from "../utils/focusOnRef";
+import { deepClone } from "../utils/array";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -35,7 +36,7 @@ export default function OrderContextProvider({ children }) {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = [newProduct, ...menuCopy];
 
@@ -45,20 +46,11 @@ export default function OrderContextProvider({ children }) {
   const handleDeleteProduct = (e, idItemToDelete) => {
     e.stopPropagation();
 
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = menuCopy.filter((item) => item.id !== idItemToDelete);
 
     setMenu(menuUpdated);
-  };
-
-  const resetMenu = () => {
-    setMenu(fakeMenu.LARGE);
-  };
-
-  const openEditTab = () => {
-    setIsPanelAdminOpen(true);
-    setActiveTab("editProduct");
   };
 
   const handleProductSelection = async (id) => {
@@ -78,6 +70,15 @@ export default function OrderContextProvider({ children }) {
         // on map le menu jusqu'à trouver le produit à updater et j'envoie le produit updated
       ),
     );
+  };
+
+  const resetMenu = () => {
+    setMenu(fakeMenu.LARGE);
+  };
+
+  const openEditTab = () => {
+    setIsPanelAdminOpen(true);
+    setActiveTab("editProduct");
   };
 
   const valueOrderContext = {
