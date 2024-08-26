@@ -4,7 +4,7 @@ import { theme } from "../../../../../theme";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
-import { IMAGE_BY_DEFAULT } from "../../../../../config/config";
+import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 
 function Menu() {
   // state

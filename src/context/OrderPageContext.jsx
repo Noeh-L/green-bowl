@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useRef, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
-import { EMPTY_PRODUCT } from "../config/config";
+import { EMPTY_PRODUCT } from "../enums/product";
 import { focusOnRef } from "../utils/focusOnRef";
 
 // 1. Création du contexte
