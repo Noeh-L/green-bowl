@@ -14,7 +14,7 @@ function Card({
   isLabel,
   isAdminMode,
   isCardSelected,
-  onSelection,
+  onClick,
 }) {
   // behavior
   const handleAddToBasket = (e) => {
@@ -27,7 +27,7 @@ function Card({
     <CardStyled
       $isAdminMode={isAdminMode}
       $isSelected={isCardSelected}
-      onClick={onSelection}
+      onClick={onClick}
     >
       {isDeleteButtonVisible && (
         <button onClick={onDelete} className="deleteButton">

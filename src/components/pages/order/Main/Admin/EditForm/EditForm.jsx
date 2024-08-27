@@ -6,33 +6,34 @@ import ImagePreview from "../ImagePreview";
 import HintEditMessage from "./HintEditMessage";
 import InfoEditMessage from "./InfoEditMessage";
 import { getTextInputsConfig } from "../textInputsConfig";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
 
 function EditForm() {
   // state
   const {
-    menu,
-    idOfProductSelected,
-    updateProductInMenu,
+    productSelected,
+    setProductSelected,
+    handleEditProduct,
     editProductTitleRef,
   } = useOrderContext();
 
-  const productSelected = menu.find((item) => item.id === idOfProductSelected);
-
-  // behavior
-  const handleEditProduct = (e) => {
+  // event handlers (gestionnaire d'évenement)
+  const handleChange = (e) => {
     const { value, name } = e.target;
     const productBeingUpdated = { ...productSelected, [name]: value };
 
-    updateProductInMenu(productBeingUpdated);
+    setProductSelected(productBeingUpdated); // update the form
+    handleEditProduct(productBeingUpdated); // update the menu
   };
 
-  const editTextInputs =
-    productSelected && getTextInputsConfig(productSelected);
+  const editTextInputs = getTextInputsConfig(productSelected);
+
+  const isProductClickedOn = productSelected !== EMPTY_PRODUCT;
 
   // render
   return (
     <EditFormStyled>
-      {productSelected ? (
+      {isProductClickedOn ? (
         <div className="editForm">
           <ImagePreview product={productSelected} />
 
@@ -43,7 +44,7 @@ function EditForm() {
               name={editTextInput.name}
               Icon={editTextInput.Icon}
               placeholder={editTextInput.placeholder}
-              onChange={handleEditProduct}
+              onChange={handleChange}
               className="text-inputs"
               version="normal"
               ref={editTextInput.name === "title" ? editProductTitleRef : null}

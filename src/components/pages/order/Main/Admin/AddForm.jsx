@@ -8,6 +8,7 @@ import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
 import { getTextInputsConfig } from "./textInputsConfig.js";
 import ImagePreview from "./ImagePreview.jsx";
 import SubmitMessage from "./SubmitMessage.jsx";
+import { EMPTY_PRODUCT } from "../../../../../enums/product.js";
 
 function AddForm() {
   // STATE
@@ -16,12 +17,6 @@ function AddForm() {
 
   // BEHAVIOR
   const textInputs = getTextInputsConfig(newProduct);
-  const EMPTY_PRODUCT = {
-    id: "",
-    title: "",
-    imageSource: "",
-    price: 0,
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -4,7 +4,8 @@ import { theme } from "../../../../../theme";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
-import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
+import { focusOnRef } from "../../../../../utils/focusOnRef";
 
 function Menu() {
   // state
@@ -12,16 +13,46 @@ function Menu() {
     menu,
     isAdminMode,
     handleDeleteProduct,
-    idOfProductSelected,
-    handleProductSelection,
+    productSelected,
+    setProductSelected,
+    setIsPanelAdminOpen,
+    setActiveTab,
+    editProductTitleRef,
   } = useOrderContext();
 
-  // behavior
+  // behavior (event handlers)
+  const handleCardSelection = async (id) => {
+    if (!isAdminMode) return;
+    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT); // Désélectionne une card qui est sélectionnée
+
+    await openEditTab();
+
+    const productClickedOn = menu.find((product) => product.id === id);
+    await setProductSelected(productClickedOn);
+
+    focusOnRef(editProductTitleRef);
+  };
+
+  const openEditTab = () => {
+    setIsPanelAdminOpen(true);
+    setActiveTab("editProduct");
+  };
+
+  const handleCardDeletion = (e, idOfCardToDelete) => {
+    e.stopPropagation();
+
+    handleDeleteProduct(idOfCardToDelete);
+    idOfCardToDelete === productSelected.id &&
+      setProductSelected(EMPTY_PRODUCT);
+
+    focusOnRef(editProductTitleRef);
+  };
+
+  // render
   if (menu.length === 0) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
   }
 
-  // render
   return (
     <MenuStyled>
       {menu.map(({ id, title, imageSource, price }) => (
@@ -30,12 +61,12 @@ function Menu() {
           picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
           label={title}
           price={price}
-          onDelete={(e) => handleDeleteProduct(e, id)}
+          onDelete={(e) => handleCardDeletion(e, id)}
           isDeleteButtonVisible={isAdminMode}
           isLabel={title === "" ? false : true}
           isAdminMode={isAdminMode}
-          onSelection={() => handleProductSelection(id)}
-          isCardSelected={idOfProductSelected === id}
+          onClick={() => handleCardSelection(id)}
+          isCardSelected={productSelected.id === id}
         />
       ))}
     </MenuStyled>

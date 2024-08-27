@@ -2,7 +2,6 @@
 import { createContext, useContext, useRef, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { EMPTY_PRODUCT } from "../enums/product";
-import { focusOnRef } from "../utils/focusOnRef";
 import { deepClone } from "../utils/array";
 
 // 1. Création du contexte
@@ -19,9 +18,9 @@ export const OrderContext = createContext({
   resetMenu: () => {},
   newProduct: {},
   setNewProduct: () => {},
-  idOfProductSelected: "",
-  handleProductSelection: () => {},
-  updateProductInMenu: () => {},
+  productSelected: "",
+  setProductSelected: () => {},
+  handleEditProduct: () => {},
   editProductTitleRef: "",
 });
 
@@ -31,7 +30,7 @@ export default function OrderContextProvider({ children }) {
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
-  const [idOfProductSelected, setIdOfProductSelected] = useState(null);
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const editProductTitleRef = useRef();
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
@@ -43,9 +42,7 @@ export default function OrderContextProvider({ children }) {
     setMenu(menuUpdated);
   };
 
-  const handleDeleteProduct = (e, idItemToDelete) => {
-    e.stopPropagation();
-
+  const handleDeleteProduct = (idItemToDelete) => {
     const menuCopy = deepClone(menu);
 
     const menuUpdated = menuCopy.filter((item) => item.id !== idItemToDelete);
@@ -53,32 +50,23 @@ export default function OrderContextProvider({ children }) {
     setMenu(menuUpdated);
   };
 
-  const handleProductSelection = async (id) => {
-    if (!isAdminMode) return;
-    if (idOfProductSelected === id) return setIdOfProductSelected(null); // Désélectionne un card qui est sélectionnée
+  const handleEditProduct = (productBeingEdited) => {
+    // 1. Copie du state
+    const menuCopy = deepClone(menu);
 
-    await setIdOfProductSelected(id);
-    await openEditTab();
-
-    focusOnRef(editProductTitleRef);
-  };
-
-  const updateProductInMenu = (updatedProduct) => {
-    setMenu((prevMenu) =>
-      prevMenu.map(
-        (item) => (item.id === updatedProduct.id ? updatedProduct : item),
-        // on map le menu jusqu'à trouver le produit à updater et j'envoie le produit updated
-      ),
+    // 2. Manipuation de la copie
+    const indexOfProductBeingEdited = menuCopy.findIndex(
+      (product) => product.id === productBeingEdited.id,
     );
+
+    menuCopy[indexOfProductBeingEdited] = productBeingEdited;
+
+    // 3. Update du state
+    setMenu(menuCopy);
   };
 
   const resetMenu = () => {
     setMenu(fakeMenu.LARGE);
-  };
-
-  const openEditTab = () => {
-    setIsPanelAdminOpen(true);
-    setActiveTab("editProduct");
   };
 
   const valueOrderContext = {
@@ -98,9 +86,9 @@ export default function OrderContextProvider({ children }) {
     newProduct,
     setNewProduct,
 
-    idOfProductSelected,
-    handleProductSelection,
-    updateProductInMenu,
+    productSelected,
+    setProductSelected,
+    handleEditProduct,
 
     editProductTitleRef,
   };
