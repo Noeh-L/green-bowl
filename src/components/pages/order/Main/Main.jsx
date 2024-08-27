@@ -10,7 +10,11 @@ function Main() {
 
   return (
     <MainSyled>
-      {/* <div className="basket">Panier</div> */}
+      <div className="basket">
+        <div className="basket-header">TOTAL</div>
+        <div className="basket-main">Panier vide</div>
+        <div className="basket-footer">Codé avec ❤ et React.js</div>
+      </div>
       <div className="menu-and-admin">
         <Menu />
         {isAdminMode && <Admin />}
@@ -27,6 +31,23 @@ const MainSyled = styled.div`
   .basket {
     background: teal;
     width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    &-header {
+      background: black;
+      height: 70px;
+      color: white;
+    }
+    &-main {
+    }
+    &-footer {
+      background: black;
+      height: 70px;
+      color: white;
+    }
   }
 
   .menu-and-admin {
