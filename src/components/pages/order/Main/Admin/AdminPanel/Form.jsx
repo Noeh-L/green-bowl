@@ -1,33 +1,38 @@
+/* eslint-disable react/display-name */
 import styled from "styled-components";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import ImagePreview from "./ImagePreview";
 import { getTextInputsConfig } from "./textInputsConfig";
 import { theme } from "../../../../../../theme";
+import React from "react";
 
-const Form = ({ onSubmit, product, onChange, children }) => {
-  const textInputs = getTextInputsConfig(product);
+const Form = React.forwardRef(
+  ({ onSubmit, product, onChange, children }, ref) => {
+    const textInputs = getTextInputsConfig(product);
 
-  return (
-    <FormStyled onSubmit={onSubmit}>
-      <ImagePreview product={product} />
+    return (
+      <FormStyled onSubmit={onSubmit}>
+        <ImagePreview product={product} />
 
-      {textInputs.map((textInput) => (
-        <TextInput
-          key={textInput.id}
-          value={textInput.value}
-          name={textInput.name}
-          onChange={onChange}
-          Icon={textInput.Icon}
-          placeholder={textInput.placeholder}
-          className="text-inputs"
-          version="normal"
-        />
-      ))}
+        {textInputs.map((textInput) => (
+          <TextInput
+            key={textInput.id}
+            value={textInput.value}
+            name={textInput.name}
+            onChange={onChange}
+            Icon={textInput.Icon}
+            placeholder={textInput.placeholder}
+            className="text-inputs"
+            version="normal"
+            ref={textInput.name === "title" ? ref : null}
+          />
+        ))}
 
-      <div className="form-footer">{children}</div>
-    </FormStyled>
-  );
-};
+        <div className="form-footer">{children}</div>
+      </FormStyled>
+    );
+  },
+);
 
 const FormStyled = styled.form`
   display: grid;
