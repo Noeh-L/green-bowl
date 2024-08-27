@@ -46,7 +46,7 @@ const extraStylePrimary = css`
     font-size: ${theme.fonts.SM};
   }
 `;
-const extraStyleSecondary = css`
+const extraStyleSuccess = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,7 @@ const extraStyleSecondary = css`
 
 const extraStyle = {
   primary: extraStylePrimary,
-  success: extraStyleSecondary,
+  success: extraStyleSuccess,
 };
 
 export default Button;

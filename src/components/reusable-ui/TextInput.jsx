@@ -41,7 +41,7 @@ const TextInputStyled = styled.label`
     color: ${theme.colors.dark};
     width: 100%;
     height: 100%;
-    font-size: ${theme.fonts.P0};
+    font-size: ${theme.fonts.SM};
     font-family: "Open sans", sans-serif;
     font-weight: ${theme.weights.medium};
 
@@ -64,7 +64,7 @@ const extraStyleNormal = css`
     font-weight: 400;
   }
   :focus {
-    outline: 2px solid ${theme.colors.greyBlue};
+    outline: none;
     border-radius: 3px;
   }
 `;
@@ -72,6 +72,11 @@ const extraStyleNormal = css`
 const extraStyleMinimalist = css`
   background: ${theme.colors.white};
   padding: ${theme.spacing.md} ${theme.spacing.lg};
+
+  :focus {
+    outline: none;
+    border-radius: 3px;
+  }
 `;
 
 // Dictionnaire
