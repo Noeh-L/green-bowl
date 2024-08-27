@@ -1,14 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
-import styled from "styled-components";
-import TextInput from "../../../../../reusable-ui/TextInput.jsx";
 import { useState } from "react";
-import { theme } from "../../../../../../theme";
 import Button from "../../../../../reusable-ui/Button.jsx";
 import { useOrderContext } from "../../../../../../context/OrderPageContext.jsx";
-import { getTextInputsConfig } from "./textInputsConfig.js";
-import ImagePreview from "./ImagePreview.jsx";
 import SubmitMessage from "./SubmitMessage.jsx";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
+import Form from "./Form.jsx";
 
 function AddForm() {
   // STATE
@@ -16,8 +12,6 @@ function AddForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   // BEHAVIOR
-  const textInputs = getTextInputsConfig(newProduct);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -50,49 +44,16 @@ function AddForm() {
 
   // RENDER
   return (
-    <AddFormStyled onSubmit={handleSubmit}>
-      <ImagePreview product={newProduct} />
-
-      {textInputs.map((textInput) => (
-        <TextInput
-          key={textInput.id}
-          value={textInput.value}
-          name={textInput.name}
-          onChange={handleChange}
-          Icon={textInput.Icon}
-          placeholder={textInput.placeholder}
-          className="text-inputs"
-          version="normal"
-        />
-      ))}
-
-      <div className="submit">
+    <Form product={newProduct} onSubmit={handleSubmit} onChange={handleChange}>
+      <>
         <Button
           label={"Ajouter un nouveau produit au menu"}
-          version="secondary"
+          version="success"
         />
         {isSubmitted && <SubmitMessage />}
-      </div>
-    </AddFormStyled>
+      </>
+    </Form>
   );
 }
-
-const AddFormStyled = styled.form`
-  display: grid;
-  grid-template: repeat(4, 35px) / repeat(4, 200px);
-  grid-row-gap: ${theme.spacing.xs};
-  grid-column-gap: ${theme.spacing.md};
-
-  .text-inputs {
-    grid-column: 2 / 5;
-  }
-
-  .submit {
-    grid-column: 2 / 5;
-    display: flex;
-    align-items: center;
-    gap: ${theme.spacing.md};
-  }
-`;
 
 export default AddForm;

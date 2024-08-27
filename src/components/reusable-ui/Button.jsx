@@ -83,7 +83,7 @@ const extraStyleSecondary = css`
 
 const extraStyle = {
   primary: extraStylePrimary,
-  secondary: extraStyleSecondary,
+  success: extraStyleSecondary,
 };
 
 export default Button;
