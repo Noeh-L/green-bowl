@@ -1,14 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
 import styled from "styled-components";
-import TextInput from "../../../../reusable-ui/TextInput.jsx";
+import TextInput from "../../../../../reusable-ui/TextInput.jsx";
 import { useState } from "react";
-import { theme } from "../../../../../theme/index.js";
-import Button from "../../../../reusable-ui/Button.jsx";
-import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
+import { theme } from "../../../../../../theme";
+import Button from "../../../../../reusable-ui/Button.jsx";
+import { useOrderContext } from "../../../../../../context/OrderPageContext.jsx";
 import { getTextInputsConfig } from "./textInputsConfig.js";
 import ImagePreview from "./ImagePreview.jsx";
 import SubmitMessage from "./SubmitMessage.jsx";
-import { EMPTY_PRODUCT } from "../../../../../enums/product.js";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 
 function AddForm() {
   // STATE

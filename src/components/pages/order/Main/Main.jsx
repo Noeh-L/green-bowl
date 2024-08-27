@@ -6,7 +6,7 @@ import { useOrderContext } from "../../../../context/OrderPageContext";
 import Menu from "./Menu/Menu";
 
 function Main() {
-  const { isAdminMode, setIsAdminMode } = useOrderContext();
+  const { isAdminMode } = useOrderContext();
 
   return (
     <MainSyled>

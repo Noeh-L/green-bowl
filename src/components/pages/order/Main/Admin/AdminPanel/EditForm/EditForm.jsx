@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
-import { useOrderContext } from "../../../../../../context/OrderPageContext";
-import TextInput from "../../../../../reusable-ui/TextInput";
+import { theme } from "../../../../../../../theme";
+import { useOrderContext } from "../../../../../../../context/OrderPageContext";
+import TextInput from "../../../../../../reusable-ui/TextInput";
 import ImagePreview from "../ImagePreview";
 import HintEditMessage from "./HintEditMessage";
 import InfoEditMessage from "./InfoEditMessage";
 import { getTextInputsConfig } from "../textInputsConfig";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 
 function EditForm() {
   // state
