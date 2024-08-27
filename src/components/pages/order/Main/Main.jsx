@@ -11,9 +11,12 @@ function Main() {
   return (
     <MainSyled>
       <div className="basket">
-        <div className="basket-header">TOTAL</div>
-        <div className="basket-main">Panier vide</div>
-        <div className="basket-footer">Codé avec ❤ et React.js</div>
+        <div className="basket-header">
+          <span>TOTAL</span>
+          <div>0.00 €</div>
+        </div>
+        <div className="basket-main">Votre commande est vide.</div>
+        <div className="basket-footer">Codé avec ❤️ et React.js</div>
       </div>
       <div className="menu-and-admin">
         <Menu />
@@ -29,24 +32,44 @@ const MainSyled = styled.div`
   flex: 1;
 
   .basket {
-    background: teal;
     width: 25%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    font-family: "Amatic SC", cursive;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) inset;
 
     &-header {
-      background: black;
+      background: ${theme.colors.background_dark};
       height: 70px;
       color: white;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-size: 36px;
+      text-transform: capitalize;
+      color: ${theme.colors.primary};
     }
+
     &-main {
+      font-size: 36px;
+      text-transform: capitalize;
+      color: ${theme.colors.greyBlue};
     }
+
     &-footer {
-      background: black;
+      background: ${theme.colors.background_dark};
       height: 70px;
-      color: white;
+      color: ${theme.colors.white};
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      text-transform: capitalize;
     }
   }
 
