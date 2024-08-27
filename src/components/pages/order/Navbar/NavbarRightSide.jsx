@@ -8,15 +8,16 @@ import ToggleButton from "../../../reusable-ui/ToggleButton";
 import ToastAdmin from "../../../reusable-ui/ToastAdmin";
 import { useOrderContext } from "../../../../context/OrderPageContext";
 import { useParams } from "react-router-dom";
+import { focusOnRef } from "../../../../utils/focusOnRef";
 
 export default function NavbarRightSide() {
   // STATE
   const { username } = useParams();
-  const { isAdminMode, setIsAdminMode } = useOrderContext();
+  const { isAdminMode, setIsAdminMode, editProductTitleRef } =
+    useOrderContext();
 
   // BEHAVIOR
-  const displayToastNotification = () => {
-    setIsAdminMode(!isAdminMode);
+  const displayToastNotification = async () => {
     if (!isAdminMode) {
       toast.info("Mode admin activé", {
         position: "bottom-right",
@@ -30,6 +31,8 @@ export default function NavbarRightSide() {
         transition: Bounce,
       });
     }
+    await setIsAdminMode(!isAdminMode);
+    focusOnRef(editProductTitleRef);
   };
 
   // RENDER

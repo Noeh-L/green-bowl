@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
+import { EMPTY_PRODUCT } from "../enums/product";
+import { deepClone } from "../utils/array";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -16,6 +18,10 @@ export const OrderContext = createContext({
   resetMenu: () => {},
   newProduct: {},
   setNewProduct: () => {},
+  productSelected: "",
+  setProductSelected: () => {},
+  handleEditProduct: () => {},
+  editProductTitleRef: "",
 });
 
 // 2. Installation du contexte (Provider)
@@ -24,17 +30,12 @@ export default function OrderContextProvider({ children }) {
   const [isPanelAdminOpen, setIsPanelAdminOpen] = useState(true);
   const [activeTab, setActiveTab] = useState("addProduct");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
-
-  const EMPTY_PRODUCT = {
-    id: "",
-    title: "",
-    imageSource: "",
-    price: 0,
-  };
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const editProductTitleRef = useRef();
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAddProduct = (newProduct) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = [newProduct, ...menuCopy];
 
@@ -42,11 +43,26 @@ export default function OrderContextProvider({ children }) {
   };
 
   const handleDeleteProduct = (idItemToDelete) => {
-    const menuCopy = [...menu];
+    const menuCopy = deepClone(menu);
 
     const menuUpdated = menuCopy.filter((item) => item.id !== idItemToDelete);
 
     setMenu(menuUpdated);
+  };
+
+  const handleEditProduct = (productBeingEdited) => {
+    // 1. Copie du state
+    const menuCopy = deepClone(menu);
+
+    // 2. Manipuation de la copie
+    const indexOfProductBeingEdited = menuCopy.findIndex(
+      (product) => product.id === productBeingEdited.id,
+    );
+
+    menuCopy[indexOfProductBeingEdited] = productBeingEdited;
+
+    // 3. Update du state
+    setMenu(menuCopy);
   };
 
   const resetMenu = () => {
@@ -69,6 +85,12 @@ export default function OrderContextProvider({ children }) {
     resetMenu,
     newProduct,
     setNewProduct,
+
+    productSelected,
+    setProductSelected,
+    handleEditProduct,
+
+    editProductTitleRef,
   };
 
   return (

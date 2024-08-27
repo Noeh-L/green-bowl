@@ -1,22 +1,28 @@
+/* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
+import React from "react";
 
-/* eslint-disable react/prop-types */
-function TextInput({
-  value,
-  onChange,
-  Icon,
-  className,
-  version = "normal",
-  ...extraProps
-}) {
-  return (
-    <TextInputStyled className={className} $version={version}>
-      {Icon && <Icon className="icon" />}
-      <input type="text" value={value} onChange={onChange} {...extraProps} />
-    </TextInputStyled>
-  );
-}
+// eslint-disable-next-line react/display-name
+const TextInput = React.forwardRef(
+  (
+    { value, onChange, Icon, className, version = "normal", ...extraProps },
+    ref,
+  ) => {
+    return (
+      <TextInputStyled className={className} $version={version}>
+        {Icon && <Icon className="icon" />}
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+          {...extraProps}
+          ref={ref}
+        />
+      </TextInputStyled>
+    );
+  },
+);
 
 const TextInputStyled = styled.label`
   display: flex;
@@ -35,7 +41,7 @@ const TextInputStyled = styled.label`
     color: ${theme.colors.dark};
     width: 100%;
     height: 100%;
-    font-size: ${theme.fonts.P0};
+    font-size: ${theme.fonts.SM};
     font-family: "Open sans", sans-serif;
     font-weight: ${theme.weights.medium};
 
@@ -58,7 +64,7 @@ const extraStyleNormal = css`
     font-weight: 400;
   }
   :focus {
-    outline: 2px solid ${theme.colors.greyBlue};
+    outline: none;
     border-radius: 3px;
   }
 `;
@@ -66,6 +72,11 @@ const extraStyleNormal = css`
 const extraStyleMinimalist = css`
   background: ${theme.colors.white};
   padding: ${theme.spacing.md} ${theme.spacing.lg};
+
+  :focus {
+    outline: none;
+    border-radius: 3px;
+  }
 `;
 
 // Dictionnaire

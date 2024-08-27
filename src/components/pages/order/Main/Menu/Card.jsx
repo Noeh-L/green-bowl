@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Button from "../../../../reusable-ui/Button";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
@@ -12,9 +12,23 @@ function Card({
   onDelete,
   isDeleteButtonVisible,
   isLabel,
+  isAdminMode,
+  isCardSelected,
+  onClick,
 }) {
+  // behavior
+  const handleAddToBasket = (e) => {
+    e.stopPropagation();
+    console.log("Produit ajouté au panier !");
+  };
+
+  // render
   return (
-    <CardStyled>
+    <CardStyled
+      $isAdminMode={isAdminMode}
+      $isSelected={isCardSelected}
+      onClick={onClick}
+    >
       {isDeleteButtonVisible && (
         <button onClick={onDelete} className="deleteButton">
           <TiDelete />
@@ -28,7 +42,11 @@ function Card({
         <h2 className="infos-title">{isLabel ? label : <span>&nbsp;</span>}</h2>
         <div className="infos-add">
           <p className="price">{formatPrice(price)}</p>
-          <Button label={"Ajouter"} className="addButton" />
+          <Button
+            label={"Ajouter"}
+            className="addButton"
+            onClick={handleAddToBasket}
+          />
         </div>
       </div>
     </CardStyled>
@@ -45,6 +63,7 @@ const CardStyled = styled.div`
   padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
   border-radius: ${theme.borderRadius.extraRound};
   box-shadow: ${theme.shadows.medium};
+  transition: all ease 0.15s;
   position: relative;
 
   .picture {
@@ -108,6 +127,61 @@ const CardStyled = styled.div`
     }
     &:active {
       color: ${theme.colors.primary};
+    }
+  }
+
+  ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
+  ${({ $isAdminMode, $isSelected }) => {
+    return $isAdminMode && $isSelected && styleOnSelected;
+  }}
+`;
+
+const styleOnHover = css`
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow:
+      ${theme.shadows.medium},
+      0 0 8px ${theme.colors.primary};
+  }
+`;
+
+const styleOnSelected = css`
+  background: ${theme.colors.primary};
+  color: ${theme.colors.white};
+
+  .infos {
+    &-add {
+      .price {
+        color: ${theme.colors.white};
+      }
+      .addButton {
+        background: ${theme.colors.white};
+        color: ${theme.colors.primary};
+
+        &:hover {
+          border: 1px solid white;
+          background: ${theme.colors.primary};
+          color: ${theme.colors.white};
+        }
+        &:active {
+          border: 1px solid white;
+          background: ${theme.colors.white};
+          color: ${theme.colors.primary};
+        }
+      }
+    }
+  }
+
+  .deleteButton {
+    color: ${theme.colors.white};
+    cursor: pointer;
+
+    &:hover {
+      color: ${theme.colors.red};
+    }
+    &:active {
+      color: ${theme.colors.white};
     }
   }
 `;

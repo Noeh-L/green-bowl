@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
-import { theme } from "../../../../../theme";
+import { theme } from "../../../../../../theme";
 
-function ImagePreview() {
-  const { newProduct } = useOrderContext();
+function ImagePreview({ product }) {
   return (
     <ImagePreviewStyled>
-      {newProduct.imageSource ? (
-        <img src={newProduct.imageSource} alt={newProduct.title} />
+      {product.imageSource ? (
+        <img src={product.imageSource} alt={product.title} />
       ) : (
         <div>Aucune image</div>
       )}

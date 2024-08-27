@@ -5,13 +5,17 @@ import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "../../../../theme";
 
 function UserMenu({ username }) {
+  const resetPageTitle = () => {
+    document.title = "Crazee Burger";
+  };
+
   return (
     <UserMenuStyled>
       <div className="username-and-logout">
         <h2>
           Hey, <span>{username}</span>
         </h2>
-        <Link to={"/"} className="logout-button">
+        <Link to={"/"} className="logout-button" onClick={resetPageTitle}>
           Se déconnecter
         </Link>
       </div>
