@@ -38,6 +38,7 @@ const MainSyled = styled.div`
     justify-content: space-between;
     align-items: center;
     font-family: "Amatic SC", cursive;
+    background: ${theme.colors.background_white};
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) inset;
 
     &-header {
@@ -58,6 +59,12 @@ const MainSyled = styled.div`
       font-size: 36px;
       text-transform: capitalize;
       color: ${theme.colors.greyBlue};
+      height: 100%;
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &-footer {
