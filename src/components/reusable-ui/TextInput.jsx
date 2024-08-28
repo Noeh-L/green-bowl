@@ -41,7 +41,7 @@ const TextInputStyled = styled.label`
     color: ${theme.colors.dark};
     width: 100%;
     height: 100%;
-    font-size: ${theme.fonts.SM};
+    font-size: 14px;
     font-family: "Open sans", sans-serif;
     font-weight: ${theme.weights.medium};
 

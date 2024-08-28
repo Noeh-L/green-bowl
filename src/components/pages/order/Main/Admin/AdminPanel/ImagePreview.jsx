@@ -7,7 +7,7 @@ function ImagePreview({ product }) {
       {product.imageSource ? (
         <img src={product.imageSource} alt={product.title} />
       ) : (
-        <div>Aucune image</div>
+        <div className="no-image">Aucune image</div>
       )}
     </ImagePreviewStyled>
   );
@@ -17,12 +17,17 @@ const ImagePreviewStyled = styled.div`
   grid-column: 1 / 2;
   grid-row: 1 / 4;
 
-  div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .no-image {
     border: 1px solid ${theme.colors.greyLight};
     border-radius: ${theme.borderRadius.round};
     color: ${theme.colors.greySemiDark};
     width: 100%;
     height: 100%;
+    font-size: ${theme.fonts.P0};
 
     display: flex;
     align-items: center;
@@ -30,8 +35,8 @@ const ImagePreviewStyled = styled.div`
   }
 
   img {
-    height: 100%;
-    width: 100%;
+    height: 65%;
+    width: 65%;
     object-fit: contain;
   }
 `;
