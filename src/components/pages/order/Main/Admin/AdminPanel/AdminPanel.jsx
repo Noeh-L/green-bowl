@@ -24,7 +24,7 @@ const AdminPanelStyled = styled.div`
   border: 1px solid ${theme.colors.greyLight};
   border-radius: 0 0 15px;
   background: ${theme.colors.white};
-  padding: ${theme.spacing.lg} ${theme.spacing.xxl};
+  padding: ${theme.spacing.lg} ${theme.spacing.xl};
 `;
 
 export default AdminPanel;

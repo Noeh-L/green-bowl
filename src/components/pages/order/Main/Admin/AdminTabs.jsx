@@ -63,7 +63,7 @@ const AdminTabsStyled = styled.div`
   display: flex;
   align-items: end;
   gap: 1px;
-  margin-left: ${theme.spacing.xxl};
+  margin-left: ${theme.spacing.xl};
 `;
 
 export default AdminTabs;
