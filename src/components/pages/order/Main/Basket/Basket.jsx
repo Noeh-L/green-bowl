@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import BasketFooter from "./BasketFooter";
 
 function Basket() {
   return (
@@ -9,7 +10,7 @@ function Basket() {
         <div>0.00 €</div>
       </div>
       <div className="main">Votre commande est vide.</div>
-      <div className="footer">Codé avec ❤️ et React.js</div>
+      <BasketFooter />
     </BasketStyled>
   );
 }
@@ -48,18 +49,6 @@ const BasketStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .footer {
-    background: ${theme.colors.background_dark};
-    height: 70px;
-    color: ${theme.colors.white};
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    text-transform: capitalize;
   }
 `;
 
