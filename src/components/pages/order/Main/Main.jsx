@@ -4,13 +4,14 @@ import { theme } from "../../../../theme";
 import Admin from "./Admin/Admin";
 import { useOrderContext } from "../../../../context/OrderPageContext";
 import Menu from "./Menu/Menu";
+import Basket from "./Basket/Basket.jsx";
 
 function Main() {
   const { isAdminMode } = useOrderContext();
 
   return (
     <MainSyled>
-      {/* <div className="basket">Panier</div> */}
+      <Basket />
       <div className="menu-and-admin">
         <Menu />
         {isAdminMode && <Admin />}
@@ -23,11 +24,6 @@ const MainSyled = styled.div`
   display: flex;
   overflow: hidden;
   flex: 1;
-
-  .basket {
-    background: teal;
-    width: 25%;
-  }
 
   .menu-and-admin {
     background: ${theme.colors.background_white};

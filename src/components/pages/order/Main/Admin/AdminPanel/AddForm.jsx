@@ -1,14 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useState } from "react";
 import { useOrderContext } from "../../../../../../context/OrderPageContext.jsx";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 import Form from "./Form.jsx";
 import SubmitButton from "./SubmitButton.jsx";
+import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage.js";
 
 function AddForm() {
   // STATE
   const { handleAddProduct, newProduct, setNewProduct } = useOrderContext();
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { isSubmitted, displaySuccessMessage } = useSuccessMessage();
 
   // BEHAVIOR
   const handleSubmit = (e) => {
@@ -29,11 +29,6 @@ function AddForm() {
 
     // 4. Message de notification de succès !
     displaySuccessMessage();
-  };
-
-  const displaySuccessMessage = () => {
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 2000);
   };
 
   const handleChange = (e) => {
