@@ -30,7 +30,7 @@ const EmptyMenuAdminStyled = styled.div`
 
   h2,
   p {
-    font-family: "Amatic SC", cursive;
+    font-family: ${theme.family.stylish};
     color: ${theme.colors.greyBlue};
     font-size: ${theme.fonts.P4};
   }

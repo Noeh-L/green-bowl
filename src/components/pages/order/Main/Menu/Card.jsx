@@ -15,9 +15,8 @@ function Card({
   isAdminMode,
   isCardSelected,
   onClick,
-  onAddToBasket
-}) { 
-
+  onAddToBasket,
+}) {
   // render
   return (
     <CardStyled
@@ -83,7 +82,7 @@ const CardStyled = styled.div`
     gap: ${theme.spacing.xxs};
 
     &-title {
-      font-family: "Amatic SC", cursive;
+      font-family: ${theme.family.stylish};
       font-size: ${theme.fonts.P4};
       font-weight: ${theme.weights.bold};
       white-space: nowrap;

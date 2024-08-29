@@ -30,7 +30,7 @@ const BasketStyled = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: "Amatic SC", cursive;
+  font-family: ${theme.family.stylish};
   background: ${theme.colors.background_white};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) inset;
 `;
