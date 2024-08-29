@@ -4,12 +4,18 @@ import Total from "./Total";
 import BasketBody from "./BasketBody";
 import BasketFooter from "./BasketFooter";
 import { formatPrice } from "../../../../../utils/maths";
+import { useOrderContext } from "../../../../../context/OrderPageContext";
+import EmptyBasket from "./EmptyBasket";
 
 function Basket() {
+  const { basket } = useOrderContext();
+
+  const isBasketEmpty = basket.length === 0;
+
   return (
     <BasketStyled>
       <Total amountToPay={formatPrice(0)} />
-      <BasketBody />
+      {isBasketEmpty ? <EmptyBasket /> : <BasketBody />}
       <BasketFooter />
     </BasketStyled>
   );
