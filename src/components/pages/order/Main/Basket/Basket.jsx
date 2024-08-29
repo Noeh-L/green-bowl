@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
+import Total from "./Total";
+import BasketBody from "./BasketBody";
 import BasketFooter from "./BasketFooter";
-import BasketHeader from "./BasketHeader";
-import EmptyBasket from "./EmptyBasket";
+import { formatPrice } from "../../../../../utils/maths";
 
 function Basket() {
   return (
     <BasketStyled>
-      <BasketHeader />
-      <EmptyBasket />
+      <Total amountToPay={formatPrice(0)} />
+      <BasketBody />
       <BasketFooter />
     </BasketStyled>
   );

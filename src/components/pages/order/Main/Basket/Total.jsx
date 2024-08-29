@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
 
-function BasketHeader() {
+function Total({ amountToPay }) {
   return (
-    <BasketHeaderStyled>
+    <TotalStyled>
       <span>TOTAL</span>
-      <div>0.00 €</div>
-    </BasketHeaderStyled>
+      <span>{amountToPay}</span>
+    </TotalStyled>
   );
 }
 
-const BasketHeaderStyled = styled.div`
+const TotalStyled = styled.div`
   background: ${theme.colors.background_dark};
   height: 70px;
   color: white;
@@ -24,4 +24,4 @@ const BasketHeaderStyled = styled.div`
   color: ${theme.colors.primary};
 `;
 
-export default BasketHeader;
+export default Total;
