@@ -4,7 +4,7 @@ export const SMALL = [
   {
     id: "1",
     title: "Burger Meal",
-    imageSource: "assets/burger1.png",
+    imageSource: "/assets/burger1.png",
     quantity: 1,
   },
 ];
@@ -12,14 +12,14 @@ export const SMALL = [
 export const MEDIUM = [
   {
     id: "1",
-    imageSource: "assets/burger1.png",
+    imageSource: "/assets/burger1.png",
     title: "Burger Smoke BBQ",
     price: 5,
     quantity: 2,
   },
   {
     id: "2",
-    imageSource: "assets/burger6.png",
+    imageSource: "/assets/burger6.png",
     title: "Vegan Burger",
     price: 5,
     quantity: 1,
@@ -34,7 +34,7 @@ export const MEDIUM = [
   },
   {
     id: "4",
-    imageSource: "assets/drink1.png",
+    imageSource: "/assets/drink1.png",
     title: "Cheese Burger",
     price: 5,
     quantity: 4,

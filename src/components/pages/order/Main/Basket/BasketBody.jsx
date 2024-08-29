@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { formatPrice } from "../../../../../utils/maths";
 import { theme } from "../../../../../theme";
+import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 
 function BasketBody({ basket }) {
   return (
@@ -8,10 +9,14 @@ function BasketBody({ basket }) {
       {basket.map((product, index) => (
         <div className="basket-card" key={`${product.id}-${index}`}>
           <div className="imageSource">
-            <img src={product.imageSource} />
+            <img
+              src={product.imageSource ? product.imageSource : IMAGE_BY_DEFAULT}
+            />
           </div>
           <div className="title-price">
-            <div className="title">{product.title}</div>
+            <div className="title">
+              {product.title ? product.title : <span>&nbsp;</span>}
+            </div>
             <div className="price">{formatPrice(product.price)}</div>
           </div>
           <div className="quantity">
@@ -57,8 +62,12 @@ const BasketBodyStyled = styled.div`
 
     .title-price {
       .title {
+        width: 120px;
         font-size: ${theme.fonts.P3};
         font-weight: ${theme.weights.bold};
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
       .price {
         font-size: 15px;
