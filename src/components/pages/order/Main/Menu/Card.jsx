@@ -15,12 +15,8 @@ function Card({
   isAdminMode,
   isCardSelected,
   onClick,
-}) {
-  // behavior
-  const handleAddToBasket = (e) => {
-    e.stopPropagation();
-    console.log("Produit ajouté au panier !");
-  };
+  onAddToBasket
+}) { 
 
   // render
   return (
@@ -45,7 +41,7 @@ function Card({
           <Button
             label={"Ajouter"}
             className="addButton"
-            onClick={handleAddToBasket}
+            onClick={onAddToBasket}
           />
         </div>
       </div>
