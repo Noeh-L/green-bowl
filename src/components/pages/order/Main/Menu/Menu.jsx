@@ -18,6 +18,7 @@ function Menu() {
     setIsPanelAdminOpen,
     setActiveTab,
     editProductTitleRef,
+    handleAddToBasket,
   } = useOrderContext();
 
   // behavior (event handlers)
@@ -48,19 +49,6 @@ function Menu() {
     focusOnRef(editProductTitleRef);
   };
 
-  const handleAddToBasket = (id) => {
-    const productAdded = menu.find((product) => product.id === id);
-    const objectToAddToBasket = {
-      id: productAdded.id,
-      title: productAdded.title,
-      imageSource: productAdded.imageSource,
-      price: productAdded.price,
-      quantity: productAdded.quantity,
-    };
-
-    console.log("objectToAddToBasket: ", objectToAddToBasket);
-  };
-
   // render
   if (menu.length === 0) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
@@ -80,7 +68,7 @@ function Menu() {
           isAdminMode={isAdminMode}
           onClick={() => handleCardSelection(id)}
           isCardSelected={productSelected.id === id}
-          onAddToBasket={() => handleAddToBasket(id)}
+          onAddToBasket={(e) => handleAddToBasket(e, id)}
         />
       ))}
     </MenuStyled>
