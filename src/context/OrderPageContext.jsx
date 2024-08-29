@@ -3,6 +3,7 @@ import { createContext, useContext, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../enums/product";
 import { useMenu } from "../hooks/useMenu";
 import { deepClone } from "../utils/array";
+import { fakeBasket } from "../fakeData/fakeBasket";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -42,7 +43,7 @@ export default function OrderContextProvider({ children }) {
     handleEditProduct,
     resetMenu,
   } = useMenu();
-  const [basket, setBasket] = useState([]);
+  const [basket, setBasket] = useState(fakeBasket.LARGE);
 
   const handleAddToBasket = (event, id) => {
     event.stopPropagation();
