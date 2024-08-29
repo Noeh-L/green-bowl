@@ -80,6 +80,7 @@ const CardStyled = styled.div`
     display: flex;
     flex-direction: column;
     gap: ${theme.spacing.xxs};
+    cursor: default;
 
     &-title {
       font-family: ${theme.family.stylish};

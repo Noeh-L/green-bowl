@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { formatPrice } from "../../../../../utils/maths";
 import { theme } from "../../../../../theme";
+import { MdDeleteForever } from "react-icons/md";
 
 function BasketCard({ imageSource, title, price, quantity, onDelete }) {
   return (
@@ -16,7 +17,9 @@ function BasketCard({ imageSource, title, price, quantity, onDelete }) {
       <div className="quantity">
         <div>x {quantity}</div>
       </div>
-      <button onClick={onDelete}>SUPPRIMER</button>
+      <button onClick={onDelete} className="delete-button">
+        <MdDeleteForever className="icon" />
+      </button>
     </BasketCardStyled>
   );
 }
@@ -24,12 +27,15 @@ function BasketCard({ imageSource, title, price, quantity, onDelete }) {
 const BasketCardStyled = styled.div`
   padding: ${theme.spacing.xs} 16px;
   width: 100%;
+  min-height: 86px;
   display: flex;
   align-items: center;
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.subtle};
   box-shadow: -4px 4px 15px 0px #00000033;
   border-radius: ${theme.borderRadius.round};
+  position: relative;
+  overflow: hidden;
 
   .imageSource {
     width: 86px;
@@ -44,6 +50,8 @@ const BasketCardStyled = styled.div`
   }
 
   .title-price {
+    cursor: default;
+
     .title {
       width: 120px;
       font-size: ${theme.fonts.P3};
@@ -64,6 +72,43 @@ const BasketCardStyled = styled.div`
     font-family: ${theme.family.minimalist};
     color: ${theme.colors.primary};
     margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .delete-button {
+    position: absolute;
+    right: -76px;
+    height: 100%;
+    width: 76px;
+    background-color: ${theme.colors.red};
+    border: none;
+    cursor: pointer;
+    transition: all ease 0.15s;
+
+    .icon {
+      font-size: 24px;
+      color: black;
+    }
+  }
+
+  &:hover .delete-button {
+    right: 0px;
+
+    .icon {
+      color: ${theme.colors.white};
+    }
+
+    &:hover {
+      .icon {
+        color: black;
+      }
+    }
+
+    &:active {
+      .icon {
+        color: ${theme.colors.white};
+      }
+    }
   }
 `;
 

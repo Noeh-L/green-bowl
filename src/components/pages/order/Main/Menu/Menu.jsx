@@ -19,6 +19,7 @@ function Menu() {
     setActiveTab,
     editProductTitleRef,
     handleAddToBasket,
+    handleDeleteFromBasket,
   } = useOrderContext();
 
   // behavior (event handlers)
@@ -47,6 +48,7 @@ function Menu() {
       setProductSelected(EMPTY_PRODUCT);
 
     focusOnRef(editProductTitleRef);
+    handleDeleteFromBasket(idOfCardToDelete);
   };
 
   const handleAddCardToBasket = (e, id) => {

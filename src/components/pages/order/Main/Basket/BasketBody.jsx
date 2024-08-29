@@ -28,14 +28,16 @@ function BasketBody() {
           getCorrespondingProductInMenu(product);
 
         return (
-          <BasketCard
-            key={product.id}
-            imageSource={correspondingProductInMenu.imageSource}
-            title={correspondingProductInMenu.title}
-            price={correspondingProductInMenu.price}
-            quantity={product.quantity}
-            onDelete={(e) => handleCardBasketDeletion(e, product.id)}
-          />
+          correspondingProductInMenu && (
+            <BasketCard
+              key={product.id}
+              imageSource={correspondingProductInMenu.imageSource}
+              title={correspondingProductInMenu.title}
+              price={correspondingProductInMenu.price}
+              quantity={product.quantity}
+              onDelete={(e) => handleCardBasketDeletion(e, product.id)}
+            />
+          )
         );
       })}
     </BasketBodyStyled>
