@@ -21,6 +21,7 @@ const BasketBodyStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
 
   .basket-card {
     border: 4px solid blue;
