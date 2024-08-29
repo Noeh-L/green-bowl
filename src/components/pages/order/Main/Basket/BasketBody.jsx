@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { formatPrice } from "../../../../../utils/maths";
 
 function BasketBody({ basket }) {
   return (
@@ -7,7 +8,7 @@ function BasketBody({ basket }) {
         <div className="basket-card" key={product.id}>
           <img className="imageSource" src={product.imageSource} />
           <div className="title">{product.title}</div>
-          <div className="price">{product.price}</div>
+          <div className="price">{formatPrice(product.price)}</div>
           <div className="quantity">{product.quantity}</div>
         </div>
       ))}
