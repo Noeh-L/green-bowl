@@ -43,7 +43,7 @@ export default function OrderContextProvider({ children }) {
     handleEditProduct,
     resetMenu,
   } = useMenu();
-  const [basket, setBasket] = useState(fakeBasket.LARGE_WEIRD);
+  const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
   const handleAddToBasket = (event, id) => {
     event.stopPropagation();
