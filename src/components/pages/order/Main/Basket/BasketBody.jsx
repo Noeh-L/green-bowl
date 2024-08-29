@@ -27,9 +27,14 @@ const BasketBodyStyled = styled.div`
   .basket-card {
     border: 4px solid blue;
     width: 80%;
+    display: flex;
 
-    img {
+    .imageSource {
       width: 50px;
+    }
+
+    .price {
+      font-size: 30px;
     }
   }
 `;

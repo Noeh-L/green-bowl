@@ -10,10 +10,14 @@ import EmptyBasket from "./EmptyBasket";
 function Basket() {
   const { basket } = useOrderContext();
   const isBasketEmpty = basket.length === 0;
+  const amountToPay = basket.reduce(
+    (acc, item) => acc + item.quantity * item.price,
+    0,
+  );
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(0)} />
+      <Total amountToPay={formatPrice(amountToPay)} />
       {isBasketEmpty ? <EmptyBasket /> : <BasketBody basket={basket} />}
       <BasketFooter />
     </BasketStyled>
