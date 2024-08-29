@@ -26,6 +26,7 @@ export const OrderContext = createContext({
   basket: [],
   setBasket: () => {},
   handleAddToBasket: () => {},
+  handleDeleteFromBasket: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -45,9 +46,7 @@ export default function OrderContextProvider({ children }) {
   } = useMenu();
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
-  const handleAddToBasket = (event, id) => {
-    event.stopPropagation();
-
+  const handleAddToBasket = (id) => {
     const basketCopy = deepClone(basket);
     const productAdded = menu.find((product) => product.id === id);
     const productAddedCopy = deepClone(productAdded);
@@ -59,6 +58,14 @@ export default function OrderContextProvider({ children }) {
     } else {
       addProductInBasket(productAddedCopy, basketCopy);
     }
+  };
+
+  const handleDeleteFromBasket = (id) => {
+    const basketCopy = deepClone(basket);
+
+    const basketUpdated = basketCopy.filter((product) => product.id !== id);
+
+    setBasket(basketUpdated);
   };
 
   const updateProductInBasket = (productAlreadyInBasket, basket) => {
@@ -113,6 +120,7 @@ export default function OrderContextProvider({ children }) {
     basket,
     setBasket,
     handleAddToBasket,
+    handleDeleteFromBasket,
   };
 
   return (

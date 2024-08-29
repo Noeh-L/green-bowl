@@ -49,6 +49,12 @@ function Menu() {
     focusOnRef(editProductTitleRef);
   };
 
+  const handleAddCardToBasket = (e, id) => {
+    e.stopPropagation();
+
+    handleAddToBasket(id);
+  };
+
   // render
   if (menu.length === 0) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
@@ -68,7 +74,7 @@ function Menu() {
           isAdminMode={isAdminMode}
           onClick={() => handleCardSelection(id)}
           isCardSelected={productSelected.id === id}
-          onAddToBasket={(e) => handleAddToBasket(e, id)}
+          onAddToBasket={(e) => handleAddCardToBasket(e, id)}
         />
       ))}
     </MenuStyled>

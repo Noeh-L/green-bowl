@@ -3,7 +3,7 @@ import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { formatPrice } from "../../../../../utils/maths";
 import { theme } from "../../../../../theme";
 
-function BasketCard({ imageSource, title, price, quantity }) {
+function BasketCard({ imageSource, title, price, quantity, onDelete }) {
   return (
     <BasketCardStyled>
       <div className="imageSource">
@@ -16,6 +16,7 @@ function BasketCard({ imageSource, title, price, quantity }) {
       <div className="quantity">
         <div>x {quantity}</div>
       </div>
+      <button onClick={onDelete}>SUPPRIMER</button>
     </BasketCardStyled>
   );
 }

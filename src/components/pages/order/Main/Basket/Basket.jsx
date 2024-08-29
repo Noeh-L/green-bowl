@@ -18,7 +18,7 @@ function Basket() {
   return (
     <BasketStyled>
       <Total amountToPay={formatPrice(amountToPay)} />
-      {isBasketEmpty ? <EmptyBasket /> : <BasketBody basket={basket} />}
+      {isBasketEmpty ? <EmptyBasket /> : <BasketBody />}
       <BasketFooter />
     </BasketStyled>
   );
