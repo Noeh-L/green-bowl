@@ -53,6 +53,11 @@ const BasketBodyStyled = styled.div`
   gap: ${theme.spacing.md};
   overflow-y: auto;
   padding: ${theme.spacing.md} 16px;
+  scrollbar-color: transparent transparent;
+
+  &:hover {
+    scrollbar-color: initial;
+  }
 `;
 
 export default BasketBody;
