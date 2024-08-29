@@ -62,7 +62,6 @@ export default function OrderContextProvider({ children }) {
   };
 
   const updateProductInBasket = (productAlreadyInBasket, basket) => {
-    console.log("productAlreadyInBasket: ", productAlreadyInBasket.title);
     const productAlreadyAddedUpdated = {
       ...productAlreadyInBasket,
       quantity: productAlreadyInBasket.quantity + 1,
@@ -74,22 +73,16 @@ export default function OrderContextProvider({ children }) {
         : product,
     );
 
-    console.log("basketUpdated: ", basketUpdated);
-
     setBasket(basketUpdated);
   };
 
   const addProductInBasket = (productToAddInBasket, basket) => {
-    console.log("nouveau produit ajouté :", productToAddInBasket.title);
-
     const newProductToAddToBasket = {
       ...productToAddInBasket,
       quantity: 1,
     };
 
     const basketUpdated = [newProductToAddToBasket, ...basket];
-
-    console.log("basketUpdated: ", basketUpdated);
 
     setBasket(basketUpdated);
   };
