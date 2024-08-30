@@ -2,9 +2,21 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import BasketCard from "./BasketCard";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { focusOnRef } from "../../../../../utils/focusOnRef";
 
 function BasketBody() {
-  const { menu, basket, handleDeleteFromBasket } = useOrderContext();
+  const {
+    menu,
+    basket,
+    handleDeleteFromBasket,
+    isAdminMode,
+    setIsPanelAdminOpen,
+    setActiveTab,
+    productSelected,
+    setProductSelected,
+    editProductTitleRef,
+  } = useOrderContext();
 
   const handleCardBasketDeletion = (e, id) => {
     e.stopPropagation();
@@ -18,6 +30,19 @@ function BasketBody() {
       (productInMenu) => productInMenu.id === product.id,
     );
     return productFromMenu;
+  };
+
+  const handleClickOnBasketCard = async (id) => {
+    if (!isAdminMode) return;
+    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT);
+
+    await setIsPanelAdminOpen(true);
+    await setActiveTab("editProduct");
+
+    const productClickedOn = menu.find((product) => product.id === id);
+    await setProductSelected(productClickedOn);
+
+    focusOnRef(editProductTitleRef);
   };
 
   return (
@@ -36,6 +61,7 @@ function BasketBody() {
               price={correspondingProductInMenu.price}
               quantity={product.quantity}
               onDelete={(e) => handleCardBasketDeletion(e, product.id)}
+              onClick={() => handleClickOnBasketCard(product.id)}
             />
           )
         );

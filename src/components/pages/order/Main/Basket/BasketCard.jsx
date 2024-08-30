@@ -4,9 +4,16 @@ import { formatPrice } from "../../../../../utils/maths";
 import { theme } from "../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
 
-function BasketCard({ imageSource, title, price, quantity, onDelete }) {
+function BasketCard({
+  imageSource,
+  title,
+  price,
+  quantity,
+  onDelete,
+  onClick,
+}) {
   return (
-    <BasketCardStyled>
+    <BasketCardStyled onClick={onClick}>
       <div className="imageSource">
         <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} />
       </div>
