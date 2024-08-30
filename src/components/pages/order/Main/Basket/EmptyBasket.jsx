@@ -9,8 +9,7 @@ const EmptyBasketStyled = styled.span`
   font-size: 36px;
   text-transform: capitalize;
   color: ${theme.colors.greyBlue};
-  height: 100%;
-  width: 100%;
+  flex: 1;
 
   display: flex;
   align-items: center;

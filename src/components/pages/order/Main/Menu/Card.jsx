@@ -15,13 +15,8 @@ function Card({
   isAdminMode,
   isCardSelected,
   onClick,
+  onAddToBasket,
 }) {
-  // behavior
-  const handleAddToBasket = (e) => {
-    e.stopPropagation();
-    console.log("Produit ajouté au panier !");
-  };
-
   // render
   return (
     <CardStyled
@@ -45,7 +40,7 @@ function Card({
           <Button
             label={"Ajouter"}
             className="addButton"
-            onClick={handleAddToBasket}
+            onClick={onAddToBasket}
           />
         </div>
       </div>
@@ -85,9 +80,10 @@ const CardStyled = styled.div`
     display: flex;
     flex-direction: column;
     gap: ${theme.spacing.xxs};
+    cursor: default;
 
     &-title {
-      font-family: "Amatic SC", cursive;
+      font-family: ${theme.family.stylish};
       font-size: ${theme.fonts.P4};
       font-weight: ${theme.weights.bold};
       white-space: nowrap;

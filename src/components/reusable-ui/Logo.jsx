@@ -15,7 +15,7 @@ function Logo({ scale, ...extraProps }) {
 }
 
 const TitleStyled = styled.h1`
-  font-family: "Amatic SC", cursive;
+  font-family: ${theme.family.stylish};
   color: ${theme.colors.primary};
   display: flex;
   align-items: center;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
-import { deepClone } from "../utils/array";
+import { deepClone, filter, findIndex } from "../utils/array";
 
 export const useMenu = () => {
   // state
@@ -18,7 +18,7 @@ export const useMenu = () => {
   const handleDeleteProduct = (idItemToDelete) => {
     const menuCopy = deepClone(menu);
 
-    const menuUpdated = menuCopy.filter((item) => item.id !== idItemToDelete);
+    const menuUpdated = filter(idItemToDelete, menuCopy);
 
     setMenu(menuUpdated);
   };
@@ -28,8 +28,9 @@ export const useMenu = () => {
     const menuCopy = deepClone(menu);
 
     // 2. Manipuation de la copie
-    const indexOfProductBeingEdited = menuCopy.findIndex(
-      (product) => product.id === productBeingEdited.id,
+    const indexOfProductBeingEdited = findIndex(
+      productBeingEdited.id,
+      menuCopy,
     );
 
     menuCopy[indexOfProductBeingEdited] = productBeingEdited;

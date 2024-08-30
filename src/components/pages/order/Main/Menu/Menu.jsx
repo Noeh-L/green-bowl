@@ -18,6 +18,8 @@ function Menu() {
     setIsPanelAdminOpen,
     setActiveTab,
     editProductTitleRef,
+    handleAddToBasket,
+    handleDeleteFromBasket,
   } = useOrderContext();
 
   // behavior (event handlers)
@@ -46,6 +48,14 @@ function Menu() {
       setProductSelected(EMPTY_PRODUCT);
 
     focusOnRef(editProductTitleRef);
+    handleDeleteFromBasket(idOfCardToDelete);
+  };
+
+  const handleAddCardToBasket = (e, id) => {
+    e.stopPropagation();
+    const productAdded = menu.find((product) => product.id === id);
+
+    handleAddToBasket(productAdded);
   };
 
   // render
@@ -67,6 +77,7 @@ function Menu() {
           isAdminMode={isAdminMode}
           onClick={() => handleCardSelection(id)}
           isCardSelected={productSelected.id === id}
+          onAddToBasket={(e) => handleAddCardToBasket(e, id)}
         />
       ))}
     </MenuStyled>

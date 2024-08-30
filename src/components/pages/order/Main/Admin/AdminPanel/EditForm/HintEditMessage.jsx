@@ -13,7 +13,7 @@ function HintEditMessage() {
 
 const HintEditMessageStyled = styled.div`
   color: ${theme.colors.greyBlue};
-  font-family: "Amatic SC", cursive;
+  font-family: ${theme.family.stylish};
   font-size: ${theme.fonts.P3};
 
   display: flex;

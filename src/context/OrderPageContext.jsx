@@ -2,6 +2,7 @@
 import { createContext, useContext, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../enums/product";
 import { useMenu } from "../hooks/useMenu";
+import { useBasket } from "../hooks/useBasket";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -21,6 +22,9 @@ export const OrderContext = createContext({
   setProductSelected: () => {},
   handleEditProduct: () => {},
   editProductTitleRef: "",
+  basket: [],
+  handleAddToBasket: () => {},
+  handleDeleteFromBasket: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -38,6 +42,7 @@ export default function OrderContextProvider({ children }) {
     handleEditProduct,
     resetMenu,
   } = useMenu();
+  const { basket, handleAddToBasket, handleDeleteFromBasket } = useBasket();
 
   const valueOrderContext = {
     isAdminMode,
@@ -61,6 +66,10 @@ export default function OrderContextProvider({ children }) {
     handleEditProduct,
 
     editProductTitleRef,
+
+    basket,
+    handleAddToBasket,
+    handleDeleteFromBasket,
   };
 
   return (

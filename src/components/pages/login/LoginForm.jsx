@@ -55,7 +55,7 @@ const LoginFormStyled = styled.form`
 
   h1 {
     color: ${theme.colors.white};
-    font-family: "Amatic SC", cursive;
+    font-family: ${theme.family.stylish};
     font-size: ${theme.fonts.P5};
   }
 
@@ -74,7 +74,7 @@ const LoginFormStyled = styled.form`
 
     h2 {
       color: ${theme.colors.white};
-      font-family: "Amatic SC", cursive;
+      font-family: ${theme.family.stylish};
       font-size: ${theme.fonts.P4};
     }
 
