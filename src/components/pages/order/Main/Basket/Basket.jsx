@@ -10,10 +10,10 @@ import EmptyBasket from "./EmptyBasket";
 function Basket() {
   const { basket } = useOrderContext();
   const isBasketEmpty = basket.length === 0;
-  const amountToPay = basket.reduce(
-    (acc, item) => acc + item.quantity * item.price,
-    0,
-  );
+  const amountToPay = basket.reduce((acc, item) => {
+    const priceRounded = item.price.toFixed(2); // arrondi le prix au centième pour que le TOTAL soit précisement correct
+    return acc + item.quantity * priceRounded;
+  }, 0);
 
   return (
     <BasketStyled>
