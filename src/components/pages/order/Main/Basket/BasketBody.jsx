@@ -62,6 +62,8 @@ function BasketBody() {
               quantity={product.quantity}
               onDelete={(e) => handleCardBasketDeletion(e, product.id)}
               onClick={() => handleClickOnBasketCard(product.id)}
+              isClickable={isAdminMode}
+              isSelected={product.id === productSelected.id}
             />
           )
         );

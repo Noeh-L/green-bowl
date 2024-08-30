@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { formatPrice } from "../../../../../utils/maths";
 import { theme } from "../../../../../theme";
@@ -11,9 +11,15 @@ function BasketCard({
   quantity,
   onDelete,
   onClick,
+  isClickable,
+  isSelected,
 }) {
   return (
-    <BasketCardStyled onClick={onClick}>
+    <BasketCardStyled
+      onClick={onClick}
+      $isClickable={isClickable}
+      $isSelected={isSelected}
+    >
       <div className="imageSource">
         <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} />
       </div>
@@ -57,7 +63,7 @@ const BasketCardStyled = styled.div`
   }
 
   .title-price {
-    cursor: default;
+    cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "default")};
 
     .title {
       width: 120px;
@@ -70,7 +76,8 @@ const BasketCardStyled = styled.div`
     .price {
       font-size: 15px;
       font-family: ${theme.family.minimalist};
-      color: ${theme.colors.primary};
+      color: ${({ $isSelected }) =>
+        $isSelected ? theme.colors.white : theme.colors.primary};
     }
   }
 
@@ -117,6 +124,17 @@ const BasketCardStyled = styled.div`
       }
     }
   }
+
+  ${({ $isClickable }) => ($isClickable ? styleOnHover : null)}
+  ${({ $isSelected }) => ($isSelected ? styleOnSelected : null)}
+`;
+
+const styleOnHover = css`
+  cursor: pointer;
+`;
+
+const styleOnSelected = css`
+  background-color: ${theme.colors.primary};
 `;
 
 export default BasketCard;
