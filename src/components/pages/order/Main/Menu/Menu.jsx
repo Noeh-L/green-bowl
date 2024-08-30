@@ -53,8 +53,9 @@ function Menu() {
 
   const handleAddCardToBasket = (e, id) => {
     e.stopPropagation();
+    const productAdded = menu.find((product) => product.id === id);
 
-    handleAddToBasket(id);
+    handleAddToBasket(productAdded);
   };
 
   // render
