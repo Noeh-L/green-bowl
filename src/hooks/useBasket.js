@@ -7,14 +7,13 @@ export const useBasket = () => {
 
   const handleAddToBasket = (productAdded) => {
     const basketCopy = deepClone(basket);
-    const productAddedCopy = deepClone(productAdded);
 
     const productAlreadyAdded = find(productAdded.id, basketCopy);
 
     if (productAlreadyAdded) {
       incrementProductInBasket(productAlreadyAdded, basketCopy);
     } else {
-      addProductInBasket(productAddedCopy, basketCopy);
+      addNewProductInBasket(productAdded, basketCopy);
     }
   };
 
@@ -41,7 +40,7 @@ export const useBasket = () => {
     setBasket(basketUpdated);
   };
 
-  const addProductInBasket = (productToAddInBasket, basket) => {
+  const addNewProductInBasket = (productToAddInBasket, basket) => {
     const newProductToAddToBasket = {
       ...productToAddInBasket,
       quantity: 1,

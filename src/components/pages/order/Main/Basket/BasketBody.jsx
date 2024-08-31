@@ -4,8 +4,10 @@ import BasketCard from "./BasketCard";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
+import { find } from "../../../../../utils/array";
 
 function BasketBody() {
+  // state
   const {
     menu,
     basket,
@@ -18,18 +20,11 @@ function BasketBody() {
     editProductTitleRef,
   } = useOrderContext();
 
+  // behavior
   const handleCardBasketDeletion = (e, id) => {
     e.stopPropagation();
-    console.log(id);
 
     handleDeleteFromBasket(id);
-  };
-
-  const getCorrespondingProductInMenu = (product) => {
-    const productFromMenu = menu.find(
-      (productInMenu) => productInMenu.id === product.id,
-    );
-    return productFromMenu;
   };
 
   const handleClickOnBasketCard = async (id) => {
@@ -45,6 +40,12 @@ function BasketBody() {
     focusOnRef(editProductTitleRef);
   };
 
+  const getCorrespondingProductInMenu = (product) => {
+    const productFromMenu = find(product.id, menu);
+    return productFromMenu;
+  };
+
+  // render
   return (
     <BasketBodyStyled>
       {basket.map((product) => {
@@ -53,19 +54,17 @@ function BasketBody() {
           getCorrespondingProductInMenu(product);
 
         return (
-          correspondingProductInMenu && (
-            <BasketCard
-              key={product.id}
-              imageSource={correspondingProductInMenu.imageSource}
-              title={correspondingProductInMenu.title}
-              price={correspondingProductInMenu.price}
-              quantity={product.quantity}
-              onDelete={(e) => handleCardBasketDeletion(e, product.id)}
-              onClick={() => handleClickOnBasketCard(product.id)}
-              isClickable={isAdminMode}
-              isSelected={product.id === productSelected.id}
-            />
-          )
+          <BasketCard
+            key={product.id}
+            imageSource={correspondingProductInMenu.imageSource}
+            title={correspondingProductInMenu.title}
+            price={correspondingProductInMenu.price}
+            quantity={product.quantity}
+            onDelete={(e) => handleCardBasketDeletion(e, product.id)}
+            onClick={() => handleClickOnBasketCard(product.id)}
+            isClickable={isAdminMode}
+            isSelected={product.id === productSelected.id}
+          />
         );
       })}
     </BasketBodyStyled>

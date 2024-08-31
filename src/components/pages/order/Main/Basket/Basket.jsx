@@ -6,14 +6,29 @@ import BasketFooter from "./BasketFooter";
 import { formatPrice } from "../../../../../utils/maths";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyBasket from "./EmptyBasket";
+import { find } from "../../../../../utils/array";
 
 function Basket() {
-  const { basket } = useOrderContext();
-  const isBasketEmpty = basket.length === 0;
+  // state
+  const { basket, menu } = useOrderContext();
+
+  // behavior & logic
+  const getMenuProductAssociated = (product) => {
+    const productAssociated = find(product.id, menu);
+    return productAssociated;
+  };
+
   const amountToPay = basket.reduce((acc, item) => {
-    const priceRounded = item.price.toFixed(2); // arrondi le prix au centième pour que le TOTAL soit précisement correct
-    return acc + item.quantity * priceRounded;
+    const menuProductAssociated = getMenuProductAssociated(item);
+
+    const priceOfMenuProductAssociated =
+      Math.round(menuProductAssociated.price * 100) / 100;
+
+    return acc + item.quantity * priceOfMenuProductAssociated;
   }, 0);
+
+  // render
+  const isBasketEmpty = basket.length === 0;
 
   return (
     <BasketStyled>

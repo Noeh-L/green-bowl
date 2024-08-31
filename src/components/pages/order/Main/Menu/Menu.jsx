@@ -6,6 +6,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
+import { find } from "../../../../../utils/array";
 
 function Menu() {
   // state
@@ -53,7 +54,7 @@ function Menu() {
 
   const handleAddCardToBasket = (e, id) => {
     e.stopPropagation();
-    const productAdded = menu.find((product) => product.id === id);
+    const productAdded = find(id, menu);
 
     handleAddToBasket(productAdded);
   };
