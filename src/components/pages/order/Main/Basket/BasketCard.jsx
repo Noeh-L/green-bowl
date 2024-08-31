@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
-import { formatPrice } from "../../../../../utils/maths";
 import { theme } from "../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
 
@@ -25,7 +24,7 @@ function BasketCard({
       </div>
       <div className="title-price">
         <div className="title">{title ? title : <span>&nbsp;</span>}</div>
-        <div className="price">{formatPrice(price)}</div>
+        <div className="price">{price}</div>
       </div>
       <div className="quantity">
         <div>x {quantity}</div>

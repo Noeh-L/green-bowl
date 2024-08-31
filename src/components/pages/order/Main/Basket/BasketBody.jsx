@@ -5,6 +5,7 @@ import { useOrderContext } from "../../../../../context/OrderPageContext";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
 import { find } from "../../../../../utils/array";
+import { formatPrice } from "../../../../../utils/maths";
 
 function BasketBody() {
   // state
@@ -58,7 +59,11 @@ function BasketBody() {
             key={product.id}
             imageSource={correspondingProductInMenu.imageSource}
             title={correspondingProductInMenu.title}
-            price={correspondingProductInMenu.price}
+            price={
+              isNaN(correspondingProductInMenu.price)
+                ? "NaN"
+                : formatPrice(correspondingProductInMenu.price)
+            }
             quantity={product.quantity}
             onDelete={(e) => handleCardBasketDeletion(e, product.id)}
             onClick={() => handleClickOnBasketCard(product.id)}
