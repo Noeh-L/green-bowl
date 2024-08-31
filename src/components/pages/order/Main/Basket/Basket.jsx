@@ -21,12 +21,6 @@ function Basket() {
   const amountToPay = basket.reduce((acc, item) => {
     const menuProductAssociated = getMenuProductAssociated(item);
 
-    isNaN(menuProductAssociated.price) &&
-      console.log(
-        "isNaN(menuProductAssociated.price): ",
-        isNaN(menuProductAssociated.price),
-      );
-
     const priceOfMenuProductAssociated = isNaN(menuProductAssociated.price)
       ? 0
       : Math.round(menuProductAssociated.price * 100) / 100;
