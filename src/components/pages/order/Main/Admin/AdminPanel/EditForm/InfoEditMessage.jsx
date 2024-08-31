@@ -5,7 +5,7 @@ function InfoEditMessage() {
   return (
     <InfoEditMessageStlyled>
       Cliquer sur un produit du menu pour le modifier&nbsp;
-      <span>en temps réel</span>
+      <span className="on-live">en temps réel</span>
     </InfoEditMessageStlyled>
   );
 }
@@ -15,8 +15,9 @@ const InfoEditMessageStlyled = styled.div`
   display: flex;
   align-items: center;
   color: ${theme.colors.primary};
+  white-space: nowrap;
 
-  span {
+  .on-live {
     text-decoration: underline;
   }
 `;
