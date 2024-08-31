@@ -86,6 +86,8 @@ const BasketCardStyled = styled.div`
     color: ${theme.colors.primary};
     margin-left: auto;
     white-space: nowrap;
+    color: ${({ $isSelected }) =>
+      $isSelected ? theme.colors.white : theme.colors.primary};
   }
 
   .delete-button {
