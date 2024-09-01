@@ -4,7 +4,7 @@ import BasketCard from "./BasketCard";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import { EMPTY_PRODUCT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
-import { find } from "../../../../../utils/array";
+import { findObjectById } from "../../../../../utils/array";
 import { formatPrice } from "../../../../../utils/maths";
 
 function BasketBody() {
@@ -35,14 +35,15 @@ function BasketBody() {
     await setIsPanelAdminOpen(true);
     await setActiveTab("editProduct");
 
-    const productClickedOn = menu.find((product) => product.id === id);
+    const productClickedOn = findObjectById(id, menu);
+
     await setProductSelected(productClickedOn);
 
     focusOnRef(editProductTitleRef);
   };
 
   const getCorrespondingProductInMenu = (product) => {
-    const productFromMenu = find(product.id, menu);
+    const productFromMenu = findObjectById(product.id, menu);
     return productFromMenu;
   };
 

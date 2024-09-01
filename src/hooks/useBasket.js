@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { deepClone, find } from "../utils/array";
+import { deepClone, findObjectById } from "../utils/array";
 
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
@@ -8,7 +8,7 @@ export const useBasket = () => {
   const handleAddToBasket = (productAdded) => {
     const basketCopy = deepClone(basket);
 
-    const productAlreadyAdded = find(productAdded.id, basketCopy);
+    const productAlreadyAdded = findObjectById(productAdded.id, basketCopy);
 
     if (productAlreadyAdded) {
       incrementProductInBasket(productAlreadyAdded, basketCopy);

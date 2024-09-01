@@ -6,7 +6,7 @@ import BasketFooter from "./BasketFooter";
 import { formatPrice } from "../../../../../utils/maths";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyBasket from "./EmptyBasket";
-import { find } from "../../../../../utils/array";
+import { findObjectById } from "../../../../../utils/array";
 
 function Basket() {
   // state
@@ -14,7 +14,7 @@ function Basket() {
 
   // behavior & logic
   const getMenuProductAssociated = (product) => {
-    const productAssociated = find(product.id, menu);
+    const productAssociated = findObjectById(product.id, menu);
     return productAssociated;
   };
 

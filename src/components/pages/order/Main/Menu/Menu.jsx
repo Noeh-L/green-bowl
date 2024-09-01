@@ -6,7 +6,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
-import { find } from "../../../../../utils/array";
+import { findObjectById } from "../../../../../utils/array";
 
 function Menu() {
   // state
@@ -30,7 +30,8 @@ function Menu() {
 
     await openEditTab();
 
-    const productClickedOn = menu.find((product) => product.id === id);
+    const productClickedOn = findObjectById(id, menu);
+
     await setProductSelected(productClickedOn);
 
     focusOnRef(editProductTitleRef);
@@ -54,7 +55,7 @@ function Menu() {
 
   const handleAddCardToBasket = (e, id) => {
     e.stopPropagation();
-    const productAdded = find(id, menu);
+    const productAdded = findObjectById(id, menu);
 
     handleAddToBasket(productAdded);
   };

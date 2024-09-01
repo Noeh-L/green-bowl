@@ -2,7 +2,7 @@ export const deepClone = (array) => {
   return JSON.parse(JSON.stringify(array));
 };
 
-export const find = (idOfItemToFind, array) => {
+export const findObjectById = (idOfItemToFind, array) => {
   return array.find((item) => item.id === idOfItemToFind);
 };
 
