@@ -6,6 +6,7 @@ import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { FaChevronRight } from "react-icons/fa6";
+import { createUser, getUser } from "../../../api/user";
 
 function LoginForm() {
   // STATE
@@ -17,8 +18,16 @@ function LoginForm() {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const user = await getUser(inputValue);
+
+    // Si nouvel utilisateur
+    if (!user) {
+      createUser(inputValue);
+    }
+
     setInputValue("");
     navigate(`/order/${inputValue}`);
     document.title = `Crazee Burger | ${inputValue}`;

@@ -7,6 +7,7 @@ import { theme } from "../../../../theme";
 function UserMenu({ username }) {
   const resetPageTitle = () => {
     document.title = "Crazee Burger";
+    localStorage.clear();
   };
 
   return (
