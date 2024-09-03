@@ -3,37 +3,20 @@ import { theme } from "../../../../../theme";
 import Total from "./Total";
 import BasketBody from "./BasketBody";
 import BasketFooter from "./BasketFooter";
-import { formatPrice } from "../../../../../utils/maths";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyBasket from "./EmptyBasket";
-import { findObjectById } from "../../../../../utils/array";
+import { isArrayEmpty } from "../../../../../utils/array";
 
 function Basket() {
   // state
-  const { basket, menu } = useOrderContext();
-
-  // behavior & logic
-  const getMenuProductAssociated = (product) => {
-    const productAssociated = findObjectById(product.id, menu);
-    return productAssociated;
-  };
-
-  const amountToPay = basket.reduce((acc, item) => {
-    const menuProductAssociated = getMenuProductAssociated(item);
-
-    const priceOfMenuProductAssociated = isNaN(menuProductAssociated.price)
-      ? 0
-      : Math.round(menuProductAssociated.price * 100) / 100;
-
-    return acc + item.quantity * priceOfMenuProductAssociated;
-  }, 0);
+  const { basket } = useOrderContext();
 
   // render
-  const isBasketEmpty = basket.length === 0;
+  const isBasketEmpty = isArrayEmpty(basket);
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(amountToPay)} />
+      <Total />
       {isBasketEmpty ? <EmptyBasket /> : <BasketBody />}
       <BasketFooter />
     </BasketStyled>

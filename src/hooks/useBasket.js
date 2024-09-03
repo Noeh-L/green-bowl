@@ -42,7 +42,7 @@ export const useBasket = () => {
 
   const addNewProductInBasket = (productToAddInBasket, basket) => {
     const newProductToAddToBasket = {
-      ...productToAddInBasket,
+      id: productToAddInBasket.id,
       quantity: 1,
     };
 

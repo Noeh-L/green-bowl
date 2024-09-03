@@ -6,6 +6,7 @@ import { EMPTY_PRODUCT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
 import { findObjectById } from "../../../../../utils/array";
 import { formatPrice } from "../../../../../utils/maths";
+import { getMenuProductAssociated } from "./helper";
 
 function BasketBody() {
   // state
@@ -42,18 +43,15 @@ function BasketBody() {
     focusOnRef(editProductTitleRef);
   };
 
-  const getCorrespondingProductInMenu = (product) => {
-    const productFromMenu = findObjectById(product.id, menu);
-    return productFromMenu;
-  };
-
   // render
   return (
     <BasketBodyStyled>
       {basket.map((product) => {
         // extract from menu the product that match the mapped one in basket
-        const correspondingProductInMenu =
-          getCorrespondingProductInMenu(product);
+        const correspondingProductInMenu = getMenuProductAssociated(
+          product,
+          menu,
+        );
 
         return (
           <BasketCard
@@ -62,7 +60,7 @@ function BasketBody() {
             title={correspondingProductInMenu.title}
             price={
               isNaN(correspondingProductInMenu.price)
-                ? "NaN"
+                ? "NaN €"
                 : formatPrice(correspondingProductInMenu.price)
             }
             quantity={product.quantity}
