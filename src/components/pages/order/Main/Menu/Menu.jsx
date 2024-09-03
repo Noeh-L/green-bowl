@@ -6,7 +6,7 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
-import { findObjectById } from "../../../../../utils/array";
+import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
 
 function Menu() {
   // state
@@ -61,7 +61,7 @@ function Menu() {
   };
 
   // render
-  if (menu.length === 0) {
+  if (isArrayEmpty(menu)) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
   }
 
