@@ -1,27 +1,26 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeData/fakeBasket";
-import { deepClone, find } from "../utils/array";
+import { deepClone, findObjectById, removeObjectById } from "../utils/array";
 
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
   const handleAddToBasket = (productAdded) => {
     const basketCopy = deepClone(basket);
-    const productAddedCopy = deepClone(productAdded);
 
-    const productAlreadyAdded = find(productAdded.id, basketCopy);
+    const productAlreadyAdded = findObjectById(productAdded.id, basketCopy);
 
     if (productAlreadyAdded) {
       incrementProductInBasket(productAlreadyAdded, basketCopy);
     } else {
-      addProductInBasket(productAddedCopy, basketCopy);
+      addNewProductInBasket(productAdded, basketCopy);
     }
   };
 
   const handleDeleteFromBasket = (id) => {
     const basketCopy = deepClone(basket);
 
-    const basketUpdated = basketCopy.filter((product) => product.id !== id);
+    const basketUpdated = removeObjectById(id, basketCopy);
 
     setBasket(basketUpdated);
   };
@@ -41,9 +40,9 @@ export const useBasket = () => {
     setBasket(basketUpdated);
   };
 
-  const addProductInBasket = (productToAddInBasket, basket) => {
+  const addNewProductInBasket = (productToAddInBasket, basket) => {
     const newProductToAddToBasket = {
-      ...productToAddInBasket,
+      id: productToAddInBasket.id,
       quantity: 1,
     };
 

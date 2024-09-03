@@ -2,42 +2,73 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import BasketCard from "./BasketCard";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
+import { EMPTY_PRODUCT } from "../../../../../enums/product";
+import { focusOnRef } from "../../../../../utils/focusOnRef";
+import { findObjectById } from "../../../../../utils/array";
+import { formatPrice } from "../../../../../utils/maths";
+import { getMenuProductAssociated } from "./helper";
 
 function BasketBody() {
-  const { menu, basket, handleDeleteFromBasket } = useOrderContext();
+  // state
+  const {
+    menu,
+    basket,
+    handleDeleteFromBasket,
+    isAdminMode,
+    setIsPanelAdminOpen,
+    setActiveTab,
+    productSelected,
+    setProductSelected,
+    editProductTitleRef,
+  } = useOrderContext();
 
+  // behavior
   const handleCardBasketDeletion = (e, id) => {
     e.stopPropagation();
-    console.log(id);
 
     handleDeleteFromBasket(id);
   };
 
-  const getCorrespondingProductInMenu = (product) => {
-    const productFromMenu = menu.find(
-      (productInMenu) => productInMenu.id === product.id,
-    );
-    return productFromMenu;
+  const handleClickOnBasketCard = async (id) => {
+    if (!isAdminMode) return;
+    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT);
+
+    await setIsPanelAdminOpen(true);
+    await setActiveTab("editProduct");
+
+    const productClickedOn = findObjectById(id, menu);
+
+    await setProductSelected(productClickedOn);
+
+    focusOnRef(editProductTitleRef);
   };
 
+  // render
   return (
     <BasketBodyStyled>
       {basket.map((product) => {
         // extract from menu the product that match the mapped one in basket
-        const correspondingProductInMenu =
-          getCorrespondingProductInMenu(product);
+        const correspondingProductInMenu = getMenuProductAssociated(
+          product,
+          menu,
+        );
 
         return (
-          correspondingProductInMenu && (
-            <BasketCard
-              key={product.id}
-              imageSource={correspondingProductInMenu.imageSource}
-              title={correspondingProductInMenu.title}
-              price={correspondingProductInMenu.price}
-              quantity={product.quantity}
-              onDelete={(e) => handleCardBasketDeletion(e, product.id)}
-            />
-          )
+          <BasketCard
+            key={product.id}
+            imageSource={correspondingProductInMenu.imageSource}
+            title={correspondingProductInMenu.title}
+            price={
+              isNaN(correspondingProductInMenu.price)
+                ? "NaN €"
+                : formatPrice(correspondingProductInMenu.price)
+            }
+            quantity={product.quantity}
+            onDelete={(e) => handleCardBasketDeletion(e, product.id)}
+            onClick={() => handleClickOnBasketCard(product.id)}
+            isClickable={isAdminMode}
+            isSelected={product.id === productSelected.id}
+          />
         );
       })}
     </BasketBodyStyled>

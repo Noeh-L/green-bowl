@@ -3,21 +3,20 @@ import { theme } from "../../../../../theme";
 import Total from "./Total";
 import BasketBody from "./BasketBody";
 import BasketFooter from "./BasketFooter";
-import { formatPrice } from "../../../../../utils/maths";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import EmptyBasket from "./EmptyBasket";
+import { isArrayEmpty } from "../../../../../utils/array";
 
 function Basket() {
+  // state
   const { basket } = useOrderContext();
-  const isBasketEmpty = basket.length === 0;
-  const amountToPay = basket.reduce((acc, item) => {
-    const priceRounded = item.price.toFixed(2); // arrondi le prix au centième pour que le TOTAL soit précisement correct
-    return acc + item.quantity * priceRounded;
-  }, 0);
+
+  // render
+  const isBasketEmpty = isArrayEmpty(basket);
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(amountToPay)} />
+      <Total />
       {isBasketEmpty ? <EmptyBasket /> : <BasketBody />}
       <BasketFooter />
     </BasketStyled>

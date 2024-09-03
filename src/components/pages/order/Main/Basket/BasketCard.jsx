@@ -1,18 +1,30 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
-import { formatPrice } from "../../../../../utils/maths";
 import { theme } from "../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
 
-function BasketCard({ imageSource, title, price, quantity, onDelete }) {
+function BasketCard({
+  imageSource,
+  title,
+  price,
+  quantity,
+  onDelete,
+  onClick,
+  isClickable,
+  isSelected,
+}) {
   return (
-    <BasketCardStyled>
+    <BasketCardStyled
+      onClick={onClick}
+      $isClickable={isClickable}
+      $isSelected={isSelected}
+    >
       <div className="imageSource">
         <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} />
       </div>
       <div className="title-price">
         <div className="title">{title ? title : <span>&nbsp;</span>}</div>
-        <div className="price">{formatPrice(price)}</div>
+        <div className="price">{price}</div>
       </div>
       <div className="quantity">
         <div>x {quantity}</div>
@@ -50,7 +62,7 @@ const BasketCardStyled = styled.div`
   }
 
   .title-price {
-    cursor: default;
+    cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "default")};
 
     .title {
       width: 120px;
@@ -63,7 +75,8 @@ const BasketCardStyled = styled.div`
     .price {
       font-size: 15px;
       font-family: ${theme.family.minimalist};
-      color: ${theme.colors.primary};
+      color: ${({ $isSelected }) =>
+        $isSelected ? theme.colors.white : theme.colors.primary};
     }
   }
 
@@ -73,6 +86,8 @@ const BasketCardStyled = styled.div`
     color: ${theme.colors.primary};
     margin-left: auto;
     white-space: nowrap;
+    color: ${({ $isSelected }) =>
+      $isSelected ? theme.colors.white : theme.colors.primary};
   }
 
   .delete-button {
@@ -110,6 +125,17 @@ const BasketCardStyled = styled.div`
       }
     }
   }
+
+  ${({ $isClickable }) => ($isClickable ? styleOnHover : null)}
+  ${({ $isSelected }) => ($isSelected ? styleOnSelected : null)}
+`;
+
+const styleOnHover = css`
+  cursor: pointer;
+`;
+
+const styleOnSelected = css`
+  background-color: ${theme.colors.primary};
 `;
 
 export default BasketCard;
