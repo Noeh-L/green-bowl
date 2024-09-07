@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 import { fakeMenu } from "../fakeData/fakeMenu";
 
@@ -22,4 +22,15 @@ export const createUser = (userId) => {
   };
 
   setDoc(docRef, newDoc);
+};
+
+export const updateUserMenu = async (userId, menuUpdated) => {
+  const docRef = doc(db, "users", userId);
+
+  try {
+    await updateDoc(docRef, menuUpdated);
+    console.log("Menu updated in Firestore");
+  } catch (error) {
+    console.error("Error updating menu in Firestore: ", error);
+  }
 };

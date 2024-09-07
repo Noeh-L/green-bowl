@@ -46,6 +46,7 @@ function Menu() {
     e.stopPropagation();
 
     handleDeleteProduct(idOfCardToDelete);
+
     idOfCardToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
 

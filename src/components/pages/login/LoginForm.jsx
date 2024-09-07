@@ -7,6 +7,7 @@ import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { FaChevronRight } from "react-icons/fa6";
 import { createUser, getUser } from "../../../api/user";
+import { fakeMenu } from "../../../fakeData/fakeMenu";
 
 function LoginForm() {
   // STATE
@@ -26,6 +27,13 @@ function LoginForm() {
     // Si nouvel utilisateur
     if (!user) {
       createUser(inputValue);
+      console.log("Nouvel utilisateur !");
+      localStorage.setItem("menu", JSON.stringify(fakeMenu.LARGE));
+    }
+
+    if (user) {
+      console.log("Utilisateur déjà inscrit: ", user.username);
+      localStorage.setItem("menu", JSON.stringify(user.menu));
     }
 
     setInputValue("");

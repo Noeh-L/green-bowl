@@ -1,23 +1,14 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone, findIndex, removeObjectById } from "../utils/array";
-import { getUser } from "../api/user";
-import { useParams } from "react-router-dom";
 
 export const useMenu = () => {
   // state
-  const { username } = useParams();
-  const [menu, setMenu] = useState([]);
-
-  const fetchUserData = async (userId) => {
-    const userData = await getUser(userId);
-    return userData;
-  };
-
-  fetchUserData(username).then((data) => setMenu(data.menu));
+  const menuFromLS = JSON.parse(localStorage.getItem("menu"));
+  const [menu, setMenu] = useState(menuFromLS);
 
   // behavior
-  const handleAddProduct = (newProduct) => {
+  const handleAddProduct = async (newProduct) => {
     const menuCopy = deepClone(menu);
 
     const menuUpdated = [newProduct, ...menuCopy];
