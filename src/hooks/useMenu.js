@@ -18,36 +18,50 @@ export const useMenu = () => {
     // update the state
     setMenu(menuUpdated);
 
-    // update the localStorage
-    const userDataUpdated = {
-      username: usernameFromLS,
-      menu: menuUpdated,
-    };
-
-    localStorage.setItem("userData", JSON.stringify(userDataUpdated));
-
     // update the database
-    updateUserMenu(usernameFromLS, { menu: [newProduct, ...menuFromLS] });
+    try {
+      await updateUserMenu(usernameFromLS, {
+        menu: [newProduct, ...menuFromLS],
+      });
+      console.log("Menu updated successfully");
+
+      // update the localStorage
+      const userDataUpdated = {
+        username: usernameFromLS,
+        menu: menuUpdated,
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
+    } catch (error) {
+      console.error("Error updating menu in the database:", error);
+    }
   };
 
-  const handleDeleteProduct = (idItemToDelete) => {
+  const handleDeleteProduct = async (idItemToDelete) => {
     const menuCopy = deepClone(menu);
 
     const menuUpdated = removeObjectById(idItemToDelete, menuCopy);
 
     setMenu(menuUpdated);
 
-    const userDataUpdated = {
-      username: usernameFromLS,
-      menu: menuUpdated,
-    };
+    // Update of LS and DB
+    try {
+      await updateUserMenu(usernameFromLS, { menu: [...menuUpdated] });
 
-    localStorage.setItem("userData", JSON.stringify(userDataUpdated));
+      // update the localStorage
+      const userDataUpdated = {
+        username: usernameFromLS,
+        menu: menuUpdated,
+      };
 
-    updateUserMenu(usernameFromLS, { menu: menuUpdated });
+      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
+    } catch (error) {
+      console.error("Error updating menu in the database: ", error);
+      setMenu(menuCopy);
+    }
   };
 
-  const handleEditProduct = (productBeingEdited) => {
+  const handleEditProduct = async (productBeingEdited) => {
     // 1. Copie du state
     const menuCopy = deepClone(menu);
 
@@ -61,14 +75,40 @@ export const useMenu = () => {
 
     // 3. Update du state
     setMenu(menuCopy);
+
+    // Update of LS and DB
+    try {
+      await updateUserMenu(usernameFromLS, { menu: [...menuCopy] });
+
+      // update the localStorage
+      const userDataUpdated = {
+        username: usernameFromLS,
+        menu: [...menuCopy],
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
+    } catch (error) {
+      console.error("Error updating menu in the database: ", error);
+      setMenu(menuCopy);
+    }
   };
 
-  const resetMenu = () => {
+  const resetMenu = async () => {
     setMenu(fakeMenu.LARGE);
 
-    localStorage.setItem("userData", JSON.stringify(fakeMenu.LARGE));
+    // Update of LS and DB
+    try {
+      await updateUserMenu(usernameFromLS, { menu: fakeMenu.LARGE });
 
-    updateUserMenu(usernameFromLS, { menu: fakeMenu.LARGE });
+      const userDataUpdated = {
+        username: usernameFromLS,
+        menu: fakeMenu.LARGE,
+      };
+
+      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
+    } catch (error) {
+      console.error("Error updating menu in the database:", error);
+    }
   };
 
   return {
