@@ -7,6 +7,8 @@ import EmptyMenuUser from "./EmptyMenuUser";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
 import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
+import { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 function Menu() {
   // state
@@ -22,6 +24,7 @@ function Menu() {
     handleAddToBasket,
     handleDeleteFromBasket,
   } = useOrderContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   // behavior (event handlers)
   const handleCardSelection = async (id) => {
@@ -61,7 +64,20 @@ function Menu() {
     handleAddToBasket(productAdded);
   };
 
+  // Display the loader when data received from LS
+  useEffect(() => {
+    setIsLoading(true);
+
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
+    if (userData) {
+      setTimeout(() => setIsLoading(false), 500);
+    }
+  }, [setIsLoading]);
+
   // render
+  if (isLoading || menu === undefined) return <Loader />;
+
   if (isArrayEmpty(menu)) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
   }

@@ -22,21 +22,26 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userData = await getUser(inputValue);
+    try {
+      const userData = await getUser(inputValue);
 
-    // Si nouvel utilisateur
-    if (!userData) {
-      createUser(inputValue);
-      console.log("Nouvel utilisateur !");
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({ username: inputValue, menu: fakeMenu.LARGE }),
-      );
-    }
+      // Si nouvel utilisateur
+      if (!userData) {
+        await createUser(inputValue);
+        console.log(`Welcome ${inputValue}!`);
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ username: inputValue, menu: fakeMenu.LARGE }),
+        );
+      }
 
-    if (userData) {
-      console.log("Utilisateur déjà inscrit: ", userData.username);
-      localStorage.setItem("userData", JSON.stringify(userData));
+      // Si utilisateur déjà inscrit
+      if (userData) {
+        console.log(`Welcome back ${userData.username}!`);
+        localStorage.setItem("userData", JSON.stringify(userData));
+      }
+    } catch (error) {
+      console.log("error: ", error);
     }
 
     setInputValue("");

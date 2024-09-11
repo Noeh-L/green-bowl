@@ -5,8 +5,9 @@ import { updateUserMenu } from "../api/user";
 
 export const useMenu = () => {
   // state
-  const usernameFromLS = JSON.parse(localStorage.getItem("userData")).username;
-  const menuFromLS = JSON.parse(localStorage.getItem("userData")).menu;
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  const usernameFromLS = userData ? userData.username : undefined;
+  const menuFromLS = userData ? userData.menu : undefined;
   const [menu, setMenu] = useState(menuFromLS);
 
   // behavior
