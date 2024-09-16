@@ -2,6 +2,7 @@ import { useOrderContext } from "../../../../../../../context/OrderPageContext";
 import InfoEditMessage from "./InfoEditMessage";
 import Form from "../Form";
 import { useState } from "react";
+import UpdateMessage from "./UpdateMessage";
 
 function EditForm() {
   // state
@@ -59,11 +60,7 @@ function EditForm() {
       onBlur={handleBlur}
       ref={editProductTitleRef}
     >
-      {isEditOccured ? (
-        <div>Modifications enregistrées</div>
-      ) : (
-        <InfoEditMessage />
-      )}
+      {isEditOccured ? <UpdateMessage /> : <InfoEditMessage />}
     </Form>
   );
 }
