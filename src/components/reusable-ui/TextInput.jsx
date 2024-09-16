@@ -6,7 +6,15 @@ import React from "react";
 // eslint-disable-next-line react/display-name
 const TextInput = React.forwardRef(
   (
-    { value, onChange, Icon, className, version = "normal", ...extraProps },
+    {
+      value,
+      onChange,
+      onFocus,
+      Icon,
+      className,
+      version = "normal",
+      ...extraProps
+    },
     ref,
   ) => {
     return (
@@ -16,6 +24,7 @@ const TextInput = React.forwardRef(
           type="text"
           value={value}
           onChange={onChange}
+          onFocus={onFocus}
           {...extraProps}
           ref={ref}
         />
