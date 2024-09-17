@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone, findIndex, removeObjectById } from "../utils/array";
-import { updateUserMenu } from "../api/user";
+import { updateUserData } from "../api/user";
 
 export const useMenu = () => {
   // state
@@ -16,57 +16,24 @@ export const useMenu = () => {
 
     const menuUpdated = [newProduct, ...menuCopy];
 
-    // update the state
     setMenu(menuUpdated);
 
-    // update the database
-    try {
-      await updateUserMenu(usernameFromLS, {
-        menu: [newProduct, ...menuFromLS],
-      });
-      console.log("Menu updated successfully");
-
-      // update the localStorage
-      const userDataUpdated = {
-        username: usernameFromLS,
-        menu: menuUpdated,
-      };
-
-      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
-    } catch (error) {
-      console.error("Error updating menu in the database:", error);
-    }
+    updateMenuInDB(menuUpdated);
   };
 
   const handleDeleteProduct = async (idItemToDelete) => {
     const menuCopy = deepClone(menu);
 
-    const menuUpdated = removeObjectById(idItemToDelete, menuCopy);
+    const menuUpdated = removeObjectById(idItemToDelete, [...menuCopy]);
 
     setMenu(menuUpdated);
 
-    // Update of LS and DB
-    try {
-      await updateUserMenu(usernameFromLS, { menu: [...menuUpdated] });
-
-      // update the localStorage
-      const userDataUpdated = {
-        username: usernameFromLS,
-        menu: menuUpdated,
-      };
-
-      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
-    } catch (error) {
-      console.error("Error updating menu in the database: ", error);
-      setMenu(menuCopy);
-    }
+    updateMenuInDB(menuUpdated);
   };
 
   const handleEditProduct = async (productBeingEdited) => {
-    // 1. Copie du state
     const menuCopy = deepClone(menu);
 
-    // 2. Manipuation de la copie
     const indexOfProductBeingEdited = findIndex(
       productBeingEdited.id,
       menuCopy,
@@ -74,41 +41,30 @@ export const useMenu = () => {
 
     menuCopy[indexOfProductBeingEdited] = productBeingEdited;
 
-    // 3. Update du state
     setMenu(menuCopy);
 
-    // Update of LS and DB
-    try {
-      await updateUserMenu(usernameFromLS, { menu: [...menuCopy] });
-
-      // update the localStorage
-      const userDataUpdated = {
-        username: usernameFromLS,
-        menu: [...menuCopy],
-      };
-
-      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
-    } catch (error) {
-      console.error("Error updating menu in the database: ", error);
-      setMenu(menuCopy);
-    }
+    updateMenuInDB(menuCopy);
   };
 
   const resetMenu = async () => {
     setMenu(fakeMenu.LARGE);
+    updateMenuInDB(fakeMenu.LARGE);
+  };
 
-    // Update of LS and DB
+  const updateMenuInDB = async (menuUpdated) => {
     try {
-      await updateUserMenu(usernameFromLS, { menu: fakeMenu.LARGE });
+      await updateUserData(usernameFromLS, {
+        menu: [...menuUpdated],
+      });
+      console.log("🧾 Menu updated successfully!");
 
-      const userDataUpdated = {
-        username: usernameFromLS,
-        menu: fakeMenu.LARGE,
-      };
+      // update the localStorage
+      const userDataUpdated = { ...userData, menu: [...menuUpdated] };
 
       localStorage.setItem("userData", JSON.stringify(userDataUpdated));
     } catch (error) {
       console.error("Error updating menu in the database:", error);
+      setMenu(menu);
     }
   };
 
