@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../enums/product";
 import { useMenu } from "../hooks/useMenu";
 import { useBasket } from "../hooks/useBasket";
@@ -25,6 +25,7 @@ export const OrderContext = createContext({
   basket: [],
   handleAddToBasket: () => {},
   handleDeleteFromBasket: () => {},
+  isLoading: false,
 });
 
 // 2. Installation du contexte (Provider)
@@ -35,6 +36,7 @@ export default function OrderContextProvider({ children }) {
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const editProductTitleRef = useRef();
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     menu,
     handleAddProduct,
@@ -43,6 +45,17 @@ export default function OrderContextProvider({ children }) {
     resetMenu,
   } = useMenu();
   const { basket, handleAddToBasket, handleDeleteFromBasket } = useBasket();
+
+  // Loader handler
+  useEffect(() => {
+    setIsLoading(true);
+
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
+    if (userData) {
+      setTimeout(() => setIsLoading(false), 500);
+    }
+  }, [setIsLoading]);
 
   const valueOrderContext = {
     isAdminMode,
@@ -70,6 +83,8 @@ export default function OrderContextProvider({ children }) {
     basket,
     handleAddToBasket,
     handleDeleteFromBasket,
+
+    isLoading,
   };
 
   return (

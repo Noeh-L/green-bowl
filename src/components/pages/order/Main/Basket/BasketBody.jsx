@@ -7,6 +7,7 @@ import { focusOnRef } from "../../../../../utils/focusOnRef";
 import { findObjectById } from "../../../../../utils/array";
 import { formatPrice } from "../../../../../utils/maths";
 import { getMenuProductAssociated } from "./helper";
+import Loader from "../Menu/Loader";
 
 function BasketBody() {
   // state
@@ -20,6 +21,7 @@ function BasketBody() {
     productSelected,
     setProductSelected,
     editProductTitleRef,
+    isLoading,
   } = useOrderContext();
 
   // behavior
@@ -44,6 +46,8 @@ function BasketBody() {
   };
 
   // render
+  if (isLoading) return <Loader />;
+
   return (
     <BasketBodyStyled>
       {basket.map((product) => {
