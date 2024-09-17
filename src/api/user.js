@@ -19,18 +19,19 @@ export const createUser = (userId) => {
   const newDoc = {
     username: userId,
     menu: fakeMenu.LARGE,
+    basket: [],
   };
 
   setDoc(docRef, newDoc);
 };
 
-export const updateUserMenu = async (userId, menuUpdated) => {
+export const updateUserData = async (userId, dataUpdated) => {
   const docRef = doc(db, "users", userId);
 
   try {
-    await updateDoc(docRef, menuUpdated);
-    console.log("Menu updated in Firestore");
+    await updateDoc(docRef, dataUpdated);
+    console.log("✅ Data updated in Firestore");
   } catch (error) {
-    console.error("Error updating menu in Firestore: ", error);
+    console.error(`Error updating ${dataUpdated} in Firestore: `, error);
   }
 };

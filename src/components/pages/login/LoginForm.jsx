@@ -31,7 +31,11 @@ function LoginForm() {
         console.log(`Welcome ${inputValue}!`);
         localStorage.setItem(
           "userData",
-          JSON.stringify({ username: inputValue, menu: fakeMenu.LARGE }),
+          JSON.stringify({
+            username: inputValue,
+            menu: fakeMenu.LARGE,
+            basket: [],
+          }),
         );
       }
 
