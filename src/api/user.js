@@ -1,6 +1,7 @@
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 import { fakeMenu } from "../fakeData/fakeMenu";
+import { setLocalStorage } from "../utils/windows";
 
 export const getUser = async (userId) => {
   const docRef = doc(db, "users", userId); // chemin de l'endroit du document
@@ -39,25 +40,23 @@ export const updateUserData = async (userId, dataUpdated) => {
 export const authenticateUser = async (userId) => {
   try {
     const existingUser = await getUser(userId);
+    const initialLocalStorageData = {
+      username: userId,
+      menu: fakeMenu.LARGE,
+      basket: [],
+    };
 
     // If new user
     if (!existingUser) {
       await createUser(userId);
       console.log(`Welcome ${userId}!`);
-      localStorage.setItem(
-        "userData",
-        JSON.stringify({
-          username: userId,
-          menu: fakeMenu.LARGE,
-          basket: [],
-        }),
-      );
+      setLocalStorage("userData", initialLocalStorageData);
     }
 
     // If user already exists
     if (existingUser) {
       console.log(`Welcome back ${existingUser.username}!`);
-      localStorage.setItem("userData", JSON.stringify(existingUser));
+      setLocalStorage("userData", existingUser);
     }
   } catch (error) {
     console.log("🔒 Error trying to authenticate: ", error);

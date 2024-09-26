@@ -2,9 +2,10 @@ import { useState } from "react";
 // import { fakeBasket } from "../fakeData/fakeBasket";
 import { deepClone, findObjectById, removeObjectById } from "../utils/array";
 import { updateUserData } from "../api/user";
+import { getLocalStorage, setLocalStorage } from "../utils/windows";
 
 export const useBasket = () => {
-  const userData = JSON.parse(localStorage.getItem("userData"));
+  const userData = getLocalStorage("userData");
   const basketFromLS = userData ? userData.basket : [];
   const [basket, setBasket] = useState(basketFromLS);
 
@@ -67,7 +68,7 @@ export const useBasket = () => {
 
       // update the localStorage
       const userDataUpdated = { ...userData, basket: [...basketUpdated] };
-      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
+      setLocalStorage("userData", userDataUpdated);
     } catch (error) {
       console.error("Error updating basket in the database: ", error);
     }

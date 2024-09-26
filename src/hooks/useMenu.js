@@ -2,10 +2,11 @@ import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone, findIndex, removeObjectById } from "../utils/array";
 import { updateUserData } from "../api/user";
+import { getLocalStorage, setLocalStorage } from "../utils/windows";
 
 export const useMenu = () => {
   // state
-  const userData = JSON.parse(localStorage.getItem("userData"));
+  const userData = getLocalStorage("userData");
   const usernameFromLS = userData ? userData.username : undefined;
   const menuFromLS = userData ? userData.menu : undefined;
   const [menu, setMenu] = useState(menuFromLS);
@@ -61,7 +62,7 @@ export const useMenu = () => {
       // update the localStorage
       const userDataUpdated = { ...userData, menu: [...menuUpdated] };
 
-      localStorage.setItem("userData", JSON.stringify(userDataUpdated));
+      setLocalStorage("userData", userDataUpdated);
     } catch (error) {
       console.error("Error updating menu in the database:", error);
       setMenu(menu);

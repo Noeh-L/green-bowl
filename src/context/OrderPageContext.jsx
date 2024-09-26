@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../enums/product";
 import { useMenu } from "../hooks/useMenu";
 import { useBasket } from "../hooks/useBasket";
+import { getLocalStorage } from "../utils/windows";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -50,7 +51,7 @@ export default function OrderContextProvider({ children }) {
   useEffect(() => {
     setIsLoading(true);
 
-    const userData = JSON.parse(localStorage.getItem("userData"));
+    const userData = getLocalStorage("userData");
 
     if (userData) {
       setTimeout(() => setIsLoading(false), 500);
