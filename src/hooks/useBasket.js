@@ -5,7 +5,7 @@ import { updateUserData } from "../api/user";
 
 export const useBasket = () => {
   const userData = JSON.parse(localStorage.getItem("userData"));
-  const basketFromLS = userData.basket;
+  const basketFromLS = userData ? userData.basket : [];
   const [basket, setBasket] = useState(basketFromLS);
 
   const handleAddToBasket = (productAdded) => {
@@ -27,7 +27,7 @@ export const useBasket = () => {
 
     setBasket(basketUpdated);
 
-    updateBasketInDB(basketUpdated);
+    updateBasketInLStorageAndDB(basketUpdated);
   };
 
   const incrementProductInBasket = async (productAlreadyInBasket, basket) => {
@@ -44,7 +44,7 @@ export const useBasket = () => {
 
     setBasket(basketUpdated);
 
-    updateBasketInDB(basketUpdated);
+    updateBasketInLStorageAndDB(basketUpdated);
   };
 
   const addNewProductInBasket = async (productToAddInBasket, basket) => {
@@ -57,10 +57,10 @@ export const useBasket = () => {
 
     setBasket(basketUpdated);
 
-    updateBasketInDB(basketUpdated);
+    updateBasketInLStorageAndDB(basketUpdated);
   };
 
-  const updateBasketInDB = async (basketUpdated) => {
+  const updateBasketInLStorageAndDB = async (basketUpdated) => {
     try {
       await updateUserData(userData.username, { basket: [...basketUpdated] });
       console.log("🛒 Basket updated successfully!");

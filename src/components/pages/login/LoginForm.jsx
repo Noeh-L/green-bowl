@@ -6,51 +6,26 @@ import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { FaChevronRight } from "react-icons/fa6";
-import { createUser, getUser } from "../../../api/user";
-import { fakeMenu } from "../../../fakeData/fakeMenu";
+import { authenticateUser } from "../../../api/user";
 
 function LoginForm() {
   // STATE
-  const [inputValue, setInputValue] = useState("");
+  const [usernameInputed, setUsernameInputed] = useState("");
   const navigate = useNavigate();
 
   // BEHAVIOR
   const handleChange = (e) => {
-    setInputValue(e.target.value);
+    setUsernameInputed(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const userData = await getUser(inputValue);
+    await authenticateUser(usernameInputed);
 
-      // Si nouvel utilisateur
-      if (!userData) {
-        await createUser(inputValue);
-        console.log(`Welcome ${inputValue}!`);
-        localStorage.setItem(
-          "userData",
-          JSON.stringify({
-            username: inputValue,
-            menu: fakeMenu.LARGE,
-            basket: [],
-          }),
-        );
-      }
-
-      // Si utilisateur déjà inscrit
-      if (userData) {
-        console.log(`Welcome back ${userData.username}!`);
-        localStorage.setItem("userData", JSON.stringify(userData));
-      }
-    } catch (error) {
-      console.log("error: ", error);
-    }
-
-    setInputValue("");
-    navigate(`/order/${inputValue}`);
-    document.title = `Crazee Burger | ${inputValue}`;
+    setUsernameInputed("");
+    navigate(`/order/${usernameInputed}`);
+    document.title = `Crazee Burger | ${usernameInputed}`;
   };
 
   // RENDER
@@ -62,7 +37,7 @@ function LoginForm() {
         <h2>Connectez-vous</h2>
         <div className="cta__action">
           <TextInput
-            value={inputValue}
+            value={usernameInputed}
             onChange={handleChange}
             placeholder={"Entrez votre prénom"}
             Icon={BsPersonCircle}

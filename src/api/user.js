@@ -35,3 +35,31 @@ export const updateUserData = async (userId, dataUpdated) => {
     console.error(`Error updating ${dataUpdated} in Firestore: `, error);
   }
 };
+
+export const authenticateUser = async (userId) => {
+  try {
+    const existingUser = await getUser(userId);
+
+    // If new user
+    if (!existingUser) {
+      await createUser(userId);
+      console.log(`Welcome ${userId}!`);
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({
+          username: userId,
+          menu: fakeMenu.LARGE,
+          basket: [],
+        }),
+      );
+    }
+
+    // If user already exists
+    if (existingUser) {
+      console.log(`Welcome back ${existingUser.username}!`);
+      localStorage.setItem("userData", JSON.stringify(existingUser));
+    }
+  } catch (error) {
+    console.log("🔒 Error trying to authenticate: ", error);
+  }
+};

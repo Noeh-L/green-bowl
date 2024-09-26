@@ -18,7 +18,7 @@ export const useMenu = () => {
 
     setMenu(menuUpdated);
 
-    updateMenuInDB(menuUpdated);
+    updateMenuInLStorageAndDB(menuUpdated);
   };
 
   const handleDeleteProduct = async (idItemToDelete) => {
@@ -28,7 +28,7 @@ export const useMenu = () => {
 
     setMenu(menuUpdated);
 
-    updateMenuInDB(menuUpdated);
+    updateMenuInLStorageAndDB(menuUpdated);
   };
 
   const handleEditProduct = async (productBeingEdited) => {
@@ -43,15 +43,15 @@ export const useMenu = () => {
 
     setMenu(menuCopy);
 
-    updateMenuInDB(menuCopy);
+    updateMenuInLStorageAndDB(menuCopy);
   };
 
   const resetMenu = async () => {
     setMenu(fakeMenu.LARGE);
-    updateMenuInDB(fakeMenu.LARGE);
+    updateMenuInLStorageAndDB(fakeMenu.LARGE);
   };
 
-  const updateMenuInDB = async (menuUpdated) => {
+  const updateMenuInLStorageAndDB = async (menuUpdated) => {
     try {
       await updateUserData(usernameFromLS, {
         menu: [...menuUpdated],
