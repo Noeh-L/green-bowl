@@ -32,6 +32,7 @@ const BasketStyled = styled.div`
   font-family: ${theme.family.stylish};
   background: ${theme.colors.background_white};
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) inset;
+  position: relative;
 `;
 
 export default Basket;

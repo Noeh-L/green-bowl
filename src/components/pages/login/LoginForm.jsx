@@ -6,22 +6,26 @@ import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "../../reusable-ui/TextInput";
 import Button from "../../reusable-ui/Button";
 import { FaChevronRight } from "react-icons/fa6";
+import { authenticateUser } from "../../../api/user";
 
 function LoginForm() {
   // STATE
-  const [inputValue, setInputValue] = useState("");
+  const [usernameInputed, setUsernameInputed] = useState("");
   const navigate = useNavigate();
 
   // BEHAVIOR
   const handleChange = (e) => {
-    setInputValue(e.target.value);
+    setUsernameInputed(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setInputValue("");
-    navigate(`/order/${inputValue}`);
-    document.title = `Crazee Burger | ${inputValue}`;
+
+    await authenticateUser(usernameInputed);
+
+    setUsernameInputed("");
+    navigate(`/order/${usernameInputed}`);
+    document.title = `Crazee Burger | ${usernameInputed}`;
   };
 
   // RENDER
@@ -33,7 +37,7 @@ function LoginForm() {
         <h2>Connectez-vous</h2>
         <div className="cta__action">
           <TextInput
-            value={inputValue}
+            value={usernameInputed}
             onChange={handleChange}
             placeholder={"Entrez votre prénom"}
             Icon={BsPersonCircle}

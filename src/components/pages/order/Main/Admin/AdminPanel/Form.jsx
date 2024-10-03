@@ -7,11 +7,11 @@ import { theme } from "../../../../../../theme";
 import React from "react";
 
 const Form = React.forwardRef(
-  ({ onSubmit, product, onChange, children }, ref) => {
+  ({ onSubmit, product, onChange, onFocus, children, onBlur }, ref) => {
     const textInputs = getTextInputsConfig(product);
 
     return (
-      <FormStyled onSubmit={onSubmit}>
+      <FormStyled onSubmit={onSubmit} onBlur={onBlur}>
         <ImagePreview product={product} />
 
         {textInputs.map((textInput) => (
@@ -20,6 +20,7 @@ const Form = React.forwardRef(
             value={textInput.value}
             name={textInput.name}
             onChange={onChange}
+            onFocus={onFocus}
             Icon={textInput.Icon}
             placeholder={textInput.placeholder}
             className="text-inputs"

@@ -1,33 +1,40 @@
 import { useState } from "react";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { deepClone, findIndex, removeObjectById } from "../utils/array";
+import { updateUserData } from "../api/user";
+import { getLocalStorage, setLocalStorage } from "../utils/windows";
 
 export const useMenu = () => {
   // state
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const userData = getLocalStorage("userData");
+  const usernameFromLS = userData ? userData.username : undefined;
+  const menuFromLS = userData ? userData.menu : undefined;
+  const [menu, setMenu] = useState(menuFromLS);
 
   // behavior
-  const handleAddProduct = (newProduct) => {
+  const handleAddProduct = async (newProduct) => {
     const menuCopy = deepClone(menu);
 
     const menuUpdated = [newProduct, ...menuCopy];
 
     setMenu(menuUpdated);
+
+    updateMenuInLStorageAndDB(menuUpdated);
   };
 
-  const handleDeleteProduct = (idItemToDelete) => {
+  const handleDeleteProduct = async (idItemToDelete) => {
     const menuCopy = deepClone(menu);
 
-    const menuUpdated = removeObjectById(idItemToDelete, menuCopy);
+    const menuUpdated = removeObjectById(idItemToDelete, [...menuCopy]);
 
     setMenu(menuUpdated);
+
+    updateMenuInLStorageAndDB(menuUpdated);
   };
 
-  const handleEditProduct = (productBeingEdited) => {
-    // 1. Copie du state
+  const handleEditProduct = async (productBeingEdited) => {
     const menuCopy = deepClone(menu);
 
-    // 2. Manipuation de la copie
     const indexOfProductBeingEdited = findIndex(
       productBeingEdited.id,
       menuCopy,
@@ -35,12 +42,31 @@ export const useMenu = () => {
 
     menuCopy[indexOfProductBeingEdited] = productBeingEdited;
 
-    // 3. Update du state
     setMenu(menuCopy);
+
+    updateMenuInLStorageAndDB(menuCopy);
   };
 
-  const resetMenu = () => {
+  const resetMenu = async () => {
     setMenu(fakeMenu.LARGE);
+    updateMenuInLStorageAndDB(fakeMenu.LARGE);
+  };
+
+  const updateMenuInLStorageAndDB = async (menuUpdated) => {
+    try {
+      await updateUserData(usernameFromLS, {
+        menu: [...menuUpdated],
+      });
+      console.log("🧾 Menu updated successfully!");
+
+      // update the localStorage
+      const userDataUpdated = { ...userData, menu: [...menuUpdated] };
+
+      setLocalStorage("userData", userDataUpdated);
+    } catch (error) {
+      console.error("Error updating menu in the database:", error);
+      setMenu(menu);
+    }
   };
 
   return {

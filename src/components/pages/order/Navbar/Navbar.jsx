@@ -2,12 +2,13 @@ import Logo from "../../../reusable-ui/Logo";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import NavbarRightSide from "./NavbarRightSide";
+import { refreshPage } from "../../../../utils/windows";
 
 /* eslint-disable react/prop-types */
 function Navbar() {
   // BEHAVIOR
   const handleClick = () => {
-    window.location.reload();
+    refreshPage();
   };
 
   // RENDER

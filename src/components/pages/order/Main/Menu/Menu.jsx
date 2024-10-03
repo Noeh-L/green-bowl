@@ -7,6 +7,7 @@ import EmptyMenuUser from "./EmptyMenuUser";
 import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
 import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
+import Loader from "./Loader";
 
 function Menu() {
   // state
@@ -21,6 +22,7 @@ function Menu() {
     editProductTitleRef,
     handleAddToBasket,
     handleDeleteFromBasket,
+    isLoading,
   } = useOrderContext();
 
   // behavior (event handlers)
@@ -46,6 +48,7 @@ function Menu() {
     e.stopPropagation();
 
     handleDeleteProduct(idOfCardToDelete);
+
     idOfCardToDelete === productSelected.id &&
       setProductSelected(EMPTY_PRODUCT);
 
@@ -61,6 +64,8 @@ function Menu() {
   };
 
   // render
+  if (isLoading || menu === undefined) return <Loader />;
+
   if (isArrayEmpty(menu)) {
     return isAdminMode ? <EmptyMenuAdmin /> : <EmptyMenuUser />;
   }
