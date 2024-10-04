@@ -78,6 +78,7 @@ function BasketBody() {
               onClick={() => handleClickOnBasketCard(product.id)}
               isClickable={isAdminMode}
               isSelected={product.id === productSelected.id}
+              isAdminMode={isAdminMode}
             />
           </CSSTransition>
         );
