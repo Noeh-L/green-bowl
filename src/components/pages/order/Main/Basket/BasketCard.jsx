@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { theme } from "../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
+import CasinoEffect from "../../../../reusable-ui/CasinoEffect.jsx";
 
 function BasketCard({
   imageSource,
@@ -27,7 +28,7 @@ function BasketCard({
         <div className="price">{price}</div>
       </div>
       <div className="quantity">
-        <div>x {quantity}</div>
+        <CasinoEffect count={`x ${quantity}`} />
       </div>
       <button onClick={onDelete} className="delete-button">
         <MdDeleteForever className="icon" />
