@@ -3,6 +3,7 @@ import { theme } from "../../../../../theme";
 import { calculateSumToPay } from "./helper";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
 import { formatPrice } from "../../../../../utils/maths";
+import CasinoEffect from "../../../../reusable-ui/CasinoEffect";
 
 function Total() {
   // state
@@ -13,7 +14,7 @@ function Total() {
   return (
     <TotalStyled>
       <span>TOTAL</span>
-      <span>{formatPrice(amountToPay)}</span>
+      <CasinoEffect count={formatPrice(amountToPay)} />
     </TotalStyled>
   );
 }
