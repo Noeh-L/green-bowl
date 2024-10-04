@@ -8,6 +8,7 @@ import { findObjectById } from "../../../../../utils/array";
 import { formatPrice } from "../../../../../utils/maths";
 import { getMenuProductAssociated } from "./helper";
 import Loader from "../Menu/Loader";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function BasketBody() {
   // state
@@ -49,7 +50,7 @@ function BasketBody() {
   if (isLoading) return <Loader />;
 
   return (
-    <BasketBodyStyled>
+    <TransitionGroup component={BasketBodyStyled}>
       {basket.map((product) => {
         // extract from menu the product that match the mapped one in basket
         const correspondingProductInMenu = getMenuProductAssociated(
@@ -58,24 +59,30 @@ function BasketBody() {
         );
 
         return (
-          <BasketCard
+          <CSSTransition
             key={product.id}
-            imageSource={correspondingProductInMenu.imageSource}
-            title={correspondingProductInMenu.title}
-            price={
-              isNaN(correspondingProductInMenu.price)
-                ? "NaN €"
-                : formatPrice(correspondingProductInMenu.price)
-            }
-            quantity={product.quantity}
-            onDelete={(e) => handleCardBasketDeletion(e, product.id)}
-            onClick={() => handleClickOnBasketCard(product.id)}
-            isClickable={isAdminMode}
-            isSelected={product.id === productSelected.id}
-          />
+            appear={true}
+            classNames={"basketCard"}
+            timeout={{ enter: 500, exit: 500 }}
+          >
+            <BasketCard
+              imageSource={correspondingProductInMenu.imageSource}
+              title={correspondingProductInMenu.title}
+              price={
+                isNaN(correspondingProductInMenu.price)
+                  ? "NaN €"
+                  : formatPrice(correspondingProductInMenu.price)
+              }
+              quantity={product.quantity}
+              onDelete={(e) => handleCardBasketDeletion(e, product.id)}
+              onClick={() => handleClickOnBasketCard(product.id)}
+              isClickable={isAdminMode}
+              isSelected={product.id === productSelected.id}
+            />
+          </CSSTransition>
         );
       })}
-    </BasketBodyStyled>
+    </TransitionGroup>
   );
 }
 
@@ -87,6 +94,7 @@ const BasketBodyStyled = styled.div`
   align-items: center;
   gap: ${theme.spacing.md};
   overflow-y: auto;
+  overflow-x: hidden;
   padding: ${theme.spacing.md} 16px;
 
   /* if you want the scrollbar to be visible on hover only */
@@ -94,6 +102,36 @@ const BasketBodyStyled = styled.div`
   /* &:hover {
     scrollbar-color: initial;
   } */
+
+  .basketCard-appear {
+    transform: translateX(100px);
+    opacity: 0%;
+  }
+  .basketCard-appear-active {
+    transform: translateX(0px);
+    opacity: 100%;
+    transition: 0.5s;
+  }
+
+  .basketCard-enter {
+    transform: translateX(100px);
+    opacity: 0%;
+  }
+  .basketCard-enter-active {
+    transform: translateX(0px);
+    opacity: 100%;
+    transition: 0.5s;
+  }
+
+  .basketCard-exit {
+    transform: translateX(0px);
+    opacity: 100%;
+  }
+  .basketCard-exit-active {
+    transform: translateX(-100px);
+    opacity: 0%;
+    transition: 0.5s;
+  }
 `;
 
 export default BasketBody;
