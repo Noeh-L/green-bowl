@@ -5,14 +5,26 @@ import ImagePreview from "./ImagePreview";
 import { getTextInputsConfig } from "./textInputsConfig";
 import { theme } from "../../../../../../theme";
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Form = React.forwardRef(
   ({ onSubmit, product, onChange, onFocus, children, onBlur }, ref) => {
     const textInputs = getTextInputsConfig(product);
 
     return (
-      <FormStyled onSubmit={onSubmit} onBlur={onBlur}>
-        <ImagePreview product={product} />
+      <TransitionGroup
+        component={FormStyled}
+        onSubmit={onSubmit}
+        onBlur={onBlur}
+      >
+        <CSSTransition
+          classNames={"imgPreview"}
+          timeout={500}
+          appear={true}
+          key={product.imageSource}
+        >
+          <ImagePreview product={product} />
+        </CSSTransition>
 
         {textInputs.map((textInput) => (
           <TextInput
@@ -30,7 +42,7 @@ const Form = React.forwardRef(
         ))}
 
         <div className="form-footer">{children}</div>
-      </FormStyled>
+      </TransitionGroup>
     );
   },
 );
@@ -52,6 +64,36 @@ const FormStyled = styled.form`
     display: flex;
     align-items: center;
     gap: ${theme.spacing.md};
+  }
+
+  .imgPreview-appear {
+    opacity: 0;
+  }
+  .imgPreview-appear-active {
+    opacity: 1;
+    transition: 0.5s;
+  }
+  .imgPreview-appear-done {
+    opacity: 1;
+  }
+
+  .imgPreview-enter {
+    opacity: 0;
+  }
+  .imgPreview-enter-active {
+    opacity: 1;
+    transition: 0.5s;
+  }
+  .imgPreview-enter-done {
+    opacity: 1;
+  }
+
+  .imgPreview-exit {
+    opacity: 1;
+  }
+  .imgPreview-exit-active {
+    opacity: 0;
+    transition: 0.5s;
   }
 `;
 
