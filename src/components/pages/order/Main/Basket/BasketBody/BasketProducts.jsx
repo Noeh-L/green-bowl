@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
+import { theme } from "../../../../../../theme";
 import BasketCard from "./BasketCard";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
-import { EMPTY_PRODUCT } from "../../../../../enums/product";
-import { focusOnRef } from "../../../../../utils/focusOnRef";
-import { findObjectById } from "../../../../../utils/array";
-import { formatPrice } from "../../../../../utils/maths";
-import { getMenuProductAssociated } from "./helper";
-import Loader from "../Menu/Loader";
+import { useOrderContext } from "../../../../../../context/OrderPageContext";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import { focusOnRef } from "../../../../../../utils/focusOnRef";
+import { findObjectById } from "../../../../../../utils/array";
+import { formatPrice } from "../../../../../../utils/maths";
+import { getMenuProductAssociated } from "../helper";
+import Loader from "../../Menu/Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-function BasketBody() {
+function BasketProducts() {
   // state
   const {
     menu,
@@ -50,7 +50,7 @@ function BasketBody() {
   if (isLoading) return <Loader />;
 
   return (
-    <TransitionGroup component={BasketBodyStyled}>
+    <TransitionGroup component={BasketProductsStyled}>
       {basket.map((product) => {
         // extract from menu the product that match the mapped one in basket
         const correspondingProductInMenu = getMenuProductAssociated(
@@ -87,7 +87,7 @@ function BasketBody() {
   );
 }
 
-const BasketBodyStyled = styled.div`
+const BasketProductsStyled = styled.div`
   flex: 1;
   width: 100%;
   display: flex;
@@ -135,4 +135,4 @@ const BasketBodyStyled = styled.div`
   }
 `;
 
-export default BasketBody;
+export default BasketProducts;
