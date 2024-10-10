@@ -4,6 +4,8 @@ import styled, { css } from "styled-components";
 import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { deleteButtonAnimation } from "../../../../../theme/animation";
 
 function Card({
   picture,
@@ -19,15 +21,18 @@ function Card({
 }) {
   // render
   return (
-    <CardStyled
+    <TransitionGroup
+      component={CardStyled}
       $isAdminMode={isAdminMode}
       $isSelected={isCardSelected}
       onClick={onClick}
     >
       {isDeleteButtonVisible && (
-        <button onClick={onDelete} className="deleteButton">
-          <TiDelete />
-        </button>
+        <CSSTransition classNames={"deleteButton"} timeout={500}>
+          <button onClick={onDelete} className="deleteButton">
+            <TiDelete />
+          </button>
+        </CSSTransition>
       )}
       <div className="picture">
         <img src={picture} alt={label} />
@@ -44,7 +49,7 @@ function Card({
           />
         </div>
       </div>
-    </CardStyled>
+    </TransitionGroup>
   );
 }
 
@@ -60,6 +65,7 @@ const CardStyled = styled.div`
   box-shadow: ${theme.shadows.medium};
   transition: all ease 0.15s;
   position: relative;
+  overflow: hidden;
 
   .picture {
     width: 200px;
@@ -130,6 +136,8 @@ const CardStyled = styled.div`
   ${({ $isAdminMode, $isSelected }) => {
     return $isAdminMode && $isSelected && styleOnSelected;
   }}
+
+  ${deleteButtonAnimation}
 `;
 
 const styleOnHover = css`

@@ -5,14 +5,27 @@ import ImagePreview from "./ImagePreview";
 import { getTextInputsConfig } from "./textInputsConfig";
 import { theme } from "../../../../../../theme";
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { imagePreviewAppearAnimation } from "../../../../../../theme/animation";
 
 const Form = React.forwardRef(
   ({ onSubmit, product, onChange, onFocus, children, onBlur }, ref) => {
     const textInputs = getTextInputsConfig(product);
 
     return (
-      <FormStyled onSubmit={onSubmit} onBlur={onBlur}>
-        <ImagePreview product={product} />
+      <TransitionGroup
+        component={FormStyled}
+        onSubmit={onSubmit}
+        onBlur={onBlur}
+      >
+        <CSSTransition
+          classNames={"imgPreview"}
+          timeout={500}
+          appear={true}
+          key={product.imageSource}
+        >
+          <ImagePreview product={product} />
+        </CSSTransition>
 
         {textInputs.map((textInput) => (
           <TextInput
@@ -30,7 +43,7 @@ const Form = React.forwardRef(
         ))}
 
         <div className="form-footer">{children}</div>
-      </FormStyled>
+      </TransitionGroup>
     );
   },
 );
@@ -53,6 +66,8 @@ const FormStyled = styled.form`
     align-items: center;
     gap: ${theme.spacing.md};
   }
+
+  ${imagePreviewAppearAnimation}
 `;
 
 export default Form;

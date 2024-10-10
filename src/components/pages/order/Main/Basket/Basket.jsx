@@ -1,23 +1,14 @@
 import styled from "styled-components";
 import { theme } from "../../../../../theme";
-import Total from "./Total";
-import BasketBody from "./BasketBody";
+import BasketHeader from "./BasketHeader/BasketHeader";
+import BasketBody from "./BasketBody/BasketBody";
 import BasketFooter from "./BasketFooter";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
-import EmptyBasket from "./EmptyBasket";
-import { isArrayEmpty } from "../../../../../utils/array";
 
 function Basket() {
-  // state
-  const { basket } = useOrderContext();
-
-  // render
-  const isBasketEmpty = isArrayEmpty(basket);
-
   return (
     <BasketStyled>
-      <Total />
-      {isBasketEmpty ? <EmptyBasket /> : <BasketBody />}
+      <BasketHeader />
+      <BasketBody />
       <BasketFooter />
     </BasketStyled>
   );

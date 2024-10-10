@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
-import { calculateSumToPay } from "./helper";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
-import { formatPrice } from "../../../../../utils/maths";
+import { theme } from "../../../../../../theme";
+import { calculateSumToPay } from "../helper";
+import { useOrderContext } from "../../../../../../context/OrderPageContext";
+import { formatPrice } from "../../../../../../utils/maths";
+import CasinoEffect from "../../../../../reusable-ui/CasinoEffect";
 
 function Total() {
   // state
@@ -13,7 +14,7 @@ function Total() {
   return (
     <TotalStyled>
       <span>TOTAL</span>
-      <span>{formatPrice(amountToPay)}</span>
+      <CasinoEffect count={formatPrice(amountToPay)} className={"totalPrice"} />
     </TotalStyled>
   );
 }
@@ -30,6 +31,10 @@ const TotalStyled = styled.div`
   font-size: 36px;
   text-transform: capitalize;
   color: ${theme.colors.primary};
+
+  .totalPrice {
+    font-weight: ${theme.weights.bold};
+  }
 `;
 
 export default Total;

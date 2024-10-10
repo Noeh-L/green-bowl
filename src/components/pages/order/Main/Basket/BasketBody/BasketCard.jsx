@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
-import { IMAGE_BY_DEFAULT } from "../../../../../enums/product";
-import { theme } from "../../../../../theme";
+import { IMAGE_BY_DEFAULT } from "../../../../../../enums/product.js";
+import { theme } from "../../../../../../theme/index.js";
 import { MdDeleteForever } from "react-icons/md";
+import CasinoEffect from "../../../../../reusable-ui/CasinoEffect.jsx";
 
 function BasketCard({
   imageSource,
@@ -12,12 +13,14 @@ function BasketCard({
   onClick,
   isClickable,
   isSelected,
+  isAdminMode,
 }) {
   return (
     <BasketCardStyled
       onClick={onClick}
       $isClickable={isClickable}
       $isSelected={isSelected}
+      $isAdminMode={isAdminMode}
     >
       <div className="imageSource">
         <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} />
@@ -27,7 +30,7 @@ function BasketCard({
         <div className="price">{price}</div>
       </div>
       <div className="quantity">
-        <div>x {quantity}</div>
+        <CasinoEffect count={`x ${quantity}`} />
       </div>
       <button onClick={onDelete} className="delete-button">
         <MdDeleteForever className="icon" />
@@ -37,17 +40,18 @@ function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
-  padding: ${theme.spacing.xs} 16px;
+  padding: ${theme.spacing.xs} 36px ${theme.spacing.xs} 16px;
   width: 100%;
   min-height: 86px;
   display: flex;
   align-items: center;
-  background: ${theme.colors.white};
+  background-color: ${theme.colors.white};
   box-shadow: ${theme.shadows.subtle};
   box-shadow: -4px 4px 15px 0px #00000033;
   border-radius: ${theme.borderRadius.round};
   position: relative;
   overflow: hidden;
+  transition: background-color 0.15s;
 
   .imageSource {
     width: 86px;
@@ -65,7 +69,7 @@ const BasketCardStyled = styled.div`
     cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "default")};
 
     .title {
-      width: 120px;
+      width: 110px;
       font-size: ${theme.fonts.P3};
       font-weight: ${theme.weights.bold};
       white-space: nowrap;
@@ -75,8 +79,10 @@ const BasketCardStyled = styled.div`
     .price {
       font-size: 15px;
       font-family: ${theme.family.minimalist};
-      color: ${({ $isSelected }) =>
-        $isSelected ? theme.colors.white : theme.colors.primary};
+      color: ${({ $isSelected, $isAdminMode }) =>
+        $isSelected && $isAdminMode
+          ? theme.colors.white
+          : theme.colors.primary};
     }
   }
 
@@ -86,8 +92,8 @@ const BasketCardStyled = styled.div`
     color: ${theme.colors.primary};
     margin-left: auto;
     white-space: nowrap;
-    color: ${({ $isSelected }) =>
-      $isSelected ? theme.colors.white : theme.colors.primary};
+    color: ${({ $isSelected, $isAdminMode }) =>
+      $isSelected && $isAdminMode ? theme.colors.white : theme.colors.primary};
   }
 
   .delete-button {
@@ -127,7 +133,8 @@ const BasketCardStyled = styled.div`
   }
 
   ${({ $isClickable }) => ($isClickable ? styleOnHover : null)}
-  ${({ $isSelected }) => ($isSelected ? styleOnSelected : null)}
+  ${({ $isSelected, $isAdminMode }) =>
+    $isSelected && $isAdminMode ? styleOnSelected : null}
 `;
 
 const styleOnHover = css`

@@ -8,6 +8,8 @@ import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
 import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { menuCardAnimation } from "../../../../../theme/animation";
 
 function Menu() {
   // state
@@ -71,23 +73,25 @@ function Menu() {
   }
 
   return (
-    <MenuStyled>
+    <TransitionGroup component={MenuStyled}>
       {menu.map(({ id, title, imageSource, price }) => (
-        <Card
-          key={id}
-          picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-          label={title}
-          price={price}
-          onDelete={(e) => handleCardDeletion(e, id)}
-          isDeleteButtonVisible={isAdminMode}
-          isLabel={title === "" ? false : true}
-          isAdminMode={isAdminMode}
-          onClick={() => handleCardSelection(id)}
-          isCardSelected={productSelected.id === id}
-          onAddToBasket={(e) => handleAddCardToBasket(e, id)}
-        />
+        <CSSTransition classNames={"card"} timeout={500} key={id} appear={true}>
+          <Card
+            key={id}
+            picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+            label={title}
+            price={price}
+            onDelete={(e) => handleCardDeletion(e, id)}
+            isDeleteButtonVisible={isAdminMode}
+            isLabel={title === "" ? false : true}
+            isAdminMode={isAdminMode}
+            onClick={() => handleCardSelection(id)}
+            isCardSelected={productSelected.id === id}
+            onAddToBasket={(e) => handleAddCardToBasket(e, id)}
+          />
+        </CSSTransition>
       ))}
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
@@ -98,6 +102,8 @@ const MenuStyled = styled.div`
   gap: ${theme.spacing.xl} ${theme.spacing.xxl};
   padding: ${theme.spacing.xl} ${theme.spacing.xxl};
   overflow-y: scroll;
+
+  ${menuCardAnimation}
 `;
 
 export default Menu;
