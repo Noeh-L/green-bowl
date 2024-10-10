@@ -40,7 +40,7 @@ function BasketCard({
 }
 
 const BasketCardStyled = styled.div`
-  padding: ${theme.spacing.xs} 16px;
+  padding: ${theme.spacing.xs} 36px ${theme.spacing.xs} 16px;
   width: 100%;
   min-height: 86px;
   display: flex;
@@ -69,7 +69,7 @@ const BasketCardStyled = styled.div`
     cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "default")};
 
     .title {
-      width: 120px;
+      width: 110px;
       font-size: ${theme.fonts.P3};
       font-weight: ${theme.weights.bold};
       white-space: nowrap;

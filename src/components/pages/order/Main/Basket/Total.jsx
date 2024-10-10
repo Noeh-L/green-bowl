@@ -14,7 +14,7 @@ function Total() {
   return (
     <TotalStyled>
       <span>TOTAL</span>
-      <CasinoEffect count={formatPrice(amountToPay)} />
+      <CasinoEffect count={formatPrice(amountToPay)} className={"totalPrice"} />
     </TotalStyled>
   );
 }
@@ -31,6 +31,10 @@ const TotalStyled = styled.div`
   font-size: 36px;
   text-transform: capitalize;
   color: ${theme.colors.primary};
+
+  .totalPrice {
+    font-weight: ${theme.weights.bold};
+  }
 `;
 
 export default Total;
