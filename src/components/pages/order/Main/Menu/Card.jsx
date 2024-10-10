@@ -5,6 +5,7 @@ import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { deleteButtonAnimation } from "../../../../../theme/animation";
 
 function Card({
   picture,
@@ -136,25 +137,7 @@ const CardStyled = styled.div`
     return $isAdminMode && $isSelected && styleOnSelected;
   }}
 
-  .deleteButton-enter {
-    right: -50px;
-  }
-  .deleteButton-enter-active {
-    right: 15px;
-    transition: 0.5s;
-  }
-  .deleteButton-enter-done {
-    right: 15px;
-    transition: 0.5s;
-  }
-
-  .deleteButton-exit {
-    right: 15px;
-  }
-  .deleteButton-exit-active {
-    right: -50px;
-    transition: 0.5s;
-  }
+  ${deleteButtonAnimation}
 `;
 
 const styleOnHover = css`

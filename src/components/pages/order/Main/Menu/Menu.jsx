@@ -9,6 +9,7 @@ import { focusOnRef } from "../../../../../utils/focusOnRef";
 import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { menuCardAnimation } from "../../../../../theme/animation";
 
 function Menu() {
   // state
@@ -102,45 +103,7 @@ const MenuStyled = styled.div`
   padding: ${theme.spacing.xl} ${theme.spacing.xxl};
   overflow-y: scroll;
 
-  /* MOUNTING OF FIRST INSTANCE */
-  .card-appear {
-    opacity: 0;
-    position: relative;
-    left: -100px;
-  }
-  .card-appear-active {
-    opacity: 1;
-    left: 0;
-    transition: 0.5s;
-  }
-  .card-appear-done {
-    opacity: 1;
-  }
-
-  /* CARD MOUNTING */
-  .card-enter {
-    opacity: 0;
-
-    position: relative;
-    left: -100px;
-  }
-  .card-enter-active {
-    opacity: 1;
-    left: 0;
-    transition: 0.5s;
-  }
-  .card-enter-done {
-    opacity: 1;
-  }
-
-  /* CARD UNMOUNTING */
-  .card-exit {
-    opacity: 1;
-  }
-  .card-exit-active {
-    opacity: 0;
-    transition: 0.5s;
-  }
+  ${menuCardAnimation}
 `;
 
 export default Menu;

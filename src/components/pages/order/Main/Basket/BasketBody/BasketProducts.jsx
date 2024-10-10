@@ -9,6 +9,7 @@ import { formatPrice } from "../../../../../../utils/maths";
 import { getMenuProductAssociated } from "../helper";
 import Loader from "../../Menu/Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { basketCardAnimation } from "../../../../../../theme/animation";
 
 function BasketProducts() {
   // state
@@ -104,35 +105,7 @@ const BasketProductsStyled = styled.div`
     scrollbar-color: initial;
   } */
 
-  .basketCard-appear {
-    transform: translateX(100px);
-    opacity: 0%;
-  }
-  .basketCard-appear-active {
-    transform: translateX(0px);
-    opacity: 100%;
-    transition: 0.5s;
-  }
-
-  .basketCard-enter {
-    transform: translateX(100px);
-    opacity: 0%;
-  }
-  .basketCard-enter-active {
-    transform: translateX(0px);
-    opacity: 100%;
-    transition: 0.5s;
-  }
-
-  .basketCard-exit {
-    transform: translateX(0px);
-    opacity: 100%;
-  }
-  .basketCard-exit-active {
-    transform: translateX(-100px);
-    opacity: 0%;
-    transition: 0.5s;
-  }
+  ${basketCardAnimation}
 `;
 
 export default BasketProducts;

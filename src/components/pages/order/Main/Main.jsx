@@ -6,6 +6,7 @@ import { useOrderContext } from "../../../../context/OrderPageContext";
 import Menu from "./Menu/Menu";
 import Basket from "./Basket/Basket.jsx";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { panelAnimation } from "../../../../theme/animation.js";
 
 function Main() {
   const { isAdminMode } = useOrderContext();
@@ -41,23 +42,7 @@ const MainSyled = styled.div`
     flex: 1;
   }
 
-  .admin-enter {
-    bottom: -100%;
-  }
-  .admin-enter-active {
-    bottom: 0;
-    transition: 0.5s;
-  }
-  .admin-enter-done {
-  }
-
-  .admin-exit {
-    bottom: 0;
-  }
-  .admin-exit-active {
-    bottom: -100%;
-    transition: 0.5s;
-  }
+  ${panelAnimation}
 `;
 
 export default Main;

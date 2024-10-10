@@ -6,6 +6,7 @@ import { getTextInputsConfig } from "./textInputsConfig";
 import { theme } from "../../../../../../theme";
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { imagePreviewAppearAnimation } from "../../../../../../theme/animation";
 
 const Form = React.forwardRef(
   ({ onSubmit, product, onChange, onFocus, children, onBlur }, ref) => {
@@ -66,35 +67,7 @@ const FormStyled = styled.form`
     gap: ${theme.spacing.md};
   }
 
-  .imgPreview-appear {
-    opacity: 0;
-  }
-  .imgPreview-appear-active {
-    opacity: 1;
-    transition: 0.5s;
-  }
-  .imgPreview-appear-done {
-    opacity: 1;
-  }
-
-  .imgPreview-enter {
-    opacity: 0;
-  }
-  .imgPreview-enter-active {
-    opacity: 1;
-    transition: 0.5s;
-  }
-  .imgPreview-enter-done {
-    opacity: 1;
-  }
-
-  .imgPreview-exit {
-    opacity: 1;
-  }
-  .imgPreview-exit-active {
-    opacity: 0;
-    transition: 0.5s;
-  }
+  ${imagePreviewAppearAnimation}
 `;
 
 export default Form;
