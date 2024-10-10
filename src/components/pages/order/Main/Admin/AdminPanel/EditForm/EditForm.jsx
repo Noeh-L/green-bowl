@@ -58,7 +58,7 @@ function EditForm() {
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      ref={editProductTitleRef}
+      ref={editProductTitleRef} // @TO-DO: it causes animation bug when a card is selected and panel is mounting
     >
       {isEditOccured ? <UpdateMessage /> : <InfoEditMessage />}
     </Form>
