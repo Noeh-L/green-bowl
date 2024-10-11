@@ -14,7 +14,7 @@ export const getUser = async (userId) => {
   }
 };
 
-export const createUser = (userId) => {
+export const createUser = async (userId) => {
   const docRef = doc(db, "users", userId);
 
   const newDoc = {
@@ -23,7 +23,9 @@ export const createUser = (userId) => {
     basket: [],
   };
 
-  setDoc(docRef, newDoc);
+  await setDoc(docRef, newDoc);
+
+  return newDoc;
 };
 
 export const updateUserData = async (userId, dataUpdated) => {
@@ -48,15 +50,15 @@ export const authenticateUser = async (userId) => {
 
     // If new user
     if (!existingUser) {
-      await createUser(userId);
       console.log(`Welcome ${userId}!`);
       setLocalStorage("userData", initialLocalStorageData);
-    }
+      return await createUser(userId);
+    } else {
+      // If user already exists
 
-    // If user already exists
-    if (existingUser) {
       console.log(`Welcome back ${existingUser.username}!`);
       setLocalStorage("userData", existingUser);
+      return existingUser;
     }
   } catch (error) {
     console.log("🔒 Error trying to authenticate: ", error);

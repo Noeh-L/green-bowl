@@ -21,10 +21,10 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await authenticateUser(usernameInputed);
+    const userReceived = await authenticateUser(usernameInputed);
 
     setUsernameInputed("");
-    navigate(`/order/${usernameInputed}`);
+    navigate(`/order/${userReceived.username}`);
     document.title = `Crazee Burger | ${usernameInputed}`;
   };
 
