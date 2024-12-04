@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import ImagePreview from "./ImagePreview";
-import { getTextInputsConfig } from "./textInputsConfig";
+import { getInputsConfig } from "./inputsConfig";
 import { theme } from "../../../../../../theme";
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -11,7 +11,7 @@ import SelectInput from "../../../../../reusable-ui/SelectInput";
 
 const Form = React.forwardRef(
   ({ onSubmit, product, onChange, onFocus, children, onBlur }, ref) => {
-    const textInputs = getTextInputsConfig(product);
+    const inputs = getInputsConfig(product);
 
     return (
       <TransitionGroup
@@ -28,27 +28,27 @@ const Form = React.forwardRef(
           <ImagePreview product={product} />
         </CSSTransition>
 
-        <div className="textInputs-wrapper">
-          {textInputs.map((textInput) =>
-            textInput.options ? (
+        <div className="inputs-wrapper">
+          {inputs.map((input) =>
+            input.options ? (
               <SelectInput
-                key={textInput.id}
-                Icon={textInput.Icon}
-                className={textInput.className}
-                options={textInput.options}
+                key={input.id}
+                Icon={input.Icon}
+                className={input.className}
+                options={input.options}
               />
             ) : (
               <TextInput
-                key={textInput.id}
-                value={textInput.value}
-                name={textInput.name}
+                key={input.id}
+                value={input.value}
+                name={input.name}
                 onChange={onChange}
                 onFocus={onFocus}
-                Icon={textInput.Icon}
-                placeholder={textInput.placeholder}
-                className={`text-inputs ${textInput.className ? textInput.className : ""}`}
+                Icon={input.Icon}
+                placeholder={input.placeholder}
+                className={`text-inputs ${input.className ? input.className : ""}`}
                 version="normal"
-                ref={textInput.name === "title" ? ref : null}
+                ref={input.name === "title" ? ref : null}
               />
             ),
           )}
@@ -68,7 +68,7 @@ const FormStyled = styled.form`
   grid-row-gap: ${theme.spacing.sm};
   grid-column-gap: ${theme.spacing.md};
 
-  .textInputs-wrapper {
+  .inputs-wrapper {
     grid-area: 1 / 2 / 2 / 3;
     display: grid;
     grid-template-columns: repeat(3, 1fr);

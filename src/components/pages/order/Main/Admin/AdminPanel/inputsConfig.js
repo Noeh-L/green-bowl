@@ -4,7 +4,7 @@ import { FiPackage } from "react-icons/fi";
 import { GoMegaphone } from "react-icons/go";
 import { MdOutlineEuro } from "react-icons/md";
 
-export const getTextInputsConfig = (newProduct) => {
+export const getInputsConfig = (newProduct) => {
   return [
     {
       id: "0",
