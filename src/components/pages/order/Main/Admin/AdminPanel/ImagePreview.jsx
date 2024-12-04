@@ -15,7 +15,7 @@ function ImagePreview({ product }) {
 
 const ImagePreviewStyled = styled.div`
   grid-column: 1 / 2;
-  grid-row: 1 / 4;
+  grid-row: span 1;
 
   display: flex;
   align-items: center;
