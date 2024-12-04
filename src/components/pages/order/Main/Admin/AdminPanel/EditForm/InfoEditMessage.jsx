@@ -12,10 +12,9 @@ function InfoEditMessage() {
 
 const InfoEditMessageStlyled = styled.div`
   grid-column: 2 / 5;
-  display: flex;
+  display: inline-block;
   align-items: center;
   color: ${theme.colors.primary};
-  white-space: nowrap;
 
   .on-live {
     text-decoration: underline;
