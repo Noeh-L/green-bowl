@@ -5,7 +5,10 @@ import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { deleteButtonAnimation } from "../../../../../theme/animation";
+import {
+  deleteButtonAnimation,
+  outOfStockAnimation,
+} from "../../../../../theme/animation";
 
 function Card({
   picture,
@@ -18,6 +21,7 @@ function Card({
   isCardSelected,
   onClick,
   onAddToBasket,
+  isAvailable,
 }) {
   // render
   return (
@@ -25,6 +29,7 @@ function Card({
       component={CardStyled}
       $isAdminMode={isAdminMode}
       $isSelected={isCardSelected}
+      $isAvailable={isAvailable}
       onClick={onClick}
     >
       {isDeleteButtonVisible && (
@@ -49,6 +54,14 @@ function Card({
           />
         </div>
       </div>
+
+      {!isAvailable && (
+        <CSSTransition classNames={"outOfStock"} timeout={500}>
+          <div className="outOfStockLogo">
+            <img src="/assets/stock-epuise.png" alt="Rupture de stock" />
+          </div>
+        </CSSTransition>
+      )}
     </TransitionGroup>
   );
 }
@@ -65,7 +78,6 @@ const CardStyled = styled.div`
   box-shadow: ${theme.shadows.medium};
   transition: all ease 0.15s;
   position: relative;
-  overflow: hidden;
 
   .picture {
     width: 200px;
@@ -132,12 +144,28 @@ const CardStyled = styled.div`
     }
   }
 
+  .outOfStockLogo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
   ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
   ${({ $isAdminMode, $isSelected }) => {
     return $isAdminMode && $isSelected && styleOnSelected;
   }}
+  ${({ $isAvailable }) => !$isAvailable && styleOutOfStock}
 
   ${deleteButtonAnimation}
+  ${outOfStockAnimation}
 `;
 
 const styleOnHover = css`
@@ -188,6 +216,10 @@ const styleOnSelected = css`
       color: ${theme.colors.white};
     }
   }
+`;
+
+const styleOutOfStock = css`
+  background: #db9f9f;
 `;
 
 export default Card;

@@ -86,23 +86,27 @@ export const basketCardAnimation = css`
 
 export const deleteButtonAnimation = css`
   .deleteButton-enter {
-    right: -50px;
+    right: 0px;
+    opacity: 0;
   }
   .deleteButton-enter-active {
     right: 15px;
-    transition: 0.5s;
+    opacity: 1;
+    transition: 0.3s;
   }
   .deleteButton-enter-done {
     right: 15px;
-    transition: 0.5s;
+    opacity: 1;
+    transition: 0.3s;
   }
 
   .deleteButton-exit {
     right: 15px;
   }
   .deleteButton-exit-active {
-    right: -50px;
-    transition: 0.5s;
+    right: 0px;
+    opacity: 0;
+    transition: 0.3s;
   }
 `;
 
@@ -157,7 +161,7 @@ export const casinoEffectAnimation = css`
     transform: translateY(0%);
     transition: 0.5s;
   }
-  .count-animated-enter-active {
+  .count-animated-enter-done {
   }
 
   /* UNMOUNTING */
@@ -169,6 +173,29 @@ export const casinoEffectAnimation = css`
   }
   .count-animated-exit-active {
     transform: translateY(-100%);
+    transition: 0.5s;
+  }
+`;
+
+export const outOfStockAnimation = css`
+  /* MOUNTING */
+  .outOfStock-enter {
+    transform: translate(-50%, -100%);
+  }
+  .outOfStock-enter-active {
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+  }
+  .outOfStock-enter-done {
+  }
+
+  /* UNMOUNTING */
+  .outOfStock-exit {
+    transform: translate(-50%, -50%);
+  }
+  .outOfStock-exit-active {
+    transform: translate(-50%, -100%);
+    opacity: 0;
     transition: 0.5s;
   }
 `;

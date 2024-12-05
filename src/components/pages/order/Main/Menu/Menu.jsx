@@ -74,7 +74,7 @@ function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price }) => (
+      {menu.map(({ id, title, imageSource, price, isAvailable }) => (
         <CSSTransition classNames={"card"} timeout={500} key={id} appear={true}>
           <Card
             key={id}
@@ -88,6 +88,7 @@ function Menu() {
             onClick={() => handleCardSelection(id)}
             isCardSelected={productSelected.id === id}
             onAddToBasket={(e) => handleAddCardToBasket(e, id)}
+            isAvailable={isAvailable}
           />
         </CSSTransition>
       ))}
