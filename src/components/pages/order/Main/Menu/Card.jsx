@@ -148,6 +148,7 @@ const CardStyled = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
+    z-index: 1;
     transform: translate(-50%, -50%);
     width: 80%;
 
@@ -161,8 +162,8 @@ const CardStyled = styled.div`
   ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
   ${({ $isAdminMode, $isSelected }) => {
     return $isAdminMode && $isSelected && styleOnSelected;
-  }}
-  ${({ $isAvailable }) => !$isAvailable && styleOutOfStock}
+  }} 
+  ${({ $isAvailable }) => !$isAvailable && styleOnOutOfStock}
 
   ${deleteButtonAnimation}
   ${outOfStockAnimation}
@@ -218,8 +219,14 @@ const styleOnSelected = css`
   }
 `;
 
-const styleOutOfStock = css`
-  background: #db9f9f;
+const styleOnOutOfStock = css`
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255 255 255 / 0.7);
+    border-radius: ${theme.borderRadius.extraRound};
+  }
 `;
 
 export default Card;
