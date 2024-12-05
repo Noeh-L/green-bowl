@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-function SelectInput({ Icon, className, options }) {
+function SelectInput({ Icon, className, options, name, onChange, value }) {
   return (
     <SelectInputStyled className={className}>
       {Icon && <Icon className="icon" />}
-      <select>
+      <select name={name} onChange={onChange} value={value}>
         {options.map((option) => (
           <option value={option.value} key={option.value}>
             {option.label}
@@ -16,7 +16,7 @@ function SelectInput({ Icon, className, options }) {
   );
 }
 
-const SelectInputStyled = styled.div`
+const SelectInputStyled = styled.label`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.sm};

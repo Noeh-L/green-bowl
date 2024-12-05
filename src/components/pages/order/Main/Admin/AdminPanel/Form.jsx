@@ -35,6 +35,9 @@ const Form = React.forwardRef(
                 key={input.id}
                 Icon={input.Icon}
                 className={input.className}
+                value={input.value}
+                name={input.name}
+                onChange={onChange}
                 options={input.options}
               />
             ) : (

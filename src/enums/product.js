@@ -3,6 +3,8 @@ export const EMPTY_PRODUCT = Object.freeze({
   title: "",
   imageSource: "",
   price: 0,
+  isAvailable: true,
+  isAdvertised: false,
 });
 
 export const IMAGE_BY_DEFAULT = "/assets/coming-soon.png";

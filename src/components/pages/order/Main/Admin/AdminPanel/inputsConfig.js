@@ -31,24 +31,24 @@ export const getInputsConfig = (newProduct) => {
     },
     {
       id: "3",
-      name: "available",
+      name: "isAvailable",
       value: newProduct.isAvailable,
       Icon: FiPackage,
       className: "available isCompacted",
       options: [
-        { value: "available", label: "En stock" },
-        { value: "unavailable", label: "En rupture" },
+        { id: "1", value: true, label: "En stock" },
+        { id: "2", value: false, label: "En rupture" },
       ],
     },
     {
       id: "4",
-      name: "advertising",
+      name: "isAdvertised",
       value: newProduct.isAdvertised,
       Icon: GoMegaphone,
       className: "advertising isCompacted",
       options: [
-        { id: "1", value: "advertised", label: "Sans pub" },
-        { id: "2", value: "unadvertised", label: "Avec pub" },
+        { id: "1", value: false, label: "Sans pub" },
+        { id: "2", value: true, label: "Avec pub" },
       ],
     },
   ];
