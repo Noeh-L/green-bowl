@@ -3,6 +3,7 @@ import InfoEditMessage from "./InfoEditMessage";
 import Form from "../Form";
 import { useState } from "react";
 import UpdateMessage from "./UpdateMessage";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 
 function EditForm() {
   // state
@@ -13,17 +14,19 @@ function EditForm() {
     editProductTitleRef,
   } = useOrderContext();
 
-  const [prevProductData, setPrevProductData] = useState({
-    title: "",
-    imageSource: "",
-    price: "",
-  });
+  const [prevProductData, setPrevProductData] = useState(EMPTY_PRODUCT);
   const [isEditOccured, setIsEditOccured] = useState(false);
 
   // event handlers (gestionnaire d'évenement)
   const handleChange = (e) => {
     const { value, name } = e.target;
-    const productBeingUpdated = { ...productSelected, [name]: value };
+
+    const booleanInputs = ["isAvailable", "isAdvertised"];
+
+    const productBeingUpdated = {
+      ...productSelected,
+      [name]: booleanInputs.includes(name) ? value === "true" : value,
+    };
 
     setProductSelected(productBeingUpdated); // update the form
     handleEditProduct(productBeingUpdated); // update the menu
