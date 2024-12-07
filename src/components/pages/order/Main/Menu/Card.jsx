@@ -51,6 +51,7 @@ function Card({
             label={"Ajouter"}
             className="addButton"
             onClick={onAddToBasket}
+            isClickable={isAvailable}
           />
         </div>
       </div>
