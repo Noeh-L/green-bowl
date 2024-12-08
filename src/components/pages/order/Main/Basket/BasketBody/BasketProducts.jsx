@@ -86,7 +86,7 @@ function BasketProducts() {
               isClickable={isAdminMode}
               isSelected={product.id === productSelected.id}
               isAdminMode={isAdminMode}
-              isProductAvailable={correspondingProductInMenu.isAvailable}
+              isProductAdvertised={correspondingProductInMenu.isAdvertised}
             />
           </CSSTransition>
         );

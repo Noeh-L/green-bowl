@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function Sticker({ label = "new", className }) {
-  return <StickerStyled className={className}>{label}</StickerStyled>;
+export default function Sticker({ label = "new", className, scale = "1" }) {
+  return (
+    <StickerStyled className={className} $scale={scale}>
+      {label}
+    </StickerStyled>
+  );
 }
 
 const StickerStyled = styled.span`
@@ -18,4 +22,5 @@ const StickerStyled = styled.span`
   border: none;
   color: white;
   text-transform: uppercase;
+  ${({ $scale }) => `transform: scale(${$scale})`};
 `;

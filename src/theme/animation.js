@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import { css, keyframes } from "styled-components";
 
 export const panelAnimation = css`
   .admin-enter {
@@ -223,4 +223,12 @@ export const ribbonAnimation = css`
     opacity: 0;
     transition: 0.5s;
   }
+`;
+
+export const badgeAnimation = keyframes`
+from {
+  opacity: 0
+} to {
+  opacity: 1
+}
 `;
