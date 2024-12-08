@@ -2,6 +2,7 @@ import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 import { fakeMenu } from "../fakeData/fakeMenu";
 import { setLocalStorage } from "../utils/windows";
+import { displayToast } from "../utils/displayToast";
 
 export const getUser = async (userId) => {
   const docRef = doc(db, "users", userId); // chemin de l'endroit du document
@@ -50,13 +51,14 @@ export const authenticateUser = async (userId) => {
 
     // If new user
     if (!existingUser) {
-      console.log(`Welcome ${userId}!`);
+      displayToast("", `🤗 Welcome ${userId} !`, 3000);
       setLocalStorage("userData", initialLocalStorageData);
       return await createUser(userId);
     } else {
       // If user already exists
 
-      console.log(`Welcome back ${existingUser.username}!`);
+      displayToast("", `🤙 Welcome back ${existingUser.username} !`, 3000);
+
       setLocalStorage("userData", existingUser);
       return existingUser;
     }

@@ -4,7 +4,6 @@ import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
 import ToggleButton from "../../../reusable-ui/ToggleButton";
-import ToastAdmin from "../../../reusable-ui/ToastAdmin";
 import { useOrderContext } from "../../../../context/OrderPageContext";
 import { useParams } from "react-router-dom";
 import { focusOnRef } from "../../../../utils/focusOnRef";
@@ -35,7 +34,6 @@ export default function NavbarRightSide() {
         labelIfUnchecked="Activer le mode admin"
       />
       <UserMenu username={username} />
-      <ToastAdmin />
     </NavbarRightSideStyled>
   );
 }
