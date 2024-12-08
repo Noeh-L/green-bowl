@@ -8,7 +8,9 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {
   deleteButtonAnimation,
   outOfStockAnimation,
+  ribbonAnimation,
 } from "../../../../../theme/animation";
+import Ribbon from "../../../../reusable-ui/Ribbon.jsx";
 
 function Card({
   picture,
@@ -22,6 +24,7 @@ function Card({
   onClick,
   onAddToBasket,
   isAvailable,
+  isAdvertised,
 }) {
   // render
   return (
@@ -61,6 +64,12 @@ function Card({
           <div className="outOfStockLogo">
             <img src="/assets/stock-epuise.png" alt="Rupture de stock" />
           </div>
+        </CSSTransition>
+      )}
+
+      {isAdvertised && (
+        <CSSTransition classNames={"ribbon"} timeout={500}>
+          <Ribbon label="Nouveau" className={"advertisingRibbon"} />
         </CSSTransition>
       )}
     </TransitionGroup>
@@ -133,6 +142,7 @@ const CardStyled = styled.div`
     position: absolute;
     top: 15px;
     right: 15px;
+    z-index: 1;
     font-size: 30px;
     color: ${theme.colors.primary};
     cursor: pointer;
@@ -160,6 +170,13 @@ const CardStyled = styled.div`
     }
   }
 
+  .advertisingRibbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
   ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
   ${({ $isAdminMode, $isSelected }) => {
     return $isAdminMode && $isSelected && styleOnSelected;
@@ -168,6 +185,7 @@ const CardStyled = styled.div`
 
   ${deleteButtonAnimation}
   ${outOfStockAnimation}
+  ${ribbonAnimation}
 `;
 
 const styleOnHover = css`

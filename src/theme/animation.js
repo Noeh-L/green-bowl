@@ -199,3 +199,28 @@ export const outOfStockAnimation = css`
     transition: 0.5s;
   }
 `;
+
+export const ribbonAnimation = css`
+  /* MOUNTING */
+  .ribbon-enter {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  .ribbon-enter-active {
+    transform: scale(1);
+    opacity: 1;
+    transition: 0.5s;
+  }
+  .ribbon-enter-done {
+  }
+
+  /* UNMOUNTING */
+  .ribbon-exit {
+    transform: scale(1);
+  }
+  .ribbon-exit-active {
+    transform: scale(1.2);
+    opacity: 0;
+    transition: 0.5s;
+  }
+`;

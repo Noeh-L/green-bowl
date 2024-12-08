@@ -91,28 +91,36 @@ function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(({ id, title, imageSource, price, isAvailable }) => (
-        <CSSTransition classNames={"card"} timeout={500} key={id} appear={true}>
-          <Card
+      {menu.map(
+        ({ id, title, imageSource, price, isAvailable, isAdvertised }) => (
+          <CSSTransition
+            classNames={"card"}
+            timeout={500}
             key={id}
-            picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-            label={title}
-            price={price}
-            onDelete={(e) => handleCardDeletion(e, id)}
-            isDeleteButtonVisible={isAdminMode}
-            isLabel={title === "" ? false : true}
-            isAdminMode={isAdminMode}
-            onClick={() => handleCardSelection(id)}
-            isCardSelected={productSelected.id === id}
-            onAddToBasket={(e) =>
-              isAvailable
-                ? handleAddCardToBasket(e, id)
-                : handleUnavailableProduct(e)
-            }
-            isAvailable={isAvailable}
-          />
-        </CSSTransition>
-      ))}
+            appear={true}
+          >
+            <Card
+              key={id}
+              picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+              label={title}
+              price={price}
+              onDelete={(e) => handleCardDeletion(e, id)}
+              isDeleteButtonVisible={isAdminMode}
+              isLabel={title === "" ? false : true}
+              isAdminMode={isAdminMode}
+              onClick={() => handleCardSelection(id)}
+              isCardSelected={productSelected.id === id}
+              onAddToBasket={(e) =>
+                isAvailable
+                  ? handleAddCardToBasket(e, id)
+                  : handleUnavailableProduct(e)
+              }
+              isAvailable={isAvailable}
+              isAdvertised={isAdvertised}
+            />
+          </CSSTransition>
+        ),
+      )}
     </TransitionGroup>
   );
 }
