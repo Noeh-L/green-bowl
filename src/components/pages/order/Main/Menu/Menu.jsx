@@ -10,7 +10,7 @@ import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { menuCardAnimation } from "../../../../../theme/animation";
-import { Bounce, toast } from "react-toastify";
+import { displayToast } from "../../../../../utils/displayToast";
 
 function Menu() {
   // state
@@ -68,18 +68,7 @@ function Menu() {
 
   const handleUnavailableProduct = (e) => {
     e.stopPropagation();
-
-    toast.warn("Produit indisponible 😞", {
-      position: "bottom-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      transition: Bounce,
-    });
+    displayToast("warn", "Produit indisponible 😞", 2000);
   };
 
   // render

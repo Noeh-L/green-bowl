@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { theme } from "../../../../theme";
-import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
@@ -9,6 +8,7 @@ import ToastAdmin from "../../../reusable-ui/ToastAdmin";
 import { useOrderContext } from "../../../../context/OrderPageContext";
 import { useParams } from "react-router-dom";
 import { focusOnRef } from "../../../../utils/focusOnRef";
+import { displayToast } from "../../../../utils/displayToast";
 
 export default function NavbarRightSide() {
   // STATE
@@ -19,17 +19,7 @@ export default function NavbarRightSide() {
   // BEHAVIOR
   const displayToastNotification = async () => {
     if (!isAdminMode) {
-      toast.info("Mode admin activé", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-      });
+      displayToast("info", "Mode admin activé", 3000);
     }
     await setIsAdminMode(!isAdminMode);
     focusOnRef(editProductTitleRef);
