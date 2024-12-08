@@ -8,7 +8,7 @@ function Button({
   className,
   onClick,
   version = "primary",
-  isClickable,
+  isClickable = true,
 }) {
   return (
     <ButtonStyled
