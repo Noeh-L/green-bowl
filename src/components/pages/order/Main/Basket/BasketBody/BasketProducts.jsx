@@ -47,6 +47,16 @@ function BasketProducts() {
     focusOnRef(editProductTitleRef);
   };
 
+  const displayPrice = (product) => {
+    if (isNaN(product.price)) {
+      return "NaN €";
+    } else if (!product.isAvailable) {
+      return "Non disponible";
+    } else {
+      return formatPrice(product.price);
+    }
+  };
+
   // render
   if (isLoading) return <Loader />;
 
@@ -69,17 +79,14 @@ function BasketProducts() {
             <BasketCard
               imageSource={correspondingProductInMenu.imageSource}
               title={correspondingProductInMenu.title}
-              price={
-                isNaN(correspondingProductInMenu.price)
-                  ? "NaN €"
-                  : formatPrice(correspondingProductInMenu.price)
-              }
+              price={displayPrice(correspondingProductInMenu)}
               quantity={product.quantity}
               onDelete={(e) => handleCardBasketDeletion(e, product.id)}
               onClick={() => handleClickOnBasketCard(product.id)}
               isClickable={isAdminMode}
               isSelected={product.id === productSelected.id}
               isAdminMode={isAdminMode}
+              isProductAvailable={correspondingProductInMenu.isAvailable}
             />
           </CSSTransition>
         );
