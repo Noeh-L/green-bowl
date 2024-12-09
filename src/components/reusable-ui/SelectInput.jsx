@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-function SelectInput({ Icon, className, options, name, onChange, value }) {
+function SelectInput({
+  Icon,
+  className,
+  options,
+  name,
+  onChange,
+  onFocus,
+  value,
+}) {
   return (
     <SelectInputStyled className={className}>
       {Icon && <Icon className="icon" />}
-      <select name={name} onChange={onChange} value={value}>
+      <select name={name} onChange={onChange} onFocus={onFocus} value={value}>
         {options.map((option) => (
           <option value={option.value} key={option.value}>
             {option.label}

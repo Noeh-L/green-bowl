@@ -38,6 +38,7 @@ const Form = React.forwardRef(
                 value={input.value}
                 name={input.name}
                 onChange={onChange}
+                onFocus={onFocus}
                 options={input.options}
               />
             ) : (
