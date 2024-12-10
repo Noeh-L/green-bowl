@@ -2,10 +2,13 @@ import { css, keyframes } from "styled-components";
 
 export const panelAnimation = css`
   .admin-enter {
-    bottom: -100%;
+    /* bottom: -100%; */ // This line causes the collpasing bug when a card is selected.
+    bottom: -150px;
+    opacity: 0;
   }
   .admin-enter-active {
     bottom: 0;
+    opacity: 1;
     transition: 0.5s;
   }
   .admin-enter-done {
