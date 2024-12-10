@@ -18,6 +18,7 @@ function Admin() {
 const AdminStyled = styled.div`
   position: absolute;
   bottom: 0;
+  z-index: 2;
   width: 100%;
   flex-direction: column;
   filter: drop-shadow(0 0 10px rgba(0 0 0 / 0.4));

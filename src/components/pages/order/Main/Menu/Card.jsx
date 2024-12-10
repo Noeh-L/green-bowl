@@ -5,7 +5,13 @@ import { theme } from "../../../../../theme";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { deleteButtonAnimation } from "../../../../../theme/animation";
+import {
+  deleteButtonAnimation,
+  outOfStockAnimation,
+  ribbonAnimation,
+} from "../../../../../theme/animation";
+import Ribbon from "../../../../reusable-ui/Ribbon.jsx";
+import { IMAGE_NO_STOCK } from "../../../../../enums/product.js";
 
 function Card({
   picture,
@@ -18,6 +24,8 @@ function Card({
   isCardSelected,
   onClick,
   onAddToBasket,
+  isAvailable,
+  isAdvertised,
 }) {
   // render
   return (
@@ -25,6 +33,7 @@ function Card({
       component={CardStyled}
       $isAdminMode={isAdminMode}
       $isSelected={isCardSelected}
+      $isAvailable={isAvailable}
       onClick={onClick}
     >
       {isDeleteButtonVisible && (
@@ -46,9 +55,24 @@ function Card({
             label={"Ajouter"}
             className="addButton"
             onClick={onAddToBasket}
+            isClickable={isAvailable}
           />
         </div>
       </div>
+
+      {!isAvailable && (
+        <CSSTransition classNames={"outOfStock"} timeout={500}>
+          <div className="outOfStockLogo">
+            <img src={IMAGE_NO_STOCK} alt="Rupture de stock" />
+          </div>
+        </CSSTransition>
+      )}
+
+      {isAdvertised && (
+        <CSSTransition classNames={"ribbon"} timeout={500}>
+          <Ribbon label="Nouveau" className={"advertisingRibbon"} />
+        </CSSTransition>
+      )}
     </TransitionGroup>
   );
 }
@@ -65,7 +89,6 @@ const CardStyled = styled.div`
   box-shadow: ${theme.shadows.medium};
   transition: all ease 0.15s;
   position: relative;
-  overflow: hidden;
 
   .picture {
     width: 200px;
@@ -120,6 +143,7 @@ const CardStyled = styled.div`
     position: absolute;
     top: 15px;
     right: 15px;
+    z-index: 1;
     font-size: 30px;
     color: ${theme.colors.primary};
     cursor: pointer;
@@ -132,12 +156,37 @@ const CardStyled = styled.div`
     }
   }
 
+  .outOfStockLogo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    width: 80%;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .advertisingRibbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
   ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
   ${({ $isAdminMode, $isSelected }) => {
     return $isAdminMode && $isSelected && styleOnSelected;
-  }}
+  }} 
+  ${({ $isAvailable }) => !$isAvailable && styleOnOutOfStock}
 
   ${deleteButtonAnimation}
+  ${outOfStockAnimation}
+  ${ribbonAnimation}
 `;
 
 const styleOnHover = css`
@@ -187,6 +236,16 @@ const styleOnSelected = css`
     &:active {
       color: ${theme.colors.white};
     }
+  }
+`;
+
+const styleOnOutOfStock = css`
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255 255 255 / 0.7);
+    border-radius: ${theme.borderRadius.extraRound};
   }
 `;
 

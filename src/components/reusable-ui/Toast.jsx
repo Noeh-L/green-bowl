@@ -2,11 +2,11 @@ import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-function ToastAdmin() {
+function Toast() {
   return <ToastContainerStyled bodyClassName="body-toast" />;
 }
 
-export default ToastAdmin;
+export default Toast;
 
 const ToastContainerStyled = styled(ToastContainer)`
   /* toast container */

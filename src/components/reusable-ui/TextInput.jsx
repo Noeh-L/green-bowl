@@ -38,10 +38,11 @@ const TextInputStyled = styled.label`
   align-items: center;
   gap: ${theme.spacing.sm};
   border-radius: ${theme.borderRadius.round};
+  transition: outline ease 0.05s;
 
   & .icon {
-    height: 15px;
-    color: ${theme.colors.greyBlue};
+    font-size: ${theme.fonts.P1};
+    min-width: 1rem;
   }
 
   input {
@@ -57,6 +58,14 @@ const TextInputStyled = styled.label`
     &::placeholder {
       color: ${theme.colors.greyMedium};
     }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:focus-within {
+    outline: 2px solid ${theme.colors.primary};
+    outline-offset: 3px;
   }
 
   ${({ $version }) => extraStyle[$version]}
@@ -64,7 +73,7 @@ const TextInputStyled = styled.label`
 
 const extraStyleNormal = css`
   background: ${theme.colors.background_white};
-  padding: ${theme.spacing.xs} ${theme.spacing.md};
+  padding: ${theme.spacing.xs} 16px;
 
   .icon {
     color: ${theme.colors.greyBlue};

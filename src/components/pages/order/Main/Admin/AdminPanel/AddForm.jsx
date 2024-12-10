@@ -33,7 +33,13 @@ function AddForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewProduct({ ...newProduct, [name]: value });
+
+    const booleanInputs = ["isAvailable", "isAdvertised"];
+
+    setNewProduct({
+      ...newProduct,
+      [name]: booleanInputs.includes(name) ? value === "true" : value,
+    });
   };
 
   // RENDER

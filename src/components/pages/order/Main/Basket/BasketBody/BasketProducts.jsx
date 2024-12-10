@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import BasketCard from "./BasketCard";
 import { useOrderContext } from "../../../../../../context/OrderPageContext";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import {
+  EMPTY_PRODUCT,
+  UNAVAILABLE_MSG,
+} from "../../../../../../enums/product";
 import { focusOnRef } from "../../../../../../utils/focusOnRef";
 import { findObjectById } from "../../../../../../utils/array";
 import { formatPrice } from "../../../../../../utils/maths";
@@ -47,6 +50,16 @@ function BasketProducts() {
     focusOnRef(editProductTitleRef);
   };
 
+  const displayPrice = (product) => {
+    if (isNaN(product.price)) {
+      return "NaN €";
+    } else if (!product.isAvailable) {
+      return UNAVAILABLE_MSG;
+    } else {
+      return formatPrice(product.price);
+    }
+  };
+
   // render
   if (isLoading) return <Loader />;
 
@@ -69,17 +82,14 @@ function BasketProducts() {
             <BasketCard
               imageSource={correspondingProductInMenu.imageSource}
               title={correspondingProductInMenu.title}
-              price={
-                isNaN(correspondingProductInMenu.price)
-                  ? "NaN €"
-                  : formatPrice(correspondingProductInMenu.price)
-              }
+              price={displayPrice(correspondingProductInMenu)}
               quantity={product.quantity}
               onDelete={(e) => handleCardBasketDeletion(e, product.id)}
               onClick={() => handleClickOnBasketCard(product.id)}
               isClickable={isAdminMode}
               isSelected={product.id === productSelected.id}
               isAdminMode={isAdminMode}
+              isProductAdvertised={correspondingProductInMenu.isAdvertised}
             />
           </CSSTransition>
         );

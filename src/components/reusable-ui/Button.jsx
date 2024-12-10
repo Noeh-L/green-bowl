@@ -2,9 +2,21 @@ import { theme } from "../../theme";
 import styled, { css } from "styled-components";
 
 // eslint-disable-next-line react/prop-types
-function Button({ label, Icon, className, onClick, version = "primary" }) {
+function Button({
+  label,
+  Icon,
+  className,
+  onClick,
+  version = "primary",
+  isClickable = true,
+}) {
   return (
-    <ButtonStyled className={className} onClick={onClick} $version={version}>
+    <ButtonStyled
+      className={className}
+      onClick={onClick}
+      $version={version}
+      $isClickable={isClickable}
+    >
       {label}
       {Icon && <Icon className="icon" />}
     </ButtonStyled>
@@ -30,7 +42,10 @@ const extraStylePrimary = css`
   font-weight: ${theme.weights.semiBold};
   font-family: "Open sans", sans-serif;
 
-  cursor: pointer;
+  ${({ $isClickable }) =>
+    $isClickable
+      ? "cursor: pointer;"
+      : "cursor: not-allowed; z-index: 1; opacity: 0.5; "};
   transition: background 0.15s ease-in-out;
 
   &:hover {

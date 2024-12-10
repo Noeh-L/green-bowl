@@ -3,6 +3,8 @@ import { IMAGE_BY_DEFAULT } from "../../../../../../enums/product.js";
 import { theme } from "../../../../../../theme/index.js";
 import { MdDeleteForever } from "react-icons/md";
 import CasinoEffect from "../../../../../reusable-ui/CasinoEffect.jsx";
+import Sticker from "../../../../../reusable-ui/Sticker.jsx";
+import { badgeAnimation } from "../../../../../../theme/animation.js";
 
 function BasketCard({
   imageSource,
@@ -14,6 +16,7 @@ function BasketCard({
   isClickable,
   isSelected,
   isAdminMode,
+  isProductAdvertised,
 }) {
   return (
     <BasketCardStyled
@@ -24,10 +27,13 @@ function BasketCard({
     >
       <div className="imageSource">
         <img src={imageSource ? imageSource : IMAGE_BY_DEFAULT} />
+        {isProductAdvertised && (
+          <Sticker className={"advertisingSticker"} scale={"1.5"} />
+        )}
       </div>
       <div className="title-price">
         <div className="title">{title ? title : <span>&nbsp;</span>}</div>
-        <div className="price">{price}</div>
+        <CasinoEffect count={price} className={"price"} />
       </div>
       <div className="quantity">
         <CasinoEffect count={`x ${quantity}`} />
@@ -57,11 +63,19 @@ const BasketCardStyled = styled.div`
     width: 86px;
     height: 70px;
     margin-right: ${theme.spacing.md};
+    position: relative;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+    }
+
+    .advertisingSticker {
+      position: absolute;
+      bottom: 20%;
+      right: 15%;
+      animation: ${badgeAnimation} ease 0.3s;
     }
   }
 
@@ -83,6 +97,7 @@ const BasketCardStyled = styled.div`
         $isSelected && $isAdminMode
           ? theme.colors.white
           : theme.colors.primary};
+      left: 0;
     }
   }
 
