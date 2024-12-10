@@ -11,6 +11,7 @@ import {
   ribbonAnimation,
 } from "../../../../../theme/animation";
 import Ribbon from "../../../../reusable-ui/Ribbon.jsx";
+import { IMAGE_NO_STOCK } from "../../../../../enums/product.js";
 
 function Card({
   picture,
@@ -62,7 +63,7 @@ function Card({
       {!isAvailable && (
         <CSSTransition classNames={"outOfStock"} timeout={500}>
           <div className="outOfStockLogo">
-            <img src="/assets/stock-epuise.png" alt="Rupture de stock" />
+            <img src={IMAGE_NO_STOCK} alt="Rupture de stock" />
           </div>
         </CSSTransition>
       )}

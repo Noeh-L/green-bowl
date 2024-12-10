@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import BasketCard from "./BasketCard";
 import { useOrderContext } from "../../../../../../context/OrderPageContext";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import {
+  EMPTY_PRODUCT,
+  UNAVAILABLE_MSG,
+} from "../../../../../../enums/product";
 import { focusOnRef } from "../../../../../../utils/focusOnRef";
 import { findObjectById } from "../../../../../../utils/array";
 import { formatPrice } from "../../../../../../utils/maths";
@@ -51,7 +54,7 @@ function BasketProducts() {
     if (isNaN(product.price)) {
       return "NaN €";
     } else if (!product.isAvailable) {
-      return "Non disponible";
+      return UNAVAILABLE_MSG;
     } else {
       return formatPrice(product.price);
     }

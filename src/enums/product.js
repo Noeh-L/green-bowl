@@ -8,3 +8,6 @@ export const EMPTY_PRODUCT = Object.freeze({
 });
 
 export const IMAGE_BY_DEFAULT = "/assets/coming-soon.png";
+export const IMAGE_NO_STOCK = "/assets/stock-epuise.png";
+
+export const UNAVAILABLE_MSG = "Non disponible";
