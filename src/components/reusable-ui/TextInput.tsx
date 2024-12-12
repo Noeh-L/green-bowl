@@ -1,10 +1,17 @@
 /* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
-import React from "react";
+import React, { ComponentPropsWithRef } from "react";
+
+type TextInputVersion = "normal" | "minimalist";
+
+type TextInputProps = {
+  Icon?: React.ElementType;
+  version?: TextInputVersion;
+} & ComponentPropsWithRef<"input">;
 
 // eslint-disable-next-line react/display-name
-const TextInput = React.forwardRef(
+const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
       value,
@@ -33,7 +40,11 @@ const TextInput = React.forwardRef(
   },
 );
 
-const TextInputStyled = styled.label`
+type TextInputStyledProps = {
+  $version: TextInputVersion;
+};
+
+const TextInputStyled = styled.label<TextInputStyledProps>`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.sm};
