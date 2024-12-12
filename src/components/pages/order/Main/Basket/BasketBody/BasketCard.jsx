@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import { IMAGE_BY_DEFAULT } from "../../../../../../enums/product.js";
-import { theme } from "../../../../../../theme/index.js";
+import { theme } from "../../../../../../theme/index";
 import { MdDeleteForever } from "react-icons/md";
 import CasinoEffect from "../../../../../reusable-ui/CasinoEffect.jsx";
-import Sticker from "../../../../../reusable-ui/Sticker.jsx";
+import Sticker from "../../../../../reusable-ui/Sticker";
 import { badgeAnimation } from "../../../../../../theme/animation.js";
 
 function BasketCard({

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import { theme } from "../../../../theme";
+import { theme } from "../../../../theme/index";
 import Admin from "./Admin/Admin";
 import { useOrderContext } from "../../../../context/OrderPageContext";
 import Menu from "./Menu/Menu";

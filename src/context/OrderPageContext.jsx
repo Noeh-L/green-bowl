@@ -4,6 +4,8 @@ import { EMPTY_PRODUCT } from "../enums/product";
 import { useMenu } from "../hooks/useMenu";
 import { useBasket } from "../hooks/useBasket";
 import { getLocalStorage } from "../utils/windows";
+import { focusOnRef } from "../utils/focusOnRef";
+import { findObjectById } from "../utils/array";
 
 // 1. Création du contexte
 export const OrderContext = createContext({
@@ -27,6 +29,7 @@ export const OrderContext = createContext({
   handleAddToBasket: () => {},
   handleDeleteFromBasket: () => {},
   isLoading: false,
+  handleCardSelection: () => {},
 });
 
 // 2. Installation du contexte (Provider)
@@ -58,6 +61,21 @@ export default function OrderContextProvider({ children }) {
     }
   }, [setIsLoading]);
 
+  // Card selection handler
+  const handleCardSelection = async (id) => {
+    if (!isAdminMode) return;
+    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT);
+
+    await setIsPanelAdminOpen(true);
+    await setActiveTab("editProduct");
+
+    const productClickedOn = findObjectById(id, menu);
+
+    await setProductSelected(productClickedOn);
+
+    focusOnRef(editProductTitleRef);
+  };
+
   const valueOrderContext = {
     isAdminMode,
     setIsAdminMode,
@@ -86,6 +104,7 @@ export default function OrderContextProvider({ children }) {
     handleDeleteFromBasket,
 
     isLoading,
+    handleCardSelection,
   };
 
   return (

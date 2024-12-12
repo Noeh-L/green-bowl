@@ -20,32 +20,12 @@ function Menu() {
     handleDeleteProduct,
     productSelected,
     setProductSelected,
-    setIsPanelAdminOpen,
-    setActiveTab,
     editProductTitleRef,
     handleAddToBasket,
     handleDeleteFromBasket,
     isLoading,
+    handleCardSelection,
   } = useOrderContext();
-
-  // behavior (event handlers)
-  const handleCardSelection = async (id) => {
-    if (!isAdminMode) return;
-    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT); // Désélectionne une card qui est sélectionnée
-
-    await openEditTab();
-
-    const productClickedOn = findObjectById(id, menu);
-
-    await setProductSelected(productClickedOn);
-
-    focusOnRef(editProductTitleRef);
-  };
-
-  const openEditTab = () => {
-    setIsPanelAdminOpen(true);
-    setActiveTab("editProduct");
-  };
 
   const handleCardDeletion = (e, idOfCardToDelete) => {
     e.stopPropagation();

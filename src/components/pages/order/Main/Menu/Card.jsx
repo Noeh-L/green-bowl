@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Button from "../../../../reusable-ui/Button";
 import styled, { css } from "styled-components";
-import { theme } from "../../../../../theme";
+import { theme } from "../../../../../theme/index";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
