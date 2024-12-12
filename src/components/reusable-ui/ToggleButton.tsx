@@ -1,13 +1,21 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "@/theme";
+import { ComponentProps } from "react";
+
+type ToggleButtonType = {
+  isChecked: boolean;
+  onToggle?: React.ChangeEventHandler<HTMLInputElement>;
+  labelIfChecked?: string;
+  labelIfUnchecked?: string;
+} & ComponentProps<"input">;
 
 export default function ToggleButton({
   isChecked,
   onToggle,
   labelIfChecked = "Fermer",
   labelIfUnchecked = "Ouvrir",
-}) {
+}: ToggleButtonType) {
   return (
     <ToggleButtonStyled>
       <input
@@ -100,7 +108,7 @@ const ToggleButtonStyled = styled.div`
       left: auto;
       opacity: 1;
       color: ${theme.colors.primary};
-      font-weight: ${theme.fonts.bold};
+      font-weight: ${theme.weights.bold};
     }
 
     // small circle when not checked
