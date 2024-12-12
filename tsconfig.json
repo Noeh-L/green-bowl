@@ -18,7 +18,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "build", "dist"]
@@ -134,5 +138,6 @@
 //     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
 //     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
 //   }
+
 
 // }

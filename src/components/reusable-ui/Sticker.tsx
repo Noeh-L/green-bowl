@@ -1,7 +1,21 @@
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "@/theme";
 
-export default function Sticker({ label = "new", className, scale = "1" }) {
+type StickerProps = {
+  label?: string;
+  className?: string;
+  scale?: string;
+};
+
+type StickerStyledProps = {
+  $scale?: string;
+};
+
+export default function Sticker({
+  label = "new",
+  className,
+  scale = "1",
+}: StickerProps) {
   return (
     <StickerStyled className={className} $scale={scale}>
       {label}
@@ -9,7 +23,7 @@ export default function Sticker({ label = "new", className, scale = "1" }) {
   );
 }
 
-const StickerStyled = styled.span`
+const StickerStyled = styled.span<StickerStyledProps>`
   font-size: ${theme.fonts.XXXS};
   padding: 1em;
   width: 15px;
