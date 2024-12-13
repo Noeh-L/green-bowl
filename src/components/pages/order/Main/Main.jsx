@@ -6,7 +6,7 @@ import { useOrderContext } from "../../../../context/OrderPageContext";
 import Menu from "./Menu/Menu";
 import Basket from "./Basket/Basket.jsx";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { panelAnimation } from "../../../../theme/animation.js";
+import { panelAnimation } from "../../../../theme/animation";
 
 function Main() {
   const { isAdminMode } = useOrderContext();
