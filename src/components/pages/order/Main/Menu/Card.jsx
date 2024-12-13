@@ -10,7 +10,7 @@ import {
   outOfStockAnimation,
   ribbonAnimation,
 } from "../../../../../theme/animation";
-import Ribbon from "../../../../reusable-ui/Ribbon.jsx";
+import Ribbon from "../../../../reusable-ui/Ribbon";
 import { IMAGE_NO_STOCK } from "../../../../../enums/product.js";
 
 function Card({
