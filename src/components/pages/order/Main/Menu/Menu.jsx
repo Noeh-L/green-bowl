@@ -10,7 +10,6 @@ import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { menuCardAnimation } from "../../../../../theme/animation";
-import { displayToast } from "../../../../../utils/displayToast";
 
 function Menu() {
   // state
@@ -46,11 +45,6 @@ function Menu() {
     handleAddToBasket(productAdded);
   };
 
-  const handleUnavailableProduct = (e) => {
-    e.stopPropagation();
-    displayToast("warn", "Produit indisponible 😞", 2000);
-  };
-
   // render
   if (isLoading || menu === undefined) return <Loader />;
 
@@ -79,11 +73,7 @@ function Menu() {
               isAdminMode={isAdminMode}
               onClick={() => handleCardSelection(id)}
               isCardSelected={productSelected.id === id}
-              onAddToBasket={(e) =>
-                isAvailable
-                  ? handleAddCardToBasket(e, id)
-                  : handleUnavailableProduct(e)
-              }
+              onAddToBasket={(e) => handleAddCardToBasket(e, id)}
               isAvailable={isAvailable}
               isAdvertised={isAdvertised}
             />

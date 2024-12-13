@@ -1,5 +1,15 @@
+import { IconType } from "react-icons";
 import { theme } from "../../theme";
 import styled, { css } from "styled-components";
+import { ComponentProps } from "react";
+
+type ButtonVersion = "primary" | "success";
+
+type ButtonProps = {
+  label: string;
+  Icon?: IconType;
+  version?: ButtonVersion;
+} & ComponentProps<"button">;
 
 // eslint-disable-next-line react/prop-types
 function Button({
@@ -8,14 +18,14 @@ function Button({
   className,
   onClick,
   version = "primary",
-  isClickable = true,
-}) {
+  disabled,
+}: ButtonProps) {
   return (
     <ButtonStyled
       className={className}
       onClick={onClick}
       $version={version}
-      $isClickable={isClickable}
+      disabled={disabled}
     >
       {label}
       {Icon && <Icon className="icon" />}
@@ -23,7 +33,9 @@ function Button({
   );
 }
 
-const ButtonStyled = styled.button`
+type ButtonStyledProps = { $version: ButtonVersion };
+
+const ButtonStyled = styled.button<ButtonStyledProps>`
   ${({ $version }) => extraStyle[$version]}
 `;
 
@@ -41,11 +53,7 @@ const extraStylePrimary = css`
   font-size: ${theme.fonts.P0};
   font-weight: ${theme.weights.semiBold};
   font-family: "Open sans", sans-serif;
-
-  ${({ $isClickable }) =>
-    $isClickable
-      ? "cursor: pointer;"
-      : "cursor: not-allowed; z-index: 1; opacity: 0.5; "};
+  cursor: pointer;
   transition: background 0.15s ease-in-out;
 
   &:hover {
@@ -55,6 +63,11 @@ const extraStylePrimary = css`
   &:active {
     background: ${theme.colors.primary};
     color: ${theme.colors.white};
+  }
+  &:disabled {
+    cursor: not-allowed;
+    z-index: 1;
+    opacity: 0.5;
   }
 
   .icon {

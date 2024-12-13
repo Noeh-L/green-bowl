@@ -11,7 +11,7 @@ import {
   ribbonAnimation,
 } from "../../../../../theme/animation";
 import Ribbon from "../../../../reusable-ui/Ribbon";
-import { IMAGE_NO_STOCK } from "../../../../../enums/product.js";
+import { IMAGE_NO_STOCK } from "../../../../../enums/product";
 
 function Card({
   picture,
@@ -55,7 +55,7 @@ function Card({
             label={"Ajouter"}
             className="addButton"
             onClick={onAddToBasket}
-            isClickable={isAvailable}
+            disabled={!isAvailable}
           />
         </div>
       </div>
