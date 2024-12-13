@@ -1,7 +1,14 @@
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "@/theme";
 
-function Tab({ Icon, label, onClick, isActive }) {
+type TabProps = {
+  Icon?: React.ElementType;
+  label: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  isActive: boolean;
+};
+
+function Tab({ Icon, label, onClick, isActive }: TabProps) {
   return (
     <TabStyled $isLabel={label} $isActive={isActive} onClick={onClick}>
       {Icon && <Icon className="icon" />}
@@ -10,7 +17,12 @@ function Tab({ Icon, label, onClick, isActive }) {
   );
 }
 
-const TabStyled = styled.button`
+type TabStyledType = {
+  $isLabel: string;
+  $isActive: boolean;
+};
+
+const TabStyled = styled.button<TabStyledType>`
   font-family: "Open sans";
   min-width: 60px;
   min-height: 46px;
