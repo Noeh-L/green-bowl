@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "../../../../../../theme/index";
 import { getTabsConfig, getTabSelected } from "../tabsConfig.jsx";
 import { useOrderContext } from "../../../../../../context/OrderPageContext";
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";

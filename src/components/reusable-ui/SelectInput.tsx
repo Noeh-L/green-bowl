@@ -1,5 +1,18 @@
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "@/theme";
+import { IconType } from "react-icons";
+import { ComponentProps } from "react";
+
+type Option = {
+  value: string | number | readonly string[] | undefined;
+  label: string;
+};
+
+type SelectInputProps = {
+  Icon?: IconType;
+  options: Option[];
+  value: string | number | boolean;
+} & ComponentProps<"select">;
 
 function SelectInput({
   Icon,
@@ -9,13 +22,13 @@ function SelectInput({
   onChange,
   onFocus,
   value,
-}) {
+}: SelectInputProps) {
   return (
     <SelectInputStyled className={className}>
       {Icon && <Icon className="icon" />}
       <select name={name} onChange={onChange} onFocus={onFocus} value={value}>
         {options.map((option) => (
-          <option value={option.value} key={option.value}>
+          <option value={option.value} key={option.label}>
             {option.label}
           </option>
         ))}

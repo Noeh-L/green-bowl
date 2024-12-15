@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Button from "../../../../reusable-ui/Button";
 import styled, { css } from "styled-components";
-import { theme } from "../../../../../theme";
+import { theme } from "../../../../../theme/index";
 import { formatPrice } from "../../../../../utils/maths";
 import { TiDelete } from "react-icons/ti";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -10,8 +10,8 @@ import {
   outOfStockAnimation,
   ribbonAnimation,
 } from "../../../../../theme/animation";
-import Ribbon from "../../../../reusable-ui/Ribbon.jsx";
-import { IMAGE_NO_STOCK } from "../../../../../enums/product.js";
+import Ribbon from "../../../../reusable-ui/Ribbon";
+import { IMAGE_NO_STOCK } from "../../../../../enums/product";
 
 function Card({
   picture,
@@ -55,7 +55,7 @@ function Card({
             label={"Ajouter"}
             className="addButton"
             onClick={onAddToBasket}
-            isClickable={isAvailable}
+            disabled={!isAvailable}
           />
         </div>
       </div>

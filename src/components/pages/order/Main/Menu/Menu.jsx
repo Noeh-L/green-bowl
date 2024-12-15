@@ -10,7 +10,6 @@ import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
 import Loader from "./Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { menuCardAnimation } from "../../../../../theme/animation";
-import { displayToast } from "../../../../../utils/displayToast";
 
 function Menu() {
   // state
@@ -20,32 +19,12 @@ function Menu() {
     handleDeleteProduct,
     productSelected,
     setProductSelected,
-    setIsPanelAdminOpen,
-    setActiveTab,
     editProductTitleRef,
     handleAddToBasket,
     handleDeleteFromBasket,
     isLoading,
+    handleCardSelection,
   } = useOrderContext();
-
-  // behavior (event handlers)
-  const handleCardSelection = async (id) => {
-    if (!isAdminMode) return;
-    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT); // Désélectionne une card qui est sélectionnée
-
-    await openEditTab();
-
-    const productClickedOn = findObjectById(id, menu);
-
-    await setProductSelected(productClickedOn);
-
-    focusOnRef(editProductTitleRef);
-  };
-
-  const openEditTab = () => {
-    setIsPanelAdminOpen(true);
-    setActiveTab("editProduct");
-  };
 
   const handleCardDeletion = (e, idOfCardToDelete) => {
     e.stopPropagation();
@@ -64,11 +43,6 @@ function Menu() {
     const productAdded = findObjectById(id, menu);
 
     handleAddToBasket(productAdded);
-  };
-
-  const handleUnavailableProduct = (e) => {
-    e.stopPropagation();
-    displayToast("warn", "Produit indisponible 😞", 2000);
   };
 
   // render
@@ -99,11 +73,7 @@ function Menu() {
               isAdminMode={isAdminMode}
               onClick={() => handleCardSelection(id)}
               isCardSelected={productSelected.id === id}
-              onAddToBasket={(e) =>
-                isAvailable
-                  ? handleAddCardToBasket(e, id)
-                  : handleUnavailableProduct(e)
-              }
+              onAddToBasket={(e) => handleAddCardToBasket(e, id)}
               isAvailable={isAvailable}
               isAdvertised={isAdvertised}
             />

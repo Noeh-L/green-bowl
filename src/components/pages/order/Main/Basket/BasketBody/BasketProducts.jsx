@@ -2,12 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import BasketCard from "./BasketCard";
 import { useOrderContext } from "../../../../../../context/OrderPageContext";
-import {
-  EMPTY_PRODUCT,
-  UNAVAILABLE_MSG,
-} from "../../../../../../enums/product";
-import { focusOnRef } from "../../../../../../utils/focusOnRef";
-import { findObjectById } from "../../../../../../utils/array";
+import { UNAVAILABLE_MSG } from "../../../../../../enums/product";
 import { formatPrice } from "../../../../../../utils/maths";
 import { getMenuProductAssociated } from "../helper";
 import Loader from "../../Menu/Loader";
@@ -21,12 +16,9 @@ function BasketProducts() {
     basket,
     handleDeleteFromBasket,
     isAdminMode,
-    setIsPanelAdminOpen,
-    setActiveTab,
     productSelected,
-    setProductSelected,
-    editProductTitleRef,
     isLoading,
+    handleCardSelection,
   } = useOrderContext();
 
   // behavior
@@ -34,20 +26,6 @@ function BasketProducts() {
     e.stopPropagation();
 
     handleDeleteFromBasket(id);
-  };
-
-  const handleClickOnBasketCard = async (id) => {
-    if (!isAdminMode) return;
-    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT);
-
-    await setIsPanelAdminOpen(true);
-    await setActiveTab("editProduct");
-
-    const productClickedOn = findObjectById(id, menu);
-
-    await setProductSelected(productClickedOn);
-
-    focusOnRef(editProductTitleRef);
   };
 
   const displayPrice = (product) => {
@@ -85,7 +63,7 @@ function BasketProducts() {
               price={displayPrice(correspondingProductInMenu)}
               quantity={product.quantity}
               onDelete={(e) => handleCardBasketDeletion(e, product.id)}
-              onClick={() => handleClickOnBasketCard(product.id)}
+              onClick={() => handleCardSelection(product.id)}
               isClickable={isAdminMode}
               isSelected={product.id === productSelected.id}
               isAdminMode={isAdminMode}
