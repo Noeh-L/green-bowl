@@ -3,7 +3,7 @@ import { useOrderContext } from "../../../../../../context/OrderPageContext.jsx"
 import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
 import Form from "./Form.jsx";
 import SubmitButton from "./SubmitButton.jsx";
-import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage.js";
+import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 function AddForm() {
   // STATE
