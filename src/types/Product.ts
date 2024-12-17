@@ -7,3 +7,8 @@ export type MenuProduct = {
   isAvailable: boolean;
   isAdvertised: boolean;
 };
+
+export type BasketProduct = {
+  id: string | number;
+  quantity: number;
+};
