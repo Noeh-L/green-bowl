@@ -1,8 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useOrderContext } from "../../../../../../context/OrderPageContext.jsx";
-import { EMPTY_PRODUCT } from "../../../../../../enums/product.js";
-import Form from "./Form.jsx";
-import SubmitButton from "./SubmitButton.jsx";
+import { useOrderContext } from "../../../../../../context/OrderPageContext";
+import { EMPTY_PRODUCT } from "../../../../../../enums/product";
+import Form from "./Form";
+import SubmitButton from "./SubmitButton";
 import { useSuccessMessage } from "../../../../../../hooks/useSuccessMessage";
 
 function AddForm() {
