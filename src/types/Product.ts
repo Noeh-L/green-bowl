@@ -3,12 +3,14 @@ export type MenuProduct = {
   imageSource: string;
   title: string;
   price: number;
-  quantity: number;
+  quantity?: number;
   isAvailable: boolean;
   isAdvertised: boolean;
 };
 
-export type BasketProduct = {
+export type BasketProductQuantity = {
   id: string | number;
   quantity: number;
 };
+
+export type BasketProduct = MenuProduct & BasketProductQuantity;
