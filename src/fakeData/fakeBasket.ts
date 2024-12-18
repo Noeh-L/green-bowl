@@ -1,6 +1,13 @@
-export const EMPTY = [];
+import { BasketProduct, MenuProduct } from "@/types/Product";
 
-export const SMALL = [
+export const EMPTY: BasketProduct[] = [];
+
+type BasketProductOmitted = Omit<
+  BasketProduct,
+  "price" | "isAvailable" | "isAdvertised"
+>;
+
+export const SMALL: BasketProductOmitted[] = [
   {
     id: "1",
     title: "Burger Meal",
@@ -9,7 +16,7 @@ export const SMALL = [
   },
 ];
 
-export const MEDIUM = [
+export const MEDIUM: (BasketProductOmitted & Pick<MenuProduct, "price">)[] = [
   {
     id: "1",
     imageSource: "/assets/burger1.png",
@@ -41,7 +48,7 @@ export const MEDIUM = [
   },
 ];
 
-export const LARGE = [
+export const LARGE: BasketProduct[] = [
   {
     id: "1",
     imageSource: "/assets/fries3.png",
@@ -134,7 +141,7 @@ export const LARGE = [
   },
 ];
 
-export const LARGE_WEIRD = [
+export const LARGE_WEIRD: BasketProduct[] = [
   {
     id: "1",
     imageSource: "/assets/fries3.png",
