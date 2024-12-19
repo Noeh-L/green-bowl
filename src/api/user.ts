@@ -1,21 +1,25 @@
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
-import { fakeMenu } from "../fakeData/fakeMenu";
-import { setLocalStorage } from "../utils/windows";
-import { displayToast } from "../utils/displayToast";
+import { fakeMenu } from "@/fakeData/fakeMenu";
+import { setLocalStorage } from "@/utils/windows";
+import { displayToast } from "@/utils/displayToast";
+import { UserData } from "@/types/User";
+import { BasketProductQuantity, MenuProduct } from "@/types/Product";
 
-export const getUser = async (userId) => {
+export const getUser = async (
+  userId: string,
+): Promise<UserData | undefined> => {
   const docRef = doc(db, "users", userId); // chemin de l'endroit du document
 
-  const docSnapshot = await getDoc(docRef, userId); // 'photographie' du document
+  const docSnapshot = await getDoc(docRef); // 'photographie' du document
 
   if (docSnapshot.exists()) {
     const userReceived = docSnapshot.data();
-    return userReceived;
+    return userReceived as UserData;
   }
 };
 
-export const createUser = async (userId) => {
+export const createUser = async (userId: string): Promise<UserData> => {
   const docRef = doc(db, "users", userId);
 
   const newDoc = {
@@ -29,7 +33,10 @@ export const createUser = async (userId) => {
   return newDoc;
 };
 
-export const updateUserData = async (userId, dataUpdated) => {
+export const updateUserData = async (
+  userId: string,
+  dataUpdated: { menu: MenuProduct[] } | { basket: BasketProductQuantity[] },
+) => {
   const docRef = doc(db, "users", userId);
 
   try {
@@ -40,7 +47,7 @@ export const updateUserData = async (userId, dataUpdated) => {
   }
 };
 
-export const authenticateUser = async (userId) => {
+export const authenticateUser = async (userId: string) => {
   try {
     const existingUser = await getUser(userId);
     const initialLocalStorageData = {

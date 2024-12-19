@@ -63,7 +63,7 @@ export const useMenu = () => {
 
   const updateMenuInLStorageAndDB = async (menuUpdated: MenuProduct[]) => {
     try {
-      await updateUserData(usernameFromLS, {
+      await updateUserData(usernameFromLS as string, {
         menu: [...menuUpdated],
       });
       console.log("🧾 Menu updated successfully!");
