@@ -4,7 +4,7 @@ import { theme } from "@/theme";
 import { ComponentProps } from "react";
 
 type LogoProps = {
-  scale: string;
+  scale: number;
 } & ComponentProps<"h1">;
 
 function Logo({ scale, ...extraProps }: LogoProps) {
@@ -18,7 +18,7 @@ function Logo({ scale, ...extraProps }: LogoProps) {
 }
 
 type TitleStyledType = {
-  $scale: string;
+  $scale: number;
 };
 
 const TitleStyled = styled.h1<TitleStyledType>`
