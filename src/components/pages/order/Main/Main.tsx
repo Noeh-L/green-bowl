@@ -2,12 +2,12 @@
 // @ts-nocheck
 import styled from "styled-components";
 import { theme } from "../../../../theme/index";
-import Admin from "./Admin/Admin.jsx";
-import { useOrderContext } from "../../../../context/OrderPageContext.js";
-import Menu from "./Menu/Menu.jsx";
-import Basket from "./Basket/Basket.jsx";
+import Admin from "./Admin/Admin";
+import { useOrderContext } from "../../../../context/OrderPageContext";
+import Menu from "./Menu/Menu";
+import Basket from "./Basket/Basket";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { panelAnimation } from "../../../../theme/animation.js";
+import { panelAnimation } from "../../../../theme/animation";
 
 function Main() {
   const { isAdminMode } = useOrderContext();
