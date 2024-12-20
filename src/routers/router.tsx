@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import LoginPage from "../src/components/pages/login/LoginPage";
-import OrderPage from "../src/components/pages/order/OrderPage";
-import ErrorPage from "../src/components/pages/error/ErrorPage";
+import LoginPage from "@/components/pages/login/LoginPage";
+import OrderPage from "@/components/pages/order/OrderPage";
+import ErrorPage from "@/components/pages/error/ErrorPage";
 
 const routes = [
   {
