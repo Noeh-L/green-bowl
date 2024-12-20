@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import AdminTabs from "./AdminTabs.jsx";
 import AdminPanel from "./AdminPanel/AdminPanel.jsx";
-import { useOrderContext } from "../../../../../context/OrderPageContext.jsx";
+import { useOrderContext } from "../../../../../context/OrderPageContext";
 
 function Admin() {
   const { isPanelAdminOpen } = useOrderContext();
