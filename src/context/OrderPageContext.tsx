@@ -14,6 +14,7 @@ import { getLocalStorage } from "@/utils/windows";
 import { findObjectById } from "@/utils/array";
 import { BasketProductQuantity, MenuProduct } from "@/types/Product";
 import { ADMIN_TAB_LABEL } from "@/enums/adminTabLabel";
+import { focusOnRef } from "@/utils/focusOnRef";
 
 type OrderContextType = {
   isAdminMode: boolean;
@@ -90,7 +91,7 @@ export default function OrderContextProvider({ children }: PropsWithChildren) {
     if (!productClickedOn) return;
     await setProductSelected(productClickedOn);
 
-    editProductTitleRef.current?.focus();
+    focusOnRef(editProductTitleRef);
   };
 
   const valueOrderContext = {
@@ -133,4 +134,12 @@ export default function OrderContextProvider({ children }: PropsWithChildren) {
 
 // 3. Consommation du contexte
 // eslint-disable-next-line react-refresh/only-export-components
-export const useOrderContext = () => useContext(OrderContext);
+export const useOrderContext = () => {
+  const orderContextData = useContext(OrderContext);
+  if (orderContextData === undefined)
+    throw new Error(
+      "useOrderContext() can only be used within OrderContextProvider",
+    );
+
+  return orderContextData;
+};
