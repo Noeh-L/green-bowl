@@ -47,29 +47,25 @@ export const updateUserData = async (
   }
 };
 
-export const authenticateUser = async (userId: string) => {
-  try {
-    const existingUser = await getUser(userId);
-    const initialLocalStorageData = {
-      username: userId,
-      menu: fakeMenu.LARGE,
-      basket: [],
-    };
+export const authenticateUser = async (userId: string): Promise<UserData> => {
+  const existingUser = await getUser(userId);
+  const initialLocalStorageData = {
+    username: userId,
+    menu: fakeMenu.LARGE,
+    basket: [],
+  };
 
-    // If new user
-    if (!existingUser) {
-      displayToast("", `🤗 Welcome ${userId} !`, 3000);
-      setLocalStorage("userData", initialLocalStorageData);
-      return await createUser(userId);
-    } else {
-      // If user already exists
+  // If new user
+  if (!existingUser) {
+    displayToast("", `🤗 Welcome ${userId} !`, 3000);
+    setLocalStorage("userData", initialLocalStorageData);
+    return await createUser(userId);
+  } else {
+    // If user already exists
 
-      displayToast("", `🤙 Welcome back ${existingUser.username} !`, 3000);
+    displayToast("", `🤙 Welcome back ${existingUser.username} !`, 3000);
 
-      setLocalStorage("userData", existingUser);
-      return existingUser;
-    }
-  } catch (error) {
-    console.log("🔒 Error trying to authenticate: ", error);
+    setLocalStorage("userData", existingUser);
+    return existingUser;
   }
 };

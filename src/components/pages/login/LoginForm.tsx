@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { theme } from "../../../theme";
+import { theme } from "@/theme";
 import { BsPersonCircle } from "react-icons/bs";
-import TextInput from "../../reusable-ui/TextInput";
-import Button from "../../reusable-ui/Button";
+import TextInput from "@/components/reusable-ui/TextInput";
+import Button from "@/components/reusable-ui/Button";
 import { FaChevronRight } from "react-icons/fa6";
-import { authenticateUser } from "../../../api/user";
+import { authenticateUser } from "@/api/user";
 
 function LoginForm() {
   // STATE
@@ -14,11 +14,11 @@ function LoginForm() {
   const navigate = useNavigate();
 
   // BEHAVIOR
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsernameInputed(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const userReceived = await authenticateUser(usernameInputed);

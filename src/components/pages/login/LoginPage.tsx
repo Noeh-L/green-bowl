@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import LoginForm from "./LoginForm";
-import Logo from "../../reusable-ui/Logo";
+import Logo from "@/components/reusable-ui/Logo";
 import background from "/assets/burger-background.jpg";
-import { theme } from "../../../theme";
+import { theme } from "@/theme";
 
 function LoginPage() {
   // RENDER
