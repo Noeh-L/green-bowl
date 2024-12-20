@@ -2,9 +2,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BsPersonCircle } from "react-icons/bs";
-import { theme } from "../../../../theme";
+import { theme } from "@/theme";
+type UserMenuProps = {
+  username: string | undefined;
+};
 
-function UserMenu({ username }) {
+function UserMenu({ username }: UserMenuProps) {
   const resetPageTitle = () => {
     document.title = "Crazee Burger";
   };

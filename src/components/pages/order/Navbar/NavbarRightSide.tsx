@@ -1,19 +1,17 @@
 /* eslint-disable react/prop-types */
-import { theme } from "../../../../theme";
+import { theme } from "@/theme";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
-import ToggleButton from "../../../reusable-ui/ToggleButton";
-import { useOrderContext } from "../../../../context/OrderPageContext";
+import ToggleButton from "@/components/reusable-ui/ToggleButton";
+import { useOrderContext } from "@/context/OrderPageContext";
 import { useParams } from "react-router-dom";
-import { focusOnRef } from "../../../../utils/focusOnRef";
-import { displayToast } from "../../../../utils/displayToast";
+import { displayToast } from "@/utils/displayToast";
 
 export default function NavbarRightSide() {
   // STATE
   const { username } = useParams();
-  const { isAdminMode, setIsAdminMode, editProductTitleRef } =
-    useOrderContext();
+  const { isAdminMode, setIsAdminMode } = useOrderContext();
 
   // BEHAVIOR
   const displayToastNotification = async () => {
@@ -21,7 +19,6 @@ export default function NavbarRightSide() {
       displayToast("info", "Mode admin activé", 3000);
     }
     await setIsAdminMode(!isAdminMode);
-    focusOnRef(editProductTitleRef);
   };
 
   // RENDER
