@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
+// @ts-nocheck
 import styled from "styled-components";
 import { theme } from "../../../../theme/index";
-import Admin from "./Admin/Admin";
-import { useOrderContext } from "../../../../context/OrderPageContext";
-import Menu from "./Menu/Menu";
+import Admin from "./Admin/Admin.jsx";
+import { useOrderContext } from "../../../../context/OrderPageContext.js";
+import Menu from "./Menu/Menu.jsx";
 import Basket from "./Basket/Basket.jsx";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { panelAnimation } from "../../../../theme/animation";
+import { panelAnimation } from "../../../../theme/animation.js";
 
 function Main() {
   const { isAdminMode } = useOrderContext();

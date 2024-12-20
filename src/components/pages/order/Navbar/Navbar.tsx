@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Logo from "../../../reusable-ui/Logo";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
