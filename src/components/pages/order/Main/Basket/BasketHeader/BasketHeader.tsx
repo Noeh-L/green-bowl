@@ -4,12 +4,15 @@ import { calculateSumToPay } from "../helper";
 import { useOrderContext } from "../../../../../../context/OrderPageContext";
 import { formatPrice } from "../../../../../../utils/maths";
 import CasinoEffect from "../../../../../reusable-ui/CasinoEffect";
+import { DEFAULT_AMOUNT_TO_PAY } from "@/enums/product";
 
 function Total() {
   // state
   const { basket, menu } = useOrderContext();
 
-  const amountToPay = calculateSumToPay(basket, menu);
+  const amountToPay = menu
+    ? calculateSumToPay(basket, menu)
+    : DEFAULT_AMOUNT_TO_PAY;
 
   return (
     <TotalStyled>
