@@ -1,5 +1,5 @@
-import { useOrderContext } from "../../../../../../context/OrderPageContext";
-import { isArrayEmpty } from "../../../../../../utils/array";
+import { useOrderContext } from "@/context/OrderPageContext";
+import { isArrayEmpty } from "@/utils/array";
 import BasketProducts from "./BasketProducts";
 import EmptyBasket from "./EmptyBasket";
 
