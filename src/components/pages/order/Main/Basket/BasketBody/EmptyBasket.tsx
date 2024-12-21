@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "@/theme";
 
 function EmptyBasket() {
   return <EmptyBasketStyled>Votre commande est vide.</EmptyBasketStyled>;
