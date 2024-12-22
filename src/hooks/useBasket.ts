@@ -23,7 +23,7 @@ export const useBasket = () => {
     }
   };
 
-  const handleDeleteFromBasket = (id: string | number) => {
+  const handleDeleteFromBasket = (id: string) => {
     const basketCopy = deepClone(basket);
 
     const basketUpdated = removeObjectById(id, basketCopy);
