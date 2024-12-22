@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
+import { theme } from "@/theme";
 
 function EmptyMenuUser() {
   return (
     <EmptyMenuUserStyled>
-      <h2>Victime de notre succès ! :D</h2>
+      <h2>Victime de notre succès !</h2>
       <p>
         De nouvelles recettes sont en cours de préparation.
         <br />À très vite !

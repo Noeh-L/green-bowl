@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import Card from "./Card";
-import { theme } from "../../../../../theme";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
+import { theme } from "@/theme";
+import { useOrderContext } from "@/context/OrderPageContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
-import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "../../../../../enums/product";
-import { focusOnRef } from "../../../../../utils/focusOnRef";
-import { findObjectById, isArrayEmpty } from "../../../../../utils/array";
+import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "@/enums/product";
+import { focusOnRef } from "@/utils/focusOnRef";
+import { findObjectById, isArrayEmpty } from "@/utils/array";
 import Loader from "./Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { menuCardAnimation } from "../../../../../theme/animation";
+import { menuCardAnimation } from "@/theme/animation";
 
 function Menu() {
   // state
@@ -26,7 +26,10 @@ function Menu() {
     handleCardSelection,
   } = useOrderContext();
 
-  const handleCardDeletion = (e, idOfCardToDelete) => {
+  const handleCardDeletion = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    idOfCardToDelete: string,
+  ) => {
     e.stopPropagation();
 
     handleDeleteProduct(idOfCardToDelete);
@@ -38,10 +41,15 @@ function Menu() {
     handleDeleteFromBasket(idOfCardToDelete);
   };
 
-  const handleAddCardToBasket = (e, id) => {
+  const handleAddCardToBasket = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string,
+  ) => {
     e.stopPropagation();
+    if (!menu) return;
     const productAdded = findObjectById(id, menu);
 
+    if (!productAdded) return;
     handleAddToBasket(productAdded);
   };
 
@@ -71,7 +79,7 @@ function Menu() {
               isDeleteButtonVisible={isAdminMode}
               isLabel={title === "" ? false : true}
               isAdminMode={isAdminMode}
-              onClick={() => handleCardSelection(id)}
+              onCardSelected={() => handleCardSelection(id)}
               isCardSelected={productSelected.id === id}
               onAddToBasket={(e) => handleAddCardToBasket(e, id)}
               isAvailable={isAvailable}

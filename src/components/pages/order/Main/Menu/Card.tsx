@@ -1,17 +1,32 @@
 /* eslint-disable react/prop-types */
-import Button from "../../../../reusable-ui/Button";
+import Button from "@/components/reusable-ui/Button";
 import styled, { css } from "styled-components";
-import { theme } from "../../../../../theme/index";
-import { formatPrice } from "../../../../../utils/maths";
+import { theme } from "@/theme";
+import { formatPrice } from "@/utils/maths";
 import { TiDelete } from "react-icons/ti";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {
   deleteButtonAnimation,
   outOfStockAnimation,
   ribbonAnimation,
-} from "../../../../../theme/animation";
-import Ribbon from "../../../../reusable-ui/Ribbon";
-import { IMAGE_NO_STOCK } from "../../../../../enums/product";
+} from "@/theme/animation";
+import Ribbon from "@/components/reusable-ui/Ribbon";
+import { IMAGE_NO_STOCK } from "@/enums/product";
+
+type CardProps = {
+  picture: string;
+  label: string;
+  price: number;
+  onDelete?: React.MouseEventHandler<HTMLButtonElement>;
+  isDeleteButtonVisible: boolean;
+  isLabel: boolean;
+  isAdminMode: boolean;
+  isCardSelected: boolean;
+  onCardSelected?: React.MouseEventHandler<HTMLDivElement>;
+  onAddToBasket?: React.MouseEventHandler<HTMLButtonElement>;
+  isAvailable: boolean;
+  isAdvertised: boolean;
+};
 
 function Card({
   picture,
@@ -22,11 +37,11 @@ function Card({
   isLabel,
   isAdminMode,
   isCardSelected,
-  onClick,
+  onCardSelected,
   onAddToBasket,
   isAvailable,
   isAdvertised,
-}) {
+}: CardProps) {
   // render
   return (
     <TransitionGroup
@@ -34,14 +49,16 @@ function Card({
       $isAdminMode={isAdminMode}
       $isSelected={isCardSelected}
       $isAvailable={isAvailable}
-      onClick={onClick}
+      onClick={onCardSelected}
     >
-      {isDeleteButtonVisible && (
+      {isDeleteButtonVisible ? (
         <CSSTransition classNames={"deleteButton"} timeout={500}>
           <button onClick={onDelete} className="deleteButton">
             <TiDelete />
           </button>
         </CSSTransition>
+      ) : (
+        <></>
       )}
       <div className="picture">
         <img src={picture} alt={label} />
@@ -60,24 +77,34 @@ function Card({
         </div>
       </div>
 
-      {!isAvailable && (
+      {!isAvailable ? (
         <CSSTransition classNames={"outOfStock"} timeout={500}>
           <div className="outOfStockLogo">
             <img src={IMAGE_NO_STOCK} alt="Rupture de stock" />
           </div>
         </CSSTransition>
+      ) : (
+        <></>
       )}
 
-      {isAdvertised && (
+      {isAdvertised ? (
         <CSSTransition classNames={"ribbon"} timeout={500}>
           <Ribbon label="Nouveau" className={"advertisingRibbon"} />
         </CSSTransition>
+      ) : (
+        <></>
       )}
     </TransitionGroup>
   );
 }
 
-const CardStyled = styled.div`
+type CarsStyledProps = {
+  $isAdminMode: boolean;
+  $isSelected: boolean;
+  $isAvailable: boolean;
+};
+
+const CardStyled = styled.div<CarsStyledProps>`
   background: ${theme.colors.white};
   height: 330px;
   width: 240px;
