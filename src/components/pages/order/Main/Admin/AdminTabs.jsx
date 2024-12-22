@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme/index";
 import Tab from "../../../../reusable-ui/Tab";
 import { useOrderContext } from "../../../../../context/OrderPageContext";
-import { getTabsConfig } from "./tabsConfig.jsx";
+import { getTabsConfig } from "./tabsConfig";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { focusOnRef } from "../../../../../utils/focusOnRef";
 

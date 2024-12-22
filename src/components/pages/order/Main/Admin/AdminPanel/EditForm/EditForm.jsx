@@ -1,6 +1,6 @@
 import { useOrderContext } from "../../../../../../../context/OrderPageContext";
 import InfoEditMessage from "./InfoEditMessage";
-import Form from "../Form";
+import Form from "../Form/Form";
 import { useState } from "react";
 import UpdateMessage from "./UpdateMessage";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";

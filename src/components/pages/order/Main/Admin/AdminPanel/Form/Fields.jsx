@@ -1,9 +1,9 @@
 /* eslint-disable react/display-name */
-import SelectInput from "../../../../../reusable-ui/SelectInput";
-import TextInput from "../../../../../reusable-ui/TextInput";
+import SelectInput from "../../../../../../reusable-ui/SelectInput";
+import TextInput from "../../../../../../reusable-ui/TextInput";
 import { getInputsConfig } from "./inputsConfig";
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "../../../../../../../theme";
 import React from "react";
 
 const Fields = React.forwardRef(({ product, onChange, onFocus }, ref) => {

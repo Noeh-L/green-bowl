@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
 import styled from "styled-components";
 import ImagePreview from "./ImagePreview";
-import { theme } from "../../../../../../theme";
+import { theme } from "../../../../../../../theme";
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { imagePreviewAppearAnimation } from "../../../../../../theme/animation";
+import { imagePreviewAppearAnimation } from "../../../../../../../theme/animation";
 import Fields from "./Fields";
 
 const Form = React.forwardRef(
