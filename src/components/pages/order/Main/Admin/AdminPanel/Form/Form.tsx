@@ -1,13 +1,23 @@
 /* eslint-disable react/display-name */
 import styled from "styled-components";
 import ImagePreview from "./ImagePreview";
-import { theme } from "../../../../../../../theme";
-import React from "react";
+import { theme } from "@/theme";
+import React, { ComponentPropsWithRef, PropsWithChildren } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { imagePreviewAppearAnimation } from "../../../../../../../theme/animation";
+import { imagePreviewAppearAnimation } from "@/theme/animation";
 import Fields from "./Fields";
+import { MenuProduct } from "@/types/Product";
 
-const Form = React.forwardRef(
+type FormProps = {
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  product: MenuProduct;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  children: PropsWithChildren;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+} & ComponentPropsWithRef<"form">;
+
+const Form = React.forwardRef<HTMLInputElement, FormProps>(
   ({ onSubmit, product, onChange, onFocus, children, onBlur }, ref) => {
     return (
       <TransitionGroup
