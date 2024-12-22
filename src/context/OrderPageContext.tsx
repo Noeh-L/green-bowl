@@ -25,7 +25,7 @@ type OrderContextType = {
   setActiveTab: React.Dispatch<React.SetStateAction<ADMIN_TAB_LABEL>>;
   menu: MenuProduct[] | undefined;
   handleAddProduct: (newProduct: MenuProduct) => Promise<void>;
-  handleDeleteProduct: (idItemToDelete: string | number) => Promise<void>;
+  handleDeleteProduct: (idItemToDelete: string) => Promise<void>;
   resetMenu: () => Promise<void>;
   newProduct: MenuProduct;
   setNewProduct: React.Dispatch<React.SetStateAction<MenuProduct>>;
@@ -35,7 +35,7 @@ type OrderContextType = {
   editProductTitleRef: React.RefObject<HTMLInputElement | null>;
   basket: BasketProductQuantity[];
   handleAddToBasket: (productAdded: MenuProduct) => void;
-  handleDeleteFromBasket: (id: string | number) => void;
+  handleDeleteFromBasket: (id: string) => void;
   isLoading: boolean;
   handleCardSelection: (id: string) => Promise<void>;
 };

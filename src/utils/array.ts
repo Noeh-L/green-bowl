@@ -27,6 +27,6 @@ export const removeObjectById = <T extends { id: ID }>(
   return array.filter((item) => item.id !== idOfItemToRemove);
 };
 
-export const isArrayEmpty = (array: []): boolean => {
+export const isArrayEmpty = <T>(array: T[]): boolean => {
   return array.length === 0;
 };

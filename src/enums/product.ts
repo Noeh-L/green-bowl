@@ -13,3 +13,5 @@ export const IMAGE_BY_DEFAULT = "/assets/coming-soon.png";
 export const IMAGE_NO_STOCK = "/assets/stock-epuise.png";
 
 export const UNAVAILABLE_MSG = "Non disponible" as const;
+
+export const DEFAULT_AMOUNT_TO_PAY = 0;

@@ -1,5 +1,5 @@
 export type MenuProduct = {
-  id: string | number;
+  id: string;
   imageSource: string;
   title: string;
   price: number;
@@ -9,7 +9,7 @@ export type MenuProduct = {
 };
 
 export type BasketProductQuantity = {
-  id: string | number;
+  id: string;
   quantity: number;
 };
 

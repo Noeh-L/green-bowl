@@ -27,7 +27,7 @@ export const useMenu = () => {
     }
   };
 
-  const handleDeleteProduct = async (idItemToDelete: string | number) => {
+  const handleDeleteProduct = async (idItemToDelete: string) => {
     if (menu) {
       const menuCopy = deepClone(menu);
 

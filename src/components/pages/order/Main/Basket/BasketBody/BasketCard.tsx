@@ -1,10 +1,23 @@
 import styled, { css } from "styled-components";
-import { IMAGE_BY_DEFAULT } from "../../../../../../enums/product";
-import { theme } from "../../../../../../theme/index";
+import { IMAGE_BY_DEFAULT } from "@/enums/product";
+import { theme } from "@/theme";
 import { MdDeleteForever } from "react-icons/md";
-import CasinoEffect from "../../../../../reusable-ui/CasinoEffect";
-import Sticker from "../../../../../reusable-ui/Sticker";
-import { badgeAnimation } from "../../../../../../theme/animation";
+import CasinoEffect from "@/components/reusable-ui/CasinoEffect";
+import Sticker from "@/components/reusable-ui/Sticker";
+import { badgeAnimation } from "@/theme/animation";
+
+type BasketCardProps = {
+  imageSource: string;
+  title: string;
+  price: string;
+  quantity: number;
+  onDelete?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  isClickable: boolean;
+  isSelected: boolean;
+  isAdminMode: boolean;
+  isProductAdvertised: boolean;
+};
 
 function BasketCard({
   imageSource,
@@ -17,7 +30,7 @@ function BasketCard({
   isSelected,
   isAdminMode,
   isProductAdvertised,
-}) {
+}: BasketCardProps) {
   return (
     <BasketCardStyled
       onClick={onClick}
@@ -45,7 +58,13 @@ function BasketCard({
   );
 }
 
-const BasketCardStyled = styled.div`
+type BasketCardStyledProps = {
+  $isClickable: boolean;
+  $isSelected: boolean;
+  $isAdminMode: boolean;
+};
+
+const BasketCardStyled = styled.div<BasketCardStyledProps>`
   padding: ${theme.spacing.xs} 36px ${theme.spacing.xs} 16px;
   width: 100%;
   min-height: 86px;
