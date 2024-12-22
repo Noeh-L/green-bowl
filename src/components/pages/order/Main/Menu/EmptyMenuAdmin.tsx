@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
-import Button from "../../../../reusable-ui/Button";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
+import { theme } from "@/theme";
+import Button from "@/components/reusable-ui/Button";
+import { useOrderContext } from "@/context/OrderPageContext";
 
 function EmptyMenuAdmin() {
   const { resetMenu } = useOrderContext();
