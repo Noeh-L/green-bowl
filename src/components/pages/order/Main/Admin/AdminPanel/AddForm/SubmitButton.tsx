@@ -1,7 +1,11 @@
-import Button from "../../../../../../reusable-ui/Button";
+import Button from "@/components/reusable-ui/Button";
 import SubmitMessage from "./SubmitMessage";
 
-function SubmitButton({ isSubmitted }) {
+type SubmitButtonProps = {
+  isSubmitted: boolean;
+};
+
+function SubmitButton({ isSubmitted }: SubmitButtonProps) {
   return (
     <>
       <Button label={"Ajouter un nouveau produit au menu"} version="success" />
