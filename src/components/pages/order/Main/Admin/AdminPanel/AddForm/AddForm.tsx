@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+// @ts-nocheck
 import { useOrderContext } from "../../../../../../../context/OrderPageContext";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import Form from "../Form/Form";

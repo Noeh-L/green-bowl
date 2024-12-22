@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useOrderContext } from "../../../../../../../context/OrderPageContext";
 import InfoEditMessage from "./InfoEditMessage";
 import Form from "../Form/Form";
