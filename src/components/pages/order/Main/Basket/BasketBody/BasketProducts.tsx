@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "@/theme";
 import BasketCard from "./BasketCard";
-import { useOrderContext } from "../../../../../../context/OrderPageContext";
-import { UNAVAILABLE_MSG } from "../../../../../../enums/product";
-import { formatPrice } from "../../../../../../utils/maths";
+import { useOrderContext } from "@/context/OrderPageContext";
+import { UNAVAILABLE_MSG } from "@/enums/product";
+import { formatPrice } from "@/utils/maths";
 import { getMenuProductAssociated } from "../helper";
 import Loader from "../../Menu/Loader";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { basketCardAnimation } from "../../../../../../theme/animation";
+import { basketCardAnimation } from "@/theme/animation";
+import { MenuProduct } from "@/types/Product";
 
 function BasketProducts() {
   // state
@@ -22,13 +23,16 @@ function BasketProducts() {
   } = useOrderContext();
 
   // behavior
-  const handleCardBasketDeletion = (e, id) => {
+  const handleCardBasketDeletion = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: string,
+  ) => {
     e.stopPropagation();
 
     handleDeleteFromBasket(id);
   };
 
-  const displayPrice = (product) => {
+  const displayPrice = (product: MenuProduct) => {
     if (isNaN(product.price)) {
       return "NaN €";
     } else if (!product.isAvailable) {
@@ -44,11 +48,13 @@ function BasketProducts() {
   return (
     <TransitionGroup component={BasketProductsStyled}>
       {basket.map((product) => {
+        if (!menu) return <></>; // TransitionGroup wants JSX element in return
         // extract from menu the product that match the mapped one in basket
         const correspondingProductInMenu = getMenuProductAssociated(
           product,
           menu,
         );
+        if (!correspondingProductInMenu) return <></>;
 
         return (
           <CSSTransition
