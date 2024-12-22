@@ -4,6 +4,7 @@ import { IconType } from "react-icons";
 import { ComponentProps } from "react";
 
 type Option = {
+  id: string;
   value: string | number | readonly string[] | undefined;
   label: string;
 };
@@ -11,7 +12,7 @@ type Option = {
 type SelectInputProps = {
   Icon?: IconType;
   options: Option[];
-  value: string | number | boolean;
+  value: string | number | readonly string[] | undefined;
 } & ComponentProps<"select">;
 
 function SelectInput({
@@ -20,13 +21,12 @@ function SelectInput({
   options,
   name,
   onChange,
-  onFocus,
   value,
 }: SelectInputProps) {
   return (
     <SelectInputStyled className={className}>
       {Icon && <Icon className="icon" />}
-      <select name={name} onChange={onChange} onFocus={onFocus} value={value}>
+      <select name={name} onChange={onChange} value={value}>
         {options.map((option) => (
           <option value={option.value} key={option.label}>
             {option.label}
