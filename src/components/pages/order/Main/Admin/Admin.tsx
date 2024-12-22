@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import styled from "styled-components";
-import AdminTabs from "./AdminTabs.jsx";
-import AdminPanel from "./AdminPanel/AdminPanel.jsx";
-import { useOrderContext } from "../../../../../context/OrderPageContext";
+import AdminTabs from "./AdminTabs";
+import AdminPanel from "./AdminPanel/AdminPanel";
+import { useOrderContext } from "@/context/OrderPageContext";
 
 function Admin() {
   const { isPanelAdminOpen } = useOrderContext();
