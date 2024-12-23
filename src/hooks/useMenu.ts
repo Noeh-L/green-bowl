@@ -48,7 +48,10 @@ export const useMenu = () => {
         menuCopy,
       );
 
-      menuCopy[indexOfProductBeingEdited] = productBeingEdited;
+      menuCopy[indexOfProductBeingEdited] = {
+        ...productBeingEdited,
+        price: Number(productBeingEdited.price),
+      };
 
       setMenu(menuCopy);
 
