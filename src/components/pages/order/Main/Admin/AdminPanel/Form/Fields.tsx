@@ -3,14 +3,14 @@ import SelectInput from "@/components/reusable-ui/SelectInput";
 import TextInput from "@/components/reusable-ui/TextInput";
 import { getInputsConfig } from "./inputsConfig";
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import React from "react";
 import { MenuProduct } from "@/types/Product";
 
-type FieldsProps = {
+export type FieldsProps = {
   product: MenuProduct;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
 };
 
 const Fields = React.forwardRef<HTMLInputElement, FieldsProps>(
@@ -28,6 +28,7 @@ const Fields = React.forwardRef<HTMLInputElement, FieldsProps>(
               value={input.value}
               name={input.name}
               onChange={onChange}
+              onFocus={onFocus}
               options={input.options}
             />
           ) : (

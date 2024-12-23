@@ -15,16 +15,13 @@ function EditForm() {
     editProductTitleRef,
   } = useOrderContext();
 
-  const [valueOnFocus, setValueOnFocus] = useState();
+  const [valueOnFocus, setValueOnFocus] = useState<string>();
   const [isEditOccured, setIsEditOccured] = useState(false);
 
   // event handlers (gestionnaire d'évenement)
   const handleChange = (
-    e:
-      | React.FormEvent<HTMLFormElement>
-      | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    if (!("name" in e.target)) return; // if "name" is undefined in "e.target" then return
     const { value, name } = e.target;
 
     // get an array of the keys "names" of all select inputs in inputConfig.ts
@@ -42,19 +39,13 @@ function EditForm() {
   };
 
   const handleFocus = (
-    e:
-      | React.FocusEvent<HTMLInputElement, Element>
-      | React.FocusEvent<HTMLFormElement, Element>,
+    e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const valueOnFocus = e.target.value;
     setValueOnFocus(valueOnFocus);
   };
 
-  const handleBlur = (
-    e:
-      | React.FocusEvent<HTMLInputElement, Element>
-      | React.FocusEvent<HTMLFormElement, Element>,
-  ) => {
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const valueOnBlur = e.target.value;
 
     if (valueOnFocus !== valueOnBlur) {
