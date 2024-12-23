@@ -26,7 +26,7 @@ export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
     {
       id: "2",
       name: "price",
-      value: newProduct.price ? newProduct.price : undefined,
+      value: newProduct.price ? newProduct.price : "",
       Icon: MdOutlineEuro,
       placeholder: "Prix",
       className: "price isCompacted",

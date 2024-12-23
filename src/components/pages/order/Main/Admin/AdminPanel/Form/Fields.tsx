@@ -33,7 +33,7 @@ const Fields = React.forwardRef<HTMLInputElement, FieldsProps>(
           ) : (
             <TextInput
               key={input.id}
-              value={input.value ? input.value : undefined}
+              value={input.value ? input.value : ""}
               name={input.name}
               onChange={onChange}
               onFocus={onFocus}

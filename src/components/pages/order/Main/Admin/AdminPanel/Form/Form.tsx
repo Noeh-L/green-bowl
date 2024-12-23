@@ -9,7 +9,7 @@ import Fields from "./Fields";
 import { MenuProduct } from "@/types/Product";
 
 type FormProps = {
-  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
   product: MenuProduct;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
