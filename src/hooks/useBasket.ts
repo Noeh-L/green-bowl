@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { deepClone, findObjectById, removeObjectById } from "../utils/array";
-//@ts-ignore
-import { updateUserData } from "../api/user";
-import { getLocalStorage, setLocalStorage } from "../utils/windows";
+import { deepClone, findObjectById, removeObjectById } from "@/utils/array";
+import { updateUserData } from "@/api/user";
+import { getLocalStorage, setLocalStorage } from "@/utils/windows";
 import { UserData } from "@/types/User";
 import { BasketProductQuantity, MenuProduct } from "@/types/Product";
 
