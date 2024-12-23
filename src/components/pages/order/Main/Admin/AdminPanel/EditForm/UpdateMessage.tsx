@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../../theme";
+import { theme } from "@/theme";
 import { BsCloudCheck } from "react-icons/bs";
 
 function UpdateMessage() {
