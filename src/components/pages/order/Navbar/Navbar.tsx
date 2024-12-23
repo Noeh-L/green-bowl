@@ -1,6 +1,6 @@
 import Logo from "@/components/reusable-ui/Logo";
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import NavbarRightSide from "./NavbarRightSide";
 import { refreshPage } from "@/utils/windows";
 

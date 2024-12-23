@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { theme } from "../../../../../theme";
-// @ts-ignore
+import { theme } from "@/theme/theme";
 import BasketHeader from "./BasketHeader/BasketHeader";
-// @ts-ignore
 import BasketBody from "./BasketBody/BasketBody";
 import BasketFooter from "./BasketFooter";
 

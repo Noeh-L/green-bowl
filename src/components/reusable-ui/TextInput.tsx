@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled, { css } from "styled-components";
-import { theme } from "../../theme";
+import { theme } from "@/theme/theme";
 import React, { ComponentPropsWithRef } from "react";
 
 type TextInputVersion = "normal" | "minimalist";

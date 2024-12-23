@@ -1,13 +1,19 @@
 /* eslint-disable react/display-name */
 import styled from "styled-components";
 import ImagePreview from "./ImagePreview";
-import { theme } from "../../../../../../theme";
+import { theme } from "@/theme/theme";
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { imagePreviewAppearAnimation } from "../../../../../../theme/animation";
-import Fields from "./Fields";
+import { imagePreviewAppearAnimation } from "@/theme/animation";
+import Fields, { FieldsProps } from "./Fields";
 
-const Form = React.forwardRef(
+type FormProps = {
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  children: React.ReactNode;
+} & FieldsProps;
+
+const Form = React.forwardRef<HTMLInputElement, FormProps>(
   ({ onSubmit, product, onChange, onFocus, children, onBlur }, ref) => {
     return (
       <TransitionGroup

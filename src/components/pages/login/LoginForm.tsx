@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import { BsPersonCircle } from "react-icons/bs";
 import TextInput from "@/components/reusable-ui/TextInput";
 import Button from "@/components/reusable-ui/Button";

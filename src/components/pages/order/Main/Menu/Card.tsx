@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Button from "@/components/reusable-ui/Button";
 import styled, { css } from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import { formatPrice } from "@/utils/maths";
 import { TiDelete } from "react-icons/ti";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -44,57 +44,60 @@ function Card({
 }: CardProps) {
   // render
   return (
-    <TransitionGroup
-      component={CardStyled}
+    <CardStyled
       $isAdminMode={isAdminMode}
       $isSelected={isCardSelected}
       $isAvailable={isAvailable}
       onClick={onCardSelected}
     >
-      {isDeleteButtonVisible ? (
-        <CSSTransition classNames={"deleteButton"} timeout={500}>
-          <button onClick={onDelete} className="deleteButton">
-            <TiDelete />
-          </button>
-        </CSSTransition>
-      ) : (
-        <></>
-      )}
-      <div className="picture">
-        <img src={picture} alt={label} />
-      </div>
+      <TransitionGroup>
+        {isDeleteButtonVisible && (
+          <CSSTransition
+            in={isDeleteButtonVisible}
+            classNames={"deleteButton"}
+            timeout={500}
+            unmountOnExit
+          >
+            <button onClick={onDelete} className="deleteButton">
+              <TiDelete />
+            </button>
+          </CSSTransition>
+        )}
 
-      <div className="infos">
-        <h2 className="infos-title">{isLabel ? label : <span>&nbsp;</span>}</h2>
-        <div className="infos-add">
-          <p className="price">{formatPrice(price)}</p>
-          <Button
-            label={"Ajouter"}
-            className="addButton"
-            onClick={onAddToBasket}
-            disabled={!isAvailable}
-          />
+        <div className="picture">
+          <img src={picture} alt={label} />
         </div>
-      </div>
 
-      {!isAvailable ? (
-        <CSSTransition classNames={"outOfStock"} timeout={500}>
-          <div className="outOfStockLogo">
-            <img src={IMAGE_NO_STOCK} alt="Rupture de stock" />
+        <div className="infos">
+          <h2 className="infos-title">
+            {isLabel ? label : <span>&nbsp;</span>}
+          </h2>
+          <div className="infos-add">
+            <p className="price">{formatPrice(price)}</p>
+            <Button
+              label={"Ajouter"}
+              className="addButton"
+              onClick={onAddToBasket}
+              disabled={!isAvailable}
+            />
           </div>
-        </CSSTransition>
-      ) : (
-        <></>
-      )}
+        </div>
 
-      {isAdvertised ? (
-        <CSSTransition classNames={"ribbon"} timeout={500}>
-          <Ribbon label="Nouveau" className={"advertisingRibbon"} />
-        </CSSTransition>
-      ) : (
-        <></>
-      )}
-    </TransitionGroup>
+        {!isAvailable && (
+          <CSSTransition classNames={"outOfStock"} timeout={500}>
+            <div className="outOfStockLogo">
+              <img src={IMAGE_NO_STOCK} alt="Rupture de stock" />
+            </div>
+          </CSSTransition>
+        )}
+
+        {isAdvertised && (
+          <CSSTransition classNames={"ribbon"} timeout={500}>
+            <Ribbon label="Nouveau" className={"advertisingRibbon"} />
+          </CSSTransition>
+        )}
+      </TransitionGroup>
+    </CardStyled>
   );
 }
 

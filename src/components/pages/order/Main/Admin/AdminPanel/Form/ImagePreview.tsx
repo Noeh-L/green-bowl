@@ -1,7 +1,12 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "@/theme/theme";
+import { MenuProduct } from "@/types/Product";
 
-function ImagePreview({ product }) {
+type ImagePreviewProps = {
+  product: MenuProduct;
+};
+
+function ImagePreview({ product }: ImagePreviewProps) {
   return (
     <ImagePreviewStyled>
       {product.imageSource ? (

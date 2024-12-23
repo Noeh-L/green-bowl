@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import BasketCard from "./BasketCard";
 import { useOrderContext } from "@/context/OrderPageContext";
 import { UNAVAILABLE_MSG } from "@/enums/product";

@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import { IconType } from "react-icons";
 import { ComponentProps } from "react";
 
 type Option = {
+  id: string;
   value: string | number | readonly string[] | undefined;
   label: string;
 };
@@ -11,7 +12,7 @@ type Option = {
 type SelectInputProps = {
   Icon?: IconType;
   options: Option[];
-  value: string | number | boolean;
+  value: string | number | readonly string[] | undefined;
 } & ComponentProps<"select">;
 
 function SelectInput({

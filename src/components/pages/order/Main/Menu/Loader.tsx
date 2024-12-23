@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 
 function Loader() {
   return <LoaderStyled>CHARGEMENT EN COURS ...</LoaderStyled>;

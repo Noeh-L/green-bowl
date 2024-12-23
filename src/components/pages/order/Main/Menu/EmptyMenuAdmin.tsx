@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import Button from "@/components/reusable-ui/Button";
 import { useOrderContext } from "@/context/OrderPageContext";
 

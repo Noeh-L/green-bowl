@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import { ComponentProps } from "react";
 
 type LogoProps = {

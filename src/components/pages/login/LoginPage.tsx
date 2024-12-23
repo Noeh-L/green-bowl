@@ -2,7 +2,7 @@ import styled from "styled-components";
 import LoginForm from "./LoginForm";
 import Logo from "@/components/reusable-ui/Logo";
 import background from "/assets/burger-background.jpg";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 
 function LoginPage() {
   // RENDER

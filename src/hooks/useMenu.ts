@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { fakeMenu } from "@/fakeData/fakeMenu";
-import { deepClone, findIndex, removeObjectById } from "../utils/array";
-//@ts-ignore
-import { updateUserData } from "../api/user";
-import { getLocalStorage, setLocalStorage } from "../utils/windows";
+import { deepClone, findIndex, removeObjectById } from "@/utils/array";
+import { updateUserData } from "@/api/user";
+import { getLocalStorage, setLocalStorage } from "@/utils/windows";
 import { MenuProduct } from "@/types/Product";
 import { UserData } from "@/types/User";
 
@@ -48,7 +47,10 @@ export const useMenu = () => {
         menuCopy,
       );
 
-      menuCopy[indexOfProductBeingEdited] = productBeingEdited;
+      menuCopy[indexOfProductBeingEdited] = {
+        ...productBeingEdited,
+        price: Number(productBeingEdited.price),
+      };
 
       setMenu(menuCopy);
 

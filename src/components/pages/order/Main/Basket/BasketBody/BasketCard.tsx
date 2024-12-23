@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { IMAGE_BY_DEFAULT } from "@/enums/product";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import { MdDeleteForever } from "react-icons/md";
 import CasinoEffect from "@/components/reusable-ui/CasinoEffect";
 import Sticker from "@/components/reusable-ui/Sticker";
