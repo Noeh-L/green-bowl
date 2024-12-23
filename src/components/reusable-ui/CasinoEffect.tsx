@@ -1,6 +1,6 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
-import { casinoEffectAnimation } from "../../theme/animation";
+import { casinoEffectAnimation } from "@/theme/animation";
 
 type CasinoEffectProps = {
   count: string;

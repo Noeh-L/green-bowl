@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "@/theme/index";
+import { theme } from "@/theme/theme";
 import Tab from "@/components/reusable-ui/Tab";
 import { useOrderContext } from "@/context/OrderPageContext";
 import { getTabsConfig } from "./tabsConfig";

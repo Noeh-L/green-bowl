@@ -1,7 +1,7 @@
 import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import styled from "styled-components";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import OrderContextProvider from "@/context/OrderPageContext";
 
 function OrderPage() {

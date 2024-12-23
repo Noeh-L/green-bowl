@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
+import { theme } from "@/theme/theme";
 import { calculateSumToPay } from "../helper";
-import { useOrderContext } from "../../../../../../context/OrderPageContext";
-import { formatPrice } from "../../../../../../utils/maths";
-import CasinoEffect from "../../../../../reusable-ui/CasinoEffect";
+import { useOrderContext } from "@/context/OrderPageContext";
+import { formatPrice } from "@/utils/maths";
+import CasinoEffect from "@/components/reusable-ui/CasinoEffect";
 import { DEFAULT_AMOUNT_TO_PAY } from "@/enums/product";
 
 function Total() {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Card from "./Card";
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import { useOrderContext } from "@/context/OrderPageContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";

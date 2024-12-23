@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { theme } from "@/theme";
+import { theme } from "@/theme/theme";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
