@@ -10,9 +10,9 @@ type LogoProps = {
 function Logo({ scale, ...extraProps }: LogoProps) {
   return (
     <TitleStyled $scale={scale} {...extraProps}>
-      <div>CRAZEE</div>
+      <div>GREEN</div>
       <img src={"/assets/logo-orange.png"} alt="Logo d'un burger" />
-      <div>BURGER</div>
+      <div>BOWL</div>
     </TitleStyled>
   );
 }

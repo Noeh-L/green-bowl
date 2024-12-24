@@ -13,7 +13,7 @@ export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
       name: "title",
       value: newProduct.title,
       Icon: FaHamburger,
-      placeholder: "Nom du produit (ex: Super Burger)",
+      placeholder: "Nom du produit (ex: Super Salad)",
     },
     {
       id: "1",

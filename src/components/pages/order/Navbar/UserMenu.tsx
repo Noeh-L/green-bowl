@@ -9,7 +9,7 @@ type UserMenuProps = {
 
 function UserMenu({ username }: UserMenuProps) {
   const resetPageTitle = () => {
-    document.title = "Crazee Burger";
+    document.title = "Green Bowl";
   };
 
   return (

@@ -25,7 +25,7 @@ function LoginForm() {
 
     setUsernameInputed("");
     navigate(`/order/${userReceived.username}`);
-    document.title = `Crazee Burger | ${usernameInputed}`;
+    document.title = `Green Bowl | ${usernameInputed}`;
   };
 
   // RENDER
