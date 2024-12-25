@@ -50,7 +50,7 @@ function Card({
       $isAvailable={isAvailable}
       onClick={onCardSelected}
     >
-      <TransitionGroup>
+      <TransitionGroup className={"card-styled"}>
         {isDeleteButtonVisible && (
           <CSSTransition
             in={isDeleteButtonVisible}
@@ -108,115 +108,119 @@ type CarsStyledProps = {
 };
 
 const CardStyled = styled.div<CarsStyledProps>`
-  background: ${theme.colors.white};
-  height: 330px;
-  width: 240px;
-  display: flex;
-  flex-direction: column;
-  gap: ${theme.spacing.sm};
-  padding: ${theme.spacing.xl} ${theme.spacing.md} 0;
-  border-radius: ${theme.borderRadius.extraRound};
-  box-shadow: ${theme.shadows.medium};
-  transition: all ease 0.15s;
-  position: relative;
-
-  .picture {
-    width: 200px;
-    height: 145px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    & img {
-      object-fit: contain;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  .infos {
+  .card-styled {
+    background: ${theme.colors.white};
+    height: 330px;
+    width: 240px;
     display: flex;
     flex-direction: column;
-    gap: ${theme.spacing.xxs};
-    cursor: default;
+    /* gap: ${theme.spacing.md}; */
+    justify-content: space-between;
+    padding: ${theme.spacing.xl} ${theme.spacing.md} ${theme.spacing.md};
+    border-radius: ${theme.borderRadius.extraRound};
+    box-shadow: ${theme.shadows.medium};
+    transition: all ease 0.15s;
+    position: relative;
 
-    &-title {
-      font-family: ${theme.family.stylish};
-      font-size: ${theme.fonts.P4};
-      font-weight: ${theme.weights.bold};
-      white-space: nowrap;
+    .picture {
+      width: 200px;
+      height: 145px;
       overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    &-add {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: center;
 
-      .price {
-        color: ${theme.colors.primary};
-        font-size: ${theme.fonts.P0};
-        font-weight: ${theme.weights.regular};
-      }
-      .addButton {
-        font-size: ${theme.fonts.XS};
-        padding: ${theme.spacing.sm} ${theme.spacing.lg};
-        width: 95px;
+      & img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
       }
     }
-  }
 
-  .deleteButton {
-    background: none;
-    border: none;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 1;
-    font-size: 30px;
-    color: ${theme.colors.primary};
-    cursor: pointer;
+    .infos {
+      display: flex;
+      flex-direction: column;
+      gap: ${theme.spacing.sm};
+      cursor: default;
 
-    &:hover {
-      color: ${theme.colors.red};
+      &-title {
+        font-family: ${theme.family.stylish};
+        font-size: ${theme.fonts.P3};
+        font-weight: ${theme.weights.bold};
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+      }
+      &-add {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .price {
+          color: ${theme.colors.primary};
+          font-size: ${theme.fonts.P0};
+          font-weight: ${theme.weights.regular};
+        }
+        .addButton {
+          font-size: ${theme.fonts.XS};
+          padding: ${theme.spacing.sm} ${theme.spacing.lg};
+          width: 95px;
+        }
+      }
     }
-    &:active {
+
+    .deleteButton {
+      background: none;
+      border: none;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 1;
+      font-size: 30px;
       color: ${theme.colors.primary};
+      cursor: pointer;
+
+      &:hover {
+        color: ${theme.colors.red};
+      }
+      &:active {
+        color: ${theme.colors.primary};
+      }
     }
-  }
 
-  .outOfStockLogo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-    width: 80%;
+    .outOfStockLogo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      width: 80%;
 
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: contain;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
     }
-  }
 
-  .advertisingRibbon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
+    .advertisingRibbon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
 
-  ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
-  ${({ $isAdminMode, $isSelected }) => {
-    return $isAdminMode && $isSelected && styleOnSelected;
-  }} 
+    ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
+    ${({ $isAdminMode, $isSelected }) => {
+      return $isAdminMode && $isSelected && styleOnSelected;
+    }} 
   ${({ $isAvailable }) => !$isAvailable && styleOnOutOfStock}
 
   ${deleteButtonAnimation}
   ${outOfStockAnimation}
   ${ribbonAnimation}
+  }
 `;
 
 const styleOnHover = css`

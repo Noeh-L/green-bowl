@@ -31,12 +31,12 @@ const TotalStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  font-size: 36px;
+  font-size: 30px;
   text-transform: capitalize;
   color: ${theme.colors.primary};
 
   .totalPrice {
-    font-weight: ${theme.weights.bold};
+    font-weight: ${theme.weights.semiBold};
   }
 `;
 

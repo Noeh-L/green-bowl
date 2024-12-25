@@ -31,7 +31,7 @@ const UserMenuStyled = styled.div`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.sm};
-  font-family: "Open sans", sans-serif;
+  font-family: ${theme.family.minimalist};
 
   .username-and-logout {
     display: flex;

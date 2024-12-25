@@ -103,11 +103,12 @@ const BasketCardStyled = styled.div<BasketCardStyledProps>`
 
     .title {
       width: 110px;
-      font-size: ${theme.fonts.P3};
+      font-size: ${theme.fonts.P2};
       font-weight: ${theme.weights.bold};
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      text-transform: uppercase;
     }
     .price {
       font-size: 15px;

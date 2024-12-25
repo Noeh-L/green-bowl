@@ -23,7 +23,7 @@ type TabStyledType = {
 };
 
 const TabStyled = styled.button<TabStyledType>`
-  font-family: "Open sans";
+  font-family: ${theme.family.minimalist};
   min-width: 60px;
   min-height: 46px;
   display: flex;

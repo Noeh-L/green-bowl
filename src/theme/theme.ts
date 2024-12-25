@@ -4,9 +4,9 @@ const colors = {
   white: "#fff",
   background_white: "#f5f5f7",
   background_dark: "#292729",
-  primary: "#ffa01b",
+  primary: "#44c979",
   green: "green",
-  success: "#60bd4f",
+  success: "#5caff2",
   red: "#e25549",
   redSecondary: "#c4151c",
   blue: "#51a7e1",
@@ -61,7 +61,7 @@ const weights = {
   heavy: 800,
 };
 const family = {
-  stylish: '"Amatic SC", cursive',
+  stylish: '"Poiret One", sans-serif',
   minimalist: '"Open sans", sans-serif',
 };
 

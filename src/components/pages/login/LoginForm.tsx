@@ -66,7 +66,7 @@ const LoginFormStyled = styled.form`
   .separator {
     width: 400px;
     height: 3px;
-    background-color: #f56a2c;
+    background-color: ${theme.colors.primary};
   }
 
   .cta {
