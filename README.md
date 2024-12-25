@@ -16,8 +16,8 @@ Une [démo](https://green-bowl-4oqscgfgc-noehs-projects.vercel.app/) vaut mille 
 - **Animations** : React Transition Group
 - **Outils** : Vite
 - **Déploiement** : Vercel
--
-- ## ✨ Fonctionnalités principales
+
+## ✨ Fonctionnalités principales
 
 - **Mode admin** :
   - Ajouter/Modifier/Supprimer des produits du menu (CRUD)
