@@ -58,5 +58,5 @@ Pour toute question ou suggestion, vous pouvez me contacter par [mail](mailto:co
 ##
 
 <p align="center">
-  <img src="./public/assets/gb-logo.png" alt="Green Bowl Logo" width="100" />
+  <img src="./public/assets/gb-logo.png" alt="Green Bowl Logo" width="75" />
 </p>
