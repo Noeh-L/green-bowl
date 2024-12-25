@@ -4,11 +4,17 @@ import { theme } from "@/theme/theme";
 function BasketFooter() {
   return (
     <BasketFooterStyled>
-      Codé par&nbsp;
-      <a href="https://noehledra.fr" className="portfolio-link" target="_blank">
-        Noeh
-      </a>
-      &nbsp;avec 💚 et React.TS
+      <span>
+        Codé par&nbsp;
+        <a
+          href="https://noehledra.fr"
+          className="portfolio-link"
+          target="_blank"
+        >
+          Noeh
+        </a>
+        &nbsp;avec 💚 et React.TS
+      </span>
     </BasketFooterStyled>
   );
 }
@@ -21,7 +27,8 @@ const BasketFooterStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: ${theme.fonts.P2};
+  text-align: center;
 
   .portfolio-link {
     color: ${theme.colors.primary};
