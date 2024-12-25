@@ -1,22 +1,12 @@
 <p align="center">
-  <img src="./public/assets/gb-logo-large.png" alt="Green Bowl Logo" width="100" />
+  <img src="./public/assets/gb-logo-large.png" alt="Green Bowl Logo" width="600" />
 </p>
 
-# Green Bowl 🥗
+# Green Bowl
 
 **Green Bowl** est une _single page application_ de commande de repas en ligne. Développée avec React et Typescript.
 
 Une [démo](https://green-bowl-4oqscgfgc-noehs-projects.vercel.app/) vaut mille mot !
-
-## ✨ Fonctionnalités principales
-
-- **Mode admin** :
-  - Ajouter/Modifier/Supprimer des produits du menu (CRUD)
-  - Panel admin d'ajout et d'édition d'un produit
-  - Gérer la disponibilité des produits
-  - Ajouter de la publicité à un produit
-- **E-commerce** : Ajouter/Supprimer des produits du panier
-- **Interface utilisateur moderne** : Design épuré et intuitif
 
 ## 🚀 Technologies utilisées
 
@@ -26,6 +16,16 @@ Une [démo](https://green-bowl-4oqscgfgc-noehs-projects.vercel.app/) vaut mille 
 - **Animations** : React Transition Group
 - **Outils** : Vite
 - **Déploiement** : Vercel
+-
+- ## ✨ Fonctionnalités principales
+
+- **Mode admin** :
+  - Ajouter/Modifier/Supprimer des produits du menu (CRUD)
+  - Panel admin d'ajout et d'édition d'un produit
+  - Gérer la disponibilité des produits
+  - Ajouter de la publicité à un produit
+- **E-commerce** : Ajouter/Supprimer des produits du panier
+- **Interface utilisateur moderne** : Design épuré et intuitif
 
 ## 📦 Installation et démarrage
 
