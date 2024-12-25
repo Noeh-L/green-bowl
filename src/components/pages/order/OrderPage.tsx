@@ -3,6 +3,7 @@ import Main from "./Main/Main";
 import styled from "styled-components";
 import { theme } from "@/theme/theme";
 import OrderContextProvider from "@/context/OrderPageContext";
+import gbPattern from "/assets/gb-pattern.png";
 
 function OrderPage() {
   return (
@@ -34,7 +35,7 @@ const OrderPageStyled = styled.div`
   );
 
   & .background {
-    background-image: url("../../../../public/assets/gb-pattern.png");
+    background-image: url(${gbPattern});
     background-size: 90px;
     position: absolute;
     inset: 0;
