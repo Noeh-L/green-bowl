@@ -52,7 +52,7 @@ const extraStylePrimary = css`
   color: ${theme.colors.white};
   font-size: ${theme.fonts.P0};
   font-weight: ${theme.weights.semiBold};
-  font-family: "Open sans", sans-serif;
+  font-family: ${theme.family.minimalist};
   cursor: pointer;
   transition: background 0.15s ease-in-out;
 
@@ -89,7 +89,7 @@ const extraStyleSuccess = css`
 
   color: ${theme.colors.white};
   font-weight: ${theme.weights.semiBold};
-  font-family: "Open sans", sans-serif;
+  font-family: ${theme.family.minimalist};
   font-size: ${theme.fonts.XS};
 
   cursor: pointer;

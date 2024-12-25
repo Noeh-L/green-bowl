@@ -63,7 +63,7 @@ const TextInputStyled = styled.label<TextInputStyledProps>`
     width: 100%;
     height: 100%;
     font-size: 14px;
-    font-family: "Open sans", sans-serif;
+    font-family: ${theme.family.minimalist};
     font-weight: ${theme.weights.medium};
 
     &::placeholder {
