@@ -25,12 +25,20 @@ const OrderPageStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  /* background-color: linear-gradient(${theme.colors.primary}); */
+  background: linear-gradient(
+    155deg,
+    rgba(68, 201, 121, 1) 0%,
+    rgba(57, 221, 122, 1) 35%,
+    rgba(2, 251, 164, 1) 100%
+  );
 
   & .background {
-    background: ${theme.colors.primary};
+    background-image: url("../../../../public/assets/gb-pattern.png");
+    background-size: 90px;
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0;
   }
 
   main {
@@ -42,6 +50,9 @@ const OrderPageStyled = styled.div`
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: ${theme.shadows.medium};
+
+    z-index: 1;
   }
 `;
 
