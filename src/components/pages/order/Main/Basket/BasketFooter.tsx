@@ -2,7 +2,15 @@ import styled from "styled-components";
 import { theme } from "@/theme/theme";
 
 function BasketFooter() {
-  return <BasketFooterStyled>Codé avec ❤️ et React.js</BasketFooterStyled>;
+  return (
+    <BasketFooterStyled>
+      Codé par&nbsp;
+      <a href="https://noehledra.fr" className="portfolio-link" target="_blank">
+        Noeh
+      </a>
+      &nbsp;avec 💚 et React.TS
+    </BasketFooterStyled>
+  );
 }
 
 const BasketFooterStyled = styled.div`
@@ -14,7 +22,15 @@ const BasketFooterStyled = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  text-transform: capitalize;
+
+  .portfolio-link {
+    color: ${theme.colors.primary};
+    transition: color ease 0.2s;
+
+    &:hover {
+      color: ${theme.colors.white};
+    }
+  }
 `;
 
 export default BasketFooter;
