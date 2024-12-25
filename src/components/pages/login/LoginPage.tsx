@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import LoginForm from "./LoginForm";
 import Logo from "@/components/reusable-ui/Logo";
-import background from "/assets/burger-background.jpg";
+import background from "/assets/bowl-background.jpg";
 import { theme } from "@/theme/theme";
 
 function LoginPage() {
@@ -9,10 +9,10 @@ function LoginPage() {
   return (
     <Container>
       <BackgroundContainer>
-        <img src={background} alt="Burger et frites" />
+        <img src={background} alt="Une personne tenant un bol de salade" />
         <Overlay></Overlay>
       </BackgroundContainer>
-      <Logo scale={2} />
+      <Logo scale={1.7} />
       <LoginForm />
     </Container>
   );
@@ -48,6 +48,7 @@ const Overlay = styled.div`
   position: absolute;
   inset: 0;
   background-color: rgba(0 0 0 / 0.7);
+  backdrop-filter: blur(5px);
 `;
 
 export default LoginPage;
