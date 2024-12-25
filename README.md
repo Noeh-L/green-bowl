@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/assets/gb-logo-large.png" alt="Green Bowl Logo" width="600" />
+  <img src="./public/assets/gb-logo-large.png" alt="Green Bowl Logo" width="450" />
 </p>
 
 # Green Bowl
