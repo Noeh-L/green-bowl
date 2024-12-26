@@ -6,7 +6,7 @@
 
 **Green Bowl** est une _single page application_ de commande de repas en ligne. Développée avec React et Typescript.
 
-Une [démo](https://green-bowl-4oqscgfgc-noehs-projects.vercel.app/) vaut mille mot !
+Une [démo](https://green-bowl-ok6j3b5vk-noehs-projects.vercel.app/) vaut mille mot !
 
 ## 🚀 Technologies utilisées
 
