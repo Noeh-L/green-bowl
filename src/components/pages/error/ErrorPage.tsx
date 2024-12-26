@@ -2,7 +2,8 @@ import Button from "@/components/reusable-ui/Button";
 import { theme } from "@/theme/theme";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import gbPattern from "../../../../public/assets/gb-pattern.png";
+import gbPattern from "/assets/gb-pattern.png";
+import bowlIllustration from "/assets/bowl-illustration.png";
 
 function ErrorPage() {
   const navigate = useNavigate();
@@ -16,10 +17,7 @@ function ErrorPage() {
       <main>
         <h1 className="error-title">Erreur 404</h1>
         <div className="error-img">
-          <img
-            src="../../../../public/assets/bowl-illustration.png"
-            alt="Bol de salade"
-          />
+          <img src={bowlIllustration} alt="Bol de salade" />
         </div>
         <Button
           label="Retourner à la page d'accueil"
