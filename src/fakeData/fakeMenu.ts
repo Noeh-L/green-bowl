@@ -165,7 +165,7 @@ const LARGE: MenuProduct[] = [
     isAdvertised: false,
   },
   {
-    id: "10",
+    id: "11",
     imageSource: "/assets/drink6.jpg",
     title: "Oasis Pomme Cassis Framboise",
     price: 2.5,
@@ -174,7 +174,7 @@ const LARGE: MenuProduct[] = [
     isAdvertised: false,
   },
   {
-    id: "11",
+    id: "12",
     imageSource: "/assets/ice-cream.png",
     title: "Glaces artisanales",
     price: 2.9,
