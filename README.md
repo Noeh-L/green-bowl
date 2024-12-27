@@ -8,7 +8,7 @@
 
 Une [démo](https://greenbowl.vercel.app/) vaut mille mots !
 
-<!-- vercel 2 -->
+<!-- vercel 3 -->
 
 ## 🚀 Technologies utilisées
 
