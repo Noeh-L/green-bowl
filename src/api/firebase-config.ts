@@ -13,5 +13,6 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+console.log("Firebase config avant le push :", firebaseConfig);
 const app = initializeApp(firebaseConfig); // pour se connecter à Firebase
 export const db = getFirestore(app); // pour se connecter à notre BDD firebase
