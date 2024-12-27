@@ -8,8 +8,6 @@
 
 Une [démo](https://greenbowl.vercel.app/) vaut mille mots !
 
-<!-- vercel 6 -->
-
 ## 🚀 Technologies utilisées
 
 - **Frontend** : React + TypeScript
