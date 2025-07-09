@@ -235,3 +235,48 @@ from {
   opacity: 1
 }
 `;
+
+export const displayModal = css`
+  /* MOUNTING */
+  .productModal-enter {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  .productModal-enter-active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: 0.3s;
+  }
+  .productModal-enter-done {
+  }
+
+  /* UNMOUNTING */
+  .productModal-exit {
+    /* transform: translate(-50%, -50%) scale(1); */
+  }
+  .productModal-exit-active {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  /* MOUNTING */
+  .modalOverlay-enter {
+    opacity: 0;
+  }
+  .modalOverlay-enter-active {
+    opacity: 1;
+    transition: 0.3s;
+  }
+  .modalOverlay-enter-done {
+  }
+
+  /* UNMOUNTING */
+  .modalOverlay-exit {
+    opacity: 1;
+  }
+  .modalOverlay-exit-active {
+    opacity: 0;
+    transition: 0.3s;
+  }
+`;

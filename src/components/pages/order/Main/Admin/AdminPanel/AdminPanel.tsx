@@ -2,14 +2,13 @@ import styled from "styled-components";
 import { theme } from "@/theme/theme";
 import { getTabsConfig, getTabSelected } from "../tabsConfig";
 import { useOrderContext } from "@/context/OrderPageContext";
-import { EMPTY_PRODUCT } from "@/enums/product";
 
 function AdminPanel() {
   // state
-  const { activeTab, productSelected } = useOrderContext();
+  const { activeTab, productSelectedByAdmin } = useOrderContext();
 
   // behavior
-  const isProductSelected = productSelected !== EMPTY_PRODUCT;
+  const isProductSelected = productSelectedByAdmin !== null;
   const tabs = getTabsConfig(isProductSelected);
   const tabSelected = getTabSelected(tabs, activeTab);
 

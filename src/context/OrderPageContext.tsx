@@ -29,8 +29,14 @@ type OrderContextType = {
   resetMenu: () => Promise<void>;
   newProduct: MenuProduct;
   setNewProduct: React.Dispatch<React.SetStateAction<MenuProduct>>;
-  productSelected: MenuProduct;
-  setProductSelected: React.Dispatch<React.SetStateAction<MenuProduct>>;
+  productSelectedByAdmin: MenuProduct | null;
+  setProductSelectedByAdmin: React.Dispatch<
+    React.SetStateAction<MenuProduct | null>
+  >;
+  productSelectedByUser: MenuProduct | null;
+  setProductSelectedByUser: React.Dispatch<
+    React.SetStateAction<MenuProduct | null>
+  >;
   handleEditProduct: (productBeingEdited: MenuProduct) => Promise<void>;
   editProductTitleRef: React.RefObject<HTMLInputElement | null>;
   basket: BasketProductQuantity[];
@@ -38,6 +44,8 @@ type OrderContextType = {
   handleDeleteFromBasket: (id: string) => void;
   isLoading: boolean;
   handleCardSelection: (id: string) => Promise<void>;
+  isModalVisible: boolean;
+  setIsModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 // 1. Création du contexte
@@ -52,11 +60,14 @@ export default function OrderContextProvider({ children }: PropsWithChildren) {
   const [activeTab, setActiveTab] = useState<ADMIN_TAB_LABEL>(
     ADMIN_TAB_LABEL.ADD,
   );
-  const [productSelected, setProductSelected] =
-    useState<MenuProduct>(EMPTY_PRODUCT);
+  const [productSelectedByAdmin, setProductSelectedByAdmin] =
+    useState<MenuProduct | null>(null);
+  const [productSelectedByUser, setProductSelectedByUser] =
+    useState<MenuProduct | null>(null);
   const editProductTitleRef = useRef<HTMLInputElement>(null);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const {
     menu,
     handleAddProduct,
@@ -80,16 +91,27 @@ export default function OrderContextProvider({ children }: PropsWithChildren) {
   // Card selection handler
   const handleCardSelection = async (id: string) => {
     if (!menu) return;
-    if (!isAdminMode) return;
-    if (productSelected.id === id) return setProductSelected(EMPTY_PRODUCT);
+
+    // Open the modal for non-admin users
+    if (!isAdminMode) {
+      const productClickedOn = findObjectById(id, menu);
+
+      if (!productClickedOn) return;
+      setProductSelectedByUser(productClickedOn);
+      return;
+    }
+
+    // Deselects if the same product is clicked
+    if (productSelectedByAdmin?.id === id)
+      return setProductSelectedByAdmin(null);
 
     await setIsPanelAdminOpen(true);
     await setActiveTab(ADMIN_TAB_LABEL.EDIT);
 
-    const productClickedOn = findObjectById(id, menu);
+    const productClickedOnByAdmin = findObjectById(id, menu);
 
-    if (!productClickedOn) return;
-    await setProductSelected(productClickedOn);
+    if (!productClickedOnByAdmin) return;
+    await setProductSelectedByAdmin(productClickedOnByAdmin);
 
     focusOnRef(editProductTitleRef);
   };
@@ -111,8 +133,10 @@ export default function OrderContextProvider({ children }: PropsWithChildren) {
     newProduct,
     setNewProduct,
 
-    productSelected,
-    setProductSelected,
+    productSelectedByAdmin,
+    setProductSelectedByAdmin,
+    productSelectedByUser,
+    setProductSelectedByUser,
     handleEditProduct,
 
     editProductTitleRef,
@@ -123,6 +147,9 @@ export default function OrderContextProvider({ children }: PropsWithChildren) {
 
     isLoading,
     handleCardSelection,
+
+    isModalVisible,
+    setIsModalVisible,
   };
 
   return (

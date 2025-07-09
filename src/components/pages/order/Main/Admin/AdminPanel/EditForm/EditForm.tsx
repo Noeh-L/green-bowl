@@ -9,8 +9,8 @@ import { getInputsConfig } from "../Form/inputsConfig";
 function EditForm() {
   // state
   const {
-    productSelected,
-    setProductSelected,
+    productSelectedByAdmin,
+    setProductSelectedByAdmin,
     handleEditProduct,
     editProductTitleRef,
   } = useOrderContext();
@@ -29,12 +29,13 @@ function EditForm() {
       .filter((input) => input.options)
       .map((input) => input.name);
 
+    if (!productSelectedByAdmin) return;
     const productBeingUpdated = {
-      ...productSelected,
+      ...productSelectedByAdmin,
       [name]: booleanInputs.includes(name) ? value === "true" : value, // send boolean to the DB instead of a string (true instead of "true")
     };
 
-    setProductSelected(productBeingUpdated); // update the form
+    setProductSelectedByAdmin(productBeingUpdated); // update the form
     handleEditProduct(productBeingUpdated); // update the menu
   };
 
@@ -59,7 +60,7 @@ function EditForm() {
   // render
   return (
     <Form
-      product={productSelected}
+      product={productSelectedByAdmin ? productSelectedByAdmin : EMPTY_PRODUCT}
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}

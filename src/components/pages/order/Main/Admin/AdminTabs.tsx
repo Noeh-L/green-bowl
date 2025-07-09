@@ -5,7 +5,6 @@ import { useOrderContext } from "@/context/OrderPageContext";
 import { getTabsConfig } from "./tabsConfig";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { focusOnRef } from "@/utils/focusOnRef";
-import { EMPTY_PRODUCT } from "@/enums/product";
 import { ADMIN_TAB_LABEL } from "@/enums/adminTabLabel";
 
 function AdminTabs() {
@@ -16,10 +15,10 @@ function AdminTabs() {
     activeTab,
     setActiveTab,
     editProductTitleRef,
-    productSelected,
+    productSelectedByAdmin,
   } = useOrderContext();
 
-  const isProductSelected = productSelected !== EMPTY_PRODUCT;
+  const isProductSelected = productSelectedByAdmin !== null;
   const tabs = getTabsConfig(isProductSelected);
 
   // bahavior

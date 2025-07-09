@@ -121,6 +121,7 @@ const CardStyled = styled.div<CarsStyledProps>`
     box-shadow: ${theme.shadows.medium};
     transition: all ease 0.15s;
     position: relative;
+    cursor: pointer;
 
     .picture {
       width: 200px;
@@ -141,7 +142,6 @@ const CardStyled = styled.div<CarsStyledProps>`
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
-      cursor: default;
 
       &-title {
         font-family: ${theme.family.stylish};
