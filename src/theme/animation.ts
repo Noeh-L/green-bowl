@@ -239,25 +239,25 @@ from {
 export const displayModal = css`
   /* MOUNTING */
   .productModal-enter {
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) scale(0.9);
     opacity: 0;
   }
   .productModal-enter-active {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    transition: 0.3s;
+    transition: 0.2s;
   }
   .productModal-enter-done {
   }
 
   /* UNMOUNTING */
   .productModal-exit {
-    /* transform: translate(-50%, -50%) scale(1); */
+    transform: translate(-50%, -50%) scale(1);
   }
   .productModal-exit-active {
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) scale(0.95);
     opacity: 0;
-    transition: 0.3s;
+    transition: 0.2s;
   }
 
   /* MOUNTING */
