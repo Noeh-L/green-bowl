@@ -211,7 +211,8 @@ const CardStyled = styled.div<CarsStyledProps>`
       z-index: 1;
     }
 
-    ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
+    ${({ $isAdminMode }) =>
+      $isAdminMode ? styleOnAdminHover : styleOnUserHover}
     ${({ $isAdminMode, $isSelected }) => {
       return $isAdminMode && $isSelected && styleOnSelected;
     }} 
@@ -223,7 +224,13 @@ const CardStyled = styled.div<CarsStyledProps>`
   }
 `;
 
-const styleOnHover = css`
+const styleOnUserHover = css`
+  &:hover {
+    cursor: pointer;
+    background-color: ${theme.colors.background_white};
+  }
+`;
+const styleOnAdminHover = css`
   &:hover {
     transform: scale(1.05);
     cursor: pointer;
