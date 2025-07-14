@@ -7,7 +7,7 @@ import Menu from "./Menu/Menu";
 import Basket from "./Basket/Basket";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { displayModal, panelAnimation } from "@/theme/animation";
-import ProductModal from "./Menu/ProductModal";
+import ProductModal from "./Menu/ProductModal/ProductModal";
 import { useEffect } from "react";
 
 function Main() {
