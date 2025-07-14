@@ -6,9 +6,10 @@ import { MenuProduct } from "@/types/Product";
 import { displayToast } from "@/utils/displayToast";
 import { formatPrice } from "@/utils/maths";
 import { MouseEventHandler } from "react";
+import { BiFoodMenu } from "react-icons/bi";
 import { FaShoppingCart } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
 import { TbBowlSpoonFilled } from "react-icons/tb";
+import { TfiClose } from "react-icons/tfi";
 import styled from "styled-components";
 
 type ProductModalProps = {
@@ -22,9 +23,12 @@ function ProductModal({ product, onClose }: ProductModalProps) {
   // render
   return (
     <ModalStyled>
-      <h1>{product.title}</h1>
+      <div className="modalTitle">
+        <BiFoodMenu className="modalIcon" />
+        <h2>{product.title}</h2>
+      </div>
       <button className="closeModalBtn" onClick={onClose}>
-        <IoClose className="close-icon" />
+        <TfiClose className="close-icon" />
       </button>
       <div className="productInfos">
         <div className="productPicture">
@@ -32,6 +36,34 @@ function ProductModal({ product, onClose }: ProductModalProps) {
         </div>
         <div className="productDetails">
           <div className="productTags">
+            <div className="productTags__calories">
+              <TbBowlSpoonFilled className="tagIcon" />
+              <div>2 kCal</div>
+            </div>
+            <div className="productTags__calories">
+              <TbBowlSpoonFilled className="tagIcon" />
+              <div>236 kCal</div>
+            </div>
+            <div className="productTags__calories">
+              <TbBowlSpoonFilled className="tagIcon" />
+              <div>20025w kCal</div>
+            </div>
+            <div className="productTags__calories">
+              <TbBowlSpoonFilled className="tagIcon" />
+              <div>1000 kCal</div>
+            </div>
+            <div className="productTags__calories">
+              <TbBowlSpoonFilled className="tagIcon" />
+              <div>20025w kCal</div>
+            </div>
+            <div className="productTags__calories">
+              <TbBowlSpoonFilled className="tagIcon" />
+              <div>1000 kCal</div>
+            </div>
+            <div className="productTags__calories">
+              <TbBowlSpoonFilled className="tagIcon" />
+              <div>20025w kCal</div>
+            </div>
             <div className="productTags__calories">
               <TbBowlSpoonFilled className="tagIcon" />
               <div>1000 kCal</div>
@@ -47,6 +79,7 @@ function ProductModal({ product, onClose }: ProductModalProps) {
         </div>
         <div className="priceAndAddBtn">
           <p className="price">{formatPrice(product.price)}</p>
+          <div className="separator"></div>
           <Button
             className="addToBasketBtn"
             label="Ajouter au panier"
@@ -69,7 +102,7 @@ const ModalStyled = styled.div`
   transform: translate(-50%, -50%);
   z-index: 4;
 
-  height: 85%;
+  max-height: 85%;
   width: 650px;
   border-radius: ${theme.borderRadius.extraRound};
   background: ${theme.colors.background_white};
@@ -79,10 +112,45 @@ const ModalStyled = styled.div`
   display: flex;
   flex-direction: column;
 
-  h1 {
-    font-size: 1.8rem;
-    margin-bottom: ${theme.spacing.md};
-    color: ${theme.colors.dark};
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: ${theme.colors.greyMedium} transparent; //putting this line make the modal "overflow:hidden"
+
+  .modalTitle {
+    display: flex;
+    align-items: center;
+    gap: ${theme.spacing.sm};
+    margin-bottom: ${theme.spacing.lg};
+
+    .modalIcon {
+      font-size: ${theme.fonts.P4};
+      color: ${theme.colors.primary};
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: ${theme.colors.dark};
+      font-family: ${theme.family.stylish};
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      max-width: 80%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 5px;
+        height: 3px;
+        width: 45px;
+        background: ${theme.colors.primary};
+        border-radius: ${theme.borderRadius.round};
+      }
+    }
   }
 
   .closeModalBtn {
@@ -101,7 +169,7 @@ const ModalStyled = styled.div`
     transition: all ease 0.2s;
 
     .close-icon {
-      font-size: ${theme.fonts.P2};
+      font-size: ${theme.fonts.P1};
     }
 
     &:hover {
@@ -123,7 +191,8 @@ const ModalStyled = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: ${theme.borderRadius.round};
+        border-radius: ${theme.borderRadius.extraRound};
+        filter: drop-shadow(0px 0px 8px ${theme.colors.greyMedium});
       }
     }
 
@@ -136,6 +205,8 @@ const ModalStyled = styled.div`
       .productTags {
         display: flex;
         gap: ${theme.spacing.sm};
+        width: 100%;
+        flex-wrap: wrap;
 
         &__calories {
           display: flex;
@@ -148,6 +219,7 @@ const ModalStyled = styled.div`
           box-shadow: 0 0 5px rgba(55, 55, 55, 0.2);
           font-size: ${theme.fonts.SM};
           cursor: default;
+          white-space: nowrap;
 
           .tagIcon {
             font-size: ${theme.fonts.P1};
@@ -158,8 +230,11 @@ const ModalStyled = styled.div`
 
       .productDescription {
         h4 {
-          font-size: ${theme.fonts.P1};
-          margin-bottom: ${theme.spacing.xs};
+          font-size: ${theme.fonts.P0};
+          margin-bottom: ${theme.spacing.xxs};
+          color: ${theme.colors.dark};
+          font-weight: ${theme.weights.bold};
+          font-family: ${theme.family.minimalist};
         }
 
         p {
@@ -167,7 +242,7 @@ const ModalStyled = styled.div`
           font-size: ${theme.fonts.P0};
           color: ${theme.colors.dark};
           text-align: justify;
-          height: 100px;
+          max-height: 100px;
           padding-right: ${theme.spacing.xs};
           overflow: auto;
           scrollbar-width: thin;
@@ -177,16 +252,24 @@ const ModalStyled = styled.div`
     }
 
     .priceAndAddBtn {
+      width: fit-content;
       display: flex;
       align-items: center;
-      justify-content: end;
+      justify-content: space-between;
       gap: ${theme.spacing.lg};
       margin-top: auto;
+      margin-left: auto;
 
       .price {
         font-size: ${theme.fonts.P1};
         color: ${theme.colors.primary};
         font-weight: ${theme.weights.semiBold};
+      }
+
+      .separator {
+        width: 1px;
+        height: 30px;
+        background: ${theme.colors.greyMedium};
       }
 
       .addToBasketBtn {
