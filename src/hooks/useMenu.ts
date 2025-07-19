@@ -50,6 +50,7 @@ export const useMenu = () => {
       menuCopy[indexOfProductBeingEdited] = {
         ...productBeingEdited,
         price: Number(productBeingEdited.price),
+        calories: Number(productBeingEdited.calories),
       };
 
       setMenu(menuCopy);

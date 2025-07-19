@@ -44,7 +44,7 @@ const Form = React.forwardRef<HTMLInputElement, FormProps>(
 );
 
 const FormStyled = styled.form`
-  width: 75%;
+  width: 95%;
   display: grid;
   grid-template-rows: 1fr 35px;
   grid-template-columns: 160px 1fr;

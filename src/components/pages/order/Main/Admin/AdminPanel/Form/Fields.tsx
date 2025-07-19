@@ -54,12 +54,12 @@ const Fields = React.forwardRef<HTMLInputElement, FieldsProps>(
 const FieldsStyled = styled.div`
   grid-area: 1 / 2 / 2 / 3;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: ${theme.spacing.xs};
 
   .text-inputs {
-    grid-column: span 3;
+    grid-column: span 4;
 
     &.isCompacted {
       grid-column: span 1;
