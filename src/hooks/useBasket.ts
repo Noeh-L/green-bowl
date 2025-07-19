@@ -22,14 +22,14 @@ export const useBasket = () => {
     }
   };
 
-  const handleDeleteFromBasket = (id: string) => {
+  const handleDeleteFromBasket = async (id: string) => {
     const basketCopy = deepClone(basket);
 
     const basketUpdated = removeObjectById(id, basketCopy);
 
     setBasket(basketUpdated);
 
-    updateBasketInLStorageAndDB(basketUpdated);
+    await updateBasketInLStorageAndDB(basketUpdated);
   };
 
   const incrementProductInBasket = async (

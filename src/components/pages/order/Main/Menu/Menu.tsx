@@ -4,7 +4,7 @@ import { theme } from "@/theme/theme";
 import { useOrderContext } from "@/context/OrderPageContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuUser from "./EmptyMenuUser";
-import { EMPTY_PRODUCT, IMAGE_BY_DEFAULT } from "@/enums/product";
+import { IMAGE_BY_DEFAULT } from "@/enums/product";
 import { focusOnRef } from "@/utils/focusOnRef";
 import { findObjectById, isArrayEmpty } from "@/utils/array";
 import Loader from "./Loader";
@@ -17,8 +17,8 @@ function Menu() {
     menu,
     isAdminMode,
     handleDeleteProduct,
-    productSelected,
-    setProductSelected,
+    productSelectedByAdmin,
+    setProductSelectedByAdmin,
     editProductTitleRef,
     handleAddToBasket,
     handleDeleteFromBasket,
@@ -26,19 +26,20 @@ function Menu() {
     handleCardSelection,
   } = useOrderContext();
 
-  const handleCardDeletion = (
+  const handleCardDeletion = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     idOfCardToDelete: string,
   ) => {
     e.stopPropagation();
 
-    handleDeleteProduct(idOfCardToDelete);
+    await handleDeleteProduct(idOfCardToDelete);
+    await handleDeleteFromBasket(idOfCardToDelete);
 
-    idOfCardToDelete === productSelected.id &&
-      setProductSelected(EMPTY_PRODUCT);
+    if (!productSelectedByAdmin) return;
+    idOfCardToDelete === productSelectedByAdmin.id &&
+      setProductSelectedByAdmin(null);
 
     focusOnRef(editProductTitleRef);
-    handleDeleteFromBasket(idOfCardToDelete);
   };
 
   const handleAddCardToBasket = (
@@ -62,32 +63,38 @@ function Menu() {
 
   return (
     <TransitionGroup component={MenuStyled}>
-      {menu.map(
-        ({ id, title, imageSource, price, isAvailable, isAdvertised }) => (
-          <CSSTransition
-            classNames={"card"}
-            timeout={500}
-            key={id}
-            appear={true}
-          >
-            <Card
+      <>
+        {menu.map(
+          ({ id, title, imageSource, price, isAvailable, isAdvertised }) => (
+            <CSSTransition
+              classNames={"card"}
+              timeout={500}
               key={id}
-              picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
-              label={title}
-              price={price}
-              onDelete={(e) => handleCardDeletion(e, id)}
-              isDeleteButtonVisible={isAdminMode}
-              isLabel={title === "" ? false : true}
-              isAdminMode={isAdminMode}
-              onCardSelected={() => handleCardSelection(id)}
-              isCardSelected={productSelected.id === id}
-              onAddToBasket={(e) => handleAddCardToBasket(e, id)}
-              isAvailable={isAvailable}
-              isAdvertised={isAdvertised}
-            />
-          </CSSTransition>
-        ),
-      )}
+              appear={true}
+            >
+              <Card
+                key={id}
+                picture={imageSource ? imageSource : IMAGE_BY_DEFAULT}
+                label={title}
+                price={price}
+                onDelete={(e) => handleCardDeletion(e, id)}
+                isDeleteButtonVisible={isAdminMode}
+                isLabel={title === "" ? false : true}
+                isAdminMode={isAdminMode}
+                onCardSelected={() => handleCardSelection(id)}
+                isCardSelected={
+                  productSelectedByAdmin
+                    ? productSelectedByAdmin.id === id
+                    : false
+                }
+                onAddToBasket={(e) => handleAddCardToBasket(e, id)}
+                isAvailable={isAvailable}
+                isAdvertised={isAdvertised}
+              />
+            </CSSTransition>
+          ),
+        )}
+      </>
     </TransitionGroup>
   );
 }

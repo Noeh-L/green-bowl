@@ -17,7 +17,7 @@ function BasketProducts() {
     basket,
     handleDeleteFromBasket,
     isAdminMode,
-    productSelected,
+    productSelectedByAdmin,
     isLoading,
     handleCardSelection,
   } = useOrderContext();
@@ -70,8 +70,11 @@ function BasketProducts() {
               quantity={product.quantity}
               onDelete={(e) => handleCardBasketDeletion(e, product.id)}
               onClick={() => handleCardSelection(product.id)}
-              isClickable={isAdminMode}
-              isSelected={product.id === productSelected.id}
+              isSelected={
+                productSelectedByAdmin
+                  ? product.id === productSelectedByAdmin.id
+                  : false
+              }
               isAdminMode={isAdminMode}
               isProductAdvertised={correspondingProductInMenu.isAdvertised}
             />

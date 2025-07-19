@@ -13,7 +13,6 @@ type BasketCardProps = {
   quantity: number;
   onDelete?: React.MouseEventHandler<HTMLButtonElement>;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
-  isClickable: boolean;
   isSelected: boolean;
   isAdminMode: boolean;
   isProductAdvertised: boolean;
@@ -26,7 +25,6 @@ function BasketCard({
   quantity,
   onDelete,
   onClick,
-  isClickable,
   isSelected,
   isAdminMode,
   isProductAdvertised,
@@ -34,7 +32,6 @@ function BasketCard({
   return (
     <BasketCardStyled
       onClick={onClick}
-      $isClickable={isClickable}
       $isSelected={isSelected}
       $isAdminMode={isAdminMode}
     >
@@ -59,7 +56,6 @@ function BasketCard({
 }
 
 type BasketCardStyledProps = {
-  $isClickable: boolean;
   $isSelected: boolean;
   $isAdminMode: boolean;
 };
@@ -71,12 +67,12 @@ const BasketCardStyled = styled.div<BasketCardStyledProps>`
   display: flex;
   align-items: center;
   background-color: ${theme.colors.white};
-  box-shadow: ${theme.shadows.subtle};
   box-shadow: -4px 4px 15px 0px #00000033;
   border-radius: ${theme.borderRadius.round};
   position: relative;
   overflow: hidden;
-  transition: background-color 0.15s;
+  transition: all ease 0.15s;
+  cursor: pointer;
 
   .imageSource {
     width: 86px;
@@ -99,8 +95,6 @@ const BasketCardStyled = styled.div<BasketCardStyledProps>`
   }
 
   .title-price {
-    cursor: ${({ $isClickable }) => ($isClickable ? "pointer" : "default")};
-
     .title {
       width: 110px;
       font-size: ${theme.fonts.P2};
@@ -147,33 +141,50 @@ const BasketCardStyled = styled.div<BasketCardStyledProps>`
     }
   }
 
-  &:hover .delete-button {
-    right: 0px;
+  &:hover {
+    .delete-button {
+      right: 0px;
 
-    .icon {
-      color: ${theme.colors.white};
-    }
-
-    &:hover {
-      .icon {
-        color: black;
-      }
-    }
-
-    &:active {
       .icon {
         color: ${theme.colors.white};
       }
+
+      &:hover {
+        .icon {
+          color: black;
+        }
+      }
+
+      &:active {
+        .icon {
+          color: ${theme.colors.white};
+        }
+      }
     }
+
+    ${({ $isAdminMode }) =>
+      $isAdminMode ? styleOnAdminHover : styleOnUserHover}
   }
 
-  ${({ $isClickable }) => ($isClickable ? styleOnHover : null)}
   ${({ $isSelected, $isAdminMode }) =>
     $isSelected && $isAdminMode ? styleOnSelected : null}
 `;
 
-const styleOnHover = css`
-  cursor: pointer;
+const styleOnUserHover = css`
+  &:hover {
+    cursor: pointer;
+    background-color: ${theme.colors.background_white};
+  }
+`;
+
+const styleOnAdminHover = css`
+  &:hover {
+    transform: scale(1.025);
+    cursor: pointer;
+    box-shadow:
+      ${theme.shadows.medium},
+      0 0 8px ${theme.colors.primary};
+  }
 `;
 
 const styleOnSelected = css`

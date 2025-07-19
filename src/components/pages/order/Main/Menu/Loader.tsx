@@ -7,7 +7,7 @@ function Loader() {
 
 const LoaderStyled = styled.div`
   font-family: ${theme.family.stylish};
-  font-size: ${theme.fonts.P4};
+  font-size: ${theme.fonts.P3};
   color: ${theme.colors.greyBlue};
   position: absolute;
   top: 50%;

@@ -6,10 +6,32 @@ import { useOrderContext } from "@/context/OrderPageContext";
 import Menu from "./Menu/Menu";
 import Basket from "./Basket/Basket";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { panelAnimation } from "@/theme/animation";
+import { displayModal, panelAnimation } from "@/theme/animation";
+import ProductModal from "./Menu/ProductModal/ProductModal";
+import { useEffect } from "react";
 
 function Main() {
-  const { isAdminMode } = useOrderContext();
+  const {
+    isAdminMode,
+    productSelectedByUser,
+    setProductSelectedByUser,
+    isModalVisible,
+    setIsModalVisible,
+  } = useOrderContext();
+
+  useEffect(() => {
+    if (productSelectedByUser) {
+      setIsModalVisible(true);
+    }
+  }, [productSelectedByUser]);
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleExited = () => {
+    setProductSelectedByUser(null);
+  };
 
   return (
     <MainSyled>
@@ -24,6 +46,32 @@ function Main() {
           )}
         </TransitionGroup>
       </div>
+
+      {/* Overlay (fade + blur) */}
+      <CSSTransition
+        in={isModalVisible}
+        timeout={300}
+        classNames="modalOverlay"
+        unmountOnExit
+      >
+        <div className="overlay" onClick={handleCloseModal}></div>
+      </CSSTransition>
+
+      {/* Modal (scale up) */}
+      <CSSTransition
+        in={isModalVisible}
+        timeout={300}
+        classNames="productModal"
+        unmountOnExit
+        onExited={handleExited}
+      >
+        {productSelectedByUser && (
+          <ProductModal
+            product={productSelectedByUser}
+            onClose={handleCloseModal}
+          />
+        )}
+      </CSSTransition>
     </MainSyled>
   );
 }
@@ -42,7 +90,17 @@ const MainSyled = styled.div`
     flex: 1;
   }
 
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    background: rgba(201 201 201 / 0.25);
+    backdrop-filter: blur(5px);
+  }
+
   ${panelAnimation}
+  ${displayModal}
 `;
 
 export default Main;

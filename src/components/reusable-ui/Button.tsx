@@ -50,6 +50,7 @@ const extraStylePrimary = css`
   border-radius: ${theme.borderRadius.round};
   padding: ${theme.spacing.md};
   color: ${theme.colors.white};
+
   font-size: ${theme.fonts.P0};
   font-weight: ${theme.weights.semiBold};
   font-family: ${theme.family.minimalist};
@@ -81,11 +82,10 @@ const extraStyleSuccess = css`
   gap: ${theme.spacing.sm};
 
   width: fit-content;
-  height: 100%;
   border-radius: ${theme.borderRadius.round};
   background: ${theme.colors.success};
   border: 1px solid ${theme.colors.success};
-  padding: ${theme.spacing.xs} ${theme.spacing.lg};
+  padding: ${theme.spacing.sm} ${theme.spacing.md};
 
   color: ${theme.colors.white};
   font-weight: ${theme.weights.semiBold};

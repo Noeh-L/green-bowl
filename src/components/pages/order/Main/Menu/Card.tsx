@@ -121,6 +121,7 @@ const CardStyled = styled.div<CarsStyledProps>`
     box-shadow: ${theme.shadows.medium};
     transition: all ease 0.15s;
     position: relative;
+    cursor: pointer;
 
     .picture {
       width: 200px;
@@ -141,7 +142,6 @@ const CardStyled = styled.div<CarsStyledProps>`
       display: flex;
       flex-direction: column;
       gap: ${theme.spacing.sm};
-      cursor: default;
 
       &-title {
         font-family: ${theme.family.stylish};
@@ -211,7 +211,8 @@ const CardStyled = styled.div<CarsStyledProps>`
       z-index: 1;
     }
 
-    ${({ $isAdminMode }) => $isAdminMode && styleOnHover}
+    ${({ $isAdminMode }) =>
+      $isAdminMode ? styleOnAdminHover : styleOnUserHover}
     ${({ $isAdminMode, $isSelected }) => {
       return $isAdminMode && $isSelected && styleOnSelected;
     }} 
@@ -223,7 +224,13 @@ const CardStyled = styled.div<CarsStyledProps>`
   }
 `;
 
-const styleOnHover = css`
+const styleOnUserHover = css`
+  &:hover {
+    cursor: pointer;
+    background-color: ${theme.colors.background_white};
+  }
+`;
+const styleOnAdminHover = css`
   &:hover {
     transform: scale(1.05);
     cursor: pointer;

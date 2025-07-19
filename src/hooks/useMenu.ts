@@ -34,7 +34,7 @@ export const useMenu = () => {
 
       setMenu(menuUpdated);
 
-      updateMenuInLStorageAndDB(menuUpdated);
+      await updateMenuInLStorageAndDB(menuUpdated);
     }
   };
 
