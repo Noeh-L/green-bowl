@@ -18,11 +18,23 @@ export const useMenu = () => {
     if (menu) {
       const menuCopy = deepClone(menu);
 
-      const menuUpdated = [newProduct, ...menuCopy];
+      // Process calories: if empty field, set to null; otherwise, convert to number
+      const processedCalories = !newProduct.calories
+        ? null
+        : Number(newProduct.calories);
+
+      const menuUpdated = [
+        {
+          ...newProduct,
+          price: Number(newProduct.price),
+          calories: processedCalories,
+        },
+        ...menuCopy,
+      ];
 
       setMenu(menuUpdated);
 
-      updateMenuInLStorageAndDB(menuUpdated);
+      await updateMenuInLStorageAndDB(menuUpdated);
     }
   };
 
@@ -50,7 +62,10 @@ export const useMenu = () => {
       menuCopy[indexOfProductBeingEdited] = {
         ...productBeingEdited,
         price: Number(productBeingEdited.price),
-        calories: Number(productBeingEdited.calories),
+        calories:
+          String(productBeingEdited.calories) === ""
+            ? null
+            : Number(productBeingEdited.calories),
       };
 
       setMenu(menuCopy);
@@ -66,6 +81,7 @@ export const useMenu = () => {
 
   const updateMenuInLStorageAndDB = async (menuUpdated: MenuProduct[]) => {
     try {
+      console.log("6. calories avant updateUserData:", menuUpdated[0].calories);
       await updateUserData(usernameFromLS as string, {
         menu: [...menuUpdated],
       });

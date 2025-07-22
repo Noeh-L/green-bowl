@@ -6,7 +6,7 @@ export type MenuProduct = {
   quantity?: number;
   isAvailable: boolean;
   isAdvertised: boolean;
-  calories?: number;
+  calories?: number | null;
   description?: string;
 };
 
