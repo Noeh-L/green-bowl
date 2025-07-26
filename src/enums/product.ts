@@ -7,6 +7,8 @@ export const EMPTY_PRODUCT: MenuProduct = {
   price: 0,
   isAvailable: true,
   isAdvertised: false,
+  calories: null,
+  description: "",
 };
 
 export const IMAGE_BY_DEFAULT = "/assets/coming-soon.png";

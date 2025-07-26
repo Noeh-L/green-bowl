@@ -80,6 +80,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 450,
   },
 
   {
@@ -90,6 +91,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 500,
   },
   {
     id: "3",
@@ -99,6 +101,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 540,
   },
   {
     id: "4",
@@ -108,6 +111,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: true,
+    calories: 380,
   },
 
   {
@@ -118,6 +122,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 650,
   },
   {
     id: "6",
@@ -127,6 +132,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 400,
   },
   {
     id: "7",
@@ -136,6 +142,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 250,
   },
   {
     id: "8",
@@ -145,6 +152,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 500,
   },
   {
     id: "9",
@@ -154,6 +162,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 420,
   },
   {
     id: "10",
@@ -163,6 +172,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 120,
   },
   {
     id: "11",
@@ -172,6 +182,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 360,
   },
   {
     id: "12",
@@ -181,6 +192,7 @@ const LARGE: MenuProduct[] = [
     quantity: 0,
     isAvailable: true,
     isAdvertised: false,
+    calories: 210,
   },
 ];
 

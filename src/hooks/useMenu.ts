@@ -18,11 +18,23 @@ export const useMenu = () => {
     if (menu) {
       const menuCopy = deepClone(menu);
 
-      const menuUpdated = [newProduct, ...menuCopy];
+      // Process calories: if empty field, set to null; otherwise, convert to number
+      const processedCalories = !newProduct.calories
+        ? null
+        : Number(newProduct.calories);
+
+      const menuUpdated = [
+        {
+          ...newProduct,
+          price: Number(newProduct.price),
+          calories: processedCalories,
+        },
+        ...menuCopy,
+      ];
 
       setMenu(menuUpdated);
 
-      updateMenuInLStorageAndDB(menuUpdated);
+      await updateMenuInLStorageAndDB(menuUpdated);
     }
   };
 
@@ -50,6 +62,10 @@ export const useMenu = () => {
       menuCopy[indexOfProductBeingEdited] = {
         ...productBeingEdited,
         price: Number(productBeingEdited.price),
+        calories:
+          String(productBeingEdited.calories) === ""
+            ? null
+            : Number(productBeingEdited.calories),
       };
 
       setMenu(menuCopy);

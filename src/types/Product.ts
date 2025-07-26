@@ -6,6 +6,8 @@ export type MenuProduct = {
   quantity?: number;
   isAvailable: boolean;
   isAdvertised: boolean;
+  calories?: number | null;
+  description?: string;
 };
 
 export type BasketProductQuantity = {

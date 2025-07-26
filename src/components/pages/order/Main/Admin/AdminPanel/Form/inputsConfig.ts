@@ -5,6 +5,7 @@ import { FaHamburger } from "react-icons/fa";
 import { FiPackage } from "react-icons/fi";
 import { GoMegaphone } from "react-icons/go";
 import { MdOutlineEuro } from "react-icons/md";
+import { TbBowlSpoonFilled } from "react-icons/tb";
 
 export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
   return [
@@ -52,6 +53,14 @@ export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
         { id: "1", value: "false", label: "Sans pub" },
         { id: "2", value: "true", label: "Avec pub" },
       ],
+    },
+    {
+      id: "5",
+      name: "calories",
+      value: newProduct.calories === null ? "" : String(newProduct.calories),
+      Icon: TbBowlSpoonFilled,
+      placeholder: "Calories (ex: 560)",
+      className: "calories isCompacted",
     },
   ];
 };

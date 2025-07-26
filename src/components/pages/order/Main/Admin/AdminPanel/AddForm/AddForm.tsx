@@ -19,7 +19,6 @@ function AddForm() {
     const newProductToAdd = {
       ...newProduct,
       id: crypto.randomUUID(),
-      price: Number(newProduct.price),
     };
 
     // 2. Mise à jour de notre menu

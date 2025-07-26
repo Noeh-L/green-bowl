@@ -1,6 +1,5 @@
 import { MenuProduct } from "@/types/Product";
 import ModalTag from "./ModalTag";
-import { TbBowlSpoonFilled } from "react-icons/tb";
 import { formatPrice } from "@/utils/maths";
 import { FaShoppingCart } from "react-icons/fa";
 import Button from "@/components/reusable-ui/Button";
@@ -8,6 +7,7 @@ import { useOrderContext } from "@/context/OrderPageContext";
 import { displayToast } from "@/utils/displayToast";
 import styled from "styled-components";
 import { theme } from "@/theme/theme";
+import { IoFlame } from "react-icons/io5";
 
 type ModalInfosProps = {
   product: MenuProduct;
@@ -16,6 +16,12 @@ type ModalInfosProps = {
 function ModalInfos({ product }: ModalInfosProps) {
   const { handleAddToBasket } = useOrderContext();
 
+  const handleLabel = (product: MenuProduct): string => {
+    return product.calories || product.calories === 0
+      ? String(product.calories) + " kCal"
+      : "Calories non renseignées";
+  };
+
   return (
     <ModalInfosStyled>
       <div className="productPicture">
@@ -23,9 +29,7 @@ function ModalInfos({ product }: ModalInfosProps) {
       </div>
       <div className="productDetails">
         <div className="productTags">
-          <ModalTag Icon={TbBowlSpoonFilled} label="Vegan" />
-          <ModalTag label="Sans gluten" />
-          <ModalTag Icon={TbBowlSpoonFilled} label={"1000"} />
+          <ModalTag Icon={IoFlame} label={handleLabel(product)} />
         </div>
         <div className="productDescription">
           <h4>Description</h4>

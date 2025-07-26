@@ -5,6 +5,7 @@ import { setLocalStorage } from "@/utils/windows";
 import { displayToast } from "@/utils/displayToast";
 import { UserData } from "@/types/User";
 import { BasketProductQuantity, MenuProduct } from "@/types/Product";
+import { patchOldMenu } from "@/utils/patchOldMenu";
 
 export const getUser = async (
   userId: string,
@@ -63,9 +64,18 @@ export const authenticateUser = async (userId: string): Promise<UserData> => {
   } else {
     // If user already exists
 
-    displayToast("", `🤙 Welcome back ${existingUser.username} !`, 3000);
+    // patch the menu to ensure it has the latest data structure (lazy migration)
+    const patchedUser = {
+      ...existingUser,
+      menu: patchOldMenu(existingUser.menu),
+    };
 
-    setLocalStorage("userData", existingUser);
-    return existingUser;
+    displayToast("", `🤙 Welcome back ${existingUser.username} !`, 3000);
+    setLocalStorage("userData", patchedUser);
+
+    // Update the 'patched' user data in Firestore
+    await updateUserData(userId, { menu: patchedUser.menu });
+
+    return patchedUser;
   }
 };
