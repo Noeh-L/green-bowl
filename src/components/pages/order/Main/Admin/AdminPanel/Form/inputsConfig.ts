@@ -57,7 +57,7 @@ export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
     {
       id: "5",
       name: "calories",
-      value: newProduct.calories ? newProduct.calories : "",
+      value: newProduct.calories === null ? "" : String(newProduct.calories),
       Icon: TbBowlSpoonFilled,
       placeholder: "Calories (ex: 560)",
       className: "calories isCompacted",
