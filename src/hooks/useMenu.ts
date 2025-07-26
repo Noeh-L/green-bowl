@@ -81,7 +81,6 @@ export const useMenu = () => {
 
   const updateMenuInLStorageAndDB = async (menuUpdated: MenuProduct[]) => {
     try {
-      console.log("6. calories avant updateUserData:", menuUpdated[0].calories);
       await updateUserData(usernameFromLS as string, {
         menu: [...menuUpdated],
       });
