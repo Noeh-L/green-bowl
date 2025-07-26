@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { theme } from "@/theme/theme";
 import OrderContextProvider from "@/context/OrderPageContext";
 import gbPattern from "/assets/gb-pattern.png";
+import { lighten } from "polished";
 
 function OrderPage() {
   return (
@@ -26,12 +27,10 @@ const OrderPageStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: linear-gradient(${theme.colors.primary}); */
   background: linear-gradient(
     155deg,
-    rgba(68, 201, 121, 1) 0%,
-    rgba(57, 221, 122, 1) 35%,
-    rgba(2, 251, 164, 1) 100%
+    ${theme.colors.primary} 0%,
+    ${lighten(0.05, theme.colors.primary)} 100%
   );
 
   & .background {
