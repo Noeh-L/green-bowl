@@ -67,7 +67,9 @@ export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
       name: "description",
       value: newProduct.description,
       Icon: MdDescription,
-      placeholder: "Description du produit",
+      placeholder:
+        "Description du produit (ex: Un délicieuse salade de fruits !)",
+      type: "textarea",
     },
   ];
 };
