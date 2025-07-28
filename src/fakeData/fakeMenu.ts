@@ -81,8 +81,9 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 450,
+    description:
+      "Saumon frais, riz vinaigré, avocat et légumes croquants. Sauce soja et wasabi.",
   },
-
   {
     id: "2",
     imageSource: "/assets/bowl5.png",
@@ -92,6 +93,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 500,
+    description:
+      "Pommes de terre grenailles, œufs durs, oignons rouges et ciboulette. Sauce mayonnaise légère.",
   },
   {
     id: "3",
@@ -102,6 +105,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 540,
+    description:
+      "Saumon mariné, riz parfumé, edamame, avocat et graines de sésame. Sauce teriyaki maison.",
   },
   {
     id: "4",
@@ -112,8 +117,9 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: true,
     calories: 380,
+    description:
+      "Avocat, quinoa, tomates cerises, concombre et pousses d'épinards. Vinaigrette au citron vert.",
   },
-
   {
     id: "5",
     imageSource: "/assets/bowl3.png",
@@ -123,6 +129,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 650,
+    description:
+      "Poulet grillé, salade romaine, parmesan, croûtons et bacon croustillant. Sauce césar.",
   },
   {
     id: "6",
@@ -133,6 +141,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 400,
+    description:
+      "Patates douces frites, assaisonnement aux herbes et épices. Sauce sweet chili.",
   },
   {
     id: "7",
@@ -143,6 +153,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 250,
+    description:
+      "Steak végétal aux légumineuses, salade, tomate, oignon rouge. Sauce végane spéciale.",
   },
   {
     id: "8",
@@ -153,6 +165,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 500,
+    description:
+      "Portion généreuse de frites de patates douces. Servi avec un assortiment de sauces maison.",
   },
   {
     id: "9",
@@ -163,6 +177,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 420,
+    description:
+      "Smoothie aux fruits frais : mangue, fraise, fruits rouges. Sans sucres ajoutés.",
   },
   {
     id: "10",
@@ -173,6 +189,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 120,
+    description:
+      "Thé au lait parfumé à la vanille avec perles de tapioca. Personnalisable en sucre.",
   },
   {
     id: "11",
@@ -183,6 +201,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 360,
+    description:
+      "Boisson rafraîchissante aux saveurs de pomme, cassis et framboise. Sans édulcorants.",
   },
   {
     id: "12",
@@ -193,6 +213,8 @@ const LARGE: MenuProduct[] = [
     isAvailable: true,
     isAdvertised: false,
     calories: 210,
+    description:
+      "Sélection de glaces artisanales aux parfums variés. Fabrication locale.",
   },
 ];
 

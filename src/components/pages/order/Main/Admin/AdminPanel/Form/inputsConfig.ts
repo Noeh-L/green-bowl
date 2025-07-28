@@ -4,7 +4,7 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { FaHamburger } from "react-icons/fa";
 import { FiPackage } from "react-icons/fi";
 import { GoMegaphone } from "react-icons/go";
-import { MdOutlineEuro } from "react-icons/md";
+import { MdDescription, MdOutlineEuro } from "react-icons/md";
 import { TbBowlSpoonFilled } from "react-icons/tb";
 
 export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
@@ -61,6 +61,13 @@ export const getInputsConfig = (newProduct: MenuProduct): Input[] => {
       Icon: TbBowlSpoonFilled,
       placeholder: "Calories (ex: 560)",
       className: "calories isCompacted",
+    },
+    {
+      id: "6",
+      name: "description",
+      value: newProduct.description,
+      Icon: MdDescription,
+      placeholder: "Description du produit",
     },
   ];
 };
