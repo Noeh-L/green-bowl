@@ -35,7 +35,9 @@ function AddForm() {
   const handleChange = (
     e:
       | React.FormEvent<HTMLFormElement>
-      | React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+      | React.ChangeEvent<
+          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >,
   ) => {
     if (!("name" in e.target)) return;
 
