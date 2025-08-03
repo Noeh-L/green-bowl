@@ -6,11 +6,16 @@ import styled from "styled-components";
 import { theme } from "@/theme/theme";
 import React from "react";
 import { MenuProduct } from "@/types/Product";
+import TextareaInput from "@/components/reusable-ui/TextareaInput";
 
 export type FieldsProps = {
   product: MenuProduct;
-  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
-  onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
+  onChange?: React.ChangeEventHandler<
+    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  >;
+  onFocus?: React.FocusEventHandler<
+    HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+  >;
 };
 
 const Fields = React.forwardRef<HTMLInputElement, FieldsProps>(
@@ -19,33 +24,56 @@ const Fields = React.forwardRef<HTMLInputElement, FieldsProps>(
 
     return (
       <FieldsStyled>
-        {inputs.map((input) =>
-          input.options ? (
-            <SelectInput
-              key={input.id}
-              Icon={input.Icon}
-              className={input.className}
-              value={input.value}
-              name={input.name}
-              onChange={onChange}
-              onFocus={onFocus}
-              options={input.options}
-            />
-          ) : (
-            <TextInput
-              key={input.id}
-              value={input.value ? input.value : ""}
-              name={input.name}
-              onChange={onChange}
-              onFocus={onFocus}
-              Icon={input.Icon}
-              placeholder={input.placeholder}
-              className={`text-inputs ${input.className ? input.className : ""}`}
-              version="normal"
-              ref={input.name === "title" ? ref : null}
-            />
-          ),
-        )}
+        {inputs.map((input) => {
+          const inputType = input.type ?? (input.options ? "select" : "text");
+
+          switch (inputType) {
+            case "select":
+              return (
+                <SelectInput
+                  key={input.id}
+                  Icon={input.Icon}
+                  className={input.className}
+                  value={input.value}
+                  name={input.name}
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  options={input.options!}
+                />
+              );
+
+            case "textarea":
+              return (
+                <TextareaInput
+                  key={input.id}
+                  value={input.value ? input.value : ""}
+                  name={input.name}
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  Icon={input.Icon}
+                  placeholder={input.placeholder}
+                  className={`text-inputs ${input.className ? input.className : ""}`}
+                />
+              );
+
+            default:
+            case "text":
+              return (
+                <TextInput
+                  key={input.id}
+                  value={input.value ? input.value : ""}
+                  name={input.name}
+                  onChange={onChange}
+                  onFocus={onFocus}
+                  Icon={input.Icon}
+                  placeholder={input.placeholder}
+                  className={`text-inputs ${input.className ? input.className : ""}`}
+                  version="normal"
+                  ref={input.name === "title" ? ref : null}
+                />
+              );
+          }
+        })}
       </FieldsStyled>
     );
   },

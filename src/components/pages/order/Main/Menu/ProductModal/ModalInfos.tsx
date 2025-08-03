@@ -33,9 +33,12 @@ function ModalInfos({ product }: ModalInfosProps) {
         </div>
         <div className="productDescription">
           <h4>Description</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-            mollitia culpa pariatur cum aliquid
+          <p className="description">
+            {product.description ? (
+              product.description
+            ) : (
+              <i>Aucune description.</i>
+            )}
           </p>
         </div>
       </div>
@@ -104,6 +107,7 @@ const ModalInfosStyled = styled.div`
         text-align: justify;
         max-height: 100px;
         padding-right: ${theme.spacing.xs};
+        padding-left: ${theme.spacing.xxs};
         overflow: auto;
         scrollbar-width: thin;
         scrollbar-color: ${theme.colors.greyMedium} transparent;

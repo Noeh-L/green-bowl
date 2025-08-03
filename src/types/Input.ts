@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
 
-export type TextInput = {
+export type Input = {
   id: string;
   name: string;
   value: string | number | readonly string[] | undefined;
@@ -8,16 +8,7 @@ export type TextInput = {
   placeholder?: string;
   className?: string;
   options?: Option[];
-};
-
-export type SelectInput = {
-  id: string;
-  name: string;
-  value: string | number | readonly string[] | undefined;
-  Icon?: IconType;
-  placeholder?: string;
-  className?: string;
-  options?: Option[];
+  type?: InputType;
 };
 
 export type Option = {
@@ -26,4 +17,4 @@ export type Option = {
   label: string;
 };
 
-export type Input = TextInput | SelectInput;
+export type InputType = "text" | "select" | "textarea";

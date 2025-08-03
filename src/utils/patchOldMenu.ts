@@ -5,7 +5,8 @@ export function patchOldMenu(menu: MenuProduct[]): MenuProduct[] {
   // Check if the menu product's keys are up to date (calories, description, etc...); ('lazy migration').
   const isUpToDate = menu.every(
     (product) =>
-      typeof product.calories === "number" || product.calories === null,
+      (typeof product.calories === "number" || product.calories === null) &&
+      typeof product.description === "string",
   );
 
   if (isUpToDate) return menu;
@@ -21,6 +22,9 @@ export function patchOldMenu(menu: MenuProduct[]): MenuProduct[] {
       calories: matchingProductFromDefaultMenu
         ? matchingProductFromDefaultMenu.calories
         : null,
+      description: matchingProductFromDefaultMenu
+        ? matchingProductFromDefaultMenu.description
+        : "",
     };
   });
 }
